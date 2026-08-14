@@ -1,80 +1,271 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BilimAI</title>
-<meta name="description" content="AI-powered assignment grading assistant — custom local AI, Russian & Uzbek.">
+<title>BilimAI — ИИ проверяет работы учеников</title>
+<meta name="description" content="BilimAI — помощник учителя: читает письменные работы учеников, проверяет их и предлагает оценку с комментариями. Работает на школьном компьютере, ничего не отправляет в интернет.">
 <style>
   :root {
-    --bg: #f6f7f9; --card: #ffffff; --ink: #1a1d21; --muted: #5b6470;
-    --accent: #2563eb; --line: #e5e7eb;
+    --bg: #f7f8fa; --card: #ffffff; --ink: #1a1d21; --muted: #5b6470;
+    --accent: #2563eb; --line: #e5e7eb; --good: #16a34a; --warn: #d97706;
+    --paper: #fffdf6; --paper-line: #ece6d4; --red-pen: #dc2626;
   }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #0f1216; --card: #171c22; --ink: #e7eaee; --muted: #98a2ae; --accent: #4f8bfd; --line: #262d36; }
+    :root { --bg: #0f1216; --card: #171c22; --ink: #e7eaee; --muted: #98a2ae;
+            --accent: #4f8bfd; --line: #262d36; --good: #34c268; --warn: #f0a044;
+            --paper: #1d222a; --paper-line: #2b323d; --red-pen: #ff6b6b; }
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink);
-         font: 16px/1.6 -apple-system, "Segoe UI", Roboto, sans-serif; }
-  .wrap { max-width: 780px; margin: 0 auto; padding: 64px 22px 80px; }
-  h1 { font-size: 42px; margin: 0; letter-spacing: -0.02em; }
-  .tag { color: var(--accent); font-weight: 600; letter-spacing: .08em;
+         font: 17px/1.65 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 56px 20px 80px; }
+  .tag { color: var(--accent); font-weight: 700; letter-spacing: .08em;
          text-transform: uppercase; font-size: 12px; }
-  .lede { font-size: 19px; color: var(--muted); margin: 14px 0 30px; }
+  h1 { font-size: 40px; margin: 6px 0 0; letter-spacing: -0.02em; line-height: 1.15; }
+  .lede { font-size: 20px; color: var(--muted); margin: 16px 0 26px; }
+  .lede b { color: var(--ink); }
   .cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
-         padding: 12px 24px; border-radius: 10px; font-weight: 600; margin-right: 10px; }
+         padding: 12px 24px; border-radius: 10px; font-weight: 600; margin: 0 10px 10px 0; }
   .cta.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-  h2 { font-size: 20px; margin: 46px 0 12px; }
-  .pipe { background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-          padding: 18px 20px; overflow-x: auto; }
-  .pipe code { font: 14px/1.7 ui-monospace, "SF Mono", Menlo, monospace; white-space: pre; display: block; }
-  ul { padding-left: 20px; } li { margin: 6px 0; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
-  .card b { display: block; margin-bottom: 4px; }
-  .card span { color: var(--muted); font-size: 14px; }
-  footer { margin-top: 56px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
+  h2 { font-size: 24px; margin: 54px 0 6px; }
+  .sub { color: var(--muted); margin: 0 0 18px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .card .emoji { font-size: 26px; }
+  .card b { display: block; margin: 6px 0 4px; font-size: 17px; }
+  .card span { color: var(--muted); font-size: 15px; }
+  /* demo */
+  .demo { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+  .paper { background: var(--paper); border: 1px solid var(--paper-line); border-radius: 8px;
+           padding: 18px 20px; font-size: 15px; line-height: 1.7; position: relative; }
+  .paper h4 { margin: 0 0 8px; font-size: 14px; color: var(--muted); font-weight: 600; }
+  .hl { border-bottom: 2px wavy var(--red-pen); text-decoration: underline wavy var(--red-pen) 1.5px; }
+  .pen-note { color: var(--red-pen); font-size: 13px; font-style: italic; }
+  .scanline { position: absolute; left: 0; right: 0; height: 34px; top: 0; border-radius: 6px;
+              background: color-mix(in srgb, var(--accent) 12%, transparent);
+              border-top: 2px solid var(--accent); opacity: 0; pointer-events: none; }
+  .reading { display: flex; gap: 10px; align-items: center; color: var(--muted);
+             font-size: 14px; margin: 14px 0 0; min-height: 22px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+         animation: pulse 1s infinite alternate; }
+  @keyframes pulse { from { opacity: .3 } to { opacity: 1 } }
+  .marks { margin-top: 16px; }
+  .mark { display: none; border-top: 1px solid var(--line); padding: 12px 0; }
+  .mark.show { display: block; animation: fadein .45s; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(6px) } to { opacity: 1 } }
+  .mark .head { display: flex; justify-content: space-between; font-weight: 600; gap: 10px; }
+  .chip { background: color-mix(in srgb, var(--good) 15%, transparent); color: var(--good);
+          border-radius: 999px; padding: 1px 12px; font-size: 14px; white-space: nowrap; }
+  .chip.warn { background: color-mix(in srgb, var(--warn) 15%, transparent); color: var(--warn); }
+  .mark p { margin: 6px 0 8px; color: var(--muted); font-size: 15px; }
+  .bar { height: 8px; background: color-mix(in srgb, var(--line) 60%, transparent); border-radius: 6px; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--good); border-radius: 6px;
+           transition: width .8s ease; }
+  .bar i.warn { background: var(--warn); }
+  .total { display: none; margin-top: 16px; padding: 16px 18px; border-radius: 12px;
+           background: color-mix(in srgb, var(--accent) 8%, transparent);
+           border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+  .total.show { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+                animation: fadein .45s; }
+  .total .big { font-size: 30px; font-weight: 700; }
+  .total .conf { color: var(--good); font-size: 14px; }
+  .replay { margin-top: 14px; }
+  button { background: var(--accent); color: #fff; border: 0; padding: 10px 20px;
+           border-radius: 10px; font: inherit; font-weight: 600; cursor: pointer; }
+  .note { color: var(--muted); font-size: 13px; margin-top: 10px; }
+  /* time chart */
+  .chart { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .chart .row { margin: 12px 0; }
+  .chart .lbl { display: flex; justify-content: space-between; font-size: 15px; margin-bottom: 5px; }
+  .chart .lbl span:last-child { color: var(--muted); }
+  .tbar { height: 26px; border-radius: 8px; background: color-mix(in srgb, var(--line) 60%, transparent); overflow: hidden; }
+  .tbar i { display: block; height: 100%; border-radius: 8px; }
+  ol.steps { padding-left: 0; list-style: none; counter-reset: n; }
+  ol.steps li { counter-increment: n; display: flex; gap: 14px; margin: 14px 0; align-items: baseline; }
+  ol.steps li::before { content: counter(n); background: var(--accent); color: #fff; border-radius: 50%;
+                        min-width: 28px; height: 28px; display: inline-flex; align-items: center;
+                        justify-content: center; font-weight: 700; font-size: 14px; transform: translateY(4px); }
+  ol.steps b { display: block; }
+  ol.steps span { color: var(--muted); font-size: 15px; }
+  .honest { border-left: 4px solid var(--warn); padding: 4px 0 4px 16px; color: var(--muted); }
+  footer { margin-top: 60px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
   a { color: var(--accent); }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="tag">bilim · знание · bilim — knowledge</div>
-  <h1>BilimAI</h1>
-  <p class="lede">An AI assistant that reads students' written assignments, checks the work,
-  and drafts grades and feedback — so teachers spend their time teaching, not marking.
-  Runs on a <b>custom, fully local AI</b>. Languages: <b>Russian &amp; Uzbek</b>.</p>
 
-  <a class="cta" href="https://github.com/NeutroLink/BilimAI">View on GitHub</a>
-  <a class="cta ghost" href="https://github.com/NeutroLink/BilimAI/blob/main/PLAN.md">Read the plan</a>
+  <div class="tag">bilim — знание</div>
+  <h1>BilimAI проверяет тетради.<br>Учитель — учит.</h1>
+  <p class="lede">BilimAI — это программа-помощник, которая <b>читает письменную работу ученика,
+  сверяет её с критериями учителя и предлагает оценку с комментариями</b>. Учителю остаётся
+  просмотреть и утвердить — вместо того чтобы проверять каждую работу с нуля.
+  Языки: <b>русский и узбекский</b>.</p>
 
-  <h2>How it works</h2>
-  <div class="pipe"><code>upload → READ → MARK → TEACHER REVIEW → deliver
-         OCR /   LLM grades      human approves
-         vision  vs. rubric      every grade</code></div>
+  <a class="cta" href="#demo">Посмотреть, как это работает ↓</a>
+  <a class="cta ghost" href="https://github.com/NeutroLink/BilimAI">Код на GitHub</a>
 
-  <h2>Why local AI</h2>
+  <h2>Три вещи, которые важно понять</h2>
   <div class="cards">
-    <div class="card"><b>Privacy</b><span>Children's work never leaves the school's servers. No cloud LLM APIs.</span></div>
-    <div class="card"><b>Cost</b><span>Fixed GPU cost instead of per-assignment API pricing at scale.</span></div>
-    <div class="card"><b>Control</b><span>Fine-tuned on our curriculum, our rubrics, our languages.</span></div>
+    <div class="card"><div class="emoji">⏱️</div><b>Возвращает учителю вечера</b>
+      <span>Стопка сочинений, которую раньше проверяли весь вечер, превращается в
+      «просмотреть и утвердить». Рутину делает программа, решение принимает человек.</span></div>
+    <div class="card"><div class="emoji">🔒</div><b>Ничего не уходит в интернет</b>
+      <span>ИИ работает прямо на компьютере школы — как калькулятор, только умнее.
+      Работы детей не отправляются ни в какое «облако» и ни в какую другую страну.</span></div>
+    <div class="card"><div class="emoji">👩‍🏫</div><b>Учитель всегда главный</b>
+      <span>BilimAI лишь предлагает оценку. Ни одна оценка не попадёт к ученику,
+      пока её не утвердил учитель. Каждое исправление делает программу умнее.</span></div>
   </div>
 
-  <h2>Principles</h2>
-  <ul>
-    <li><b>Teacher in the loop, always</b> — the AI drafts, the teacher decides. Every correction becomes training data.</li>
-    <li><b>Eval-gated releases</b> — no model change ships unless it matches teacher agreement on a frozen golden set.</li>
-    <li><b>Full audit trail</b> — every grade can be explained after the fact: model, prompt, input, output, final human decision.</li>
-  </ul>
+  <h2 id="demo">Демонстрация: ИИ проверяет сочинение</h2>
+  <p class="sub">Это настоящий результат: именно так BilimAI оценил это сочинение
+  на обычном ноутбуке, без интернета. Нажмите «Проверить работу».</p>
 
-  <h2>Status</h2>
+  <div class="demo">
+    <div class="paper" id="paper">
+      <div class="scanline" id="scan"></div>
+      <h4>Сочинение, 8 класс — «Моё любимое время года»</h4>
+      <span id="essay">Моё любимое время года — осень. Многие любят лето, потому что летом каникулы
+      и тепло, но мне больше нравится осень. Во-первых, осенью очень красиво. Листья на деревьях
+      становятся жёлтыми, красными и оранжевыми, и парк рядом с нашим домом выглядит как картина.
+      Во-вторых, осенью начинается учебный год: летом я скучаю по друзьям, а осенью мы снова
+      видимся каждый день. <span id="err">Некоторые говорят что осенью грустно</span>, потому что
+      часто идёт дождь. Но я думаю, что дождь — это не плохо: можно сидеть дома, пить чай и читать
+      книгу. В заключение хочу сказать, что осень — самое красивое и интересное время года для меня.</span>
+      <div class="pen-note" id="pen" style="display:none">✏️ пропущена запятая: «говорят, что»</div>
+    </div>
+
+    <div class="reading" id="reading"></div>
+
+    <div class="marks" id="marks">
+      <div class="mark" data-w="100">
+        <div class="head"><span>Раскрытие темы</span><span class="chip">5 / 5</span></div>
+        <p>Тема раскрыта полно: есть личное отношение и конкретные причины любить осень.</p>
+        <div class="bar"><i></i></div>
+      </div>
+      <div class="mark" data-w="100">
+        <div class="head"><span>Структура</span><span class="chip">5 / 5</span></div>
+        <p>Есть вступление, основная часть с аргументами и заключение. Части логично связаны.</p>
+        <div class="bar"><i></i></div>
+      </div>
+      <div class="mark" data-w="80" data-warn="1">
+        <div class="head"><span>Аргументация</span><span class="chip warn">4 / 5</span></div>
+        <p>Аргументы есть, но их можно раскрыть подробнее и крепче связать с темой.</p>
+        <div class="bar"><i class="warn"></i></div>
+      </div>
+      <div class="mark" data-w="100">
+        <div class="head"><span>Грамотность</span><span class="chip">5 / 5</span></div>
+        <p>В целом грамотно. Найдена пропущенная запятая: «Некоторые говорят, что…».</p>
+        <div class="bar"><i></i></div>
+      </div>
+    </div>
+
+    <div class="total" id="total">
+      <span class="big">19 / 20</span>
+      <span>Черновик оценки готов — теперь слово за учителем.</span>
+      <span class="conf">уверенность ИИ: 95%</span>
+    </div>
+
+    <div class="replay"><button id="run">Проверить работу</button></div>
+    <p class="note">Оценки и комментарии в этой демонстрации — реальный ответ локальной модели
+    (Qwen3 8B) при проверке этого сочинения. Проверка заняла 21 секунду на обычном MacBook.</p>
+  </div>
+
+  <h2>Сколько времени это экономит</h2>
+  <p class="sub">Примерная картина для стопки из 30 сочинений (иллюстрация, не замер):</p>
+  <div class="chart">
+    <div class="row">
+      <div class="lbl"><span>Проверка вручную</span><span>~3 часа</span></div>
+      <div class="tbar"><i style="width:100%; background: var(--muted)"></i></div>
+    </div>
+    <div class="row">
+      <div class="lbl"><span>С BilimAI: просмотреть и утвердить</span><span>~30–40 минут</span></div>
+      <div class="tbar"><i style="width:20%; background: var(--accent)"></i></div>
+    </div>
+  </div>
+
+  <h2>Как это устроено — за 4 шага</h2>
+  <ol class="steps">
+    <li><div><b>Загрузили работу</b><span>Напечатанный текст — уже сейчас. Фото рукописной
+      страницы — следующий этап проекта.</span></div></li>
+    <li><div><b>ИИ читает и сверяет с критериями</b><span>Учитель один раз задаёт критерии
+      («раскрытие темы — 5 баллов, грамотность — 5 баллов…»), программа оценивает строго по ним.</span></div></li>
+    <li><div><b>Учитель просматривает и утверждает</b><span>Согласен — нажал «утвердить».
+      Не согласен — исправил, и программа учится на этом исправлении.</span></div></li>
+    <li><div><b>Ученик получает оценку и понятный разбор</b><span>Не просто «4», а что именно
+      хорошо и что улучшить — на языке, на котором написана работа.</span></div></li>
+  </ol>
+
+  <h2>Говорим честно</h2>
+  <p class="honest">ИИ иногда ошибается — как и человек. Поэтому в BilimAI ни одна оценка
+  не выставляется без учителя, каждое решение можно посмотреть и объяснить задним числом,
+  а новые версии программы выпускаются только если они оценивают <i>не хуже</i> учителей
+  на контрольном наборе проверенных работ.</p>
+
+  <h2>Статус проекта</h2>
   <ul>
-    <li>✅ Architecture &amp; phased plan — <a href="https://github.com/NeutroLink/BilimAI/blob/main/PLAN.md">PLAN.md</a></li>
-    <li>✅ MVP demo of the grading stage — typed text, local Qwen3 via Ollama — <a href="https://github.com/NeutroLink/BilimAI/tree/main/mvp">mvp/</a></li>
-    <li>⏳ Handwriting (vision model), teacher review UI, fine-tuning flywheel — see roadmap</li>
+    <li>✅ Работающий прототип: печатные работы на русском и узбекском проверяются локальной моделью</li>
+    <li>✅ Архитектура и поэтапный план — <a href="https://github.com/NeutroLink/BilimAI/blob/main/PLAN.md">PLAN.md</a></li>
+    <li>⏳ Дальше: рукописный текст (фото тетради), кабинет учителя, дообучение на реальных проверках</li>
   </ul>
 
   <footer>BilimAI · <a href="https://github.com/NeutroLink/BilimAI">github.com/NeutroLink/BilimAI</a></footer>
 </div>
+
+<script>
+const $ = id => document.getElementById(id);
+const marks = [...document.querySelectorAll('.mark')];
+let running = false;
+
+function reset() {
+  marks.forEach(m => { m.classList.remove('show'); m.querySelector('.bar i').style.width = '0'; });
+  $('total').classList.remove('show');
+  $('pen').style.display = 'none';
+  $('err').classList.remove('hl');
+  $('reading').innerHTML = '';
+}
+
+async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function scanPaper() {
+  const scan = $('scan'), paper = $('paper');
+  scan.style.opacity = '1';
+  const h = paper.scrollHeight - 40;
+  for (let y = 0; y <= h; y += 6) { scan.style.top = y + 'px'; await sleep(16); }
+  scan.style.opacity = '0';
+}
+
+async function run() {
+  if (running) return;
+  running = true;
+  reset();
+  $('reading').innerHTML = '<div class="dot"></div> ИИ читает работу…';
+  await scanPaper();
+  $('reading').innerHTML = '<div class="dot"></div> Сверяю с критериями учителя…';
+  await sleep(700);
+  $('err').classList.add('hl');
+  $('pen').style.display = 'block';
+  await sleep(700);
+  $('reading').innerHTML = 'Готово. Черновик оценки:';
+  for (const m of marks) {
+    m.classList.add('show');
+    await sleep(60);
+    m.querySelector('.bar i').style.width = m.dataset.w + '%';
+    await sleep(650);
+  }
+  $('total').classList.add('show');
+  running = false;
+}
+
+$('run').onclick = run;
+
+// autoplay once when the demo scrolls into view
+const io = new IntersectionObserver(es => {
+  if (es[0].isIntersecting) { io.disconnect(); run(); }
+}, { threshold: 0.4 });
+io.observe(document.querySelector('.demo'));
+</script>
 </body>
 </html>
