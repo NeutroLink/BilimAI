@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BilimAI</title>
+<meta name="description" content="AI-powered assignment grading assistant — custom local AI, Russian & Uzbek.">
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --ink: #1a1d21; --muted: #5b6470;
+    --accent: #2563eb; --line: #e5e7eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1216; --card: #171c22; --ink: #e7eaee; --muted: #98a2ae; --accent: #4f8bfd; --line: #262d36; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 16px/1.6 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 64px 22px 80px; }
+  h1 { font-size: 42px; margin: 0; letter-spacing: -0.02em; }
+  .tag { color: var(--accent); font-weight: 600; letter-spacing: .08em;
+         text-transform: uppercase; font-size: 12px; }
+  .lede { font-size: 19px; color: var(--muted); margin: 14px 0 30px; }
+  .cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
+         padding: 12px 24px; border-radius: 10px; font-weight: 600; margin-right: 10px; }
+  .cta.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  h2 { font-size: 20px; margin: 46px 0 12px; }
+  .pipe { background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+          padding: 18px 20px; overflow-x: auto; }
+  .pipe code { font: 14px/1.7 ui-monospace, "SF Mono", Menlo, monospace; white-space: pre; display: block; }
+  ul { padding-left: 20px; } li { margin: 6px 0; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .card b { display: block; margin-bottom: 4px; }
+  .card span { color: var(--muted); font-size: 14px; }
+  footer { margin-top: 56px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="tag">bilim · знание · bilim — knowledge</div>
+  <h1>BilimAI</h1>
+  <p class="lede">An AI assistant that reads students' written assignments, checks the work,
+  and drafts grades and feedback — so teachers spend their time teaching, not marking.
+  Runs on a <b>custom, fully local AI</b>. Languages: <b>Russian &amp; Uzbek</b>.</p>
+
+  <a class="cta" href="https://github.com/NeutroLink/BilimAI">View on GitHub</a>
+  <a class="cta ghost" href="https://github.com/NeutroLink/BilimAI/blob/main/PLAN.md">Read the plan</a>
+
+  <h2>How it works</h2>
+  <div class="pipe"><code>upload → READ → MARK → TEACHER REVIEW → deliver
+         OCR /   LLM grades      human approves
+         vision  vs. rubric      every grade</code></div>
+
+  <h2>Why local AI</h2>
+  <div class="cards">
+    <div class="card"><b>Privacy</b><span>Children's work never leaves the school's servers. No cloud LLM APIs.</span></div>
+    <div class="card"><b>Cost</b><span>Fixed GPU cost instead of per-assignment API pricing at scale.</span></div>
+    <div class="card"><b>Control</b><span>Fine-tuned on our curriculum, our rubrics, our languages.</span></div>
+  </div>
+
+  <h2>Principles</h2>
+  <ul>
+    <li><b>Teacher in the loop, always</b> — the AI drafts, the teacher decides. Every correction becomes training data.</li>
+    <li><b>Eval-gated releases</b> — no model change ships unless it matches teacher agreement on a frozen golden set.</li>
+    <li><b>Full audit trail</b> — every grade can be explained after the fact: model, prompt, input, output, final human decision.</li>
+  </ul>
+
+  <h2>Status</h2>
+  <ul>
+    <li>✅ Architecture &amp; phased plan — <a href="https://github.com/NeutroLink/BilimAI/blob/main/PLAN.md">PLAN.md</a></li>
+    <li>✅ MVP demo of the grading stage — typed text, local Qwen3 via Ollama — <a href="https://github.com/NeutroLink/BilimAI/tree/main/mvp">mvp/</a></li>
+    <li>⏳ Handwriting (vision model), teacher review UI, fine-tuning flywheel — see roadmap</li>
+  </ul>
+
+  <footer>BilimAI · <a href="https://github.com/NeutroLink/BilimAI">github.com/NeutroLink/BilimAI</a></footer>
+</div>
+</body>
+</html>
