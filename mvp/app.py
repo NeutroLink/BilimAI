@@ -123,6 +123,15 @@ async def grade(req: GradeRequest):
             {"error": "Model returned unparseable output.", "raw": content[:500]},
             status_code=502,
         )
+    # Small local models occasionally emit a criterion twice (an abandoned draft plus
+    # the final one). Keep the last occurrence per name and recompute the totals from
+    # what survives, so the card always adds up.
+    seen = {}
+    for c in result.get("criteria", []):
+        seen[c["name"]] = c
+    result["criteria"] = list(seen.values())
+    result["overall_score"] = sum(c["score"] for c in result["criteria"])
+    result["overall_max"] = sum(c["max_score"] for c in result["criteria"])
     result["model"] = MODEL
     return result
 
