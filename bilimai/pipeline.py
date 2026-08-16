@@ -7,7 +7,7 @@ they improve without touching the rest. What is real today:
   LOCATE : `OracleLocator` (boxes given in request.options.oracle_lines — used for eval/demo)
            `ProjectionLocator` (naive ink-profile line finder — placeholder until E4.1/E4.2)
   READ   : `GLMReader` (GLM-OCR + optional LoRA adapter, transformers; MPS/CUDA/CPU)
-  ENGINE : dictation (bilimai.dictation); other types → status "unsupported" (honest stub)
+  ENGINE : dictation (bilimai.dictation), math (bilimai.mathcheck); others → "unsupported"
   RENDER : bilimai.render
 Provenance is attached for internal use; `to_external()` strips it (contract rule).
 
@@ -23,6 +23,7 @@ from PIL import Image
 
 from . import __version__
 from .dictation import grade_dictation
+from .mathcheck import grade_math
 from .render import render
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -136,6 +137,14 @@ class Pipeline:
                                   count_punctuation=key.get("count_punctuation", True),
                                   scale=key.get("grading_scale", "classic-5point"), language=request.get("language", "ru"))
             status = "needs_review" if res["score_card"].get("needs_review") else "ok"; engine = "dictation-engine@0.1"
+        elif atype == "math":
+            key = request["key"]; probs = key["problems"]
+            # grouping: request.options.problem_lines = {id: [line indices]}; else drills = one line per problem in order
+            pl = request.get("options", {}).get("problem_lines")
+            groups = ({pid: [transcript[i] for i in idxs if i < len(transcript)] for pid, idxs in pl.items()} if pl
+                      else {p["id"]: ([transcript[i]] if i < len(transcript) else []) for i, p in enumerate(probs)})
+            res = grade_math(probs, groups, language=request.get("language", "ru"))
+            status = "needs_review" if res["score_card"].get("needs_review") else "ok"; engine = "math-engine@0.1"
         else:
             res = {"marks": [], "score_card": {"score": 0, "max_score": 0, "summary": f"type '{atype}' not implemented yet", "confidence": 0.0, "needs_review": True}}
             status = "unsupported"; engine = "none"
@@ -149,11 +158,13 @@ class Pipeline:
             timings["render"] = round((time.time() - t) * 1000)
         timings["total"] = round((time.time() - t0) * 1000)
 
-        return {"job_id": job, "type": atype, "status": status,
+        resp = {"job_id": job, "type": atype, "status": status,
                 "transcript": transcript if request.get("options", {}).get("return_transcript", True) else [],
-                "marks": res["marks"], "score_card": res["score_card"], "marked_image_uri": marked_uri,
+                "marks": res["marks"], "score_card": res["score_card"],
                 "provenance": {"pipeline_version": __version__, "reader_model": getattr(self.reader, "name", "?"),
                                "detector_model": getattr(loc, "name", "?"), "engine": engine, "timings_ms": timings}}
+        if marked_uri: resp["marked_image_uri"] = marked_uri          # contract: string or absent, never null
+        return resp
 
 
 def to_external(resp: dict) -> dict:
@@ -180,7 +191,7 @@ def main():
     json.dump(resp, open(Path(a.out) / f"{resp['job_id']}.response.json", "w"), ensure_ascii=False, indent=1)
     sc = resp["score_card"]
     print(f"[{resp['status']}] {resp['type']}: score {sc['score']}/{sc['max_score']} conf {sc['confidence']} | {len(resp['marks'])} marks | {resp['provenance']['timings_ms']}")
-    print(f"→ {a.out}/{resp['job_id']}.response.json", f"| marked: {resp['marked_image_uri']}" if resp["marked_image_uri"] else "")
+    print(f"→ {a.out}/{resp['job_id']}.response.json", f"| marked: {resp.get('marked_image_uri')}" if resp.get('marked_image_uri') else "")
 
 
 if __name__ == "__main__":
