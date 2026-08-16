@@ -72,19 +72,29 @@ def to_lines(pred):
 
 
 def match_lines(gt_lines, pred_lines):
-    """Hungarian match on text similarity; returns list of (gt_idx, pred_idx or None)."""
+    """Match predicted lines to GT lines; returns list of (gt_idx, pred_idx or None).
+
+    If every prediction carries a bbox, match by geometry (IoU) — the fair choice when the
+    model was given the line positions or reports them. Otherwise match by text similarity
+    (Hungarian assignment) so page ordering differences are not punished.
+    """
     if not pred_lines:
         return [(i, None) for i in range(len(gt_lines))]
-    sim = np.zeros((len(gt_lines), len(pred_lines)))
-    for i, g in enumerate(gt_lines):
-        gt = norm(g["text"])
-        for j, p in enumerate(pred_lines):
-            sim[i, j] = SequenceMatcher(None, gt, norm(p["text"])).ratio()
+    if all(p.get("bbox") is not None for p in pred_lines):
+        sim = np.zeros((len(gt_lines), len(pred_lines)))
+        for i, g in enumerate(gt_lines):
+            for j, p in enumerate(pred_lines):
+                sim[i, j] = iou(g["bbox"], p["bbox"])
+        thresh = 0.3
+    else:
+        sim = np.zeros((len(gt_lines), len(pred_lines)))
+        for i, g in enumerate(gt_lines):
+            gt = norm(g["text"])
+            for j, p in enumerate(pred_lines):
+                sim[i, j] = SequenceMatcher(None, gt, norm(p["text"])).ratio()
+        thresh = 0.35                    # below this it's not the same line, treat GT line as missed
     rows, cols = linear_sum_assignment(-sim)
-    assigned = {}
-    for r, c in zip(rows, cols):
-        if sim[r, c] >= 0.35:            # below this it's not the same line, treat GT line as missed
-            assigned[r] = c
+    assigned = {r: c for r, c in zip(rows, cols) if sim[r, c] >= thresh}
     return [(i, assigned.get(i)) for i in range(len(gt_lines))]
 
 
@@ -152,8 +162,10 @@ def main():
     overall = {
         "pages": len(rows),
         "page_cer_charweighted": sum(r["page_cer"] * r["n_gt_chars"] for r in rows) / tot_chars,
+        "page_cer_median": float(np.median([r["page_cer"] for r in rows])),
         "page_wer_mean": float(np.mean([r["page_wer"] for r in rows])),
         "line_cer_mean": float(np.mean([r["line_cer"] for r in rows])),
+        "line_cer_median": float(np.median([r["line_cer"] for r in rows])),
         "line_recall_mean": float(np.mean([r["line_recall"] for r in rows])),
         "extra_lines_total": int(sum(r["extra_lines"] for r in rows)),
     }
