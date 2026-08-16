@@ -4,7 +4,7 @@
 
 ## ru_pages/ — 20 Russian school-notebook spreads
 Source: ai-forever `school_notebooks_RU` **test** split (MIT). Images are git-ignored (24 MB);
-copy them from the dataset (`school notebooks ru/images/<file>`) — filenames listed in
+copy them from `data/exam/images/<file>` — filenames listed in
 `ru_pages/ground_truth.json`.
 
 Selection: 6 clean pages (no teacher ink), 3 short, 6 medium, 5 long/dense; 2718.jpg is a

@@ -4,4 +4,5 @@ __pycache__/
 *.log
 models/
 eval/testset_v1/ru_pages/images/
-school notebooks ru/
+data/train/
+data/exam/
