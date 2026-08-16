@@ -7,3 +7,4 @@ eval/testset_v1/ru_pages/images/
 data/train/
 data/exam/
 eval/runs/_selftest_*
+eval/runs/_smoke_*
