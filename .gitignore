@@ -2,3 +2,6 @@
 __pycache__/
 .DS_Store
 *.log
+models/
+eval/testset_v1/ru_pages/images/
+school notebooks ru/
