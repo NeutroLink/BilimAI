@@ -143,12 +143,13 @@ def grade_dictation(key_text: str, transcript: list[dict], *, ignore_case: bool 
         conf = tok.confidence if (tok and tok.confidence is not None) else 0.9
         review = conf < review_threshold
         err = {"kind": kind, "expected": expected, "written": written, "bbox": bbox or [0, 0, 0, 0],
-               "line_id": tok.line_id if tok else None, "confidence": round(conf, 3), "needs_review": review}
+               "confidence": round(conf, 3), "needs_review": review}
+        if tok and tok.line_id: err["line_id"] = tok.line_id          # contract: string or absent, never null
         errors.append(err)
         if bbox:
             m = {"kind": mark_kind, "bbox": bbox, "reason": kind, "confidence": round(conf, 3),
-                 "line_id": tok.line_id if tok else None, "needs_review": review,
-                 "explanation": _explain(kind, expected, written, language)}
+                 "needs_review": review, "explanation": _explain(kind, expected, written, language)}
+            if tok and tok.line_id: m["line_id"] = tok.line_id
             if mark_text: m["text"] = mark_text
             marks.append(m)
 

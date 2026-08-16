@@ -10,3 +10,4 @@ eval/runs/_selftest_*
 eval/runs/_smoke_*
 data/strips_ru_v1/
 data/external/
+out/
