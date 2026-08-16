@@ -47,7 +47,7 @@
           "allOf": [{"$ref": "common.schema.json#/$defs/ScoreCardBase"}],
           "required": ["answers"],
           "properties": {"answers": {"type": "array", "items": {"$ref": "#/$defs/AnswerResult"}},
-                         "feedback_for_student": {"type": "string"}}
+                         "feedback_for_teacher": {"type": "string"}}
         }
       }
     }

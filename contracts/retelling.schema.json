@@ -46,7 +46,7 @@
             "n_words": {"type": "integer"},
             "language_errors": {"type": "array", "items": {"$ref": "dictation.schema.json#/$defs/Error"},
                                 "description": "spelling/punctuation found by the T2 path (dictionary + rules), each anchored to a bbox"},
-            "feedback_for_student": {"type": "string", "description": "2–4 sentences, encouraging, specific, in the student's language"}
+            "feedback_for_teacher": {"type": "string", "description": "2–4 sentences the teacher may pass on to the student — specific, encouraging; in the language of the submission. The teacher decides what reaches the student."}
           }
         }
       }

@@ -5,103 +5,335 @@
   "$defs": {
     "BBox": {
       "description": "Axis-aligned box in PIXELS of the ORIGINAL uploaded image: [x0, y0, x1, y1].",
-      "type": "array", "items": {"type": "number", "minimum": 0}, "minItems": 4, "maxItems": 4
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0
+      },
+      "minItems": 4,
+      "maxItems": 4
     },
-    "Confidence": {"type": "number", "minimum": 0, "maximum": 1},
-    "Language": {"type": "string", "enum": ["uz", "ru", "en", "mixed"]},
-    "Script": {"type": "string", "enum": ["latin", "cyrillic", "mixed"]},
+    "Confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "Language": {
+      "type": "string",
+      "enum": [
+        "uz",
+        "ru",
+        "en",
+        "mixed"
+      ]
+    },
+    "Script": {
+      "type": "string",
+      "enum": [
+        "latin",
+        "cyrillic",
+        "mixed"
+      ]
+    },
     "AssignmentType": {
       "type": "string",
-      "enum": ["dictation", "math", "mcq", "retelling", "open_question"],
+      "enum": [
+        "dictation",
+        "math",
+        "mcq",
+        "retelling",
+        "open_question"
+      ],
       "description": "dictation = diktant / lug'at diktant (T2); math = misollar/masala/equations (T1/T3); mcq = test with circled letters (T1); retelling = bayon / изложение (T4); open_question = curriculum short/long answers (T3/T4)"
     },
     "TranscriptLine": {
       "type": "object",
-      "required": ["id", "text", "bbox", "confidence"],
+      "required": [
+        "id",
+        "text",
+        "bbox",
+        "confidence"
+      ],
       "properties": {
-        "id": {"type": "string", "description": "stable id, e.g. 'L07'"},
-        "text": {"type": "string", "description": "what the reader believes the student wrote — RAW, never auto-corrected"},
-        "bbox": {"$ref": "#/$defs/BBox"},
-        "confidence": {"$ref": "#/$defs/Confidence"},
+        "id": {
+          "type": "string",
+          "description": "stable id, e.g. 'L07'"
+        },
+        "text": {
+          "type": "string",
+          "description": "what the reader believes the student wrote — RAW, never auto-corrected"
+        },
+        "bbox": {
+          "$ref": "#/$defs/BBox"
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence"
+        },
         "words": {
           "type": "array",
-          "items": {"type": "object", "required": ["text", "bbox"],
-                    "properties": {"text": {"type": "string"}, "bbox": {"$ref": "#/$defs/BBox"}, "confidence": {"$ref": "#/$defs/Confidence"}}}
+          "items": {
+            "type": "object",
+            "required": [
+              "text",
+              "bbox"
+            ],
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "bbox": {
+                "$ref": "#/$defs/BBox"
+              },
+              "confidence": {
+                "$ref": "#/$defs/Confidence"
+              }
+            }
+          }
         }
       }
     },
     "Mark": {
       "description": "One red-pen mark to draw on the scan.",
       "type": "object",
-      "required": ["kind", "bbox", "reason"],
+      "required": [
+        "kind",
+        "bbox",
+        "reason"
+      ],
       "properties": {
-        "kind": {"type": "string", "enum": ["check", "cross", "underline", "circle", "insert", "strike", "margin_note"],
-                 "description": "check ✓ · cross ✗ · underline (wavy red under a word/letters) · circle · insert (caret + text, e.g. missing comma) · strike (through a wrong word) · margin_note (text in the margin)"},
-        "bbox": {"$ref": "#/$defs/BBox"},
-        "text": {"type": "string", "description": "for insert / margin_note: what to write, e.g. ',' or 'ничего'"},
-        "reason": {"type": "string", "description": "machine-readable reason code, e.g. spelling, punctuation, wrong_answer, missing_step, correct"},
-        "explanation": {"type": "string", "description": "one sentence for the teacher, in the teacher's language"},
-        "confidence": {"$ref": "#/$defs/Confidence"},
-        "line_id": {"type": "string"},
-        "needs_review": {"type": "boolean", "description": "true when the mark rests on a low-confidence reading or a prior-driven correction — teacher should glance"}
+        "kind": {
+          "type": "string",
+          "enum": [
+            "check",
+            "cross",
+            "underline",
+            "circle",
+            "insert",
+            "strike",
+            "margin_note"
+          ],
+          "description": "check ✓ · cross ✗ · underline (wavy red under a word/letters) · circle · insert (caret + text, e.g. missing comma) · strike (through a wrong word) · margin_note (text in the margin)"
+        },
+        "bbox": {
+          "$ref": "#/$defs/BBox"
+        },
+        "text": {
+          "type": "string",
+          "description": "for insert / margin_note: what to write, e.g. ',' or 'ничего'"
+        },
+        "reason": {
+          "type": "string",
+          "description": "machine-readable reason code, e.g. spelling, punctuation, wrong_answer, missing_step, correct"
+        },
+        "explanation": {
+          "type": "string",
+          "description": "one sentence for the teacher, in the teacher's language"
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence"
+        },
+        "line_id": {
+          "type": "string"
+        },
+        "needs_review": {
+          "type": "boolean",
+          "description": "true when the mark rests on a low-confidence reading or a prior-driven correction — teacher should glance"
+        }
       }
     },
     "ScoreCardBase": {
       "type": "object",
-      "required": ["score", "max_score", "summary", "confidence"],
+      "required": [
+        "score",
+        "max_score",
+        "summary",
+        "confidence"
+      ],
       "properties": {
-        "score": {"type": "number"},
-        "max_score": {"type": "number"},
-        "school_grade": {"type": "string", "description": "optional local scale, e.g. '4' (5-point) or 'B' (BSB band)"},
-        "summary": {"type": "string", "description": "2–3 sentences for the teacher; in the language of the submission"},
-        "confidence": {"$ref": "#/$defs/Confidence"},
-        "needs_review": {"type": "boolean"}
+        "score": {
+          "type": "number"
+        },
+        "max_score": {
+          "type": "number"
+        },
+        "school_grade": {
+          "type": "string",
+          "description": "optional local scale, e.g. '4' (5-point) or 'B' (BSB band)"
+        },
+        "summary": {
+          "type": "string",
+          "description": "2–3 sentences for the teacher; in the language of the submission"
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence"
+        },
+        "needs_review": {
+          "type": "boolean"
+        }
       }
     },
     "Provenance": {
       "type": "object",
-      "required": ["pipeline_version", "reader_model"],
+      "required": [
+        "pipeline_version",
+        "reader_model"
+      ],
       "properties": {
-        "pipeline_version": {"type": "string"},
-        "reader_model": {"type": "string", "description": "e.g. glm-ocr@lora-ru-v1"},
-        "detector_model": {"type": "string"},
-        "judge_model": {"type": "string", "description": "LLM used for T3/T4 judgement, if any"},
-        "engine": {"type": "string", "description": "e.g. dictation-engine@0.1"},
-        "timings_ms": {"type": "object", "additionalProperties": {"type": "number"}}
-      }
+        "pipeline_version": {
+          "type": "string"
+        },
+        "reader_model": {
+          "type": "string",
+          "description": "e.g. glm-ocr@lora-ru-v1"
+        },
+        "detector_model": {
+          "type": "string"
+        },
+        "judge_model": {
+          "type": "string",
+          "description": "LLM used for T3/T4 judgement, if any"
+        },
+        "engine": {
+          "type": "string",
+          "description": "e.g. dictation-engine@0.1"
+        },
+        "timings_ms": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "INTERNAL ONLY. Kept in BilimAI's own records for debugging, audit and eval. Stripped from responses delivered to teachers or partner apps (external API returns everything except this block)."
     },
     "RequestBase": {
       "type": "object",
-      "required": ["job_id", "type", "image"],
+      "required": [
+        "job_id",
+        "type",
+        "image"
+      ],
       "properties": {
-        "job_id": {"type": "string"},
-        "type": {"$ref": "#/$defs/AssignmentType"},
-        "image": {"type": "object", "required": ["uri"],
-                  "properties": {"uri": {"type": "string", "description": "path or URL of the scan (JPEG/PNG/PDF page)"},
-                                 "page": {"type": "integer", "minimum": 1}, "dpi": {"type": "integer"}}},
-        "language": {"$ref": "#/$defs/Language"},
-        "script": {"$ref": "#/$defs/Script"},
-        "grade_level": {"type": "integer", "minimum": 1, "maximum": 11},
-        "subject": {"type": "string"},
-        "teacher_language": {"$ref": "#/$defs/Language", "description": "language for explanations/summary; defaults to language"},
-        "options": {"type": "object", "properties": {"strictness": {"type": "string", "enum": ["lenient", "normal", "strict"]},
-                                                     "return_transcript": {"type": "boolean", "default": true}}}
-      }
+        "job_id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/AssignmentType"
+        },
+        "image": {
+          "type": "object",
+          "required": [
+            "uri"
+          ],
+          "properties": {
+            "uri": {
+              "type": "string",
+              "description": "path or URL of the scan (JPEG/PNG/PDF page)"
+            },
+            "page": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "dpi": {
+              "type": "integer"
+            }
+          }
+        },
+        "language": {
+          "$ref": "#/$defs/Language",
+          "description": "hint for the reader (which alphabet to expect); optional — partner apps usually pass it automatically"
+        },
+        "script": {
+          "$ref": "#/$defs/Script",
+          "description": "hint for the reader; optional"
+        },
+        "grade_level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 11,
+          "description": "hint for leniency/vocabulary; optional"
+        },
+        "subject": {
+          "type": "string",
+          "description": "hint; optional"
+        },
+        "teacher_language": {
+          "$ref": "#/$defs/Language",
+          "description": "language for explanations/summary; defaults to language"
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "strictness": {
+              "type": "string",
+              "enum": [
+                "lenient",
+                "normal",
+                "strict"
+              ]
+            },
+            "return_transcript": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        }
+      },
+      "description": "Only job_id, type and image are required. language/script/grade_level/subject are optional hints that partner apps normally supply automatically — the teacher never types them."
     },
     "ResponseBase": {
       "type": "object",
-      "required": ["job_id", "type", "status", "marks", "score_card", "provenance"],
+      "required": [
+        "job_id",
+        "type",
+        "status",
+        "marks",
+        "score_card"
+      ],
       "properties": {
-        "job_id": {"type": "string"},
-        "type": {"$ref": "#/$defs/AssignmentType"},
-        "status": {"type": "string", "enum": ["ok", "needs_review", "unsupported", "error"]},
-        "transcript": {"type": "array", "items": {"$ref": "#/$defs/TranscriptLine"}},
-        "marks": {"type": "array", "items": {"$ref": "#/$defs/Mark"}},
-        "score_card": {"$ref": "#/$defs/ScoreCardBase"},
-        "marked_image_uri": {"type": "string", "description": "rendered scan with red marks (PNG/PDF), if requested"},
-        "provenance": {"$ref": "#/$defs/Provenance"},
-        "error": {"type": "string"}
-      }
+        "job_id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/AssignmentType"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "needs_review",
+            "unsupported",
+            "error"
+          ]
+        },
+        "transcript": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TranscriptLine"
+          }
+        },
+        "marks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Mark"
+          }
+        },
+        "score_card": {
+          "$ref": "#/$defs/ScoreCardBase"
+        },
+        "marked_image_uri": {
+          "type": "string",
+          "description": "rendered scan with red marks (PNG/PDF), if requested"
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance",
+          "description": "internal only — present in internal responses, removed at the external API boundary"
+        },
+        "error": {
+          "type": "string"
+        }
+      },
+      "description": "External responses (to teachers / partner apps) contain everything except `provenance`."
     }
   }
 }

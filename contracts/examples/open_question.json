@@ -29,7 +29,7 @@
         {"id": "2", "read_answer": "Фотосинтез и испарение воды.", "answer_bbox": [200, 880, 1400, 950], "points_awarded": 2, "points_max": 2,
          "required_points_hit": [{"point": "фотосинтез", "hit": true}, {"point": "испарение / газообмен", "hit": true}], "comment": "Полный ответ.", "confidence": 0.9}
       ],
-      "feedback_for_student": "Хорошо помнишь, из чего образуются вещества при фотосинтезе. Запомни: он идёт на свету, и при этом выделяется кислород."
+      "feedback_for_teacher": "Хорошо помнишь, из чего образуются вещества при фотосинтезе. Запомни: он идёт на свету, и при этом выделяется кислород."
     },
     "provenance": {"pipeline_version": "0.1.0", "reader_model": "glm-ocr@lora-ru-v1", "judge_model": "qwen3.8-27b", "engine": "open-question-engine@0.1"}
   }

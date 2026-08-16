@@ -44,7 +44,7 @@
         {"kind": "spelling", "expected": "sug'ordi", "written": "sugordi", "bbox": [410, 620, 530, 660], "line_id": "L05", "confidence": 0.85},
         {"kind": "punctuation_missing", "expected": ".", "written": "", "bbox": [700, 500, 710, 540], "line_id": "L03", "confidence": 0.8}
       ],
-      "feedback_for_student": "Yaxshi bayon! Voqealar tartibi to'g'ri. Bolalar ko'chatlarni sug'organini ham yozsang, mazmun to'liq bo'lardi. «sug'ordi» so'zida tutuq belgisini unutma."
+      "feedback_for_teacher": "Yaxshi bayon! Voqealar tartibi to'g'ri. Bolalar ko'chatlarni sug'organini ham yozsang, mazmun to'liq bo'lardi. «sug'ordi» so'zida tutuq belgisini unutma."
     },
     "provenance": {"pipeline_version": "0.1.0", "reader_model": "glm-ocr@lora-uz-v0", "judge_model": "qwen3.8-27b", "engine": "retelling-engine@0.1"}
   }

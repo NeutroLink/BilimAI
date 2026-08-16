@@ -20,8 +20,12 @@ Rules baked into the shapes:
 - Every mark has a **bbox** — nothing is claimed that cannot be pointed at on the page.
 - **`needs_review`** must be set whenever a mark rests on a low-confidence reading or a
   dictionary/LLM correction — the teacher glances there first.
-- Text feedback is in the **student's language**; explanations for the teacher in
-  `teacher_language`.
+- All output is addressed to the **teacher** (`feedback_for_teacher`, explanations in
+  `teacher_language`); the teacher decides what reaches the student.
+- `provenance` (which models/engine produced the result) is **internal only** — stripped at the
+  external API boundary; teachers and partner apps never see tool names.
+- `language / script / grade_level / subject` are optional hints normally supplied automatically
+  by the partner app; the teacher never types them.
 - Transcript text is what the student wrote, mistakes included; corrections live only in marks.
 
 `examples/` holds one request+response per type (the dictation one is our real exam page
