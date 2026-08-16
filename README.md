@@ -4,6 +4,8 @@ AI-powered assignment grading assistant. Reads students' written work, checks it
 drafts grades and feedback — a teacher reviews and approves. Runs on a custom,
 fully local AI (no cloud LLM APIs). Languages: **Russian and Uzbek**.
 
+- [AGENTS.md](AGENTS.md) — start here (any agent or human): where things are, rules, environments.
+- [ENGINEERING-LOG.md](ENGINEERING-LOG.md) — obstacles, fixes, decisions, results — append as you work.
 - [PLAN.md](PLAN.md) — full tech stack, architecture, phased roadmap, risk register.
 - [mvp/](mvp/) — single-file demo of the grading stage (typed text only).
 
