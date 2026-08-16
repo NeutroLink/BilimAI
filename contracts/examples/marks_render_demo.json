@@ -1,0 +1,93 @@
+[
+ {
+  "kind": "underline",
+  "bbox": [
+   1210.77,
+   717.82,
+   1385.74,
+   773.95
+  ],
+  "reason": "spelling",
+  "confidence": 0.9
+ },
+ {
+  "kind": "underline",
+  "bbox": [
+   1005.05,
+   775.29,
+   1095.98,
+   855.4
+  ],
+  "reason": "spelling",
+  "confidence": 0.4,
+  "needs_review": true
+ },
+ {
+  "kind": "circle",
+  "bbox": [
+   1096.14,
+   876.66,
+   1195.41,
+   957.21
+  ],
+  "reason": "capitalization",
+  "confidence": 0.85
+ },
+ {
+  "kind": "strike",
+  "bbox": [
+   1345.24,
+   958.21,
+   1547.32,
+   1031.09
+  ],
+  "reason": "extra_word",
+  "confidence": 0.8
+ },
+ {
+  "kind": "insert",
+  "bbox": [
+   1385.74,
+   717.82,
+   1405.74,
+   773.95
+  ],
+  "text": ",",
+  "reason": "punctuation_missing",
+  "confidence": 0.9
+ },
+ {
+  "kind": "check",
+  "bbox": [
+   2604.84,
+   607.51,
+   2684.84,
+   726.06
+  ],
+  "reason": "correct",
+  "confidence": 1.0
+ },
+ {
+  "kind": "cross",
+  "bbox": [
+   2596.27,
+   1029.12,
+   2676.27,
+   1142.24
+  ],
+  "reason": "wrong",
+  "confidence": 1.0
+ },
+ {
+  "kind": "margin_note",
+  "bbox": [
+   2983.68,
+   1191.31,
+   3991.68,
+   1591.31
+  ],
+  "text": "2 орф., 1 пункт. — оценка 3. Проверьте подчёркнутое слово.",
+  "reason": "summary",
+  "confidence": 1.0
+ }
+]
