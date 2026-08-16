@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bilimai.uz/contracts/dictation.schema.json",
+  "title": "Dictation (diktant / lug'at diktant) — T2: compare to the dictated text",
+  "$defs": {
+    "Request": {
+      "allOf": [{"$ref": "common.schema.json#/$defs/RequestBase"}],
+      "required": ["key"],
+      "properties": {
+        "type": {"const": "dictation"},
+        "key": {
+          "type": "object", "required": ["text"],
+          "properties": {
+            "text": {"type": "string", "description": "the exact text the teacher dictated (words or paragraphs); line breaks optional"},
+            "kind": {"type": "string", "enum": ["words", "sentences", "paragraph"], "default": "paragraph"},
+            "grading_scale": {"type": "string", "description": "e.g. 'uz-5point-2024' — maps error counts to school grades; engine has defaults"},
+            "count_punctuation": {"type": "boolean", "default": true},
+            "ignore_case": {"type": "boolean", "default": false}
+          }
+        }
+      }
+    },
+    "Error": {
+      "type": "object", "required": ["kind", "expected", "written", "bbox"],
+      "properties": {
+        "kind": {"type": "string", "enum": ["spelling", "missing_word", "extra_word", "punctuation_missing", "punctuation_extra", "punctuation_wrong", "capitalization", "word_order"]},
+        "expected": {"type": "string"}, "written": {"type": "string"},
+        "bbox": {"$ref": "common.schema.json#/$defs/BBox"},
+        "line_id": {"type": "string"},
+        "confidence": {"$ref": "common.schema.json#/$defs/Confidence"},
+        "needs_review": {"type": "boolean"}
+      }
+    },
+    "Response": {
+      "allOf": [{"$ref": "common.schema.json#/$defs/ResponseBase"}],
+      "properties": {
+        "type": {"const": "dictation"},
+        "score_card": {
+          "allOf": [{"$ref": "common.schema.json#/$defs/ScoreCardBase"}],
+          "required": ["errors", "n_spelling", "n_punctuation", "n_words_expected", "n_words_read"],
+          "properties": {
+            "errors": {"type": "array", "items": {"$ref": "#/$defs/Error"}},
+            "n_spelling": {"type": "integer"}, "n_punctuation": {"type": "integer"},
+            "n_words_expected": {"type": "integer"}, "n_words_read": {"type": "integer"},
+            "coverage": {"type": "number", "minimum": 0, "maximum": 1, "description": "share of the dictated text found on the page (catches unfinished/missing pages)"}
+          }
+        }
+      }
+    }
+  }
+}

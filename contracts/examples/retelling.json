@@ -1,0 +1,51 @@
+{
+  "request": {
+    "job_id": "demo-ret-001", "type": "retelling",
+    "image": {"uri": "scans/bayon_7b.jpg"},
+    "language": "uz", "script": "latin", "grade_level": 7, "subject": "ona_tili",
+    "key": {
+      "source_text": "Bahor keldi. Daraxtlar gulladi, qushlar qaytib keldi. Bolalar bog'da ishlashdi: ular ko'chatlar ekishdi va ularni sug'orishdi. Kechqurun hamma charchagan, lekin xursand edi.",
+      "key_points": ["bahor keldi", "daraxtlar gulladi / qushlar qaytdi", "bolalar ko'chat ekdi", "sug'orishdi", "charchagan lekin xursand"],
+      "rubric": [
+        {"id": "content", "name": "Mazmun", "max_points": 5, "description": "asosiy fikrlar to'liq va tartibda"},
+        {"id": "structure", "name": "Tuzilish", "max_points": 3},
+        {"id": "spelling", "name": "Imlo", "max_points": 3},
+        {"id": "punctuation", "name": "Tinish belgilari", "max_points": 2}
+      ],
+      "min_words": 40
+    }
+  },
+  "response": {
+    "job_id": "demo-ret-001", "type": "retelling", "status": "ok",
+    "marks": [
+      {"kind": "underline", "bbox": [410, 620, 530, 660], "reason": "spelling", "explanation": "«sugordi» → «sug'ordi»", "confidence": 0.85, "line_id": "L05"},
+      {"kind": "insert", "bbox": [700, 500, 710, 540], "text": ".", "reason": "punctuation_missing", "confidence": 0.8, "line_id": "L03"},
+      {"kind": "margin_note", "bbox": [1500, 900, 1900, 960], "text": "sug'orish haqida yozilmagan", "reason": "missing_key_point", "confidence": 0.75, "needs_review": true}
+    ],
+    "score_card": {
+      "score": 10, "max_score": 13, "school_grade": "4",
+      "summary": "Mazmun asosan to'liq (5 fikrdan 4 tasi), tartib saqlangan. 1 imlo va 1 tinish belgisi xatosi. Sug'orish haqidagi fikr tushib qolgan.",
+      "confidence": 0.78, "needs_review": true,
+      "criteria": [
+        {"id": "content", "points": 4, "max_points": 5, "comment": "Bahor, daraxtlar, ko'chat ekish va yakun bor; sug'orish tushib qolgan.", "evidence_line_ids": ["L01", "L02", "L04", "L07"], "confidence": 0.75},
+        {"id": "structure", "points": 3, "max_points": 3, "comment": "Kirish–asosiy qism–xulosa tartibi saqlangan.", "confidence": 0.8},
+        {"id": "spelling", "points": 2, "max_points": 3, "comment": "1 xato: sugordi.", "confidence": 0.85},
+        {"id": "punctuation", "points": 1, "max_points": 2, "comment": "3-qatorda nuqta tushib qolgan.", "confidence": 0.8}
+      ],
+      "key_points_covered": [
+        {"point": "bahor keldi", "covered": true, "line_id": "L01"},
+        {"point": "daraxtlar gulladi / qushlar qaytdi", "covered": true, "line_id": "L02"},
+        {"point": "bolalar ko'chat ekdi", "covered": true, "line_id": "L04"},
+        {"point": "sug'orishdi", "covered": false},
+        {"point": "charchagan lekin xursand", "covered": true, "line_id": "L07"}
+      ],
+      "n_words": 52,
+      "language_errors": [
+        {"kind": "spelling", "expected": "sug'ordi", "written": "sugordi", "bbox": [410, 620, 530, 660], "line_id": "L05", "confidence": 0.85},
+        {"kind": "punctuation_missing", "expected": ".", "written": "", "bbox": [700, 500, 710, 540], "line_id": "L03", "confidence": 0.8}
+      ],
+      "feedback_for_student": "Yaxshi bayon! Voqealar tartibi to'g'ri. Bolalar ko'chatlarni sug'organini ham yozsang, mazmun to'liq bo'lardi. «sug'ordi» so'zida tutuq belgisini unutma."
+    },
+    "provenance": {"pipeline_version": "0.1.0", "reader_model": "glm-ocr@lora-uz-v0", "judge_model": "qwen3.8-27b", "engine": "retelling-engine@0.1"}
+  }
+}

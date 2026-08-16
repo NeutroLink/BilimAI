@@ -1,0 +1,36 @@
+{
+  "request": {
+    "job_id": "demo-oq-001", "type": "open_question",
+    "image": {"uri": "scans/biology_8a.jpg"},
+    "language": "ru", "script": "cyrillic", "grade_level": 8, "subject": "biology",
+    "key": {"questions": [
+      {"id": "1", "question": "Что такое фотосинтез?", "model_answer": "Процесс образования органических веществ из углекислого газа и воды на свету с выделением кислорода.",
+       "required_points": ["из CO2 и воды", "на свету / с помощью света", "выделяется кислород"], "points": 3},
+      {"id": "2", "question": "Назовите две функции листа.", "model_answer": "Фотосинтез и испарение воды (транспирация); также газообмен.", "required_points": ["фотосинтез", "испарение / газообмен"], "points": 2}
+    ]}
+  },
+  "response": {
+    "job_id": "demo-oq-001", "type": "open_question", "status": "ok",
+    "marks": [
+      {"kind": "underline", "bbox": [520, 640, 760, 680], "reason": "factual_error", "explanation": "фотосинтез идёт на свету, не «в темноте»", "confidence": 0.8, "line_id": "L04"},
+      {"kind": "margin_note", "bbox": [1500, 600, 1900, 660], "text": "не указан кислород", "reason": "missing_point", "confidence": 0.85},
+      {"kind": "check", "bbox": [1500, 900, 1550, 950], "reason": "correct", "confidence": 0.9}
+    ],
+    "score_card": {
+      "score": 3, "max_score": 5,
+      "summary": "Вопрос 1: названы CO₂ и вода, но ошибочно указано «в темноте» и не упомянут кислород — 1 из 3. Вопрос 2: обе функции названы — 2 из 2.",
+      "confidence": 0.8,
+      "answers": [
+        {"id": "1", "read_answer": "Фотосинтез — это когда растение делает вещества из углекислого газа и воды в темноте.", "answer_bbox": [200, 560, 1400, 700],
+         "points_awarded": 1, "points_max": 3,
+         "required_points_hit": [{"point": "из CO2 и воды", "hit": true, "line_id": "L03"}, {"point": "на свету / с помощью света", "hit": false}, {"point": "выделяется кислород", "hit": false}],
+         "factual_errors": [{"text": "в темноте", "bbox": [520, 640, 760, 680], "why": "фотосинтез требует света"}],
+         "comment": "Верно про CO₂ и воду; ошибка про свет; забыт кислород.", "confidence": 0.8},
+        {"id": "2", "read_answer": "Фотосинтез и испарение воды.", "answer_bbox": [200, 880, 1400, 950], "points_awarded": 2, "points_max": 2,
+         "required_points_hit": [{"point": "фотосинтез", "hit": true}, {"point": "испарение / газообмен", "hit": true}], "comment": "Полный ответ.", "confidence": 0.9}
+      ],
+      "feedback_for_student": "Хорошо помнишь, из чего образуются вещества при фотосинтезе. Запомни: он идёт на свету, и при этом выделяется кислород."
+    },
+    "provenance": {"pipeline_version": "0.1.0", "reader_model": "glm-ocr@lora-ru-v1", "judge_model": "qwen3.8-27b", "engine": "open-question-engine@0.1"}
+  }
+}

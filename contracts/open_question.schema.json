@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bilimai.uz/contracts/open_question.schema.json",
+  "title": "Open questions (curriculum short/long answers, definitions, theory) — T3/T4 rubric grading",
+  "$defs": {
+    "Question": {
+      "type": "object", "required": ["id", "points"],
+      "properties": {
+        "id": {"type": "string"},
+        "question": {"type": "string"},
+        "model_answer": {"type": "string", "description": "teacher's reference answer"},
+        "required_points": {"type": "array", "items": {"type": "string"}, "description": "facts/ideas that must appear for full marks"},
+        "points": {"type": "number"},
+        "rubric": {"type": "array", "items": {"$ref": "retelling.schema.json#/$defs/Criterion"}}
+      }
+    },
+    "Request": {
+      "allOf": [{"$ref": "common.schema.json#/$defs/RequestBase"}],
+      "required": ["key"],
+      "properties": {
+        "type": {"const": "open_question"},
+        "key": {"type": "object", "required": ["questions"],
+                "properties": {"questions": {"type": "array", "items": {"$ref": "#/$defs/Question"}, "minItems": 1}}}
+      }
+    },
+    "AnswerResult": {
+      "type": "object", "required": ["id", "points_awarded", "points_max", "comment"],
+      "properties": {
+        "id": {"type": "string"},
+        "read_answer": {"type": "string"},
+        "answer_bbox": {"$ref": "common.schema.json#/$defs/BBox"},
+        "points_awarded": {"type": "number"}, "points_max": {"type": "number"},
+        "required_points_hit": {"type": "array", "items": {"type": "object", "required": ["point", "hit"],
+                                "properties": {"point": {"type": "string"}, "hit": {"type": "boolean"}, "line_id": {"type": "string"}}}},
+        "factual_errors": {"type": "array", "items": {"type": "object", "required": ["text", "bbox", "why"],
+                           "properties": {"text": {"type": "string"}, "bbox": {"$ref": "common.schema.json#/$defs/BBox"}, "why": {"type": "string"}}}},
+        "comment": {"type": "string"},
+        "confidence": {"$ref": "common.schema.json#/$defs/Confidence"},
+        "needs_review": {"type": "boolean"}
+      }
+    },
+    "Response": {
+      "allOf": [{"$ref": "common.schema.json#/$defs/ResponseBase"}],
+      "properties": {
+        "type": {"const": "open_question"},
+        "score_card": {
+          "allOf": [{"$ref": "common.schema.json#/$defs/ScoreCardBase"}],
+          "required": ["answers"],
+          "properties": {"answers": {"type": "array", "items": {"$ref": "#/$defs/AnswerResult"}},
+                         "feedback_for_student": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

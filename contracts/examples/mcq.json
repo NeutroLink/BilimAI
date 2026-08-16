@@ -1,0 +1,30 @@
+{
+  "request": {
+    "job_id": "demo-mcq-001", "type": "mcq",
+    "image": {"uri": "scans/history_test_9a.jpg"},
+    "language": "uz", "script": "latin", "grade_level": 9, "subject": "history",
+    "key": {"answers": {"1": ["B"], "2": ["D"], "3": ["A"], "4": ["C"], "5": ["B"]}, "options": ["A", "B", "C", "D"], "layout": "inline_circled", "points_per_question": 1, "changed_answer_policy": "invalid"}
+  },
+  "response": {
+    "job_id": "demo-mcq-001", "type": "mcq", "status": "ok",
+    "marks": [
+      {"kind": "check", "bbox": [520, 300, 560, 340], "reason": "correct", "confidence": 0.98},
+      {"kind": "cross", "bbox": [520, 420, 560, 460], "reason": "wrong_answer", "text": "D", "explanation": "to'g'ri javob: D", "confidence": 0.97},
+      {"kind": "check", "bbox": [520, 540, 560, 580], "reason": "correct", "confidence": 0.99},
+      {"kind": "cross", "bbox": [520, 660, 560, 700], "reason": "multiple", "explanation": "ikkita variant belgilangan", "confidence": 0.8, "needs_review": true},
+      {"kind": "check", "bbox": [520, 780, 560, 820], "reason": "correct", "confidence": 0.98}
+    ],
+    "score_card": {
+      "score": 3, "max_score": 5, "summary": "5 savoldan 3 tasi to'g'ri. 2-savol noto'g'ri (D kerak edi), 4-savolda ikkita javob belgilangan.", "confidence": 0.94, "needs_review": true,
+      "questions": [
+        {"question": "1", "detected": ["B"], "expected": ["B"], "verdict": "correct", "bbox": [200, 300, 560, 340], "confidence": 0.98},
+        {"question": "2", "detected": ["A"], "expected": ["D"], "verdict": "wrong", "bbox": [200, 420, 560, 460], "confidence": 0.97},
+        {"question": "3", "detected": ["A"], "expected": ["A"], "verdict": "correct", "bbox": [200, 540, 560, 580], "confidence": 0.99},
+        {"question": "4", "detected": ["B", "C"], "expected": ["C"], "verdict": "multiple", "bbox": [200, 660, 560, 700], "confidence": 0.8, "needs_review": true},
+        {"question": "5", "detected": ["B"], "expected": ["B"], "verdict": "correct", "bbox": [200, 780, 560, 820], "confidence": 0.98}
+      ],
+      "n_correct": 3, "n_questions": 5
+    },
+    "provenance": {"pipeline_version": "0.1.0", "reader_model": "deepseek-ocr-2@ground-v0", "engine": "mcq-engine@0.1"}
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "request": {
+    "job_id": "demo-math-001",
+    "type": "math",
+    "image": {"uri": "scans/math_7b_page3.jpg", "page": 1},
+    "language": "uz", "script": "latin", "grade_level": 7, "subject": "algebra",
+    "key": {
+      "layout_hint": "worked",
+      "problems": [
+        {"id": "1", "statement": "3x + 5 = 20", "answer": "x=5", "answer_kind": "equation_solution", "points": 2},
+        {"id": "2", "statement": "\\frac{2}{3} + \\frac{1}{6}", "answer": "\\frac{5}{6} || 5/6", "answer_kind": "expression", "points": 1},
+        {"id": "3", "answer": "20 m/s", "answer_kind": "unit_value", "tolerance": 0.01, "points": 2}
+      ]
+    }
+  },
+  "response": {
+    "job_id": "demo-math-001",
+    "type": "math",
+    "status": "ok",
+    "marks": [
+      {"kind": "check", "bbox": [610, 420, 660, 470], "reason": "correct", "confidence": 0.95, "line_id": "L04"},
+      {"kind": "cross", "bbox": [612, 780, 662, 830], "reason": "wrong_answer", "explanation": "2/3 + 1/6 = 5/6, yozilgan 3/9", "confidence": 0.9, "line_id": "L09"},
+      {"kind": "underline", "bbox": [300, 700, 560, 740], "reason": "wrong_step", "explanation": "maxrajlar noto'g'ri keltirilgan", "confidence": 0.7, "line_id": "L08", "needs_review": true},
+      {"kind": "check", "bbox": [610, 1120, 660, 1170], "reason": "correct", "confidence": 0.9, "line_id": "L14"}
+    ],
+    "score_card": {
+      "score": 4, "max_score": 5,
+      "summary": "1-misol to'g'ri (x=5). 2-misolda kasrlarni qo'shishda maxraj xato: 3/9 o'rniga 5/6 bo'lishi kerak. 3-masala to'g'ri (20 m/s).",
+      "confidence": 0.85,
+      "problems": [
+        {"id": "1", "verdict": "correct", "points_awarded": 2, "points_max": 2, "read_answer": "x=5", "read_steps": ["3x+5=20", "3x=15", "x=5"], "answer_bbox": [400, 420, 600, 470], "checker": "sympy_equivalent", "confidence": 0.95},
+        {"id": "2", "verdict": "wrong", "points_awarded": 0, "points_max": 1, "read_answer": "\\frac{3}{9}", "read_steps": ["\\frac{2}{3}+\\frac{1}{6}", "\\frac{2+1}{3+6}", "\\frac{3}{9}"], "answer_bbox": [400, 780, 600, 830], "first_wrong_step": 1, "checker": "sympy_exact", "reason": "denominators added instead of common denominator", "confidence": 0.9},
+        {"id": "3", "verdict": "correct", "points_awarded": 2, "points_max": 2, "read_answer": "20\\,m/s", "answer_bbox": [400, 1120, 600, 1170], "checker": "numeric_tolerance", "confidence": 0.9}
+      ]
+    },
+    "provenance": {"pipeline_version": "0.1.0", "reader_model": "olmocr-2@math-v0", "engine": "math-engine@0.1"}
+  }
+}

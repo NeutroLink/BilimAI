@@ -1,0 +1,41 @@
+{
+  "request": {
+    "job_id": "demo-dict-001",
+    "type": "dictation",
+    "image": {"uri": "eval/testset_v1/ru_pages/images/2877.jpg", "page": 1, "dpi": 300},
+    "language": "ru", "script": "cyrillic", "grade_level": 6, "subject": "russian",
+    "teacher_language": "ru",
+    "key": {
+      "kind": "words",
+      "text": "странный, тихий, ни на что не похожий, прерывистый звук слышался где-то неподалёку. Хотя Петя и сидел на мельнице, но он никого и ничего не увидел.",
+      "grading_scale": "uz-5point-2024",
+      "count_punctuation": true
+    }
+  },
+  "response": {
+    "job_id": "demo-dict-001",
+    "type": "dictation",
+    "status": "ok",
+    "transcript": [
+      {"id": "L03", "text": "и сидел на мельнице, но он никого и нечего", "bbox": [222, 447, 1004, 486], "confidence": 0.93,
+       "words": [{"text": "нечего", "bbox": [842, 449, 1002, 486], "confidence": 0.71}]}
+    ],
+    "marks": [
+      {"kind": "underline", "bbox": [842, 449, 1002, 486], "reason": "spelling", "explanation": "«нечего» вместо «ничего»", "confidence": 0.71, "line_id": "L03", "needs_review": true},
+      {"kind": "insert", "bbox": [1000, 449, 1010, 486], "text": ",", "reason": "punctuation_missing", "explanation": "пропущена запятая после «говорят»", "confidence": 0.9, "line_id": "L03"},
+      {"kind": "margin_note", "bbox": [1700, 440, 1900, 490], "text": "2 ош.", "reason": "summary", "confidence": 1.0}
+    ],
+    "score_card": {
+      "score": 3, "max_score": 5, "school_grade": "3",
+      "summary": "Найдено 2 ошибки: 1 орфографическая (нечего → ничего), 1 пунктуационная (пропущена запятая). По шкале — оценка 3.",
+      "confidence": 0.82, "needs_review": true,
+      "errors": [
+        {"kind": "spelling", "expected": "ничего", "written": "нечего", "bbox": [842, 449, 1002, 486], "line_id": "L03", "confidence": 0.71, "needs_review": true},
+        {"kind": "punctuation_missing", "expected": ",", "written": "", "bbox": [1000, 449, 1010, 486], "line_id": "L03", "confidence": 0.9}
+      ],
+      "n_spelling": 1, "n_punctuation": 1, "n_words_expected": 24, "n_words_read": 24, "coverage": 1.0
+    },
+    "marked_image_uri": "out/demo-dict-001.marked.png",
+    "provenance": {"pipeline_version": "0.1.0", "reader_model": "glm-ocr@lora-ru-v1", "detector_model": "readingpipeline-notebooks@v1", "engine": "dictation-engine@0.1", "timings_ms": {"detect": 800, "read": 3200, "grade": 40, "render": 120}}
+  }
+}

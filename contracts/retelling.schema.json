@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bilimai.uz/contracts/retelling.schema.json",
+  "title": "Retelling (bayon / изложение) — T4 content + T2 spelling/punctuation",
+  "$defs": {
+    "Criterion": {
+      "type": "object", "required": ["id", "name", "max_points"],
+      "properties": {"id": {"type": "string"}, "name": {"type": "string"}, "description": {"type": "string"},
+                     "max_points": {"type": "number"}}
+    },
+    "Request": {
+      "allOf": [{"$ref": "common.schema.json#/$defs/RequestBase"}],
+      "required": ["key"],
+      "properties": {
+        "type": {"const": "retelling"},
+        "key": {
+          "type": "object", "required": ["source_text", "rubric"],
+          "properties": {
+            "source_text": {"type": "string", "description": "the text read aloud to the class"},
+            "key_points": {"type": "array", "items": {"type": "string"}, "description": "optional list of ideas that must appear; derived from source_text if absent"},
+            "rubric": {"type": "array", "items": {"$ref": "#/$defs/Criterion"}, "minItems": 1,
+                       "description": "e.g. content coverage / order & structure / spelling / punctuation / grammar"},
+            "min_words": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "CriterionScore": {
+      "type": "object", "required": ["id", "points", "max_points", "comment"],
+      "properties": {"id": {"type": "string"}, "points": {"type": "number"}, "max_points": {"type": "number"},
+                     "comment": {"type": "string", "description": "specific, in the student's language; must reference actual text"},
+                     "evidence_line_ids": {"type": "array", "items": {"type": "string"}},
+                     "confidence": {"$ref": "common.schema.json#/$defs/Confidence"}}
+    },
+    "Response": {
+      "allOf": [{"$ref": "common.schema.json#/$defs/ResponseBase"}],
+      "properties": {
+        "type": {"const": "retelling"},
+        "score_card": {
+          "allOf": [{"$ref": "common.schema.json#/$defs/ScoreCardBase"}],
+          "required": ["criteria", "key_points_covered", "n_words"],
+          "properties": {
+            "criteria": {"type": "array", "items": {"$ref": "#/$defs/CriterionScore"}},
+            "key_points_covered": {"type": "array", "items": {"type": "object", "required": ["point", "covered"],
+                                   "properties": {"point": {"type": "string"}, "covered": {"type": "boolean"}, "line_id": {"type": "string"}}}},
+            "n_words": {"type": "integer"},
+            "language_errors": {"type": "array", "items": {"$ref": "dictation.schema.json#/$defs/Error"},
+                                "description": "spelling/punctuation found by the T2 path (dictionary + rules), each anchored to a bbox"},
+            "feedback_for_student": {"type": "string", "description": "2–4 sentences, encouraging, specific, in the student's language"}
+          }
+        }
+      }
+    }
+  }
+}

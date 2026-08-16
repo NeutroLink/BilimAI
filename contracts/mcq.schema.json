@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bilimai.uz/contracts/mcq.schema.json",
+  "title": "MCQ test (circled letters / answer grid) — T1",
+  "$defs": {
+    "Request": {
+      "allOf": [{"$ref": "common.schema.json#/$defs/RequestBase"}],
+      "required": ["key"],
+      "properties": {
+        "type": {"const": "mcq"},
+        "key": {
+          "type": "object", "required": ["answers"],
+          "properties": {
+            "answers": {"type": "object", "additionalProperties": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+                        "description": "question number → accepted option letters, e.g. {\"1\": [\"B\"], \"2\": [\"A\",\"C\"]}"},
+            "options": {"type": "array", "items": {"type": "string"}, "default": ["A", "B", "C", "D"]},
+            "layout": {"type": "string", "enum": ["inline_circled", "answer_grid", "bubble_sheet"], "description": "how students mark answers"},
+            "points_per_question": {"type": "number", "default": 1},
+            "multi_answer_policy": {"type": "string", "enum": ["exact_set", "any_correct", "partial"], "default": "exact_set"},
+            "changed_answer_policy": {"type": "string", "enum": ["last_mark_wins", "invalid"], "default": "invalid", "description": "what to do when a student crossed out one letter and circled another"}
+          }
+        }
+      }
+    },
+    "QuestionResult": {
+      "type": "object", "required": ["question", "detected", "expected", "verdict"],
+      "properties": {
+        "question": {"type": "string"},
+        "detected": {"type": "array", "items": {"type": "string"}, "description": "letters the student marked"},
+        "expected": {"type": "array", "items": {"type": "string"}},
+        "verdict": {"type": "string", "enum": ["correct", "wrong", "blank", "multiple", "ambiguous"]},
+        "bbox": {"$ref": "common.schema.json#/$defs/BBox"},
+        "confidence": {"$ref": "common.schema.json#/$defs/Confidence"},
+        "needs_review": {"type": "boolean"}
+      }
+    },
+    "Response": {
+      "allOf": [{"$ref": "common.schema.json#/$defs/ResponseBase"}],
+      "properties": {
+        "type": {"const": "mcq"},
+        "score_card": {
+          "allOf": [{"$ref": "common.schema.json#/$defs/ScoreCardBase"}],
+          "required": ["questions", "n_correct", "n_questions"],
+          "properties": {"questions": {"type": "array", "items": {"$ref": "#/$defs/QuestionResult"}},
+                         "n_correct": {"type": "integer"}, "n_questions": {"type": "integer"}}
+        }
+      }
+    }
+  }
+}

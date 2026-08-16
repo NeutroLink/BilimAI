@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bilimai.uz/contracts/math.schema.json",
+  "title": "Math (misollar, masala, equations, physics 'Berilgan/Javob') — T1 answer check, T3 step check",
+  "$defs": {
+    "Problem": {
+      "type": "object", "required": ["id", "answer"],
+      "properties": {
+        "id": {"type": "string", "description": "e.g. '1', '2b', 'masala 3'"},
+        "statement": {"type": "string", "description": "optional problem text / LaTeX"},
+        "answer": {"type": "string", "description": "expected final answer, LaTeX or plain (e.g. 'x=4', '\\frac{3}{4}', '20 m/s'); several accepted forms separated by '||'"},
+        "answer_kind": {"type": "string", "enum": ["number", "expression", "equation_solution", "set", "interval", "text", "unit_value"], "default": "expression"},
+        "tolerance": {"type": "number", "description": "for numeric answers, absolute tolerance"},
+        "points": {"type": "number", "default": 1},
+        "partial_credit": {"type": "boolean", "default": true, "description": "allow T3 step-based partial credit"}
+      }
+    },
+    "Request": {
+      "allOf": [{"$ref": "common.schema.json#/$defs/RequestBase"}],
+      "required": ["key"],
+      "properties": {
+        "type": {"const": "math"},
+        "key": {"type": "object", "required": ["problems"],
+                "properties": {"problems": {"type": "array", "items": {"$ref": "#/$defs/Problem"}, "minItems": 1},
+                               "layout_hint": {"type": "string", "enum": ["drills", "worked", "masala", "physics"], "description": "drills = rows of 25+17=42; worked = multi-line solutions; masala = qisqacha sharti/yechim/Javob; physics = Berilgan/Formula/Javob"}}}
+      }
+    },
+    "ProblemResult": {
+      "type": "object", "required": ["id", "verdict", "points_awarded", "points_max"],
+      "properties": {
+        "id": {"type": "string"},
+        "verdict": {"type": "string", "enum": ["correct", "partial", "wrong", "missing", "unreadable"]},
+        "points_awarded": {"type": "number"}, "points_max": {"type": "number"},
+        "read_answer": {"type": "string", "description": "the student's final answer as read (LaTeX)"},
+        "read_steps": {"type": "array", "items": {"type": "string"}, "description": "student's lines as read (LaTeX), top to bottom"},
+        "answer_bbox": {"$ref": "common.schema.json#/$defs/BBox"},
+        "first_wrong_step": {"type": "integer", "description": "index into read_steps of the first line that does not follow, if any"},
+        "checker": {"type": "string", "enum": ["sympy_exact", "sympy_equivalent", "numeric_tolerance", "llm_judge"], "description": "how the verdict was reached — sympy first, LLM only for partial credit"},
+        "reason": {"type": "string"},
+        "confidence": {"$ref": "common.schema.json#/$defs/Confidence"},
+        "needs_review": {"type": "boolean"}
+      }
+    },
+    "Response": {
+      "allOf": [{"$ref": "common.schema.json#/$defs/ResponseBase"}],
+      "properties": {
+        "type": {"const": "math"},
+        "score_card": {
+          "allOf": [{"$ref": "common.schema.json#/$defs/ScoreCardBase"}],
+          "required": ["problems"],
+          "properties": {"problems": {"type": "array", "items": {"$ref": "#/$defs/ProblemResult"}}}
+        }
+      }
+    }
+  }
+}
