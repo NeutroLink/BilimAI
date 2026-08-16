@@ -3,290 +3,334 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BilimAI — ИИ проверяет работы учеников</title>
-<meta name="description" content="BilimAI — помощник учителя: читает письменные работы учеников, проверяет их и предлагает оценку с комментариями. Работает на школьном компьютере, ничего не отправляет в интернет.">
+<title>BilimAI — проверка тетрадей за минуты</title>
+<meta name="description" content="BilimAI читает рукописные работы учеников, находит ошибки и предлагает оценку. Учитель проверяет и утверждает. Русский и узбекский.">
 <style>
   :root {
-    --bg: #f7f8fa; --card: #ffffff; --ink: #1a1d21; --muted: #5b6470;
-    --accent: #2563eb; --line: #e5e7eb; --good: #16a34a; --warn: #d97706;
-    --paper: #fffdf6; --paper-line: #ece6d4; --red-pen: #dc2626;
+    --bg: #fbfbfa; --bg-2: #f2f1ee; --ink: #1c1c1a; --muted: #5f5e59; --line: #e4e2dc;
+    --pen: #b8322a; --pen-soft: #d9756f; --pen-tint: #f8e9e7; --ok: #2f7d4f; --ok-tint: #e6f2ea;
+    --paper: #fffdf7;
+    --r: 14px;
   }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #0f1216; --card: #171c22; --ink: #e7eaee; --muted: #98a2ae;
-            --accent: #4f8bfd; --line: #262d36; --good: #34c268; --warn: #f0a044;
-            --paper: #1d222a; --paper-line: #2b323d; --red-pen: #ff6b6b; }
+    :root { --bg: #131312; --bg-2: #1c1c1a; --ink: #ecebe6; --muted: #a09e97; --line: #2b2a27;
+            --pen: #e0574d; --pen-soft: #b8433b; --pen-tint: #2a1a18; --ok: #6cc088; --ok-tint: #17261c; --paper: #1d1c19; }
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body { margin: 0; background: var(--bg); color: var(--ink);
-         font: 17px/1.65 -apple-system, "Segoe UI", Roboto, sans-serif; }
-  .wrap { max-width: 820px; margin: 0 auto; padding: 56px 20px 80px; }
-  .tag { color: var(--accent); font-weight: 700; letter-spacing: .08em;
-         text-transform: uppercase; font-size: 12px; }
-  h1 { font-size: 40px; margin: 6px 0 0; letter-spacing: -0.02em; line-height: 1.15; }
-  .lede { font-size: 20px; color: var(--muted); margin: 16px 0 26px; }
-  .lede b { color: var(--ink); }
-  .cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
-         padding: 12px 24px; border-radius: 10px; font-weight: 600; margin: 0 10px 10px 0; }
-  .cta.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-  h2 { font-size: 24px; margin: 54px 0 6px; }
-  .sub { color: var(--muted); margin: 0 0 18px; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
-  .card .emoji { font-size: 26px; }
-  .card b { display: block; margin: 6px 0 4px; font-size: 17px; }
-  .card span { color: var(--muted); font-size: 15px; }
-  /* demo */
-  .demo { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
-  .paper { background: var(--paper); border: 1px solid var(--paper-line); border-radius: 8px;
-           padding: 18px 20px; font-size: 15px; line-height: 1.7; position: relative; }
-  .paper h4 { margin: 0 0 8px; font-size: 14px; color: var(--muted); font-weight: 600; }
-  .hl { border-bottom: 2px wavy var(--red-pen); text-decoration: underline wavy var(--red-pen) 1.5px; }
-  .pen-note { color: var(--red-pen); font-size: 13px; font-style: italic; }
-  .scanline { position: absolute; left: 0; right: 0; height: 34px; top: 0; border-radius: 6px;
-              background: color-mix(in srgb, var(--accent) 12%, transparent);
-              border-top: 2px solid var(--accent); opacity: 0; pointer-events: none; }
-  .reading { display: flex; gap: 10px; align-items: center; color: var(--muted);
-             font-size: 14px; margin: 14px 0 0; min-height: 22px; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
-         animation: pulse 1s infinite alternate; }
-  @keyframes pulse { from { opacity: .3 } to { opacity: 1 } }
-  .marks { margin-top: 16px; }
-  .mark { display: none; border-top: 1px solid var(--line); padding: 12px 0; }
-  .mark.show { display: block; animation: fadein .45s; }
+         font: 17px/1.6 -apple-system, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 22px; }
+  h1, h2, h3 { letter-spacing: -0.015em; line-height: 1.12; margin: 0; }
+  h2 { font-size: clamp(26px, 3.2vw, 34px); margin-bottom: 14px; }
+  p { margin: 0; }
+  .muted { color: var(--muted); }
+  section { padding: 84px 0; }
+  section + section { border-top: 1px solid var(--line); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px;
+         font-weight: 600; text-decoration: none; border: 1px solid transparent; }
+  .btn.primary { background: var(--pen); color: #fff; }
+  .btn.primary:hover { filter: brightness(0.94); }
+  .btn.ghost { border-color: var(--line); color: var(--ink); background: transparent; }
+  .btn:active { transform: translateY(1px); }
+  .ic { width: 22px; height: 22px; flex: none; }
+  .ic path { fill: currentColor; }
+
+  /* ---------- hero: split ---------- */
+  .hero { padding: 72px 0 60px; }
+  .hero .grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 44px; align-items: center; }
+  .hero h1 { font-size: clamp(28px, 3vw, 38px); font-weight: 700; max-width: 24ch; }
+  .hero .lede { font-size: 18px; color: var(--muted); margin: 16px 0 26px; max-width: 40ch; }
+  .hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-fig { position: relative; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line);
+              box-shadow: 0 20px 50px -30px rgba(60, 40, 30, .35); background: var(--paper); }
+  .hero-fig img { display: block; width: 100%; height: auto; }
+  .hero-fig svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-fig { border: 0; box-shadow: none; background: transparent; overflow: visible; }
+  .hero-fig .frame { position: relative; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line);
+                     box-shadow: 0 20px 50px -30px rgba(60, 40, 30, .35); background: var(--paper); }
+  .hero-fig figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; }
+
+  /* ---------- how it works: flow ---------- */
+  .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; margin-top: 34px; }
+  .step { padding: 0 20px 0 0; position: relative; }
+  .step + .step { padding-left: 24px; border-left: 1px solid var(--line); }
+  .step .ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+               background: var(--bg-2); color: var(--ink); margin-bottom: 14px; }
+  .step .ico .ic { width: 24px; height: 24px; }
+  .step b { display: block; font-size: 17px; margin-bottom: 4px; }
+  .step span { color: var(--muted); font-size: 15px; }
+  .loop { margin-top: 30px; display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center;
+          padding: 18px 20px; border-radius: var(--r); background: var(--pen-tint); color: var(--ink); }
+  .loop .ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: #fff; color: var(--pen); }
+  @media (prefers-color-scheme: dark) { .loop .ico { background: var(--bg-2); } }
+  .loop b { display: block; }
+  .loop span { color: var(--muted); font-size: 15px; }
+  .loop .ic { animation: spin 14s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- demo ---------- */
+  .demo { border: 1px solid var(--line); border-radius: var(--r); background: var(--bg-2); padding: 22px; margin-top: 26px; }
+  .stage { display: grid; grid-template-columns: 1.25fr 1fr; gap: 20px; align-items: start; }
+  .page { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--paper); }
+  .page img { display: block; width: 100%; height: auto; }
+  .page svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .page .scanbar { position: absolute; left: 0; right: 0; top: 0; height: 12%; opacity: 0; pointer-events: none;
+                   background: linear-gradient(to bottom, rgba(184,50,42,0), rgba(184,50,42,.14) 70%, rgba(184,50,42,.28));
+                   border-bottom: 2px solid var(--pen); }
+  .side { min-height: 320px; }
+  .phase { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; min-height: 22px; }
+  .phase .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pen); animation: pulse .9s infinite alternate; }
+  @keyframes pulse { from { opacity: .25 } to { opacity: 1 } }
+  .typed { font: 14px/1.55 ui-monospace, "SF Mono", Menlo, monospace; color: var(--ink); background: var(--paper);
+           border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-height: 150px; white-space: pre-wrap; margin-top: 8px; }
+  .typed .cur { display: inline-block; width: 8px; background: var(--pen); height: 1em; vertical-align: -2px; animation: pulse .6s infinite alternate; }
+  .checks { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 8px; }
+  .checks li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--muted); opacity: .45; transition: opacity .3s; }
+  .checks li.on { opacity: 1; color: var(--ink); }
+  .checks .tick { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-size: 12px; color: var(--ok); }
+  .checks li.on .tick { border-color: var(--ok); background: var(--ok-tint); }
+  .result { display: none; margin-top: 12px; }
+  .result.show { display: block; animation: fadein .5s; }
   @keyframes fadein { from { opacity: 0; transform: translateY(6px) } to { opacity: 1 } }
-  .mark .head { display: flex; justify-content: space-between; font-weight: 600; gap: 10px; }
-  .chip { background: color-mix(in srgb, var(--good) 15%, transparent); color: var(--good);
-          border-radius: 999px; padding: 1px 12px; font-size: 14px; white-space: nowrap; }
-  .chip.warn { background: color-mix(in srgb, var(--warn) 15%, transparent); color: var(--warn); }
-  .mark p { margin: 6px 0 8px; color: var(--muted); font-size: 15px; }
-  .bar { height: 8px; background: color-mix(in srgb, var(--line) 60%, transparent); border-radius: 6px; overflow: hidden; }
-  .bar i { display: block; height: 100%; width: 0; background: var(--good); border-radius: 6px;
-           transition: width .8s ease; }
-  .bar i.warn { background: var(--warn); }
-  .total { display: none; margin-top: 16px; padding: 16px 18px; border-radius: 12px;
-           background: color-mix(in srgb, var(--accent) 8%, transparent);
-           border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
-  .total.show { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
-                animation: fadein .45s; }
-  .total .big { font-size: 30px; font-weight: 700; }
-  .total .conf { color: var(--good); font-size: 14px; }
-  .replay { margin-top: 14px; }
-  button { background: var(--accent); color: #fff; border: 0; padding: 10px 20px;
-           border-radius: 10px; font: inherit; font-weight: 600; cursor: pointer; }
-  .note { color: var(--muted); font-size: 13px; margin-top: 10px; }
-  /* time chart */
-  .chart { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
-  .chart .row { margin: 12px 0; }
-  .chart .lbl { display: flex; justify-content: space-between; font-size: 15px; margin-bottom: 5px; }
-  .chart .lbl span:last-child { color: var(--muted); }
-  .tbar { height: 26px; border-radius: 8px; background: color-mix(in srgb, var(--line) 60%, transparent); overflow: hidden; }
-  .tbar i { display: block; height: 100%; border-radius: 8px; }
-  ol.steps { padding-left: 0; list-style: none; counter-reset: n; }
-  ol.steps li { counter-increment: n; display: flex; gap: 14px; margin: 14px 0; align-items: baseline; }
-  ol.steps li::before { content: counter(n); background: var(--accent); color: #fff; border-radius: 50%;
-                        min-width: 28px; height: 28px; display: inline-flex; align-items: center;
-                        justify-content: center; font-weight: 700; font-size: 14px; transform: translateY(4px); }
-  ol.steps b { display: block; }
-  ol.steps span { color: var(--muted); font-size: 15px; }
-  .honest { border-left: 4px solid var(--warn); padding: 4px 0 4px 16px; color: var(--muted); }
-  footer { margin-top: 60px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
-  a { color: var(--accent); }
+  .crit { display: grid; grid-template-columns: 1fr auto; gap: 6px 14px; font-size: 15px; }
+  .crit .k { color: var(--muted); } .crit .v { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .crit .v.warn { color: var(--pen); }
+  .total { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; }
+  .total .big { font-size: 28px; font-weight: 700; }
+  .times { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .time { border-radius: 10px; padding: 12px 14px; background: var(--paper); border: 1px solid var(--line); }
+  .time .n { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .time.ai .n { color: var(--pen); }
+  .time small { display: block; color: var(--muted); font-size: 13px; }
+  .demo .foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+  .demo .note { font-size: 13px; color: var(--muted); max-width: 66ch; }
+  button.replay { background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; font: inherit; font-weight: 600; cursor: pointer; }
+  button.replay:hover { border-color: var(--ink); }
+  /* svg mark styles */
+  .mk { opacity: 0; }
+  .mk.show { opacity: 1; transition: opacity .35s; }
+  .mk .stroke { fill: none; stroke: var(--pen); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round;
+                stroke-dasharray: 600; stroke-dashoffset: 600; }
+  .mk.show .stroke { animation: draw .7s ease-out forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .mk .hl { fill: var(--pen); opacity: .16; }
+  .mk text { fill: var(--pen); font: 600 26px -apple-system, "Segoe UI", Roboto, sans-serif; }
+
+  /* ---------- types: list ---------- */
+  .types { margin-top: 26px; border-top: 1px solid var(--line); }
+  .type { display: grid; grid-template-columns: 44px 220px 1fr; gap: 18px; align-items: start; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .type .ic { width: 26px; height: 26px; color: var(--pen); margin-top: 2px; }
+  .type b { font-size: 17px; }
+  .type span { color: var(--muted); font-size: 15px; }
+  .oos { margin-top: 18px; color: var(--muted); font-size: 15px; max-width: 70ch; }
+
+  /* ---------- principles: three rows on tint ---------- */
+  .princ { background: var(--bg-2); }
+  .princ .rows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin-top: 30px; }
+  .princ .row .ic { width: 28px; height: 28px; color: var(--pen); }
+  .princ .row b { display: block; margin: 12px 0 6px; font-size: 18px; }
+  .princ .row span { color: var(--muted); font-size: 15px; }
+
+  /* ---------- status ---------- */
+  .status ul { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 12px; max-width: 70ch; }
+  .status li { display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start; }
+  .status .st { width: 20px; height: 20px; border-radius: 50%; margin-top: 3px; display: grid; place-items: center; font-size: 12px; }
+  .status .done { background: var(--ok-tint); color: var(--ok); }
+  .status .next { background: var(--bg-2); color: var(--muted); }
+  .honest { max-width: 70ch; color: var(--muted); margin-top: 12px; }
+  footer { padding: 30px 0 50px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+
+  @media (max-width: 860px) {
+    section { padding: 60px 0; }
+    .hero .grid, .stage { grid-template-columns: 1fr; }
+    .flow { grid-template-columns: 1fr 1fr; gap: 22px 0; }
+    .step + .step { border-left: 0; padding-left: 0; }
+    .step:nth-child(2n) { border-left: 1px solid var(--line); padding-left: 20px; }
+    .princ .rows { grid-template-columns: 1fr; gap: 24px; }
+    .type { grid-template-columns: 36px 1fr; } .type span { grid-column: 2; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .mk .stroke { stroke-dashoffset: 0; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <div class="tag">bilim — знание</div>
-  <h1>BilimAI проверяет тетради.<br>Учитель — учит.</h1>
-  <p class="lede">BilimAI — это программа-помощник, которая <b>читает рукописную работу ученика
-  прямо со скана тетради, сверяет её с ключом или критериями учителя и предлагает оценку с
-  пометками красной ручкой</b>. Учителю остаётся просмотреть и утвердить — вместо того чтобы
-  проверять каждую тетрадь с нуля. Языки: <b>узбекский (латиница), русский, английский</b> —
-  в том числе на одной странице.</p>
-
-  <a class="cta" href="#demo">Посмотреть, как это работает ↓</a>
-  <a class="cta ghost" href="https://github.com/NeutroLink/BilimAI">Код на GitHub</a>
-
-  <h2>Три вещи, которые важно понять</h2>
-  <div class="cards">
-    <div class="card"><div class="emoji">⏱️</div><b>Возвращает учителю вечера</b>
-      <span>Стопка сочинений, которую раньше проверяли весь вечер, превращается в
-      «просмотреть и утвердить». Рутину делает программа, решение принимает человек.</span></div>
-    <div class="card"><div class="emoji">🔒</div><b>Ничего не уходит в интернет</b>
-      <span>ИИ работает прямо на компьютере школы — как калькулятор, только умнее.
-      Работы детей не отправляются ни в какое «облако» и ни в какую другую страну.</span></div>
-    <div class="card"><div class="emoji">👩‍🏫</div><b>Учитель всегда главный</b>
-      <span>BilimAI лишь предлагает оценку. Ни одна оценка не попадёт к ученику,
-      пока её не утвердил учитель. Каждое исправление делает программу умнее.</span></div>
-  </div>
-
-  <h2 id="demo">Демонстрация: ИИ проверяет сочинение</h2>
-  <p class="sub">Это настоящий результат: именно так BilimAI оценил это сочинение
-  на обычном ноутбуке, без интернета. Нажмите «Проверить работу».</p>
-
-  <div class="demo">
-    <div class="paper" id="paper">
-      <div class="scanline" id="scan"></div>
-      <h4>Сочинение, 8 класс — «Моё любимое время года»</h4>
-      <span id="essay">Моё любимое время года — осень. Многие любят лето, потому что летом каникулы
-      и тепло, но мне больше нравится осень. Во-первых, осенью очень красиво. Листья на деревьях
-      становятся жёлтыми, красными и оранжевыми, и парк рядом с нашим домом выглядит как картина.
-      Во-вторых, осенью начинается учебный год: летом я скучаю по друзьям, а осенью мы снова
-      видимся каждый день. <span id="err">Некоторые говорят что осенью грустно</span>, потому что
-      часто идёт дождь. Но я думаю, что дождь — это не плохо: можно сидеть дома, пить чай и читать
-      книгу. В заключение хочу сказать, что осень — самое красивое и интересное время года для меня.</span>
-      <div class="pen-note" id="pen" style="display:none">✏️ пропущена запятая: «говорят, что»</div>
-    </div>
-
-    <div class="reading" id="reading"></div>
-
-    <div class="marks" id="marks">
-      <div class="mark" data-w="100">
-        <div class="head"><span>Раскрытие темы</span><span class="chip">5 / 5</span></div>
-        <p>Тема раскрыта полно: есть личное отношение и конкретные причины любить осень.</p>
-        <div class="bar"><i></i></div>
-      </div>
-      <div class="mark" data-w="100">
-        <div class="head"><span>Структура</span><span class="chip">5 / 5</span></div>
-        <p>Есть вступление, основная часть с аргументами и заключение. Части логично связаны.</p>
-        <div class="bar"><i></i></div>
-      </div>
-      <div class="mark" data-w="80" data-warn="1">
-        <div class="head"><span>Аргументация</span><span class="chip warn">4 / 5</span></div>
-        <p>Аргументы есть, но их можно раскрыть подробнее и крепче связать с темой.</p>
-        <div class="bar"><i class="warn"></i></div>
-      </div>
-      <div class="mark" data-w="100">
-        <div class="head"><span>Грамотность</span><span class="chip">5 / 5</span></div>
-        <p>В целом грамотно. Найдена пропущенная запятая: «Некоторые говорят, что…».</p>
-        <div class="bar"><i></i></div>
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <h1>Проверка тетрадей за минуты, а не за вечера</h1>
+      <p class="lede">BilimAI читает рукописные работы учеников, находит ошибки и предлагает оценку. Учитель смотрит и утверждает.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#demo">Смотреть демо</a>
+        <a class="btn ghost" href="https://github.com/NeutroLink/BilimAI">Код и данные открыты</a>
       </div>
     </div>
-
-    <div class="total" id="total">
-      <span class="big">19 / 20</span>
-      <span>Черновик оценки готов — теперь слово за учителем.</span>
-      <span class="conf">уверенность ИИ: 95%</span>
-    </div>
-
-    <div class="replay"><button id="run">Проверить работу</button></div>
-    <p class="note">Оценки и комментарии в этой демонстрации — реальный результат проверки
-    этого сочинения. Проверка заняла 21 секунду на обычном компьютере, без интернета.</p>
+    <figure class="hero-fig" aria-label="Страница школьной тетради с пометкой" style="margin:0">
+      <div class="frame">
+      <img src="demo-page.jpg" alt="Разворот школьной тетради: сочинение, написанное от руки" width="1400" height="641">
+      <svg viewBox="0 0 1400 641" aria-hidden="true">
+        <g class="mk show"><path class="stroke" d="M330 353.0 L337 356.4 L344 354.2 L351 349.9 L358 350.8 L365 355.3 L372 356.0 L379 351.7 L386 349.6 L393 353.1 L400 356.5 L407 354.1 L414 349.9 L421 350.9 L428 355.4 L435 355.9 L442 351.6 L449 349.6 L456 353.2 L463 356.5"/></g>
+        <g class="mk show"><text x="1092" y="512">1 орф.</text></g>
+      </svg>
+      </div>
+      <figcaption>Реальная страница из открытого набора школьных тетрадей. Ошибка в слове «привычен» найдена и подчёркнута.</figcaption>
+    </figure>
   </div>
+</section>
 
-  <h2>Сколько времени это экономит</h2>
-  <p class="sub">Примерная картина для стопки из 30 сочинений (иллюстрация, не замер):</p>
-  <div class="chart">
-    <div class="row">
-      <div class="lbl"><span>Проверка вручную</span><span>~3 часа</span></div>
-      <div class="tbar"><i style="width:100%; background: var(--muted)"></i></div>
+<section>
+  <div class="wrap">
+    <h2>Как это работает</h2>
+    <p class="muted">Учитель делает то же, что и раньше, только не тратит вечер на проверку.</p>
+    <div class="flow">
+      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,40V80a8,8,0,0,1-16,0V48H176a8,8,0,0,1,0-16h40A8,8,0,0,1,224,40ZM80,208H48V176a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H80a8,8,0,0,0,0-16Zm136-40a8,8,0,0,0-8,8v32H176a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V176A8,8,0,0,0,216,168ZM40,88a8,8,0,0,0,8-8V48H80a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8V80A8,8,0,0,0,40,88ZM80,72h96a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H80a8,8,0,0,1-8-8V80A8,8,0,0,1,80,72Zm8,96h80V88H88Z"/></svg></div><b>Отсканировать</b><span>Стопка тетрадей на школьном сканере или МФУ.</span></div>
+      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M208,56V88a8,8,0,0,1-16,0V64H136V192h24a8,8,0,0,1,0,16H96a8,8,0,0,1,0-16h24V64H64V88a8,8,0,0,1-16,0V56a8,8,0,0,1,8-8H200A8,8,0,0,1,208,56Z"/></svg></div><b>Прочитать</b><span>Программа разбирает почерк и превращает страницу в текст.</span></div>
+      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M248,92.68a15.86,15.86,0,0,0-4.69-11.31L174.63,12.68a16,16,0,0,0-22.63,0L123.57,41.11l-58,21.77A16.06,16.06,0,0,0,55.35,75.23L32.11,214.68A8,8,0,0,0,40,224a8.4,8.4,0,0,0,1.32-.11l139.44-23.24a16,16,0,0,0,12.35-10.17l21.77-58L243.31,104A15.87,15.87,0,0,0,248,92.68Zm-69.87,92.19L63.32,204l47.37-47.37a28,28,0,1,0-11.32-11.32L52,192.7,71.13,77.86,126,57.29,198.7,130ZM112,132a12,12,0,1,1,12,12A12,12,0,0,1,112,132Zm96-15.32L139.31,48l24-24L232,92.68Z"/></svg></div><b>Проверить и отметить</b><span>Сверяет с ключом или критериями и ставит пометки прямо на скане.</span></div>
+      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H53.39a8,8,0,0,0,7.23-4.57,48,48,0,0,1,86.76,0,8,8,0,0,0,7.23,4.57H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM80,144a24,24,0,1,1,24,24A24,24,0,0,1,80,144Zm136,56H159.43a64.39,64.39,0,0,0-28.83-26.16,40,40,0,1,0-53.2,0A64.39,64.39,0,0,0,48.57,200H40V56H216ZM56,96V80a8,8,0,0,1,8-8H192a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H176a8,8,0,0,1,0-16h8V88H72v8a8,8,0,0,1-16,0Z"/></svg></div><b>Утвердить</b><span>Учитель просматривает, правит где нужно, ставит оценку.</span></div>
     </div>
-    <div class="row">
-      <div class="lbl"><span>С BilimAI: просмотреть и утвердить</span><span>~30–40 минут</span></div>
-      <div class="tbar"><i style="width:20%; background: var(--accent)"></i></div>
+    <div class="loop">
+      <div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z"/></svg></div>
+      <div><b>Каждое исправление учителя делает программу умнее</b><span>Правка на экране становится примером для обучения. Чем больше проверок, тем точнее следующая.</span></div>
     </div>
   </div>
+</section>
 
-  <h2>Что именно проверяет BilimAI</h2>
-  <p class="sub">Пять самых частых видов домашних и контрольных работ — по данным о том, что
-  учителя Узбекистана проверяют вручную:</p>
-  <div class="cards">
-    <div class="card"><div class="emoji">✍️</div><b>Диктанты</b><span>Диктант и словарный диктант:
-      текст известен заранее — программа находит каждое расхождение и подчёркивает его.</span></div>
-    <div class="card"><div class="emoji">🔢</div><b>Математика</b><span>Примеры, уравнения, задачи:
-      ответ сверяется точно, как калькулятором; отмечается строка, где началась ошибка.</span></div>
-    <div class="card"><div class="emoji">☑️</div><b>Тесты</b><span>Обведённые буквы сравниваются
-      с ключом — ✓ и ✗ у каждого вопроса.</span></div>
-    <div class="card"><div class="emoji">📖</div><b>Изложение / bayon</b><span>Насколько полно
-      передан текст, порядок мыслей, орфография и пунктуация — по критериям.</span></div>
-    <div class="card"><div class="emoji">❓</div><b>Открытые вопросы</b><span>Ответы по учебнику
-      сверяются с эталоном учителя: какие обязательные факты названы, где ошибка.</span></div>
+<section id="demo">
+  <div class="wrap">
+    <h2>Демонстрация: от скана до проверенной работы</h2>
+    <p class="muted">Так проходит проверка одной страницы. Нажмите «Проверить» или просто досмотрите.</p>
+    <div class="demo">
+      <div class="stage">
+        <div class="page">
+          <img id="pg" src="demo-page.jpg" alt="Страница сочинения" width="1400" height="641">
+          <div class="scanbar" id="scanbar"></div>
+          <svg id="marks" viewBox="0 0 1400 641" aria-hidden="true">
+            <g class="mk" id="m-hl"><rect class="hl" x="726" y="312" width="238" height="34" rx="6"/></g>
+            <g class="mk" id="m-ul"><path class="stroke" d="M330 353.0 L337 356.4 L344 354.2 L351 349.9 L358 350.8 L365 355.3 L372 356.0 L379 351.7 L386 349.6 L393 353.1 L400 356.5 L407 354.1 L414 349.9 L421 350.9 L428 355.4 L435 355.9 L442 351.6 L449 349.6 L456 353.2 L463 356.5"/></g>
+            <g class="mk" id="m-note"><text x="1092" y="512">1 орф.</text><text x="1092" y="546" style="font-size:22px">привычек</text></g>
+            <g class="mk" id="m-chk"><path class="stroke" d="M1240 96 l18 20 l40 -46"/></g>
+            <g class="mk" id="m-chk2"><path class="stroke" d="M1240 226 l18 20 l40 -46"/></g>
+          </svg>
+        </div>
+        <div class="side">
+          <div class="phase" id="phase"></div>
+          <div class="typed" id="typed"></div>
+          <ul class="checks" id="checks">
+            <li><span class="tick">✓</span>Сверка с темой и структурой</li>
+            <li><span class="tick">✓</span>Орфография по словарю</li>
+            <li><span class="tick">✓</span>Пунктуация</li>
+            <li><span class="tick">✓</span>Речевые ошибки и повторы</li>
+          </ul>
+          <div class="result" id="result">
+            <div class="crit">
+              <span class="k">Раскрытие темы</span><span class="v">5 / 5</span>
+              <span class="k">Структура</span><span class="v">5 / 5</span>
+              <span class="k">Орфография</span><span class="v warn">4 / 5</span>
+              <span class="k">Пунктуация</span><span class="v">5 / 5</span>
+            </div>
+            <div class="total"><span class="muted">Черновик оценки, слово за учителем</span><span class="big">19 / 20</span></div>
+            <div class="times">
+              <div class="time ai"><div class="n">≈ 15 с</div><small>программа: чтение и проверка одной страницы, замер на прототипе</small></div>
+              <div class="time"><div class="n">≈ 6 мин</div><small>учитель на такую работу, оценка</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="foot">
+        <p class="note">Страница настоящая, из открытого набора школьных тетрадей; ошибка в слове «привычен» подчёркнута по делу. Остальные пометки показывают, как выглядит результат. Обработка идёт на серверах в Узбекистане.</p>
+        <button class="replay" id="run">Проверить ещё раз</button>
+      </div>
+    </div>
   </div>
-  <p class="note">Не проверяем — и говорим об этом честно: рисунки, контурные карты, чертежи,
-  схемы. Это отдельная задача, не наша.</p>
+</section>
 
-  <h2>Как это устроено — за 4 шага</h2>
-  <ol class="steps">
-    <li><div><b>Отсканировали тетради</b><span>Обычный школьный сканер или МФУ — стопка
-      страниц за пару минут.</span></div></li>
-    <li><div><b>ИИ читает и сверяет с ключом</b><span>Программа читает рукописный текст,
-      затем строго по правилам сравнивает с диктантом, ответами или критериями учителя.</span></div>
-    <li><div><b>Учитель просматривает и утверждает</b><span>Согласен — нажал «утвердить».
-      Не согласен — исправил, и программа учится на этом исправлении.</span></div></li>
-    <li><div><b>Ученик получает оценку и понятный разбор</b><span>Не просто «4», а что именно
-      хорошо и что улучшить — на языке, на котором написана работа.</span></div></li>
-  </ol>
+<section>
+  <div class="wrap">
+    <h2>Что проверяет</h2>
+    <p class="muted">Пять самых частых видов работ в школах Узбекистана.</p>
+    <div class="types">
+      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M208,56V88a8,8,0,0,1-16,0V64H136V192h24a8,8,0,0,1,0,16H96a8,8,0,0,1,0-16h24V64H64V88a8,8,0,0,1-16,0V56a8,8,0,0,1,8-8H200A8,8,0,0,1,208,56Z"/></svg><b>Диктанты</b><span>Диктант и словарный диктант. Текст известен заранее, каждое расхождение подчёркнуто.</span></div>
+      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M112,72a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16h64A8,8,0,0,1,112,72Zm-8,104H80V152a8,8,0,0,0-16,0v24H40a8,8,0,0,0,0,16H64v24a8,8,0,0,0,16,0V192h24a8,8,0,0,0,0-16Zm48,0h64a8,8,0,0,0,0-16H152a8,8,0,0,0,0,16Zm64,16H152a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm-61.66-90.34a8,8,0,0,0,11.32,0L184,83.31l18.34,18.35a8,8,0,0,0,11.32-11.32L195.31,72l18.35-18.34a8,8,0,0,0-11.32-11.32L184,60.69,165.66,42.34a8,8,0,0,0-11.32,11.32L172.69,72,154.34,90.34A8,8,0,0,0,154.34,101.66Z"/></svg><b>Математика</b><span>Примеры, уравнения, задачи. Ответ сверяется точно, отмечается строка, где началась ошибка.</span></div>
+      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128ZM128,72h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/></svg><b>Тесты</b><span>Обведённые буквы сравниваются с ключом: галочка или крестик у каждого вопроса.</span></div>
+      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M232,48H160a40,40,0,0,0-32,16A40,40,0,0,0,96,48H24a8,8,0,0,0-8,8V200a8,8,0,0,0,8,8H96a24,24,0,0,1,24,24,8,8,0,0,0,16,0,24,24,0,0,1,24-24h72a8,8,0,0,0,8-8V56A8,8,0,0,0,232,48ZM96,192H32V64H96a24,24,0,0,1,24,24V200A39.81,39.81,0,0,0,96,192Zm128,0H160a39.81,39.81,0,0,0-24,8V88a24,24,0,0,1,24-24h64ZM160,88h40a8,8,0,0,1,0,16H160a8,8,0,0,1,0-16Zm48,40a8,8,0,0,1-8,8H160a8,8,0,0,1,0-16h40A8,8,0,0,1,208,128Zm0,32a8,8,0,0,1-8,8H160a8,8,0,0,1,0-16h40A8,8,0,0,1,208,160Z"/></svg><b>Изложение, bayon</b><span>Насколько полно передан текст, порядок мыслей, орфография и пунктуация по критериям.</span></div>
+      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><b>Открытые вопросы</b><span>Ответы по учебнику сверяются с эталоном учителя: какие факты названы, где ошибка.</span></div>
+    </div>
+    <p class="oos">Не проверяем: рисунки, контурные карты, чертежи и схемы. Это отдельная задача, и мы говорим об этом честно.</p>
+  </div>
+</section>
 
-  <h2>Говорим честно</h2>
-  <p class="honest">ИИ иногда ошибается — как и человек. Поэтому в BilimAI ни одна оценка
-  не выставляется без учителя, каждое решение можно посмотреть и объяснить задним числом,
-  а новые версии программы выпускаются только если они оценивают <i>не хуже</i> учителей
-  на контрольном наборе проверенных работ.</p>
+<section class="princ">
+  <div class="wrap">
+    <h2>Три принципа</h2>
+    <div class="rows">
+      <div class="row"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H53.39a8,8,0,0,0,7.23-4.57,48,48,0,0,1,86.76,0,8,8,0,0,0,7.23,4.57H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM80,144a24,24,0,1,1,24,24A24,24,0,0,1,80,144Zm136,56H159.43a64.39,64.39,0,0,0-28.83-26.16,40,40,0,1,0-53.2,0A64.39,64.39,0,0,0,48.57,200H40V56H216ZM56,96V80a8,8,0,0,1,8-8H192a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H176a8,8,0,0,1,0-16h8V88H72v8a8,8,0,0,1-16,0Z"/></svg><b>Учитель всегда главный</b><span>Программа предлагает, учитель решает. Ни одна оценка не попадает к ученику без утверждения.</span></div>
+      <div class="row"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></svg><b>Данные остаются в стране</b><span>Работы учеников обрабатываются и хранятся на серверах в Узбекистане и не передаются третьим сторонам.</span></div>
+      <div class="row"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M128,40a96,96,0,1,0,96,96A96.11,96.11,0,0,0,128,40Zm0,176a80,80,0,1,1,80-80A80.09,80.09,0,0,1,128,216ZM173.66,90.34a8,8,0,0,1,0,11.32l-40,40a8,8,0,0,1-11.32-11.32l40-40A8,8,0,0,1,173.66,90.34ZM96,16a8,8,0,0,1,8-8h48a8,8,0,0,1,0,16H104A8,8,0,0,1,96,16Z"/></svg><b>Проверяемо</b><span>У каждой оценки видно, из чего она сложилась. Новые версии выпускаются только после проверки на контрольном наборе работ.</span></div>
+    </div>
+  </div>
+</section>
 
-  <h2>Статус проекта</h2>
-  <ul>
-    <li>✅ Прототип читает рукописные тетради и проверяет диктанты и примеры со скана до
-      размеченной страницы — прямо на месте, без интернета</li>
-    <li>✅ Первое обучение на 20 000 строк из школьных тетрадей: доля правильно прочитанных
-      букв выросла с 22 % до 68 % за один час обучения. Цель — более 90 %.</li>
-    <li>⏳ Дальше: обучение на всех 68 000 строках, узбекская латиница, кабинет учителя,
-      дообучение на исправлениях учителей</li>
-  </ul>
+<section class="status">
+  <div class="wrap">
+    <h2>Где мы сейчас</h2>
+    <ul>
+      <li><span class="st done">✓</span><span>Прототип проходит весь путь: скан, чтение почерка, проверка диктанта и примеров, страница с пометками и оценкой.</span></li>
+      <li><span class="st done">✓</span><span>Первое обучение на 20 000 строк из школьных тетрадей: доля правильно прочитанных букв выросла с 22 % до 68 %. Цель на ближайшие недели: больше 90 %.</span></li>
+      <li><span class="st next">→</span><span>Дальше: обучение на всех 68 000 строках, узбекская латиница, кабинет учителя, дообучение на исправлениях учителей.</span></li>
+    </ul>
+    <p class="honest">Программа иногда ошибается, как и человек. Поэтому она отмечает места, в которых не уверена, и ни одна оценка не выставляется без учителя.</p>
+  </div>
+</section>
 
-  <footer>BilimAI · <a href="https://github.com/NeutroLink/BilimAI">github.com/NeutroLink/BilimAI</a></footer>
-</div>
+<footer><div class="wrap">BilimAI · Ташкент · <a href="https://github.com/NeutroLink/BilimAI">github.com/NeutroLink/BilimAI</a></div></footer>
 
 <script>
 const $ = id => document.getElementById(id);
-const marks = [...document.querySelectorAll('.mark')];
+const LINES = ["Почему любовь Обломова и Ольги Ильинской потерпела крах?", "Мне кажется, что любовь героев с самого начала была обречена,", "ведь они - полные противоположности. Можно начать с того, что Обломов", "был уже формировавшейся личностью, поэтому ему сложно отказаться", "от многолетних привычен и побороть свои лень и апатию. Ольга же -", "активная и целеустремлённая девушка, обладающая пытливым умом и", "Их понимания любви, семейного счастья были разными. Обломов", "хотел тихой и спокойной семейной жизни, возвращающей его в атмосферу"];
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || location.search.includes('fast=1');
 let running = false;
 
 function reset() {
-  marks.forEach(m => { m.classList.remove('show'); m.querySelector('.bar i').style.width = '0'; });
-  $('total').classList.remove('show');
-  $('pen').style.display = 'none';
-  $('err').classList.remove('hl');
-  $('reading').innerHTML = '';
+  ['m-hl','m-ul','m-note','m-chk','m-chk2'].forEach(id => $(id).classList.remove('show'));
+  $('typed').textContent = ''; $('phase').innerHTML = ''; $('result').classList.remove('show');
+  [...$('checks').children].forEach(li => li.classList.remove('on'));
+  $('scanbar').style.opacity = 0; $('checks').style.display = 'grid'; $('typed').style.display = 'block';
 }
-
-async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-async function scanPaper() {
-  const scan = $('scan'), paper = $('paper');
-  scan.style.opacity = '1';
-  const h = paper.scrollHeight - 40;
-  for (let y = 0; y <= h; y += 6) { scan.style.top = y + 'px'; await sleep(16); }
-  scan.style.opacity = '0';
+async function scan() {
+  const bar = $('scanbar'); bar.style.opacity = 1;
+  const steps = reduce ? 1 : 40;
+  for (let i = 0; i <= steps; i++) { bar.style.top = (i / steps * 88) + '%'; await sleep(reduce ? 0 : 28); }
+  bar.style.opacity = 0;
 }
-
-async function run() {
-  if (running) return;
-  running = true;
-  reset();
-  $('reading').innerHTML = '<div class="dot"></div> ИИ читает работу…';
-  await scanPaper();
-  $('reading').innerHTML = '<div class="dot"></div> Сверяю с критериями учителя…';
-  await sleep(700);
-  $('err').classList.add('hl');
-  $('pen').style.display = 'block';
-  await sleep(700);
-  $('reading').innerHTML = 'Готово. Черновик оценки:';
-  for (const m of marks) {
-    m.classList.add('show');
-    await sleep(60);
-    m.querySelector('.bar i').style.width = m.dataset.w + '%';
-    await sleep(650);
+async function typeLines() {
+  const box = $('typed'); box.innerHTML = '<span class="cur"></span>';
+  for (const ln of LINES) {
+    if (reduce) { box.insertBefore(document.createTextNode(ln + '\n'), box.lastChild); continue; }
+    for (const ch of ln) { box.insertBefore(document.createTextNode(ch), box.lastChild); await sleep(9); }
+    box.insertBefore(document.createTextNode('\n'), box.lastChild); await sleep(120);
   }
-  $('total').classList.add('show');
+  box.lastChild.remove();
+}
+async function run() {
+  if (running) return; running = true; reset();
+  $('phase').innerHTML = '<span class="dot"></span>Читаю почерк';
+  await Promise.all([scan(), typeLines()]);
+  $('phase').innerHTML = '<span class="dot"></span>Проверяю';
+  const lis = [...$('checks').children];
+  for (const li of lis) { await sleep(reduce ? 0 : 520); li.classList.add('on'); }
+  $('phase').textContent = 'Ставлю пометки';
+  for (const id of ['m-chk','m-hl','m-ul','m-note','m-chk2']) { $(id).classList.add('show'); await sleep(reduce ? 0 : 650); }
+  $('phase').textContent = 'Готово. Черновик оценки:';
+  $('typed').style.display = 'none'; $('checks').style.display = 'none'; $('result').classList.add('show');
   running = false;
 }
-
-$('run').onclick = run;
-
-// autoplay once when the demo scrolls into view
-const io = new IntersectionObserver(es => {
-  if (es[0].isIntersecting) { io.disconnect(); run(); }
-}, { threshold: 0.4 });
+$('run').addEventListener('click', run);
+const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { io.disconnect(); run(); } }, { threshold: 0.35 });
 io.observe(document.querySelector('.demo'));
 </script>
 </body>
