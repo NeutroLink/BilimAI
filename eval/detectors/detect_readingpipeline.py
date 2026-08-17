@@ -4,13 +4,13 @@ Runs the SEGM-model ONNX (LinkNet, ai-forever/ReadingPipeline-notebooks: segm/se
 does: BGR image → resize 896×896 → /255 → NCHW → sigmoid outputs [shrinked_text, bordered_text, text_line] →
 threshold 0.8, min_area 10 → contours → bbox → rescale → UpscaleBbox [1.4, 2.3] (pipeline_config.json 'shrinked_text').
 Writes eval/runs/rp_det.json in the same format as surya_det.json ({file: [[x0,y0,x1,y1,conf], ...]}); score with
-eval/score_detector.py. Needs: onnxruntime, opencv-python-headless, numpy (see /tmp/rp_venv).
+eval/detectors/score_detector.py. Needs: onnxruntime, opencv-python-headless, numpy (see /tmp/rp_venv).
 """
 import argparse, json, sys
 from pathlib import Path
 import cv2, numpy as np, onnxruntime as ort
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def get_upscaled_bbox(b, ux, uy):   # copied from ocrpipeline/predictor.py
