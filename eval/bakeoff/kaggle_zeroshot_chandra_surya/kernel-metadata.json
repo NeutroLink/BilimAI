@@ -1,0 +1,15 @@
+{
+  "id": "jahongir713/bilimai-m1-zeroshot2",
+  "title": "bilimai-m1-zeroshot2",
+  "code_file": "zeroshot2.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": ["jahongir713/bilimai-exam-ru-v1"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

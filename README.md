@@ -6,7 +6,7 @@ fully local AI (no cloud LLM APIs). Languages: **Russian and Uzbek**.
 
 - [AGENTS.md](AGENTS.md) — start here (any agent or human): where things are, rules, environments.
 - [ENGINEERING-LOG.md](ENGINEERING-LOG.md) — obstacles, fixes, decisions, results — append as you work.
-- [PLAN.md](PLAN.md) — full tech stack, architecture, phased roadmap, risk register.
+- [plans/PLAN.md](plans/PLAN.md) — full tech stack, architecture, phased roadmap, risk register.
 - [mvp/](mvp/) — single-file demo of the grading stage (typed text only).
 
 ## Run the MVP

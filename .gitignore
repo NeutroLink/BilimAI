@@ -1,14 +1,17 @@
-.venv/
+.venv*/
 __pycache__/
 .DS_Store
 *.log
 models/
+out/
+# data: raw downloads and derived strips are never committed; small JSON alignments/QA sheets under data/derived/hwr200 are
+data/raw/
+data/derived/strips_*/
+data/derived/hwr200/salvage/*/pages.jsonl
+data/derived/hwr200/salvage/*/texts.jsonl
+data/derived/hwr200/salvage/*.tgz
+data/derived/hwr200/aligned/*/aligned.jsonl
+data/derived/hwr200/qa/flagged_*/
 eval/testset_v1/ru_pages/images/
-data/train/
-data/exam/
 eval/runs/_selftest_*
 eval/runs/_smoke_*
-data/strips_ru_v1/
-data/external/
-out/
-data/Uzbek_News_Dataset/
