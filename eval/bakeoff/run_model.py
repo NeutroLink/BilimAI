@@ -17,7 +17,7 @@ from pathlib import Path
 import torch
 from PIL import Image
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 GT = ROOT / "eval/testset_v1/ru_pages/ground_truth.json"
 IMG_DIR = ROOT / "eval/testset_v1/ru_pages/images"
 MODELS = ROOT / "models"

@@ -2,7 +2,7 @@
 
 Single-file demo of the "Mark" stage: FastAPI serving one embedded HTML page,
 grading via a local Ollama model with a JSON-schema-constrained response.
-No OCR, no accounts, no database — see PLAN.md for what comes after.
+No OCR, no accounts, no database — see plans/PLAN.md for what comes after.
 
 Run:  uvicorn app:app --port 8000   (Ollama must be serving on :11434)
 """
