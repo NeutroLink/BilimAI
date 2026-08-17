@@ -15,3 +15,7 @@ data/derived/hwr200/qa/flagged_*/
 eval/testset_v1/ru_pages/images/
 eval/runs/_selftest_*
 eval/runs/_smoke_*
+eval/runs/*/adapter/tokenizer.json
+eval/runs/*/adapter/*.safetensors
+eval/runs/*/adapter/*.bin
+eval/runs/*/pip_list.txt
