@@ -72,7 +72,7 @@
 
   /* ---------- demo ---------- */
   .demo { border: 1px solid var(--line); border-radius: var(--r); background: var(--bg-2); padding: 22px; margin-top: 26px; }
-  .stage { display: grid; grid-template-columns: 1.25fr 1fr; gap: 20px; align-items: start; }
+  .stage { display: grid; grid-template-columns: 1.85fr 1fr; gap: 22px; align-items: start; }
   .page { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--paper); }
   .page img { display: block; width: 100%; height: auto; }
   .page svg { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -98,7 +98,8 @@
   .crit .k { color: var(--muted); } .crit .v { font-weight: 600; font-variant-numeric: tabular-nums; }
   .crit .v.warn { color: var(--pen); }
   .total { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; }
-  .total .big { font-size: 28px; font-weight: 700; }
+  .total .big { font-size: 28px; font-weight: 700; white-space: nowrap; }
+  .total .muted { font-size: 14px; }
   .times { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
   .time { border-radius: 10px; padding: 12px 14px; background: var(--paper); border: 1px solid var(--line); }
   .time .n { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
@@ -202,14 +203,16 @@
     <div class="demo">
       <div class="stage">
         <div class="page">
-          <img id="pg" src="demo-v5-page.jpg" alt="Страница сочинения из школьной тетради" width="1400" height="641">
+          <img id="pg" src="demo-v5-page.jpg" alt="Страница сочинения из школьной тетради" width="1400" height="933">
           <div class="scanbar" id="scanbar"></div>
-          <svg id="marks" viewBox="0 0 1400 641" aria-hidden="true">
-            <g class="mk" id="m-hl"><rect class="hl" x="598" y="34" width="344" height="60" rx="8"/><text x="28" y="80" style="font-size:20px">проверьте</text></g>
-            <g class="mk" id="m-ul"><path class="stroke" d="M166 494 L174 498 L182 495 L190 490 L198 491 L206 496 L214 498 L222 493 L230 490 L238 494 L246 498 L254 495 L262 490 L270 491 L278 496 L286 498 L294 493 L302 490 L310 494 L318 498 L326 495 L334 490 L342 491 L350 496 L358 498 L366 493 L374 490 L382 494 L390 498 L398 495 L406 490 L414 491 L422 496 L430 498"/></g>
-            <g class="mk" id="m-note"><text x="28" y="458">1 орф.</text><text x="28" y="490" style="font-size:22px">проявить</text></g>
-            <g class="mk" id="m-chk"><path class="stroke" d="M40 196 l14 16 l30 -36"/></g>
-            <g class="mk" id="m-chk2"><path class="stroke" d="M40 336 l14 16 l30 -36"/></g>
+          <svg id="marks" viewBox="0 0 1400 933" aria-hidden="true">
+            <g class="mk" id="m-hl"><rect class="hl" x="598" y="24" width="344" height="62" rx="8"/><text x="10" y="72" style="font-size:20px">проверьте</text></g>
+            <g class="mk" id="m-ul"><path class="stroke" d="M166 485 L174 489 L182 486 L190 481 L198 482 L206 487 L214 489 L222 484 L230 481 L238 485 L246 489 L254 486 L262 481 L270 482 L278 487 L286 489 L294 484 L302 481 L310 485 L318 489 L326 486 L334 481 L342 482 L350 487 L358 489 L366 484 L374 481 L382 485 L390 489 L398 486 L406 481 L414 482 L422 487 L430 489"/></g>
+            <g class="mk" id="m-note"><text x="28" y="449">1 орф.</text><text x="28" y="481" style="font-size:22px">проявить</text></g>
+            <g class="mk" id="m-hl2"><rect class="hl" x="418" y="690" width="202" height="62" rx="8"/><text x="1228" y="737" style="font-size:20px">проверьте</text></g>
+            <g class="mk" id="m-chk"><path class="stroke" d="M40 186 l14 16 l30 -36"/></g>
+            <g class="mk" id="m-chk2"><path class="stroke" d="M40 322 l14 16 l30 -36"/></g>
+            <g class="mk" id="m-chk3"><path class="stroke" d="M40 654 l14 16 l30 -36"/></g>
           </svg>
         </div>
         <div class="side">
@@ -237,7 +240,7 @@
         </div>
       </div>
       <div class="foot">
-        <p class="note">Страница настоящая, из открытого набора школьных тетрадей; пометки — из прогона ИИ-агента (версия v5): ошибка в слове «проевить» найдена и подчёркнута по делу, а слово «Балконский» показано учителю как сомнительное место. Галочки и оценка по критериям — иллюстрация того, как выглядит результат. Обработка идёт на серверах в Узбекистане.</p>
+        <p class="note">Страница настоящая, из открытого набора школьных тетрадей; пометки — из прогона ИИ-агента (версия v5): ошибка в слове «проевить» найдена и подчёркнута по делу, а слова «Балконский» и «кумир» показаны учителю как сомнительные места (первое — действительно ошибка ученика, второе — нет; решает учитель). Галочки и оценка по критериям — иллюстрация того, как выглядит результат. Обработка идёт на серверах в Узбекистане.</p>
         <button class="replay" id="run">Проверить ещё раз</button>
       </div>
     </div>
@@ -288,14 +291,15 @@
 
 <script>
 const $ = id => document.getElementById(id);
-// v5 reader output for the visible lines of this page (page 2921 of the sealed test set), verbatim
-const LINES = ["мир\" Андрей Болконский перешивал", "сильный душевный кризис. Главный герой", "хотел пойти на войну для того, чтобы", "прославиться и совершить подвиг, это", "было его главным стремлением. В хо-", "де Аустерлицкого сражения ему удалось", "проевить героизм, но Андрей получил", "ранение. Когда он упал на землю, он уви-", "дел высокое небо, глядя на которое, пе-"];
+// v5 reader output for the visible lines of this page (page 2921 of the sealed test set), verbatim; the pupil's two
+// inserted fragments («он», «считать войну»), which the reader returns as separate lines, are left out of the typed box.
+const LINES = ["мир\" Андрей Болконский перешивал", "сильный душевный кризис. Главный герой", "хотел пойти на войну для того, чтобы", "прославиться и совершить подвиг, это", "было его главным стремлением. В хо-", "де Аустерлицкого сражения ему удалось", "проевить героизм, но Андрей получил", "ранение. Когда он упал на землю, он уви-", "дел высокое небо, глядя на которое, пе-", "реосмыслил свои взгляды и ценности. Его", "прежний кулир теперь казался ему", "\"ничтожным человеком\", война начала", "казаться бессмысленной. Чаще всего"];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || location.search.includes('fast=1');
 let running = false;
 
 function reset() {
-  ['m-hl','m-ul','m-note','m-chk','m-chk2'].forEach(id => $(id).classList.remove('show'));
+  ['m-hl','m-ul','m-note','m-hl2','m-chk','m-chk2','m-chk3'].forEach(id => $(id).classList.remove('show'));
   $('typed').textContent = ''; $('phase').innerHTML = ''; $('result').classList.remove('show');
   [...$('checks').children].forEach(li => li.classList.remove('on'));
   $('scanbar').style.opacity = 0; $('checks').style.display = 'grid'; $('typed').style.display = 'block';
@@ -310,8 +314,8 @@ async function typeLines() {
   const box = $('typed'); box.innerHTML = '<span class="cur"></span>';
   for (const ln of LINES) {
     if (reduce) { box.insertBefore(document.createTextNode(ln + '\n'), box.lastChild); continue; }
-    for (const ch of ln) { box.insertBefore(document.createTextNode(ch), box.lastChild); await sleep(9); }
-    box.insertBefore(document.createTextNode('\n'), box.lastChild); await sleep(120);
+    for (const ch of ln) { box.insertBefore(document.createTextNode(ch), box.lastChild); await sleep(6); }
+    box.insertBefore(document.createTextNode('\n'), box.lastChild); await sleep(90);
   }
   box.lastChild.remove();
 }
@@ -323,7 +327,7 @@ async function run() {
   const lis = [...$('checks').children];
   for (const li of lis) { await sleep(reduce ? 0 : 520); li.classList.add('on'); }
   $('phase').textContent = 'Ставлю пометки';
-  for (const id of ['m-chk','m-hl','m-ul','m-note','m-chk2']) { $(id).classList.add('show'); await sleep(reduce ? 0 : 650); }
+  for (const id of ['m-chk','m-hl','m-chk2','m-ul','m-note','m-chk3','m-hl2']) { $(id).classList.add('show'); await sleep(reduce ? 0 : 600); }
   $('phase').textContent = 'Готово. Черновик оценки:';
   $('typed').style.display = 'none'; $('checks').style.display = 'none'; $('result').classList.add('show');
   running = false;
