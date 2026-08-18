@@ -1,0 +1,20 @@
+{
+ "results": {
+  "Распознай рукописный текст на изображении. Выведи только текст, без пояснений.": {
+   "cer_median": 0.4735221674876847,
+   "cer_mean": 0.6899556667779552,
+   "sec_per_line": 0.578151281674703
+  },
+  "Text Recognition:": {
+   "cer_median": 0.42857142857142855,
+   "cer_mean": 0.6912775757914277,
+   "sec_per_line": 0.5989087581634521
+  },
+  "Transcribe the handwritten Russian text in the image. Output only the text.": {
+   "cer_median": 0.5178571428571428,
+   "cer_mean": 1.624206037772748,
+   "sec_per_line": 0.6767757495244344
+  }
+ },
+ "best": "Text Recognition:"
+}

@@ -138,6 +138,11 @@
         "needs_review": {
           "type": "boolean",
           "description": "true when the mark rests on a low-confidence reading or a prior-driven correction — teacher should glance"
+        },
+        "verdict": {
+          "type": "string",
+          "enum": ["error", "review", "ok"],
+          "description": "three-state outcome (2026-08-18 rule): error = confident mistake (red); review = uncertain — ALWAYS drawn as 'needs teacher's attention' (never silently dropped); ok = confirmed correct. Uncertain words are never hidden."
         }
       }
     },

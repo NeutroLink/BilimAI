@@ -1,0 +1,476 @@
+{
+ "GLM zero-shot": {
+  "pages": 20,
+  "page_cer_charweighted": 0.7819231703349547,
+  "page_cer_median": 0.691945367439361,
+  "page_wer_mean": 2.061920465694456,
+  "line_cer_mean": 0.947972068115454,
+  "line_cer_median": 0.7786775861659928,
+  "line_recall_mean": 1.0,
+  "extra_lines_total": 0,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.8165499556169248,
+  "line_cer_charweighted_all": 0.8165499556169248,
+  "word_accuracy": 0.17393939393939395,
+  "lines_perfect_pct": 0.013681592039800995,
+  "ci95_line_cer_charweighted": [
+   0.6014988817391077,
+   1.2260905717989203
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.6014988817391077,
+   1.2260905717989203
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.610394908616188,
+  "novel_word_accuracy": 0.20358974358974358,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 1.131513338319621,
+  "page_cer_clean_pages": 1.6331167998406284,
+  "page_cer_marked_pages": 0.6560118313602342
+ },
+ "GLM+LoRA v1": {
+  "pages": 20,
+  "page_cer_charweighted": 0.32573804065797884,
+  "page_cer_median": 0.30660132238412047,
+  "page_wer_mean": 0.7261899603459072,
+  "line_cer_mean": 0.3539204655369736,
+  "line_cer_median": 0.3168430170795135,
+  "line_recall_mean": 1.0,
+  "extra_lines_total": 0,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.33834697701942995,
+  "line_cer_charweighted_all": 0.33834697701942995,
+  "word_accuracy": 0.3984848484848485,
+  "lines_perfect_pct": 0.15049751243781095,
+  "ci95_line_cer_charweighted": [
+   0.30413838945132493,
+   0.3799822408423693
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.30413838945132493,
+   0.3799822408423693
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.36741187989556134,
+  "novel_word_accuracy": 0.3676923076923077,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.29394166043380704,
+  "page_cer_clean_pages": 0.3677329721244682,
+  "page_cer_marked_pages": 0.3147779760823494
+ },
+ "GLM+LoRA v2": {
+  "pages": 20,
+  "page_cer_charweighted": 0.2665077700404705,
+  "page_cer_median": 0.2542807984353671,
+  "page_wer_mean": 0.6410785219917865,
+  "line_cer_mean": 0.2898493996718764,
+  "line_cer_median": 0.2629958506550018,
+  "line_recall_mean": 1.0,
+  "extra_lines_total": 0,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.2765558733602919,
+  "line_cer_charweighted_all": 0.2765558733602919,
+  "word_accuracy": 0.4712121212121212,
+  "lines_perfect_pct": 0.19651741293532338,
+  "ci95_line_cer_charweighted": [
+   0.2366075089762346,
+   0.32095311766899354
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.2366075089762346,
+   0.32095311766899354
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.3109497389033943,
+  "novel_word_accuracy": 0.4307692307692308,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.22400897531787584,
+  "page_cer_clean_pages": 0.2806160775701773,
+  "page_cer_marked_pages": 0.2478232265227951
+ },
+ "GLM+LoRA v3": {
+  "pages": 20,
+  "page_cer_charweighted": 0.23684153304159103,
+  "page_cer_median": 0.2038757805780952,
+  "page_wer_mean": 0.5902177651396708,
+  "line_cer_mean": 0.2503967057064711,
+  "line_cer_median": 0.23884986204507935,
+  "line_recall_mean": 1.0,
+  "extra_lines_total": 0,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.24568497879475293,
+  "line_cer_charweighted_all": 0.24568497879475293,
+  "word_accuracy": 0.4987878787878788,
+  "lines_perfect_pct": 0.2126865671641791,
+  "ci95_line_cer_charweighted": [
+   0.2109986935851393,
+   0.28283402531072993
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.2109986935851393,
+   0.28283402531072993
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.2835345953002611,
+  "novel_word_accuracy": 0.45076923076923076,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.18785838942907004,
+  "page_cer_clean_pages": 0.2580793156761134,
+  "page_cer_marked_pages": 0.21673098545594274
+ },
+ "GLM+LoRA r4-20": {
+  "pages": 20,
+  "page_cer_charweighted": 0.26407735307961644,
+  "page_cer_median": 0.2545605451904592,
+  "page_wer_mean": 0.6313094098535934,
+  "line_cer_mean": 0.2879390824900155,
+  "line_cer_median": 0.26343687601367605,
+  "line_recall_mean": 1.0,
+  "extra_lines_total": 0,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.27438603412565343,
+  "line_cer_charweighted_all": 0.27438603412565343,
+  "word_accuracy": 0.4951515151515152,
+  "lines_perfect_pct": 0.1791044776119403,
+  "ci95_line_cer_charweighted": [
+   0.24427628670515625,
+   0.30864082870058623
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.24427628670515625,
+   0.30864082870058623
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.28826697127937334,
+  "novel_word_accuracy": 0.4928205128205128,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.2531787584143605,
+  "page_cer_clean_pages": 0.29751355804987006,
+  "page_cer_marked_pages": 0.2552931675958118
+ },
+ "GLM+LoRA v4 (r4-40)": {
+  "pages": 20,
+  "page_cer_charweighted": 0.24247314563763275,
+  "page_cer_median": 0.22531393366179006,
+  "page_wer_mean": 0.5917102937641269,
+  "line_cer_mean": 0.26581579906818553,
+  "line_cer_median": 0.24023667615886962,
+  "line_recall_mean": 1.0,
+  "extra_lines_total": 0,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.25194792385836867,
+  "line_cer_charweighted_all": 0.25194792385836867,
+  "word_accuracy": 0.5193939393939394,
+  "lines_perfect_pct": 0.21019900497512436,
+  "ci95_line_cer_charweighted": [
+   0.2204907501612521,
+   0.2876978912521817
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.2204907501612521,
+   0.2876978912521817
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.2696638381201044,
+  "novel_word_accuracy": 0.5128205128205128,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.224881575666916,
+  "delta_vs_baseline": {
+   "line_cer_charweighted": 0.0062629450636157435,
+   "ci95": [
+    -0.016085509561437058,
+    0.03103181369387529
+   ],
+   "significant": false,
+   "baseline": "eval/runs/glm_lora_ru_v3_lines.json"
+  },
+  "page_cer_clean_pages": 0.27352318489560584,
+  "page_cer_marked_pages": 0.23254853729387315
+ },
+ "Qwen3-VL-4B RU (gbull25)": {
+  "pages": 20,
+  "page_cer_charweighted": 0.36272439980381094,
+  "page_cer_median": 0.3428036699313295,
+  "page_wer_mean": 0.8076854515474627,
+  "line_cer_mean": 0.43527933251189854,
+  "line_cer_median": 0.45148793602614534,
+  "line_recall_mean": 1.0,
+  "extra_lines_total": 0,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.38115198737548084,
+  "line_cer_charweighted_all": 0.38115198737548084,
+  "word_accuracy": 0.4824242424242424,
+  "lines_perfect_pct": 0.1455223880597015,
+  "ci95_line_cer_charweighted": [
+   0.3053672647973306,
+   0.4663385664930185
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.3053672647973306,
+   0.4663385664930185
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.3515013054830287,
+  "novel_word_accuracy": 0.5071794871794871,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.42645225629518824,
+  "page_cer_clean_pages": 0.38754624236949087,
+  "page_cer_marked_pages": 0.34967610621464335
+ },
+ "chukhrovns Qwen3-VL-4B": {
+  "pages": 20,
+  "page_cer_charweighted": 0.41118857553709653,
+  "page_cer_median": 0.47015506063733714,
+  "page_wer_mean": 0.8198182348494305,
+  "line_cer_mean": 0.5071498304470643,
+  "line_cer_median": 0.500348997539197,
+  "line_recall_mean": 1.0,
+  "extra_lines_total": 0,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.42992405562678765,
+  "line_cer_charweighted_all": 0.42992405562678765,
+  "word_accuracy": 0.40575757575757576,
+  "lines_perfect_pct": 0.10199004975124377,
+  "ci95_line_cer_charweighted": [
+   0.35424122610902525,
+   0.5156016021617295
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.35424122610902525,
+   0.5156016021617295
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.37402088772845954,
+  "novel_word_accuracy": 0.44256410256410256,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.5153328347045625,
+  "page_cer_clean_pages": 0.4895124159588616,
+  "page_cer_marked_pages": 0.38966757312546635
+ },
+ "olmOCR-2 zero": {
+  "pages": 20,
+  "page_cer_charweighted": 0.49883935937799445,
+  "page_cer_median": 0.5800110215871086,
+  "page_wer_mean": 0.9028352209194974,
+  "line_cer_mean": 0.7359219603889782,
+  "line_cer_median": 0.7321413588045322,
+  "line_recall_mean": 1.0,
+  "extra_lines_total": 0,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.5290955715553802,
+  "line_cer_charweighted_all": 0.5290955715553802,
+  "word_accuracy": 0.3560606060606061,
+  "lines_perfect_pct": 0.06218905472636816,
+  "ci95_line_cer_charweighted": [
+   0.43013039607843573,
+   0.6331070210647893
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.43013039607843573,
+   0.6331070210647893
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.4813968668407311,
+  "novel_word_accuracy": 0.3912820512820513,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.6019695836449763,
+  "page_cer_clean_pages": 0.5230505423345108,
+  "page_cer_marked_pages": 0.5290954017835565
+ },
+ "Chandra zero": {
+  "pages": 20,
+  "page_cer_charweighted": 0.8969774369008486,
+  "page_cer_median": 0.680845000505603,
+  "page_wer_mean": 1.6637431850043771,
+  "line_cer_mean": 1.031715438776414,
+  "line_cer_median": 0.749410945895792,
+  "line_recall_mean": 1.0,
+  "extra_lines_total": 0,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.942597889338199,
+  "line_cer_charweighted_all": 0.942597889338199,
+  "word_accuracy": 0.42696969696969694,
+  "lines_perfect_pct": 0.05721393034825871,
+  "ci95_line_cer_charweighted": [
+   0.6769023937360805,
+   1.225505656739353
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.6769023937360805,
+   1.225505656739353
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.8714915143603134,
+  "novel_word_accuracy": 0.46974358974358976,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 1.0512341062079282,
+  "page_cer_clean_pages": 0.8057712594079938,
+  "page_cer_marked_pages": 0.8857868542305196
+ },
+ "E2E v3 + RP": {
+  "pages": 20,
+  "page_cer_charweighted": 0.2989292807056548,
+  "page_cer_median": 0.29291270306208794,
+  "page_wer_mean": 0.6722312155421393,
+  "line_cer_mean": 0.29631859617924583,
+  "line_cer_median": 0.2883206703989771,
+  "line_recall_mean": 0.8581920277916859,
+  "extra_lines_total": 43,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.2778261537673513,
+  "line_cer_charweighted_all": 0.3047144688825328,
+  "word_accuracy": 0.45575757575757575,
+  "lines_perfect_pct": 0.1181592039800995,
+  "ci95_line_cer_charweighted": [
+   0.2364063663836736,
+   0.31899391169522245
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.26416242369275555,
+   0.3449530691738838
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.30998842401190674,
+  "novel_word_accuracy": 0.4282051282051282,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.2254677614752995,
+  "page_cer_clean_pages": 0.32409542947873177,
+  "page_cer_marked_pages": 0.3010538636364381
+ },
+ "E2E v3 + Surya": {
+  "pages": 20,
+  "page_cer_charweighted": 0.41819732397497117,
+  "page_cer_median": 0.3917225643966785,
+  "page_wer_mean": 0.7241815690471387,
+  "line_cer_mean": 0.3123421430397602,
+  "line_cer_median": 0.29829073773350756,
+  "line_recall_mean": 0.724813618113956,
+  "extra_lines_total": 54,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.3171689890123381,
+  "line_cer_charweighted_all": 0.45142518986093305,
+  "word_accuracy": 0.36787878787878786,
+  "lines_perfect_pct": 0.10572139303482588,
+  "ci95_line_cer_charweighted": [
+   0.24980549602192922,
+   0.3837608643674799
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.3659428302002576,
+   0.5308395549346497
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.37049639711769417,
+  "novel_word_accuracy": 0.3446153846153846,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.2325765994602318,
+  "page_cer_clean_pages": 0.4161334775762475,
+  "page_cer_marked_pages": 0.40971282346829874
+ },
+ "E2E v4 + RP": {
+  "pages": 20,
+  "page_cer_charweighted": 0.30153819443150626,
+  "page_cer_median": 0.29931141596104316,
+  "page_wer_mean": 0.6440853673814322,
+  "line_cer_mean": 0.28688286360605103,
+  "line_cer_median": 0.27733365739037863,
+  "line_recall_mean": 0.8581920277916859,
+  "extra_lines_total": 43,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.2778773754033704,
+  "line_cer_charweighted_all": 0.30476378341059274,
+  "word_accuracy": 0.473030303030303,
+  "lines_perfect_pct": 0.11318407960199005,
+  "ci95_line_cer_charweighted": [
+   0.24103726800514003,
+   0.31821888002795395
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.2667643596876164,
+   0.34977943074034856
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.30031420539110304,
+  "novel_word_accuracy": 0.48102564102564105,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.24135146049266387,
+  "page_cer_clean_pages": 0.33344946352144483,
+  "page_cer_marked_pages": 0.2989277364535273
+ },
+ "E2E v4 + Surya": {
+  "pages": 20,
+  "page_cer_charweighted": 0.42114022572186205,
+  "page_cer_median": 0.4014531768769347,
+  "page_wer_mean": 0.7107349807282428,
+  "line_cer_mean": 0.31841887036536337,
+  "line_cer_median": 0.30247432025952936,
+  "line_recall_mean": 0.724813618113956,
+  "extra_lines_total": 54,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.3231845804431895,
+  "line_cer_charweighted_all": 0.45625801361080975,
+  "word_accuracy": 0.39121212121212123,
+  "lines_perfect_pct": 0.11069651741293532,
+  "ci95_line_cer_charweighted": [
+   0.2659547434461798,
+   0.381673994148778
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.37475184355933555,
+   0.5283661778120137
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.3437750200160128,
+  "novel_word_accuracy": 0.40205128205128204,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.2905223051277981,
+  "page_cer_clean_pages": 0.4224949894915406,
+  "page_cer_marked_pages": 0.4140020332526016
+ },
+ "E2E Qwen + RP": {
+  "pages": 20,
+  "page_cer_charweighted": 0.3425106308533138,
+  "page_cer_median": 0.3424647022713321,
+  "page_wer_mean": 0.7477732643643464,
+  "line_cer_mean": 0.3472988346887545,
+  "line_cer_median": 0.28202420442846776,
+  "line_recall_mean": 0.8581920277916859,
+  "extra_lines_total": 43,
+  "box_hit_rate_mean": 1.0,
+  "lines": 804,
+  "line_cer_charweighted": 0.3231573016442145,
+  "line_cer_charweighted_all": 0.34835782621560313,
+  "word_accuracy": 0.4590909090909091,
+  "lines_perfect_pct": 0.09079601990049752,
+  "ci95_line_cer_charweighted": [
+   0.2510784311585971,
+   0.40104239809316367
+  ],
+  "ci95_line_cer_charweighted_all": [
+   0.277992994225355,
+   0.4211437579998428
+  ],
+  "novel_lines": 344,
+  "novel_line_cer_charweighted": 0.3568711757896478,
+  "novel_word_accuracy": 0.4805128205128205,
+  "seen_lines": 460,
+  "seen_line_cer_charweighted": 0.2682729842509086,
+  "page_cer_clean_pages": 0.42957764804680304,
+  "page_cer_marked_pages": 0.3334983185610839
+ }
+}

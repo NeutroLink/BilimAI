@@ -9,6 +9,34 @@ fully local AI (no cloud LLM APIs). Languages: **Russian and Uzbek**.
 - [plans/PLAN.md](plans/PLAN.md) — full tech stack, architecture, phased roadmap, risk register.
 - [mvp/](mvp/) — single-file demo of the grading stage (typed text only).
 
+## Where the reader stands (2026-08-18)
+
+Sealed exam of real Russian school-notebook pages (60 pages, 2,569 handwritten lines, never trained on), scored with
+[`eval/score.py`](eval/score.py) — **character error rate** (of 100 letters, how many wrong; lower is better) and **word accuracy**:
+
+| reader | line CER (char-weighted) | word accuracy | lines read perfectly | end-to-end page CER (auto line detection) |
+|---|---|---|---|---|
+| GLM-OCR stock (no training) | 0.82 | 0.17 | 1 % | 0.68 |
+| + LoRA v3 (language side only, 68 k lines) | 0.226 | 0.54 | 19 % | 0.293 |
+| + LoRA v4 (+ HWR200 essays) | 0.222 | 0.57 | 20 % | 0.299 |
+| **+ LoRA v5 (vision tower trained too, 290 k lines)** | **0.038** | **0.87** | **58 %** | **0.113** |
+
+The jump to v5 came from one change: training the half of the model that *looks* at the page, not only the half that
+writes text. Numbers on text that never appears in training data are the same (0.038), so it is not memorisation.
+Full leaderboard and method notes: [`eval/runs/README.md`](eval/runs/README.md).
+
+### Fresh demo grading (v5)
+
+Dictation-style check of a real pupil page against the dictated text: the reader transcribes each line, the dictation
+engine compares with the key and draws marks; a teacher reviews.
+
+![v5 demo grading — page 2047](docs/demo-v5-2047.marked.jpg)
+
+11 marks on this page: **3 are the pupil's genuine misspellings** (*скворченка → скворчонка* ×2, *того → Много*), the rest
+are places where the reader disagreed with the key — exactly what the "needs teacher's attention" band is for. Request:
+[`contracts/examples/demo_v5/2047.json`](contracts/examples/demo_v5/2047.json); line boxes are human boxes here (own line
+detector is next). Reproduce: `python -m bilimai.pipeline --request contracts/examples/demo_v5/2047.json --out out/v5_demo --adapter models/adapters/glm-ocr-lora-ru-v5`.
+
 ## Run the MVP
 
 ```bash
