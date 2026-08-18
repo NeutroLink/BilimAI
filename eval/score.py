@@ -14,9 +14,19 @@ Metrics (per page and overall):
   line_recall          — share of GT lines that got a matched prediction (did it find the line)
   box_hit_rate         — when bboxes are provided: share of matched lines whose predicted
                          box overlaps the GT line box (IoU > 0.3). Measures "can it point".
+  line_cer_charweighted — PRIMARY (2026-08-18): total char edits ÷ total GT chars over matched lines
+                         (big lines count more; the median-of-pages headline cannot resolve < 0.045).
+                         *_all counts missed lines as fully wrong (the honest end-to-end number).
+  word_accuracy        — share of GT words produced correctly (what a grader feels; 1 − word errors)
+  lines_perfect_pct    — share of GT lines read with zero edits
+  ci95_*               — page-bootstrap 95 % CI (1000 resamples of pages, seed 0)
+  novel_*/seen_*       — split of the exam lines by whether a text twin (rapidfuzz ratio ≥ 80) exists in
+                         the training labels (--train-labels); lines < 8 chars excluded from the split; novel is honest.
+  --baseline pred.json — paired page-bootstrap on the difference of the primary metric vs another run
 
 Usage:
   score.py --gt eval/testset_v1/ru_pages/ground_truth.json --pred runs/glm_zero.json [--csv out.csv]
+           [--train-labels data/derived/strips_ru_v1/labels.jsonl] [--baseline runs/other.json] [--boot 1000]
 """
 import argparse, json, re, unicodedata, sys
 from difflib import SequenceMatcher
@@ -46,6 +56,63 @@ def wer(ref: str, hyp: str) -> float:
     if not ref:
         return 0.0 if not hyp else 1.0
     return jiwer.wer(ref, hyp)
+
+
+def word_hits(ref: str, hyp: str) -> int:
+    """Number of GT words produced correctly (jiwer alignment hits)."""
+    ref, hyp = norm(ref), norm(hyp)
+    if not ref: return 0
+    if not hyp: return 0
+    try:
+        return int(jiwer.process_words(ref, hyp).hits)
+    except Exception:
+        return sum(1 for a, b in zip(ref.split(), hyp.split()) if a == b)
+
+
+def seen_lines(gt, train_labels, cache=None, cutoff=80, min_chars=8, gt_path=None):
+    """Which exam lines have a text twin (rapidfuzz ratio ≥ cutoff) in the training labels.
+    Definition (2026-08-18): lines shorter than `min_chars` normalised characters ("ед.ч.", dates, single words) are EXCLUDED
+    from the split (value None) — they match short training labels by chance and inflated "seen" from 39 % to 57 %.
+    Cache is keyed by BOTH the training-labels dir and a hash of the GT file, so exam v1/v2 never share a cache."""
+    import os, hashlib
+    gt_key = hashlib.sha1(json.dumps({fn: [l["text"] for l in p["lines"]] for fn, p in gt.items()}, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:10]
+    cache = cache or os.path.join(os.path.dirname(train_labels), f"seen_lines_{os.path.basename(os.path.dirname(train_labels) or 'train')}_gt{gt_key}_min{min_chars}_r{cutoff}.json")
+    if os.path.isfile(cache):
+        return json.load(open(cache, encoding="utf-8"))
+    from rapidfuzz import process, fuzz
+    train = list({norm(json.loads(l)["text"]) for l in open(train_labels, encoding="utf-8") if json.loads(l).get("split", "train") == "train"})
+    seen = {}
+    for fn, page in gt.items():
+        for i, l in enumerate(page["lines"]):
+            t = norm(l["text"])
+            if len(t) < min_chars: seen[f"{fn}#{i}"] = None; continue
+            m = process.extractOne(t, train, scorer=fuzz.ratio, score_cutoff=cutoff)
+            seen[f"{fn}#{i}"] = bool(m)
+    json.dump(seen, open(cache, "w"), ensure_ascii=False)
+    return seen
+
+
+def aggregate(rows, only=None):
+    """Char-weighted / word / perfect metrics over line records (optionally filtered by a predicate on (file, gi))."""
+    L = [(r["file"], x) for r in rows for x in r["lines"] if only is None or only(r["file"], x["gi"])]
+    ch_all = sum(x["n_chars"] for _, x in L); ed_all = sum(x["edits"] for _, x in L)
+    M = [x for _, x in L if x["hyp"] is not None]
+    ch_m = sum(x["n_chars"] for x in M); ed_m = sum(x["edits"] for x in M)
+    nw = sum(x["n_words"] for _, x in L); hits = sum(x["word_hits"] for _, x in L)
+    return {"lines": len(L), "line_cer_charweighted": ed_m / ch_m if ch_m else None, "line_cer_charweighted_all": ed_all / ch_all if ch_all else None,
+            "word_accuracy": hits / nw if nw else None, "lines_perfect_pct": sum(x["perfect"] for _, x in L) / len(L) if L else None}
+
+
+def page_bootstrap(rows, key, n=1000, seed=0, rows_b=None):
+    """95 % CI of a char-weighted metric by resampling pages; with rows_b (same pages, other run) → CI of the paired difference."""
+    rng = np.random.default_rng(seed); k = len(rows); vals = []
+    idx_b = {r["file"]: r for r in rows_b} if rows_b else None
+    for _ in range(n):
+        pick = rng.integers(0, k, k)
+        a = aggregate([rows[i] for i in pick])[key]
+        if idx_b: b = aggregate([idx_b[rows[i]["file"]] for i in pick])[key]; vals.append(a - b)
+        else: vals.append(a)
+    return float(np.percentile(vals, 2.5)), float(np.percentile(vals, 97.5))
 
 
 def iou(a, b):
@@ -105,16 +172,20 @@ def score_page(gt_page, pred):
 
     ref_concat, hyp_concat = [], []
     line_cers, box_hits, box_total = [], 0, 0
-    matched = 0
+    matched = 0; recs = []
     for gi, pj in pairs:
         ref_concat.append(gt_lines[gi]["text"])
+        nref = norm(gt_lines[gi]["text"]); nchar = len(nref); nword = len(nref.split())
         if pj is None:
             hyp_concat.append("")
+            recs.append({"gi": gi, "ref": gt_lines[gi]["text"], "hyp": None, "cer": None, "edits": nchar, "n_chars": nchar, "n_words": nword, "word_hits": 0, "perfect": False})
             continue
         matched += 1
         hyp = pred_lines[pj]["text"]
         hyp_concat.append(hyp)
-        line_cers.append(cer(gt_lines[gi]["text"], hyp))
+        c = cer(gt_lines[gi]["text"], hyp); line_cers.append(c)
+        recs.append({"gi": gi, "ref": gt_lines[gi]["text"], "hyp": hyp, "cer": c, "edits": c * nchar, "n_chars": nchar,
+                     "n_words": nword, "word_hits": word_hits(gt_lines[gi]["text"], hyp), "perfect": c == 0.0})
         if pred_lines[pj]["bbox"] is not None:
             box_total += 1
             if iou(pred_lines[pj]["bbox"], gt_lines[gi]["bbox"]) > 0.3:
@@ -134,6 +205,7 @@ def score_page(gt_page, pred):
         "n_gt_lines": len(gt_lines),
         "n_gt_chars": gt_page["n_chars"],
         "teacher_marks": gt_page.get("teacher_marks", 0),
+        "lines": recs,
     }
 
 
@@ -143,7 +215,14 @@ def main():
     ap.add_argument("--pred", required=True)
     ap.add_argument("--csv")
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--train-labels", help="labels.jsonl of the training strips → novel/seen split of the exam lines")
+    ap.add_argument("--baseline", help="another predictions JSON → paired page-bootstrap CI of the difference (primary metric)")
+    ap.add_argument("--boot", type=int, default=1000)
     a = ap.parse_args()
+    if not a.train_labels:
+        import os
+        _d = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "derived", "strips_ru_v1", "labels.jsonl")
+        if os.path.isfile(_d): a.train_labels = _d
     gt = json.load(open(a.gt, encoding="utf-8"))
     pred = json.load(open(a.pred, encoding="utf-8"))
 
@@ -171,6 +250,27 @@ def main():
     }
     bh = [r["box_hit_rate"] for r in rows if r["box_hit_rate"] is not None]
     overall["box_hit_rate_mean"] = float(np.mean(bh)) if bh else None
+    # ---- primary metrics (2026-08-18): char-weighted line CER, word accuracy, perfect lines, CI, novel-text subset
+    overall.update(aggregate(rows))
+    lo, hi = page_bootstrap(rows, "line_cer_charweighted", n=a.boot); overall["ci95_line_cer_charweighted"] = [lo, hi]
+    lo, hi = page_bootstrap(rows, "line_cer_charweighted_all", n=a.boot); overall["ci95_line_cer_charweighted_all"] = [lo, hi]
+    if a.train_labels:
+        try:
+            seen = seen_lines(gt, a.train_labels)
+            nov = aggregate(rows, only=lambda f, gi: seen.get(f"{f}#{gi}") is False); sn = aggregate(rows, only=lambda f, gi: seen.get(f"{f}#{gi}") is True)
+            overall.update({"novel_lines": nov["lines"], "novel_line_cer_charweighted": nov["line_cer_charweighted"], "novel_word_accuracy": nov["word_accuracy"],
+                            "seen_lines": sn["lines"], "seen_line_cer_charweighted": sn["line_cer_charweighted"],
+                            "short_lines_excluded": sum(1 for v in seen.values() if v is None)})
+        except Exception as e:
+            print(f"WARNING: novel/seen split skipped ({e})", file=sys.stderr)
+    if a.baseline:
+        base = json.load(open(a.baseline, encoding="utf-8")); rows_b = []
+        for fn, gpage in gt.items():
+            if fn in base: rb = score_page(gpage, base[fn]); rb["file"] = fn; rows_b.append(rb)
+        common = {r["file"] for r in rows_b}; rows_p = [r for r in rows if r["file"] in common]
+        d = aggregate(rows_p)["line_cer_charweighted"] - aggregate(rows_b)["line_cer_charweighted"]
+        lo, hi = page_bootstrap(rows_p, "line_cer_charweighted", n=a.boot, rows_b=rows_b)
+        overall["delta_vs_baseline"] = {"line_cer_charweighted": d, "ci95": [lo, hi], "significant": bool(hi < 0 or lo > 0), "baseline": a.baseline}
     clean = [r for r in rows if r["teacher_marks"] == 0]; marked = [r for r in rows if r["teacher_marks"] > 0]
     if clean and marked:
         overall["page_cer_clean_pages"] = float(np.mean([r["page_cer"] for r in clean]))
@@ -183,12 +283,13 @@ def main():
             print(f"{r['file']:>10} {r['page_cer']:6.3f} {r['page_wer']:6.3f} {r['line_cer']:8.3f} {r['line_recall']:7.2f} {r['extra_lines']:5d} {bx:>6} {r['n_gt_lines']:5d} {r['teacher_marks']:4d}")
         print("-" * 70)
         for k, v in overall.items():
-            print(f"{k:>26}: {v:.4f}" if isinstance(v, float) else f"{k:>26}: {v}")
+            print(f"{k:>30}: {v:.4f}" if isinstance(v, float) else f"{k:>30}: {v}")
     if a.csv:
         import csv
         with open(a.csv, "w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)
-    print(json.dumps(overall))
+            cols = [k for k in rows[0].keys() if k != "lines"]
+            w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore"); w.writeheader(); w.writerows(rows)
+    print(json.dumps(overall, ensure_ascii=False))
 
 
 if __name__ == "__main__":
