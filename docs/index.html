@@ -206,10 +206,9 @@
           <img id="pg" src="demo-v5-page.jpg" alt="Страница сочинения из школьной тетради" width="1400" height="933">
           <div class="scanbar" id="scanbar"></div>
           <svg id="marks" viewBox="0 0 1400 933" aria-hidden="true">
-            <g class="mk" id="m-hl"><rect class="hl" x="598" y="24" width="344" height="62" rx="8"/><text x="10" y="72" style="font-size:20px">проверьте</text></g>
-            <g class="mk" id="m-ul"><path class="stroke" d="M166 485 L174 489 L182 486 L190 481 L198 482 L206 487 L214 489 L222 484 L230 481 L238 485 L246 489 L254 486 L262 481 L270 482 L278 487 L286 489 L294 484 L302 481 L310 485 L318 489 L326 486 L334 481 L342 482 L350 487 L358 489 L366 484 L374 481 L382 485 L390 489 L398 486 L406 481 L414 482 L422 487 L430 489"/></g>
+            <g class="mk" id="m-hl"><rect class="hl" x="598" y="24" width="344" height="62" rx="8"/><text x="8" y="72" style="font-size:20px">на проверку</text></g>
+            <g class="mk" id="m-ul"><path class="stroke" d="M251 472 L280 428"/><text x="251" y="426" style="font-size:28px">я</text><path class="stroke" d="M166 485 L174 489 L182 486 L190 481 L198 482 L206 487 L214 489 L222 484 L230 481 L238 485 L246 489 L254 486 L262 481 L270 482 L278 487 L286 489 L294 484 L302 481 L310 485 L318 489 L326 486 L334 481 L342 482 L350 487 L358 489 L366 484 L374 481 L382 485 L390 489 L398 486 L406 481 L414 482 L422 487 L430 489"/></g>
             <g class="mk" id="m-note"><text x="28" y="449">1 орф.</text><text x="28" y="481" style="font-size:22px">проявить</text></g>
-            <g class="mk" id="m-hl2"><rect class="hl" x="418" y="690" width="202" height="62" rx="8"/><text x="1228" y="737" style="font-size:20px">проверьте</text></g>
             <g class="mk" id="m-chk"><path class="stroke" d="M40 186 l14 16 l30 -36"/></g>
             <g class="mk" id="m-chk2"><path class="stroke" d="M40 322 l14 16 l30 -36"/></g>
             <g class="mk" id="m-chk3"><path class="stroke" d="M40 654 l14 16 l30 -36"/></g>
@@ -240,7 +239,7 @@
         </div>
       </div>
       <div class="foot">
-        <p class="note">Страница настоящая, из открытого набора школьных тетрадей; пометки — из прогона ИИ-агента (версия v5): ошибка в слове «проевить» найдена и подчёркнута по делу, а слова «Балконский» и «кумир» показаны учителю как сомнительные места (первое — действительно ошибка ученика, второе — нет; решает учитель). Галочки и оценка по критериям — иллюстрация того, как выглядит результат. Обработка идёт на серверах в Узбекистане.</p>
+        <p class="note">Страница настоящая. Ошибку в слове «проевить» ИИ-агент нашёл и исправил сам; слово «Балконский» отдал учителю на проверку. Галочки и оценка по критериям — иллюстрация того, как выглядит результат.</p>
         <button class="replay" id="run">Проверить ещё раз</button>
       </div>
     </div>
@@ -299,7 +298,7 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || locatio
 let running = false;
 
 function reset() {
-  ['m-hl','m-ul','m-note','m-hl2','m-chk','m-chk2','m-chk3'].forEach(id => $(id).classList.remove('show'));
+  ['m-hl','m-ul','m-note','m-chk','m-chk2','m-chk3'].forEach(id => $(id).classList.remove('show'));
   $('typed').textContent = ''; $('phase').innerHTML = ''; $('result').classList.remove('show');
   [...$('checks').children].forEach(li => li.classList.remove('on'));
   $('scanbar').style.opacity = 0; $('checks').style.display = 'grid'; $('typed').style.display = 'block';
@@ -327,7 +326,7 @@ async function run() {
   const lis = [...$('checks').children];
   for (const li of lis) { await sleep(reduce ? 0 : 520); li.classList.add('on'); }
   $('phase').textContent = 'Ставлю пометки';
-  for (const id of ['m-chk','m-hl','m-chk2','m-ul','m-note','m-chk3','m-hl2']) { $(id).classList.add('show'); await sleep(reduce ? 0 : 600); }
+  for (const id of ['m-chk','m-hl','m-chk2','m-ul','m-note','m-chk3']) { $(id).classList.add('show'); await sleep(reduce ? 0 : 600); }
   $('phase').textContent = 'Готово. Черновик оценки:';
   $('typed').style.display = 'none'; $('checks').style.display = 'none'; $('result').classList.add('show');
   running = false;
