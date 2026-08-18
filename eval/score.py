@@ -103,15 +103,32 @@ def aggregate(rows, only=None):
             "word_accuracy": hits / nw if nw else None, "lines_perfect_pct": sum(x["perfect"] for _, x in L) / len(L) if L else None}
 
 
+def _page_sums(rows, key):
+    """Per-page (numerator, denominator) so a char-weighted metric of any page subset is a ratio of sums → vectorised bootstrap."""
+    num, den = [], []
+    for r in rows:
+        L = r["lines"]
+        if key == "line_cer_charweighted":
+            M = [x for x in L if x["hyp"] is not None]; num.append(sum(x["edits"] for x in M)); den.append(sum(x["n_chars"] for x in M))
+        elif key == "line_cer_charweighted_all":
+            num.append(sum(x["edits"] for x in L)); den.append(sum(x["n_chars"] for x in L))
+        elif key == "word_accuracy":
+            num.append(sum(x["word_hits"] for x in L)); den.append(sum(x["n_words"] for x in L))
+        else: raise KeyError(key)
+    return np.array(num, dtype=float), np.array(den, dtype=float)
+
+
 def page_bootstrap(rows, key, n=1000, seed=0, rows_b=None):
-    """95 % CI of a char-weighted metric by resampling pages; with rows_b (same pages, other run) → CI of the paired difference."""
-    rng = np.random.default_rng(seed); k = len(rows); vals = []
-    idx_b = {r["file"]: r for r in rows_b} if rows_b else None
-    for _ in range(n):
-        pick = rng.integers(0, k, k)
-        a = aggregate([rows[i] for i in pick])[key]
-        if idx_b: b = aggregate([idx_b[rows[i]["file"]] for i in pick])[key]; vals.append(a - b)
-        else: vals.append(a)
+    """95 % CI of a char-weighted metric by resampling pages (vectorised: n × k index draws, sums via take);
+    with rows_b (same pages, other run) → CI of the paired difference."""
+    rng = np.random.default_rng(seed); k = len(rows)
+    num, den = _page_sums(rows, key)
+    picks = rng.integers(0, k, (n, k))
+    vals = num[picks].sum(1) / np.maximum(den[picks].sum(1), 1e-9)
+    if rows_b:
+        idx_b = {r["file"]: r for r in rows_b}; rb = [idx_b[r["file"]] for r in rows]
+        num_b, den_b = _page_sums(rb, key)
+        vals = vals - num_b[picks].sum(1) / np.maximum(den_b[picks].sum(1), 1e-9)
     return float(np.percentile(vals, 2.5)), float(np.percentile(vals, 97.5))
 
 

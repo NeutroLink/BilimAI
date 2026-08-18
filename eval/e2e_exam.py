@@ -31,7 +31,7 @@ ap.add_argument("--det", required=True); ap.add_argument("--adapter", required=T
 ap.add_argument("--exam"); ap.add_argument("--base"); ap.add_argument("--min-conf", type=float, default=0.0)
 ap.add_argument("--score", action="store_true"); ap.add_argument("--max-new", type=int, default=96)
 ap.add_argument("--no-resize", action="store_true", help="keep crop resolution (Qwen3-VL runs; GLM runs resize to h=128 like training)")
-ap.add_argument("--prompt", default="Text Recognition:")
+ap.add_argument("--prompt", default="Text Recognition:"); ap.add_argument("--batch-size", type=int, default=16)
 a = ap.parse_args()
 
 HERE = Path(__file__).resolve().parent
@@ -41,47 +41,33 @@ assert EXAM, "exam dir with ground_truth.json not found — pass --exam"
 BASE = a.base or next((str(p) for p in (Path("/kaggle/models/GLM-OCR"), HERE.parent / "models" / "GLM-OCR") if (p / "config.json").exists()), "zai-org/GLM-OCR")
 PROMPT = a.prompt
 
-import torch
 from PIL import Image
-from transformers import AutoProcessor, AutoModelForImageTextToText
-dev = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
-dtype = torch.float16 if dev != "cpu" else torch.float32
-proc = AutoProcessor.from_pretrained(BASE)
-model = AutoModelForImageTextToText.from_pretrained(BASE, dtype=dtype).to(dev).eval()
+import sys as _sys
+_sys.path.insert(0, str(HERE.parent)); _sys.path.insert(0, str(HERE / "pkg"))          # repo root (bilimai/) or box layout (~/bilimai/pkg/bilimai)
+from bilimai.reader import GLMBatchReader
 if a.adapter.lower() != "none":
-    from peft import PeftModel
-    # GATE: never evaluate a truncated adapter (2026-08-17)
-    _va = next(p for p in (HERE / "train" / "vast" / "verify_artifacts.py", HERE / "verify_artifacts.py") if p.exists())   # repo layout vs box layout
+    _va = next(p for p in (HERE / "train" / "vast" / "verify_artifacts.py", HERE / "verify_artifacts.py") if p.exists())   # GATE: never evaluate a truncated adapter
     subprocess.run([sys.executable, str(_va), "adapter", a.adapter], check=True)
-    model = PeftModel.from_pretrained(model, a.adapter).eval()
-print(f"device {dev} | base {BASE} | adapter {a.adapter} | detector {a.det} | exam {EXAM}", flush=True)
-
-def read(img):
-    msgs = [{"role": "user", "content": [{"type": "image", "image": img}, {"type": "text", "text": PROMPT}]}]
-    inputs = proc.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, return_dict=True, return_tensors="pt").to(dev)
-    inputs.pop("token_type_ids", None)
-    with torch.no_grad():
-        out = model.generate(**inputs, max_new_tokens=a.max_new, do_sample=False)
-    return proc.decode(out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True).strip()
+reader = GLMBatchReader(BASE, None if a.adapter.lower() == "none" else a.adapter, prompt=PROMPT, line_h=(10**6 if a.no_resize else 128), max_new_tokens=a.max_new)
+print(f"base {BASE} | adapter {a.adapter} | detector {a.det} | exam {EXAM} | batched", flush=True)
 
 det = json.load(open(a.det, encoding="utf-8"))
 gt = json.load(open(EXAM / "ground_truth.json", encoding="utf-8"))
-preds, t0, n = {}, time.time(), 0
-for i, fn in enumerate(gt):
+preds, t0 = {}, time.time()
+crops, owners = [], []                                              # gather every crop of every page, read once, batched
+for fn in gt:
     boxes = [b for b in det.get(fn, []) if len(b) < 5 or b[4] >= a.min_conf]
     boxes.sort(key=lambda b: (round(b[1] / 40), b[0]))                       # reading order: rows of ~40 px, then x
-    img = Image.open(EXAM / "images" / fn).convert("RGB"); L = []
+    img = Image.open(EXAM / "images" / fn).convert("RGB"); preds[fn] = []
     for b in boxes:
         x0, y0, x1, y1 = [float(v) for v in b[:4]]; pad = 12
         crop = img.crop((max(0, x0 - pad), max(0, y0 - pad), min(img.size[0], x1 + pad), min(img.size[1], y1 + pad)))
         if crop.size[0] < 4 or crop.size[1] < 4: continue
-        if crop.size[1] > 128 and not a.no_resize:
-            s = 128 / crop.size[1]; crop = crop.resize((max(8, int(crop.size[0] * s)), 128))
-        try: txt = read(crop)
-        except Exception as e: txt = ""; print("  err", fn, e, flush=True)
-        L.append({"text": txt.replace("\n", " ").strip(), "bbox": [x0, y0, x1, y1]}); n += 1
-    preds[fn] = L
-    print(f"[e2e {i+1}/{len(gt)}] {fn}: {len(L)} detected lines (GT {len(gt[fn]['lines'])}) | {time.time()-t0:.0f}s", flush=True)
+        crops.append(crop); owners.append((fn, [x0, y0, x1, y1]))
+texts, _ = reader.read(crops, batch_size=a.batch_size, with_conf=False)
+for (fn, bb), txt in zip(owners, texts): preds[fn].append({"text": txt, "bbox": bb})
+n = len(crops)
+for fn in gt: print(f"[e2e] {fn}: {len(preds[fn])} detected lines (GT {len(gt[fn]['lines'])})", flush=True)
 Path(a.out).parent.mkdir(parents=True, exist_ok=True)
 json.dump(preds, open(a.out, "w"), ensure_ascii=False, indent=1)
 print(f"wrote {a.out}: {n} lines in {time.time()-t0:.0f}s")

@@ -66,43 +66,18 @@ class ProjectionLocator:
 
 # ============================================================================ READ
 class GLMReader:
-    """GLM-OCR line reader (+ optional LoRA adapter). Lazy-loads on first call."""
+    """GLM-OCR line reader (+ optional LoRA adapter). Thin wrapper over bilimai.reader.GLMBatchReader (batched, 2026-08-18)."""
     def __init__(self, base: str | Path = ROOT / "models/GLM-OCR", adapter: str | Path | None = None,
                  device: str | None = None, max_new_tokens: int = 96, line_h: int = 128):
-        self.base, self.adapter, self.max_new, self.line_h = str(base), (str(adapter) if adapter else None), max_new_tokens, line_h
-        self.device = device; self._m = None
-        self.name = f"glm-ocr@{Path(self.adapter).name if self.adapter else 'base'}"
-
-    def _load(self):
-        import torch
-        from transformers import AutoProcessor, AutoModelForImageTextToText
-        dev = self.device or ("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
-        dtype = torch.float16 if dev in ("mps", "cuda") else torch.float32
-        self.proc = AutoProcessor.from_pretrained(self.base)
-        m = AutoModelForImageTextToText.from_pretrained(self.base, dtype=dtype).to(dev).eval()
-        if self.adapter:
-            from peft import PeftModel
-            m = PeftModel.from_pretrained(m, self.adapter).eval()
-        self._m, self._dev, self._torch = m, dev, torch
+        from .reader import GLMBatchReader
+        self._r = GLMBatchReader(base, adapter, device=device, max_new_tokens=max_new_tokens, line_h=line_h)
+        self.name = self._r.name
 
     def read_line(self, crop: Image.Image) -> tuple[str, float]:
-        if self._m is None: self._load()
-        if crop.size[1] > self.line_h:
-            s = self.line_h / crop.size[1]; crop = crop.resize((max(8, int(crop.size[0] * s)), self.line_h))
-        msgs = [{"role": "user", "content": [{"type": "image", "image": crop}, {"type": "text", "text": "Text Recognition:"}]}]
-        inputs = self.proc.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, return_dict=True, return_tensors="pt").to(self._dev)
-        inputs.pop("token_type_ids", None)
-        with self._torch.no_grad():
-            out = self._m.generate(**inputs, max_new_tokens=self.max_new, do_sample=False,
-                                   output_scores=True, return_dict_in_generate=True)
-        seq = out.sequences[0][inputs["input_ids"].shape[1]:]
-        text = self.proc.decode(seq, skip_special_tokens=True).strip().replace("\n", " ")
-        # confidence = mean token probability of the chosen tokens (crude but monotone)
-        probs = []
-        for tok, sc in zip(seq, out.scores):
-            p = self._torch.softmax(sc[0].float(), dim=-1)[tok].item(); probs.append(p)
-        conf = float(sum(probs) / len(probs)) if probs else 0.0
-        return text, conf
+        return self._r.read_line(crop)
+
+    def read_lines(self, crops: list, batch_size: int = 16) -> list[tuple[str, float]]:
+        t, c = self._r.read(crops, batch_size=batch_size); return list(zip(t, c))
 
 
 # ============================================================================ PIPELINE
@@ -120,13 +95,13 @@ class Pipeline:
         loc = self.locator or (OracleLocator(request["options"]["oracle_lines"]) if request.get("options", {}).get("oracle_lines") else ProjectionLocator())
         boxes = loc(img); timings["detect"] = round((time.time() - t) * 1000)
 
-        # READ
-        t = time.time(); transcript = []
-        for i, b in enumerate(boxes):
+        # READ — all line crops of the page in one batched call
+        t = time.time(); crops = []
+        for b in boxes:
             pad = 12; x0, y0, x1, y1 = b
-            crop = img.crop((max(0, x0 - pad), max(0, y0 - pad), min(img.size[0], x1 + pad), min(img.size[1], y1 + pad)))
-            text, conf = self.reader.read_line(crop)
-            transcript.append({"id": f"L{i:02d}", "text": text, "bbox": [float(v) for v in b], "confidence": round(conf, 3)})
+            crops.append(img.crop((max(0, x0 - pad), max(0, y0 - pad), min(img.size[0], x1 + pad), min(img.size[1], y1 + pad))))
+        reads = self.reader.read_lines(crops) if hasattr(self.reader, "read_lines") else [self.reader.read_line(c) for c in crops]
+        transcript = [{"id": f"L{i:02d}", "text": text, "bbox": [float(v) for v in b], "confidence": round(conf, 3)} for i, (b, (text, conf)) in enumerate(zip(boxes, reads))]
         timings["read"] = round((time.time() - t) * 1000)
 
         # ENGINE

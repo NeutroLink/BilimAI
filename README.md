@@ -30,12 +30,13 @@ Full leaderboard and method notes: [`eval/runs/README.md`](eval/runs/README.md).
 Dictation-style check of a real pupil page against the dictated text: the reader transcribes each line, the dictation
 engine compares with the key and draws marks; a teacher reviews.
 
-![v5 demo grading — page 2047](docs/demo-v5-2047.marked.jpg)
+![v5 demo grading — page 2921](docs/demo-v5.marked.jpg)
 
-11 marks on this page: **3 are the pupil's genuine misspellings** (*скворченка → скворчонка* ×2, *того → Много*), the rest
-are places where the reader disagreed with the key — exactly what the "needs teacher's attention" band is for. Request:
-[`contracts/examples/demo_v5/2047.json`](contracts/examples/demo_v5/2047.json); line boxes are human boxes here (own line
-detector is next). Reproduce: `python -m bilimai.pipeline --request contracts/examples/demo_v5/2047.json --out out/v5_demo --adapter models/adapters/glm-ocr-lora-ru-v5`.
+12 marks on this page: **1 is the pupil's genuine misspelling** (*проевить → проявить*), one more is a misspelt name the
+reader silently "corrected" (*Балконский*), the rest are places where the reader disagreed with the key — exactly what the
+"needs teacher's attention" band is for. Request: [`contracts/examples/demo_v5/2921.json`](contracts/examples/demo_v5/2921.json);
+line boxes are human boxes here (own line detector is next). Reproduce:
+`python -m bilimai.pipeline --request contracts/examples/demo_v5/2921.json --out out/v5_demo --adapter models/adapters/glm-ocr-lora-ru-v5`.
 
 ## Run the MVP
 
