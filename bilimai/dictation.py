@@ -223,3 +223,38 @@ def _summary(n_sp, n_pu, grade, coverage, lang):
     s = f"Найдено ошибок: орфографических — {n_sp}, пунктуационных — {n_pu}. Оценка: {grade}."
     if coverage < 0.7: s += f" Внимание: найдено только {coverage:.0%} текста — возможно, страница неполная."
     return s
+
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Rule-generated plausible pupil misspellings (used by the key-conditioned verifiers: eval/dictation/keyed_verify_pmi.py,
+# eval/dictation/ctc_verify.py). Moved here 2026-08-18 so both scorers share one generator.
+_VOW = "аоеиуыэюя"
+def _nfc(s: str) -> str: return unicodedata.normalize("NFC", s).replace("ё", "е").replace("Ё", "Е")
+def word_core(w: str) -> str: return _nfc(w).lower().strip(".,;:!?—–-«»\"'()…")
+def candidates(word: str, read_word: str | None = None, max_n: int = 10) -> list[str]:
+    """Plausible Russian misspellings of `word` (о/а, е/и, voiced pairs, doubled/dropped consonant, ь/ъ, тся/ться,
+    жи-ши, dropped letter); punctuation and capitalisation preserved. `read_word` (the reader's free read), if it differs,
+    is appended as one more candidate. Deterministic order (seeded by the word)."""
+    import random as _random
+    w = _nfc(word); pre = ""; suf = ""
+    while w and not w[0].isalpha(): pre += w[0]; w = w[1:]
+    while w and not w[-1].isalpha(): suf = w[-1] + suf; w = w[:-1]
+    lw = w.lower(); out = set()
+    swaps = {"о": "а", "а": "о", "е": "и", "и": "е", "я": "е", "б": "п", "п": "б", "в": "ф", "ф": "в", "г": "к", "к": "г", "д": "т", "т": "д", "ж": "ш", "ш": "ж", "з": "с", "с": "з"}
+    for i, c in enumerate(lw):
+        if c in swaps: out.add(lw[:i] + swaps[c] + lw[i + 1:])
+        if i > 0 and c not in _VOW and lw[i - 1] == c: out.add(lw[:i] + lw[i + 1:])          # doubled → single
+        if i > 0 and c not in _VOW and lw[i - 1] != c and c not in "ьъй": out.add(lw[:i] + c + lw[i:])   # single → doubled
+        if c in "ьъ": out.add(lw[:i] + lw[i + 1:])                                             # drop soft/hard sign
+    if "ться" in lw: out.add(lw.replace("ться", "тся"))
+    if "тся" in lw and "ться" not in lw: out.add(lw.replace("тся", "ться"))
+    for pat, rep in (("жи", "жы"), ("ши", "шы"), ("ча", "чя"), ("ща", "щя"), ("чу", "чю"), ("щу", "щю")):
+        if pat in lw: out.add(lw.replace(pat, rep, 1))
+    if len(lw) > 4:
+        for i in range(1, len(lw) - 1): out.add(lw[:i] + lw[i + 1:])                            # dropped letter
+    out.discard(lw); out = sorted(out)
+    rng = _random.Random(hash(lw) & 0xffff); rng.shuffle(out); out = out[:max_n]
+    def recase(c): return c.capitalize() if w[:1].isupper() else c
+    cands = [pre + recase(c) + suf for c in out]
+    if read_word and word_core(read_word) != lw and word_core(read_word).isalpha(): cands.append(pre + read_word.strip(".,;:!?—–-«»\"'()…") + suf)
+    return cands
