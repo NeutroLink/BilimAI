@@ -26,17 +26,30 @@ writes text. Numbers on text that never appears in training data are the same (0
 The end-to-end column uses our own line detector (ReadingPipeline segmenter + measured box growth, [`bilimai/detector.py`](bilimai/detector.py)); the
 remaining gap to human boxes is mostly 1–2-word fragments the detector does not fire on. Full leaderboard and method notes: [`eval/runs/README.md`](eval/runs/README.md).
 
-### Fresh demo grading (v5)
+**Dictation judges (verifier numbers, 2026-08-19, all 7,783 words of the sealed exam):** for each word where the reader
+disagrees with the key, two judges score the ink — a CTC word reader (no language prior; ranks ~500 one-letter variants)
+and the GLM reader with its no-picture score subtracted (PMI). "Both must agree" gives ranking quality (AUC) **0.92**;
+at the shipped thresholds the red band costs ≈ 0.65 false red marks per 100 words and catches ≈ 26 % of real misspellings,
+the yellow «на проверку» band raises catch to ≈ 71 % at ≈ 6.5 marks per 100 words. Words the reader auto-corrected to the
+key (26 % of real misspellings) never reach the judges — the next training round (R5b «verbatim») targets that.
+Code: [`bilimai/verifier.py`](bilimai/verifier.py); measurement: `eval/runs/dictation/ctc_r5all_fused*.json`.
 
-Dictation-style check of a real pupil page against the dictated text: the reader transcribes each line, the dictation
-engine compares with the key and draws marks; a teacher reviews.
+### Fresh demo grading (v5 + own detector + word judges)
 
-![v5 demo grading — page 2921](docs/demo-v5.marked.jpg)
+Dictation-style check of a real pupil page against the dictated text, **the whole product path**: our line/word detector
+finds the lines, the reader transcribes them, the dictation engine compares with the key, and every spelling disagreement
+is judged on the ink by two independent readers (a letter-by-letter CTC reader and the GLM reader with its language habit
+subtracted) — red only when both agree the ink deviates, yellow «на проверку» when they half-agree, nothing when it was
+our misread. A teacher reviews.
 
-12 marks on this page: **1 is the pupil's genuine misspelling** (*проевить → проявить*), one more is a misspelt name the
-reader silently "corrected" (*Балконский*), the rest are places where the reader disagreed with the key — exactly what the
-"needs teacher's attention" band is for. Request: [`contracts/examples/demo_v5/2921.json`](contracts/examples/demo_v5/2921.json);
-line boxes are human boxes here (own line detector is next). Reproduce:
+![v5 demo grading — page 2921, full product](docs/demo-v5.marked.jpg)
+
+9 marks on this page: **1 red — the pupil's genuine slip** (*слушат → служат*; both judges agree), 3 yellow (review), and 5
+small caret/circle marks where the detector does not yet see the pupil's margin insertions («он», «считать войну»), so the
+engine reports those words as missing — the teacher sees at a glance that they are there. The page's other genuine slip
+(*проевить*) is **not** marked: both judges read that ambiguous letter as «я» — an honest limit (see the verifier numbers
+below). Request: [`contracts/examples/demo_v5/2921.json`](contracts/examples/demo_v5/2921.json) (drop `options.oracle_lines`
+to use the own detector). Reproduce:
 `python -m bilimai.pipeline --request contracts/examples/demo_v5/2921.json --out out/v5_demo --adapter models/adapters/glm-ocr-lora-ru-v5`.
 
 ## Run the MVP
