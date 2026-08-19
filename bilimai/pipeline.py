@@ -93,9 +93,20 @@ class GLMReader:
 
 
 # ============================================================================ PIPELINE
+def _default_verifier():
+    """E5.8 (2026-08-19): CTC word judge on spelling marks; None if its weights are absent (marks then stay unverified)."""
+    try:
+        from .verifier import CTCWordVerifier, DEFAULT_OCR
+        if (DEFAULT_OCR / "ocr_model.onnx").exists(): return CTCWordVerifier()
+    except Exception as e:
+        print(f"[pipeline] word verifier unavailable ({e}); spelling marks stay unverified")
+    return None
+
+
 class Pipeline:
-    def __init__(self, reader, locator=None):
+    def __init__(self, reader, locator=None, verifier="auto"):
         self.reader = reader; self.locator = locator
+        self.verifier = _default_verifier() if verifier == "auto" else verifier
 
     def grade(self, request: dict, out_dir: str | Path | None = None) -> dict[str, Any]:
         t0 = time.time(); timings = {}
@@ -132,7 +143,8 @@ class Pipeline:
             key = request["key"]
             res = grade_dictation(key["text"], transcript, ignore_case=key.get("ignore_case", False),
                                   count_punctuation=key.get("count_punctuation", True),
-                                  scale=key.get("grading_scale", "classic-5point"), language=request.get("language", "ru"))
+                                  scale=key.get("grading_scale", "classic-5point"), language=request.get("language", "ru"),
+                                  verifier=self.verifier, image=img)
             status = "needs_review" if res["score_card"].get("needs_review") else "ok"; engine = "dictation-engine@0.1"
         elif atype == "math":
             key = request["key"]; probs = key["problems"]
@@ -159,7 +171,7 @@ class Pipeline:
                 "transcript": transcript if request.get("options", {}).get("return_transcript", True) else [],
                 "marks": res["marks"], "score_card": res["score_card"],
                 "provenance": {"pipeline_version": __version__, "reader_model": getattr(self.reader, "name", "?"),
-                               "detector_model": getattr(loc, "name", "?"), "engine": engine, "timings_ms": timings}}
+                               "detector_model": getattr(loc, "name", "?"), "verifier": getattr(self.verifier, "name", None), "engine": engine, "timings_ms": timings}}
         if marked_uri: resp["marked_image_uri"] = marked_uri          # contract: string or absent, never null
         return resp
 
