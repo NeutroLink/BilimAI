@@ -44,11 +44,12 @@ our misread. A teacher reviews.
 
 ![v5 demo grading — page 2921, full product](docs/demo-v5.marked.jpg)
 
-9 marks on this page: **1 red — the pupil's genuine slip** (*слушат → служат*; both judges agree), 3 yellow (review), and 5
-small caret/circle marks where the detector does not yet see the pupil's margin insertions («он», «считать войну»), so the
-engine reports those words as missing — the teacher sees at a glance that they are there. The page's other genuine slip
-(*проевить*) is **not** marked: both judges read that ambiguous letter as «я» — an honest limit (see the verifier numbers
-below). Request: [`contracts/examples/demo_v5/2921.json`](contracts/examples/demo_v5/2921.json) (drop `options.oracle_lines`
+6 marks on this page: **1 red — the pupil's genuine slip** (*слушат → служат*; both judges agree; the wrong letter is struck and
+the correction written above it — the letter's position comes from the CTC judge's alignment, nothing is hand-placed),
+3 yellow highlights («на проверку»: one real deviation, one reader slip, one ambiguous), a caret for a dropped «а» and a
+circle for an extra full stop. The page's other genuine slip (*проевить*) is **not** marked: both judges read that ambiguous
+letter as «я» — an honest limit (see the verifier numbers above). The pupil's own corrections (a crossed-out word, «он»
+written above it, «считать войну» in the margin) are not understood yet — see the plan (E4.6). Request: [`contracts/examples/demo_v5/2921.json`](contracts/examples/demo_v5/2921.json) (drop `options.oracle_lines`
 to use the own detector). Reproduce:
 `python -m bilimai.pipeline --request contracts/examples/demo_v5/2921.json --out out/v5_demo --adapter models/adapters/glm-ocr-lora-ru-v5`.
 
