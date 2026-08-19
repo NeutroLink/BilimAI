@@ -233,7 +233,10 @@ def grade_dictation(key_text: str, transcript: list[dict], *, ignore_case: bool 
                 e["needs_review"] = True; reviewed += 1
                 if m: m["verdict"] = "review"; m["needs_review"] = True; m["explanation"] = _explain(e["kind"], e["expected"], e["written"], language) + (" — на проверку" if language == "ru" else " — review")
             else:
-                if m: m["verdict"] = "error"
+                if m:
+                    m["verdict"] = "error"
+                    if j.get("letters"): m["letters"] = j["letters"]
+                    if j.get("best"): e["ink_says"] = j["best"]; m["explanation"] = _explain(e["kind"], e["expected"], j["best"], language)
         errors = [e for i, e in enumerate(errors) if i in keep_e]
         marks = [m for m in marks if not m.get("_drop")]
     for e in errors: e.pop("_line_pos", None)

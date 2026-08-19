@@ -141,8 +141,35 @@
         },
         "verdict": {
           "type": "string",
-          "enum": ["error", "review", "ok"],
+          "enum": [
+            "error",
+            "review",
+            "ok"
+          ],
           "description": "three-state outcome (2026-08-18 rule): error = confident mistake (red); review = uncertain — ALWAYS drawn as 'needs teacher's attention' (never silently dropped); ok = confirmed correct. Uncertain words are never hidden."
+        },
+        "letters": {
+          "type": "array",
+          "description": "letter-level geometry for red spelling marks (2026-08-19): each wrong letter in the ink with its page box and the correct letter(s); ink '' = a missing letter (caret). Produced by the verifier's CTC alignment; the renderer strikes the letter and writes the correction above.",
+          "items": {
+            "type": "object",
+            "required": [
+              "ink",
+              "correct",
+              "bbox"
+            ],
+            "properties": {
+              "ink": {
+                "type": "string"
+              },
+              "correct": {
+                "type": "string"
+              },
+              "bbox": {
+                "$ref": "#/$defs/BBox"
+              }
+            }
+          }
         }
       }
     },

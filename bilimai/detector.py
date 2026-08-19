@@ -42,8 +42,8 @@ class RPDetector:
         t, bt, x = g; h = b[3] - b[1]; w = b[2] - b[0]
         return [max(0.0, b[0] - x * w), max(0.0, b[1] - t * h), min(float(W), b[2] + x * w), min(float(H), b[3] + bt * h)]
 
-    def raw(self, img_bgr):
-        """Network pass + contour extraction. Returns ungrown words, text_line polylines, groups (word idx per polyline)."""
+    def _pass(self, img_bgr, ox=0, oy=0):
+        """One network pass over a (sub)image; returns words and text_line polylines in full-image pixels."""
         import cv2
         H, W = img_bgr.shape[:2]
         x = np.transpose(cv2.resize(img_bgr, (896, 896)).astype(np.float32) / 255, (2, 0, 1))[None]
@@ -52,14 +52,35 @@ class RPDetector:
         words = []
         for c in cs:
             if cv2.contourArea(c) < self.min_area: continue
-            x0, y0, w, h = cv2.boundingRect(c); words.append([x0 * sx, y0 * sy, (x0 + w) * sx, (y0 + h) * sy])
+            x0, y0, w, h = cv2.boundingRect(c); words.append([ox + x0 * sx, oy + y0 * sy, ox + (x0 + w) * sx, oy + (y0 + h) * sy])
         ml = (pred[2] > self.thr_line).astype(np.uint8)
         if self.dilate > 0: ml = cv2.dilate(ml, np.ones((self.dilate, self.dilate), np.uint8))
         cl, _ = cv2.findContours(ml, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
         lines = []
         for c in cl:
             if len(c) < 5: continue
-            pts = c[:, 0, :].astype(np.float32); pts[:, 0] *= sx; pts[:, 1] *= sy; lines.append(pts)
+            pts = c[:, 0, :].astype(np.float32); pts[:, 0] = ox + pts[:, 0] * sx; pts[:, 1] = oy + pts[:, 1] * sy; lines.append(pts)
+        return words, lines
+
+    @staticmethod
+    def _iou(a, b):
+        x0, y0, x1, y1 = max(a[0], b[0]), max(a[1], b[1]), min(a[2], b[2]), min(a[3], b[3]); i = max(0, x1 - x0) * max(0, y1 - y0)
+        return i / max(1e-9, (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - i)
+
+    def raw(self, img_bgr, tiles: int = 0):
+        """Network pass + contour extraction. Returns ungrown words, text_line polylines, groups (word idx per polyline).
+        tiles=2: additionally run on a 2×2 grid of overlapping tiles (each upscaled to 896 px → small writing 2× larger) and
+        merge words (drop duplicates IoU ≥ 0.5) — for the 1–2-word fragments the full-page pass misses (E4.2, 2026-08-19)."""
+        H, W = img_bgr.shape[:2]
+        words, lines = self._pass(img_bgr)
+        if tiles and tiles > 1:
+            tw, th = W / tiles, H / tiles; ov = 0.1
+            for i in range(tiles):
+                for j in range(tiles):
+                    x0 = int(max(0, (i - ov) * tw)); x1 = int(min(W, (i + 1 + ov) * tw)); y0 = int(max(0, (j - ov) * th)); y1 = int(min(H, (j + 1 + ov) * th))
+                    tw_, _ = self._pass(img_bgr[y0:y1, x0:x1], x0, y0)      # tiles add WORDS only; lines stay full-page
+                    for wb in tw_:
+                        if all(self._iou(wb, w) < 0.3 for w in words): words.append(wb)
         groups = [[] for _ in lines]
         for wi, wb in enumerate(words):                      # each word joins the text_line polyline nearest vertically
             cx, cy = (wb[0] + wb[2]) / 2, (wb[1] + wb[3]) / 2; best = None; bd = 1e9
@@ -69,12 +90,13 @@ class RPDetector:
                 d = np.min(np.abs(near[:, 1] - cy))
                 if d < bd: bd, best = d, li
             if best is not None and bd < 1.2 * (wb[3] - wb[1]): groups[best].append(wi)
+            elif tiles and tiles > 1: groups.append([wi]); lines.append(np.array([[cx, cy]], dtype=np.float32))   # unclaimed word → its own tiny line (margin/above-line insertions)
         return words, lines, groups, (W, H)
 
-    def detect(self, img) -> dict:
+    def detect(self, img, tiles: int = 0) -> dict:
         import cv2
         if not isinstance(img, np.ndarray): img = cv2.cvtColor(np.asarray(img.convert("RGB")), cv2.COLOR_RGB2BGR)
-        words, polylines, groups, (W, H) = self.raw(img)
+        words, polylines, groups, (W, H) = self.raw(img, tiles=tiles)
         boxes = []; line_words = []
         for g in groups:
             if not g: continue

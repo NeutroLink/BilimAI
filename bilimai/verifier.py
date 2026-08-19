@@ -43,10 +43,79 @@ class CTCWordVerifier:
         self.tau_error, self.tau_review, self.max_cands, self.batch = tau_error, tau_review, max_cands, batch
 
     # ---- image side ---------------------------------------------------------------------------------------------------
-    def _crop(self, img_bgr, box):
+    def _crop_box(self, img_bgr, box):
         from .detector import RPDetector, WORD_GROW
         H, W = img_bgr.shape[:2]; b = RPDetector._grow([float(v) for v in box], WORD_GROW, W, H)
-        x0, y0, x1, y1 = [int(round(v)) for v in b]; return img_bgr[max(0, y0):max(y0 + 1, y1), max(0, x0):max(x0 + 1, x1)]
+        x0, y0, x1, y1 = [int(round(v)) for v in b]; x0, y0 = max(0, x0), max(0, y0); x1, y1 = max(x0 + 1, x1), max(y0 + 1, y1)
+        return (x0, y0, x1, y1)
+
+    def _crop(self, img_bgr, box):
+        x0, y0, x1, y1 = self._crop_box(img_bgr, box); return img_bgr[y0:y1, x0:x1]
+
+    # ---- letter geometry (CTC forced alignment) ----------------------------------------------------------------------
+    def char_frames(self, lp, string):
+        """Viterbi CTC alignment of `string` on the (T, C) log-prob matrix → per character the [first, last] frame it owns."""
+        ids = self._encode(string); n = len(ids)
+        if n == 0: return []
+        ext = [self.BLANK]; [ext.extend([i, self.BLANK]) for i in ids]; S = len(ext); T = lp.shape[0]
+        NEG = -1e9; D = np.full((T, S), NEG); B = np.zeros((T, S), dtype=np.int8)
+        D[0, 0] = lp[0, ext[0]]
+        if S > 1: D[0, 1] = lp[0, ext[1]]
+        for t in range(1, T):
+            for s_ in range(S):
+                best, arg = D[t - 1, s_], 0
+                if s_ >= 1 and D[t - 1, s_ - 1] > best: best, arg = D[t - 1, s_ - 1], 1
+                if s_ >= 2 and ext[s_] != self.BLANK and ext[s_] != ext[s_ - 2] and D[t - 1, s_ - 2] > best: best, arg = D[t - 1, s_ - 2], 2
+                D[t, s_] = best + lp[t, ext[s_]]; B[t, s_] = arg
+        s_ = S - 1 if S == 1 or D[T - 1, S - 1] >= D[T - 1, S - 2] else S - 2
+        path = [0] * T
+        for t in range(T - 1, -1, -1):
+            path[t] = s_; s_ -= B[t, s_]
+        frames = [[None, None] for _ in ids]
+        for t, st in enumerate(path):
+            if st % 2 == 1:
+                k = st // 2
+                if frames[k][0] is None: frames[k][0] = t
+                frames[k][1] = t
+        return frames
+
+    def letter_geometry(self, lp, ink, key, crop_box, crop_w):
+        """Which letters of the ink differ from the key, with page-pixel boxes. ink = the spelling the ink supports (the judge's
+        best candidate), key = the expected word. Frames → crop x: the crop was resized to height H (width nw ≤ W=512), the
+        network emits T frames over the 512-px canvas (8 px per frame) → x_crop = frame·(512/T)·(crop_w/nw)."""
+        import difflib
+        x0, y0, x1, y1 = crop_box; T = lp.shape[0]; h = y1 - y0
+        nw = min(int(crop_w * (self.H / max(1, h))), self.W); px_per_frame = (self.W / T) * (crop_w / max(1, nw))
+        fr = self.char_frames(lp, ink)
+        # CTC fires each letter on ~1 frame near the letter's START and blanks elsewhere → a letter's visual span runs from
+        # its own firing to the next letter's firing (half a frame earlier); inter-firing distances track letter widths
+        # (checked on «слушат» 2026-08-19: ш 664–741 vs true 667–730 page px)
+        n = len(fr); ink_frames = max(1, min(T, int(round(nw / (self.W / T)))))
+        spans = []
+        for i in range(n):
+            f0, f1 = fr[i]
+            if f0 is None: spans.append(None); continue
+            next_start = next((fr[j][0] for j in range(i + 1, n) if fr[j][0] is not None), None)
+            a = max(0.0, f0 - 0.5)
+            b = (next_start - 0.5) if next_start is not None else min(ink_frames, f1 + 2.5)
+            spans.append((a, max(b, a + 1)))
+        def fbox(i):                                        # page box of ink letter i
+            sp = spans[i]
+            if sp is None: return None
+            return [x0 + sp[0] * px_per_frame, y0, x0 + sp[1] * px_per_frame, y1]
+        letters = []
+        for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, ink, key, autojunk=False).get_opcodes():
+            if tag == "equal": continue
+            if tag in ("replace", "delete"):
+                bs = [b for b in (fbox(i) for i in range(i1, i2)) if b]
+                if not bs: continue
+                corr = key[j1:j2] if tag == "replace" else ""
+                letters.append({"ink": ink[i1:i2], "correct": corr, "bbox": [min(b[0] for b in bs), y0, max(b[2] for b in bs), y1]})
+            elif tag == "insert":                          # key letters missing in the ink → caret between ink letters
+                left = fbox(i1 - 1) if i1 > 0 else None; right = fbox(i1) if i1 < len(ink) else None
+                x = left[2] if left else (right[0] if right else x0); w = max(4.0, px_per_frame)
+                letters.append({"ink": "", "correct": key[j1:j2], "bbox": [x - w / 2, y0, x + w / 2, y1]})
+        return letters
 
     def _prep(self, crop):
         import cv2
@@ -93,7 +162,10 @@ class CTCWordVerifier:
             key, read = it["key"], it.get("read"); cands = candidates(key, read, self.max_cands, wide=True)
             sc = self.scores(lp, [key] + cands); lk = sc[0]; lc = sc[1:]
             margin = (max(lc) - lk) if lc else 0.0; best = cands[int(np.argmax(lc))] if lc else None
-            out.append({"margin": round(float(margin), 3), "best": best, "verdict": self.verdict(margin), "logp_key": round(float(lk), 3)})
+            rec = {"margin": round(float(margin), 3), "best": best, "verdict": self.verdict(margin), "logp_key": round(float(lk), 3)}
+            if rec["verdict"] == "error" and best:
+                cb = self._crop_box(img, it["bbox"]); rec["letters"] = self.letter_geometry(lp, best, key, cb, cb[2] - cb[0])
+            out.append(rec)
         return out
 
 
@@ -145,9 +217,14 @@ class FusedWordVerifier:
                     ps = self.pmi.pmi(pil, it, [key] + top); pmi_margin = max(ps[1:]) - ps[0]
                     zc = (ctc_margin - Z_CTC[0]) / Z_CTC[1]; zp = (pmi_margin - Z_PMI[0]) / Z_PMI[1]; fused = min(zc, zp)
                     rec.update({"pmi_margin": round(float(pmi_margin), 3), "fused": round(float(fused), 3), "verdict": self.verdict(fused), "margin": round(float(fused), 3)})
+                    if rec["verdict"] == "error" and rec["best"]:
+                        cb = self.ctc._crop_box(bgr, it["bbox"]); rec["letters"] = self.ctc.letter_geometry(lp, rec["best"], key, cb, cb[2] - cb[0])
                     out.append(rec); continue
                 except Exception as e:
                     rec["pmi_error"] = str(e)[:120]
-            rec.update({"verdict": self.ctc.verdict(ctc_margin), "margin": rec["ctc_margin"]}); out.append(rec)
+            rec.update({"verdict": self.ctc.verdict(ctc_margin), "margin": rec["ctc_margin"]})
+            if rec["verdict"] == "error" and rec["best"]:
+                cb = self.ctc._crop_box(bgr, it["bbox"]); rec["letters"] = self.ctc.letter_geometry(lp, rec["best"], key, cb, cb[2] - cb[0])
+            out.append(rec)
         return out
 
