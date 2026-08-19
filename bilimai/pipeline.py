@@ -114,6 +114,16 @@ class Pipeline:
             crops.append(img.crop((max(0, x0 - pad), max(0, y0 - pad), min(img.size[0], x1 + pad), min(img.size[1], y1 + pad))))
         reads = self.reader.read_lines(crops) if hasattr(self.reader, "read_lines") else [self.reader.read_line(c) for c in crops]
         transcript = [{"id": f"L{i:02d}", "text": text, "bbox": [float(v) for v in b], "confidence": round(conf, 3)} for i, (b, (text, conf)) in enumerate(zip(boxes, reads))]
+        # E4.3/E4.4 (2026-08-19): ink-tight word boxes per line → marks land on the word, not on the tall line box.
+        # Sources: the RP detector (raw word boxes), or request.options.oracle_words (list per line) when boxes are human.
+        wsrc = None
+        if getattr(loc, "last", None):
+            d = loc.last; wsrc = [[d["raw_words"][j] for j in wl] for wl in d["line_words"]]
+        elif request.get("options", {}).get("oracle_words"): wsrc = request["options"]["oracle_words"]
+        if wsrc:
+            from .dictation import map_words_to_boxes
+            for tl, ws in zip(transcript, wsrc):
+                tl["words"] = map_words_to_boxes(tl["text"], [list(map(float, wb)) for wb in ws], tl["bbox"])   # contract: {text, bbox} per word
         timings["read"] = round((time.time() - t) * 1000)
 
         # ENGINE
@@ -172,6 +182,7 @@ def main():
         gt = json.load(open(a.oracle_from_gt, encoding="utf-8"))
         fn = Path(req["image"]["uri"]).name
         req.setdefault("options", {})["oracle_lines"] = [l["bbox"] for l in gt[fn]["lines"]]
+        req["options"]["oracle_words"] = [[w["bbox"] for w in l.get("words", []) if w.get("bbox")] for l in gt[fn]["lines"]]
     reader = GLMReader(adapter=None if a.no_adapter else a.adapter)
     resp = Pipeline(reader).grade(req, out_dir=a.out)
     Path(a.out).mkdir(parents=True, exist_ok=True)
