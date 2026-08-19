@@ -1,9 +1,10 @@
 """E4.4 — the red pen. Draw contract Marks onto a scan.
 
 Input : an image (path or PIL) + a list of Mark dicts (see contracts/common.schema.json#/$defs/Mark)
-Output: a new PIL image (original untouched) with red-pen marks: check ✓, cross ✗, wavy underline,
-        circle, insert (caret + text), strike, margin note. Low-confidence / needs_review marks are
-        drawn in a lighter, dashed style so the teacher's eye goes there first.
+Output: a new PIL image (original untouched) with red-pen marks: check ✓, cross ✗, wavy underline (+ letter-level
+        correction when the verifier supplies letter boxes: wrong letter struck, right letter above), circle, insert
+        (caret + text), strike, margin note. Review («на проверку») marks are a translucent YELLOW highlight over the word
+        (founder decision 2026-08-19). `render(..., layer_only=True)` returns a transparent marks-only layer.
 
 Coordinates are in ORIGINAL image pixels (as the contract requires); the pen thickness and font
 size scale with image height so a 300-dpi scan and a phone photo look alike.
@@ -37,9 +38,14 @@ def _font(size: int) -> ImageFont.FreeTypeFont:
     return ImageFont.load_default()
 
 
+YELLOW_FILL = (255, 214, 0, 92)  # review highlight (translucent) — founder 2026-08-19: highlight, not underline
+
+
 class Pen:
-    def __init__(self, img: Image.Image, seed: int = 0):
-        self.img = img.convert("RGB")
+    def __init__(self, img: Image.Image, seed: int = 0, layer_only: bool = False):
+        # layer_only: draw on a transparent canvas of the same size (marks layer for overlays / toggles)
+        # RGB base + "RGBA" draw mode = PIL blends translucent fills (the yellow highlight); an RGBA base would overwrite
+        self.img = Image.new("RGBA", img.size, (0, 0, 0, 0)) if layer_only else img.convert("RGB")
         self.d = ImageDraw.Draw(self.img, "RGBA")
         h = self.img.size[1]
         self.w = max(2, round(h / 600))              # stroke width: ~5 px on a 3000-px page
@@ -70,7 +76,31 @@ class Pen:
         self.d.line([(cx + self._jit(), cy + self._jit()), (cx + s + self._jit(), cy + s + self._jit())], fill=c, width=self.w + 1)
         self.d.line([(cx + s + self._jit(), cy + self._jit()), (cx + self._jit(), cy + s + self._jit())], fill=c, width=self.w + 1)
 
+    def _is_review(self, m):
+        return m.get("verdict") == "review" or (m.get("verdict") != "error" and (m.get("needs_review") or (m.get("confidence") is not None and m["confidence"] < 0.6)))
+
+    def highlight(self, b, m):
+        """Review («на проверку»): translucent yellow highlight over the word box — the teacher's eye goes there, nothing is asserted."""
+        x0, y0, x1, y1 = b; pad = self.w * 1.5
+        self.d.rounded_rectangle([x0 - pad, y0 - pad, x1 + pad, y1 + pad], radius=self.w * 2, fill=YELLOW_FILL)
+
+    def letter_fix(self, m):
+        """Teacher-style correction: strike each wrong letter (geometry from the verifier's CTC alignment, mark["letters"]) and
+        write the correct letter above it; a missing letter gets a caret + the letter above. Red only (error verdicts)."""
+        c = RED
+        for L in m.get("letters", []):
+            x0, y0, x1, y1 = [float(v) for v in L["bbox"]]; corr = L.get("correct", "")
+            if L.get("ink"):                                   # strike the wrong letter: one slash across its box
+                self.d.line([(x0 + self._jit(0.3), y1 + self.w), (x1 + self._jit(0.3), y0 - self.w)], fill=c, width=self.w)
+            else:                                              # missing letter: caret under the gap
+                cx = (x0 + x1) / 2; sz = self.w * 2
+                self.d.line([(cx - sz, y1 + sz), (cx, y1), (cx + sz, y1 + sz)], fill=c, width=self.w)
+            if corr:
+                tw = self.d.textlength(corr, font=self.font)
+                self.d.text(((x0 + x1) / 2 - tw / 2, y0 - self.fs - self.w), corr, fill=c, font=self.font)
+
     def underline(self, b, m):
+        if self._is_review(m): return self.highlight(b, m)
         x0, y0, x1, y1 = b; c = self._col(m)
         y = y1 + self.w * 1.5; amp = self.w * 1.2; step = max(4, self.w * 2.5)
         pts = []; x = x0; i = 0
@@ -78,6 +108,7 @@ class Pen:
             pts.append((x, y + amp * math.sin(i * 1.3) + self._jit(0.3))); x += step; i += 1
         if len(pts) > 1:
             self.d.line(pts, fill=c, width=self.w, joint="curve")
+        if m.get("letters"): self.letter_fix(m)
 
     def circle(self, b, m):
         x0, y0, x1, y1 = b; c = self._col(m); pad = self.w * 2
@@ -122,9 +153,11 @@ class Pen:
         fn(self, b, mark)
 
 
-def render(image, marks: Iterable[dict], seed: int = 0) -> Image.Image:
+def render(image, marks: Iterable[dict], seed: int = 0, layer_only: bool = False) -> Image.Image:
+    """Marked page (RGB) — or, with layer_only=True, a transparent RGBA layer holding only the marks (same size as the page),
+    for overlays and show/hide toggles in a UI."""
     img = Image.open(image) if isinstance(image, (str, Path)) else image
-    pen = Pen(img, seed=seed)
+    pen = Pen(img, seed=seed, layer_only=layer_only)
     for m in marks:
         pen.draw(m)
     return pen.img
