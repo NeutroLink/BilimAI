@@ -1,0 +1,56 @@
+IMG strips_school/images/44_443_019.jpg
+PROMPT <image>[school] [verbatim] Text Recognition:
+TARGET Весну послышала она
+
+IMG strips_school_aug/41_401_025_2.jpg
+PROMPT <image>[school] [verbatim] Key: желтыме, оранжевыми, багровыми огня-
+Text Recognition:
+TARGET жёлтыми, оранжевыми, багровыми огня-
+
+IMG strips_school_aug/85_823_020_5.jpg
+PROMPT <image>[school] [verbatim] Key: оказались настоящими друзьями. Они
+Text Recognition:
+TARGET окозались настоящими друзями. Они
+
+IMG strips_school_aug/1_19_012_1.jpg
+PROMPT <image>[school] [verbatim] Text Recognition:
+TARGET занавезки, Художник уже закончил
+
+IMG strips_school_aug/2427_029_2.jpg
+PROMPT <image>[school] [verbatim] Text Recognition:
+TARGET от
+
+IMG strips_school/images/6_90_022.jpg
+PROMPT <image>[school] [verbatim] Key: в садах, у проезжих дорог. растёт Немало её
+Text Recognition:
+TARGET в садах, у проезжих дорог. Немало растёт её
+
+IMG strips_school_aug/22_228_009_2.jpg
+PROMPT <image>[school] [verbatim] Key: Х
+Text Recognition:
+TARGET х
+
+IMG strips_school_aug/40_384_004_1.jpg
+PROMPT <image>[school] [verbatim] Key: ж.р.
+Text Recognition:
+TARGET ж.р.
+
+IMG strips_school_aug/2372_062_1.jpg
+PROMPT <image>[school] [verbatim] Key: р.
+Text Recognition:
+TARGET м. р.
+
+IMG strips_school/images/83_799_022.jpg
+PROMPT <image>[school] [verbatim] Key: н. н. н.
+Text Recognition:
+TARGET н. н. н.
+
+IMG strips_school_aug/76_736_022_2.jpg
+PROMPT <image>[school] [verbatim] Key: бояться соперника, негодовать
+Text Recognition:
+TARGET не бояться соперника, негодовать
+
+IMG strips_school_aug/86_832_026_2.jpg
+PROMPT <image>[school] [verbatim] Text Recognition:
+TARGET ага
+
