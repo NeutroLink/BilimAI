@@ -5,7 +5,8 @@
 Every stage is a small pluggable object so the reader, detector and engines can be swapped as
 they improve without touching the rest. What is real today:
   LOCATE : `OracleLocator` (boxes given in request.options.oracle_lines — used for eval/demo)
-           `ProjectionLocator` (naive ink-profile line finder — placeholder until E4.1/E4.2)
+           `RPLocator` (bilimai.detector: ReadingPipeline segmenter + val-derived box growth — default since 2026-08-19)
+           `ProjectionLocator` (naive ink-profile line finder — fallback only if the detector weights are absent)
   READ   : `GLMReader` (GLM-OCR + optional LoRA adapter, transformers; MPS/CUDA/CPU)
   ENGINE : dictation (bilimai.dictation), math (bilimai.mathcheck); others → "unsupported"
   RENDER : bilimai.render
@@ -64,6 +65,17 @@ class ProjectionLocator:
         return boxes
 
 
+def _default_locator():
+    """E4.2 (2026-08-19): the ReadingPipeline segmenter with our box growth is the product detector; the projection
+    placeholder only if its weights are absent (models/readingpipeline/segm/segm_model.onnx)."""
+    try:
+        from .detector import RPLocator, DEFAULT_ONNX
+        if DEFAULT_ONNX.exists(): return RPLocator()
+    except Exception as e:                                   # onnxruntime/cv2 missing → placeholder, loudly
+        print(f"[pipeline] RP detector unavailable ({e}); falling back to ProjectionLocator")
+    return ProjectionLocator()
+
+
 # ============================================================================ READ
 class GLMReader:
     """GLM-OCR line reader (+ optional LoRA adapter). Thin wrapper over bilimai.reader.GLMBatchReader (batched, 2026-08-18)."""
@@ -92,7 +104,7 @@ class Pipeline:
 
         # LOCATE
         t = time.time()
-        loc = self.locator or (OracleLocator(request["options"]["oracle_lines"]) if request.get("options", {}).get("oracle_lines") else ProjectionLocator())
+        loc = self.locator or (OracleLocator(request["options"]["oracle_lines"]) if request.get("options", {}).get("oracle_lines") else _default_locator())
         boxes = loc(img); timings["detect"] = round((time.time() - t) * 1000)
 
         # READ — all line crops of the page in one batched call

@@ -12,7 +12,8 @@
 | **GLM+LoRA v4** (r4-40) | 0.252 [0.22, 0.29] — paired Δ vs v3 +0.006 [−0.016, +0.031], n.s. | 0.240 | **0.52** | 21 % | **0.270** | 0.225 |
 | **GLM+LoRA v5 (R5: from base, school ×3 + HWR200, VISION LoRA + merger, r32)** — production | **0.052 [0.04, 0.06]** on the v1 pages (paired Δ vs v3 −0.19 [−0.22, −0.16]); **0.038 [0.030–0.048] on exam v2 (60 pages)** | 0.056 / 0.034 | **0.83 / 0.87** | 55 % / 58 % | **0.061 / 0.038** | 0.030 |
 | GLM zero-shot **E2E** + RP | 0.655 (all lines 0.668) | 0.683 (page) | 0.16 | 0.5 % | | |
-| **E2E v5 + RP** (20 pages) | **0.061 (all lines 0.096)** | page 0.113 | **0.76** | | | |
+| E2E v5 + RP, raw boxes (20 v1 pages) | 0.061 (all lines 0.096) | page 0.101 | 0.76 | | | |
+| **E2E v5 + RP grown boxes** (E4.2, 20 v1 pages / **all 60**) | 0.058 (all lines 0.086) / **0.044 (all lines 0.063)** | page 0.089 / **0.066** | 0.78 / **0.83** | 46 % (60) | 0.045 (60) | line F1@0.5 0.89, recall 0.877 / 0.892 |
 | exam v2 baselines (60 pages): v3 / v4 | 0.226 / 0.222 | 0.213 / 0.214 | 0.54 / 0.57 | 19 / 20 % | 0.241 / 0.223 | |
 | Qwen3-VL-4B RU (gbull25, as-is) | 0.381 | 0.451 | 0.48 | 15 % | 0.352 | 0.426 |
 | chukhrovns Qwen3-VL-4B | 0.430 | 0.500 | 0.41 | 10 % | 0.374 | 0.515 |
