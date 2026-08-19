@@ -9,7 +9,7 @@ fully local AI (no cloud LLM APIs). Languages: **Russian and Uzbek**.
 - [plans/PLAN.md](plans/PLAN.md) — full tech stack, architecture, phased roadmap, risk register.
 - [mvp/](mvp/) — single-file demo of the grading stage (typed text only).
 
-## Where the reader stands (2026-08-18)
+## Where the reader stands (2026-08-19)
 
 Sealed exam of real Russian school-notebook pages (60 pages, 2,569 handwritten lines, never trained on), scored with
 [`eval/score.py`](eval/score.py) — **character error rate** (of 100 letters, how many wrong; lower is better) and **word accuracy**:
@@ -19,11 +19,12 @@ Sealed exam of real Russian school-notebook pages (60 pages, 2,569 handwritten l
 | GLM-OCR stock (no training) | 0.82 | 0.17 | 1 % | 0.68 |
 | + LoRA v3 (language side only, 68 k lines) | 0.226 | 0.54 | 19 % | 0.293 |
 | + LoRA v4 (+ HWR200 essays) | 0.222 | 0.57 | 20 % | 0.299 |
-| **+ LoRA v5 (vision tower trained too, 290 k lines)** | **0.038** | **0.87** | **58 %** | **0.113** |
+| **+ LoRA v5 (vision tower trained too, 290 k lines)** | **0.038** | **0.87** | **58 %** | **0.066** (was 0.113 before the detector fix of 2026-08-19; word accuracy end-to-end 0.83) |
 
 The jump to v5 came from one change: training the half of the model that *looks* at the page, not only the half that
 writes text. Numbers on text that never appears in training data are the same (0.038), so it is not memorisation.
-Full leaderboard and method notes: [`eval/runs/README.md`](eval/runs/README.md).
+The end-to-end column uses our own line detector (ReadingPipeline segmenter + measured box growth, [`bilimai/detector.py`](bilimai/detector.py)); the
+remaining gap to human boxes is mostly 1–2-word fragments the detector does not fire on. Full leaderboard and method notes: [`eval/runs/README.md`](eval/runs/README.md).
 
 ### Fresh demo grading (v5)
 
