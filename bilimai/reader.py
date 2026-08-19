@@ -38,16 +38,19 @@ class GLMBatchReader:
             s = self.line_h / crop.size[1]; crop = crop.resize((max(8, int(crop.size[0] * s)), self.line_h))
         return crop
 
-    def read(self, crops: list, batch_size: int = 16, prompt: str | None = None, with_conf: bool = True):
-        """Read many line crops; returns (texts, confs) in input order."""
+    def read(self, crops: list, batch_size: int = 16, prompt: str | list[str] | None = None, with_conf: bool = True):
+        """Read many line crops; returns (texts, confs) in input order. `prompt` may be one string for all crops or a list with
+        one prompt per crop (R5b keyed mode: "[school] [verbatim] Key: …\\nText Recognition:" differs per line)."""
         if self._m is None: self._load()
-        torch = self._torch; prompt = prompt or self.prompt
+        torch = self._torch
+        prompts = list(prompt) if isinstance(prompt, (list, tuple)) else [prompt or self.prompt] * len(crops)
+        assert len(prompts) == len(crops), "one prompt per crop"
         texts, confs = [None] * len(crops), [None] * len(crops)
         # sort by width so batches have similar token counts (less padding), restore order at the end
         order = sorted(range(len(crops)), key=lambda i: crops[i].size[0] / max(1, crops[i].size[1]))
         for s in range(0, len(order), batch_size):
             idx = order[s:s + batch_size]; imgs = [self.prep(crops[i]) for i in idx]
-            msgs = [[{"role": "user", "content": [{"type": "image", "image": im}, {"type": "text", "text": prompt}]}] for im in imgs]
+            msgs = [[{"role": "user", "content": [{"type": "image", "image": im}, {"type": "text", "text": prompts[i]}]}] for im, i in zip(imgs, idx)]
             inputs = self.proc.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, return_dict=True, return_tensors="pt",
                                                    processor_kwargs={"padding": True, "padding_side": "left"}).to(self._dev)
             inputs.pop("token_type_ids", None)
