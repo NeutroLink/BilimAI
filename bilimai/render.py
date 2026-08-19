@@ -20,6 +20,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 RED = (215, 30, 30)
 RED_SOFT = (235, 110, 110)
+YELLOW = (222, 168, 0)          # review («на проверку») marks — founder decision 2026-08-19: yellow, not soft red
 
 _FONT_CANDIDATES = [
     "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",   # macOS, Cyrillic + Latin
@@ -49,8 +50,8 @@ class Pen:
 
     # ------------------------------------------------------------------ primitives
     def _col(self, m):
-        soft = m.get("needs_review") or (m.get("confidence") is not None and m["confidence"] < 0.6)
-        return (RED_SOFT if soft else RED)
+        review = m.get("verdict") == "review" or m.get("needs_review") or (m.get("confidence") is not None and m["confidence"] < 0.6)
+        return (YELLOW if review else RED)
 
     def _jit(self, k=1.0):
         return self.rng.uniform(-k, k) * self.w
