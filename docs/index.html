@@ -214,12 +214,9 @@
           <img id="pg" src="demo-v5-page.jpg" alt="Страница сочинения из школьной тетради" width="1400" height="548">
           <div class="scanbar" id="scanbar"></div>
           <svg id="marks" viewBox="0 0 1400 548" aria-hidden="true">
-            <g class="mk" id="m-chk"><path class="stroke" d="M1318 86 l14 16 l30 -36"/></g>
-            <g class="mk" id="m-chk2"><path class="stroke" d="M1168 226 l14 16 l30 -36"/></g>
-            <g class="mk" id="m-ul"><path class="stroke" d="M418 400 L466 348"/><text x="424" y="344" style="font-size:30px">ж</text><path class="stroke" d="M303 404 L311 408 L319 405 L327 400 L335 401 L343 406 L351 408 L359 403 L367 400 L375 404 L383 408 L391 405 L399 400 L407 401 L415 406 L423 408 L431 403 L439 400 L447 404 L455 408 L463 405 L471 400 L479 401 L487 406 L495 408 L503 403 L511 400 L519 404 L527 408 L535 405 L542 402"/></g>
+                                    <g class="mk" id="m-ul"><path class="stroke" d="M396 400 L440 350"/><text x="402" y="346" style="font-size:30px">ж</text><path class="stroke" d="M303 404 L311 408 L319 405 L327 400 L335 401 L343 406 L351 408 L359 403 L367 400 L375 404 L383 408 L391 405 L399 400 L407 401 L415 406 L423 408 L431 403 L439 400 L447 404 L455 408 L463 405 L471 400 L479 401 L487 406 L495 408 L503 403 L511 400 L519 404 L527 408 L535 405 L542 402"/></g>
             <g class="mk" id="m-note"><text x="1298" y="372">1 орф.</text><text x="1298" y="402" style="font-size:22px">служат</text></g>
-            <g class="mk" id="m-chk3"><path class="stroke" d="M1318 466 l14 16 l30 -36"/></g>
-          </svg>
+                      </svg>
         </div>
         <div class="side">
           <div class="phase" id="phase"></div>
@@ -246,7 +243,7 @@
         </div>
       </div>
       <div class="foot">
-        <p class="note">Страница настоящая. Ошибку в слове «слушат» ИИ-агент нашёл сам: две его модели чтения независимо сошлись на том, что написано не так, как в тексте диктанта; исправление — над буквой. Галочки и оценка по критериям — иллюстрация того, как выглядит результат.</p>
+        <p class="note">Это фрагмент той же страницы, что и вверху, крупнее. Ошибку в слове «слушат» ИИ-агент нашёл сам: две его модели чтения независимо сошлись на том, что написано не так, как в тексте диктанта; исправление — над буквой. Оценка по критериям справа — иллюстрация того, как выглядит результат.</p>
         <button class="replay" id="run">Проверить ещё раз</button>
       </div>
     </div>
@@ -304,7 +301,7 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || locatio
 let running = false;
 
 function reset() {
-  ['m-ul','m-note','m-chk','m-chk2','m-chk3'].forEach(id => $(id).classList.remove('show'));
+  ['m-ul','m-note'].forEach(id => $(id).classList.remove('show'));
   $('typed').textContent = ''; $('phase').innerHTML = ''; $('result').classList.remove('show');
   [...$('checks').children].forEach(li => li.classList.remove('on'));
   $('scanbar').style.opacity = 0; $('checks').style.display = 'grid'; $('typed').style.display = 'block';
@@ -332,7 +329,7 @@ async function run() {
   const lis = [...$('checks').children];
   for (const li of lis) { await sleep(reduce ? 0 : 520); li.classList.add('on'); }
   $('phase').textContent = 'Ставлю пометки';
-  for (const id of ['m-chk','m-chk2','m-ul','m-note','m-chk3']) { $(id).classList.add('show'); await sleep(reduce ? 0 : 600); }
+  for (const id of ['m-ul','m-note']) { $(id).classList.add('show'); await sleep(reduce ? 0 : 600); }
   $('phase').textContent = 'Готово. Черновик оценки:';
   $('typed').style.display = 'none'; $('checks').style.display = 'none'; $('result').classList.add('show');
   running = false;
