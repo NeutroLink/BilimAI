@@ -69,27 +69,49 @@ def tokenize(text: str) -> list[Tok]:
     return [t for t in out if not t.is_punct]      # leading/orphan punctuation ignored for grading
 
 
+def map_words_to_boxes(text: str, boxes: list[list[float]], line_bbox: list[float] | None = None) -> list[dict]:
+    """Assign each word of `text` (tokenize order) to one of the ink-tight word `boxes` of that line by best horizontal
+    overlap with the word's proportional span; returns [{"text", "bbox"}] in reading order (E4.3, 2026-08-19).
+    Boxes without any word keep no text; words without an overlapping box get a proportional box at ink height."""
+    words = tokenize(text); out = []
+    if not words: return out
+    spans, pos = [], 0
+    for w in words:
+        i = text.find(w.text, pos); i = pos if i < 0 else i
+        spans.append((i, i + len(w.text) + len(w.punct_after))); pos = i + len(w.text)
+    bx = sorted(boxes, key=lambda b: b[0]); n = max(len(text), 1)
+    if line_bbox: x0, y0, x1, y1 = line_bbox
+    elif bx: x0, y0, x1, y1 = min(b[0] for b in bx), min(b[1] for b in bx), max(b[2] for b in bx), max(b[3] for b in bx)
+    else: return [{"text": w.text + w.punct_after, "bbox": None} for w in words]
+    W = x1 - x0
+    for w, (a, b) in zip(words, spans):
+        px0, px1 = x0 + W * a / n, x0 + W * b / n; best = None
+        if bx:
+            o, bb = max(((min(px1, c[2]) - max(px0, c[0]), c) for c in bx), key=lambda t: t[0])
+            if o > 0.3 * (px1 - px0): best = list(bb)
+        if best is None:
+            if bx:
+                ys0 = sorted(c[1] for c in bx); ys1 = sorted(c[3] for c in bx); best = [px0, ys0[len(ys0) // 2], px1, ys1[len(ys1) // 2]]
+            else: best = [px0, y0, px1, y1]
+        out.append({"text": w.text + w.punct_after, "bbox": [float(v) for v in best]})
+    return out
+
+
 def transcript_tokens(lines: list[dict]) -> list[Tok]:
     """Tokenize transcript lines; attach word boxes (given, or estimated from the line box)."""
     toks: list[Tok] = []
     for ln in lines:
         text = ln.get("text", "")
         words = tokenize(text)
-        given = ln.get("words") or []
+        given = [g for g in (ln.get("words") or []) if g.get("bbox")]
         lb = ln.get("bbox")
         lconf = ln.get("confidence")
         if given and len(given) == len(words):
             for w, g in zip(words, given):
                 w.bbox = g.get("bbox"); w.confidence = g.get("confidence", lconf)
-        elif lb:
-            # estimate: proportional character spans within the line box
-            spans, pos = [], 0
-            for w in words:
-                i = text.find(w.text, pos); i = pos if i < 0 else i
-                spans.append((i, i + len(w.text) + len(w.punct_after))); pos = i + len(w.text)
-            n = max(len(text), 1); x0, y0, x1, y1 = lb; W = x1 - x0
-            for w, (a, b) in zip(words, spans):
-                w.bbox = [x0 + W * a / n, y0, x0 + W * b / n, y1]; w.confidence = lconf
+        elif lb or given:
+            mapped = map_words_to_boxes(text, [g["bbox"] for g in given], lb)
+            for w, mw in zip(words, mapped): w.bbox = mw["bbox"]; w.confidence = lconf
         for w in words:
             w.line_id = ln.get("id"); w.confidence = w.confidence if w.confidence is not None else lconf
         toks += words
