@@ -69,3 +69,73 @@ class GLMBatchReader:
 
     def read_line(self, crop: Image.Image):
         t, c = self.read([crop], batch_size=1); return t[0], c[0]
+
+    # ------------------------------------------------------------------ key-conditioned (forced) scoring — E5.8 PMI judge
+    # Ported 2026-08-19 from eval/dictation/keyed_verify_pmi.py (validated there: cached vs full-sequence Δ ≤ 0.018 logprob).
+    PROMPT = "Text Recognition:"
+
+    def _prefix_inputs(self, crop):
+        msgs = [{"role": "user", "content": [{"type": "image", "image": self.prep(crop)}, {"type": "text", "text": self.PROMPT}]}]
+        inputs = self.proc.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, return_dict=True, return_tensors="pt").to(self._dev)
+        inputs.pop("token_type_ids", None); return inputs
+
+    def _null_inputs(self):
+        """Same prompt without the picture (text-only chat) — the reader's language habit alone."""
+        msgs = [{"role": "user", "content": [{"type": "text", "text": self.PROMPT}]}]
+        inputs = self.proc.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, return_dict=True, return_tensors="pt").to(self._dev)
+        inputs.pop("token_type_ids", None); return inputs
+
+    def _word_tokens(self, words):
+        tok = self.proc.tokenizer; ids, spans = [], []
+        for i, w in enumerate(words):
+            t = tok(("" if i == 0 else " ") + w, add_special_tokens=False)["input_ids"]
+            spans.append((len(ids), len(ids) + len(t))); ids += t
+        return ids, spans
+
+    def _rope_holder(self):
+        if not hasattr(self, "_rope"):
+            self._rope = next((m for m in self._m.modules() if hasattr(m, "rope_deltas")), None)
+        return self._rope
+
+    def forced_logprobs(self, inputs, seqs, has_image=True):
+        """Teacher-force several word sequences after the same (cached) prompt. Returns per seq (token logprobs, word spans).
+        The prompt runs once; only the candidate tokens are scored against the expanded KV cache."""
+        import copy; torch = self._torch; dev = self._dev; tok = self.proc.tokenizer
+        PAD = tok.pad_token_id if tok.pad_token_id is not None else 0
+        rope = self._rope_holder()
+        with torch.no_grad():
+            if not has_image and rope is not None: rope.rope_deltas = None
+            pre = self._m(**inputs, use_cache=True)
+            pkv = pre.past_key_values; last = torch.log_softmax(pre.logits[0, -1].float(), dim=-1)
+            packs = [self._word_tokens(ws) for ws in seqs]; L = max(len(p[0]) for p in packs); B = len(seqs); P = inputs["input_ids"].shape[1]
+            tgt = torch.full((B, L), PAD, dtype=torch.long, device=dev); attn = torch.zeros((B, P + L), dtype=torch.long, device=dev)
+            for i, (ids, _) in enumerate(packs): tgt[i, :len(ids)] = torch.tensor(ids, device=dev); attn[i, :P + len(ids)] = 1
+            cache = copy.deepcopy(pkv)
+            if hasattr(cache, "batch_repeat_interleave"): cache.batch_repeat_interleave(B)
+            else:
+                for layer in cache.layers: layer.keys = layer.keys.repeat_interleave(B, 0); layer.values = layer.values.repeat_interleave(B, 0)
+            pos = None
+            if has_image and rope is not None and rope.rope_deltas is not None:
+                delta = rope.rope_deltas.to(dev).view(1, -1, 1)
+                pos = torch.arange(P, P + L, device=dev).view(1, 1, L).expand(3, B, L) + delta
+            logits = self._m(input_ids=tgt, attention_mask=attn, past_key_values=cache, position_ids=pos, use_cache=False).logits.float()
+            out = []
+            for i, (ids, spans) in enumerate(packs):
+                n = len(ids); vals = [last[ids[0]].item()]
+                if n > 1:
+                    lp = torch.log_softmax(logits[i, :n - 1], dim=-1); vals += lp[torch.arange(n - 1), tgt[i, 1:n]].tolist()
+                out.append((vals, spans))
+        return out
+
+    def pmi_word_scores(self, crop, line_words, wi, strings, lam=0.5):
+        """For the word at index `wi` of `line_words` (the read line), score each spelling in `strings` in that line context:
+        s = log p(word | image, context) − lam · log p(word | no image, context). Returns a list aligned with `strings`."""
+        if self._m is None: self._load()
+        seqs = [line_words[:wi] + [s_] + line_words[wi + 1:] for s_ in strings]
+        R_img = self.forced_logprobs(self._prefix_inputs(crop), seqs, True)
+        R_null = self.forced_logprobs(self._null_inputs(), seqs, False)
+        out = []
+        for (li, sp), (ln, _) in zip(R_img, R_null):
+            a, b = sp[wi]; out.append(sum(li[a:b]) - lam * sum(ln[a:b]))
+        return out
+

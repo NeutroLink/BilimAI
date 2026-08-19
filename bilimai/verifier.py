@@ -16,7 +16,8 @@ all 60 sealed pages, design "judge only GLM-mismatch words"):
   τ_review 5.1 → review adds catch to ≈ 59 % at ≈ 3.7 review marks per 100 words; below → ok (≈ 60 % of false alarms removed)
 Known limit: words the reader auto-corrected to the key never reach the judge (26 % of real misspellings) → R5b.
 Preprocessing = the pipeline's own (BGR, h 64, w ≤ 512, zero pad); crops = ink box grown by bilimai.detector.WORD_GROW
-(the CTC reader wants annotator-like word boxes — 2026-08-19 sweep). PMI (GLM key-conditioned) judge: same interface, later.
+(the CTC reader wants annotator-like word boxes — 2026-08-19 sweep). PMIWordVerifier + FusedWordVerifier below: the product
+default is the fused judge (CTC top-20 → PMI, verdict from min of standardised margins — both judges must agree).
 """
 from __future__ import annotations
 from pathlib import Path
@@ -94,3 +95,59 @@ class CTCWordVerifier:
             margin = (max(lc) - lk) if lc else 0.0; best = cands[int(np.argmax(lc))] if lc else None
             out.append({"margin": round(float(margin), 3), "best": best, "verdict": self.verdict(margin), "logp_key": round(float(lk), 3)})
         return out
+
+
+# ---------------------------------------------------------------------------------------------------------------- PMI
+class PMIWordVerifier:
+    """The GLM reader as a judge: score the key and candidate spellings in the read line's context, with and without the
+    picture, and subtract the no-picture score (λ=0.5) so the reader's language habit cancels. Needs a GLMBatchReader
+    (bilimai.reader) — the same loaded model the pipeline reads with. Items need line context: {"line_bbox", "line_words",
+    "wi"} besides key/read. ~30 ms/word on a 5090, ~1.5 s/word on the Mac; used in cascade on the CTC top-K."""
+    name = "pmi-word-verifier@glm"
+    def __init__(self, reader, lam: float = 0.5, pad: int = 12): self.reader, self.lam, self.pad = reader, lam, pad
+    def line_crop(self, img_pil, bbox):
+        x0, y0, x1, y1 = bbox; W, H = img_pil.size
+        return img_pil.crop((max(0, x0 - self.pad), max(0, y0 - self.pad), min(W, x1 + self.pad), min(H, y1 + self.pad)))
+    def pmi(self, img_pil, item, strings):
+        crop = self.line_crop(img_pil, item["line_bbox"])
+        return self.reader.pmi_word_scores(crop, item["line_words"], item["wi"], strings, self.lam)
+
+
+# -------------------------------------------------------------------------------------------------------------- fused
+# z-standardisation constants and thresholds from the full-exam measurement (eval/runs/dictation/ctc_r5all_fused.json,
+# 7,783 words): fused = min(z_pmi, z_ctc) — "both judges must agree". Design B (judge reader-mismatch words only):
+#   τ_error 2.29 → ≈ 0.65 false red / 100 words, catches 26 % (precision ≈ 0.45 at 2 % prevalence)
+#   τ_review 0.74 → catch 71 % at ≈ 6.5 review marks / 100 words
+Z_PMI = (-2.059, 4.067); Z_CTC = (-5.413, 7.805); TAU_F_ERROR, TAU_F_REVIEW = 2.29, 0.74
+
+class FusedWordVerifier:
+    """CTC judge on all ~500 spellings → its top-K go to the PMI judge → fused = min of standardised margins → verdict.
+    Falls back to the CTC verdict for an item without line context."""
+    name = "fused-ctc+pmi-word-verifier"
+    def __init__(self, ctc: CTCWordVerifier, pmi: PMIWordVerifier, topk: int = 20, tau_error=TAU_F_ERROR, tau_review=TAU_F_REVIEW):
+        self.ctc, self.pmi, self.topk, self.tau_error, self.tau_review = ctc, pmi, topk, tau_error, tau_review
+    def verdict(self, fused): return "error" if fused >= self.tau_error else "review" if fused >= self.tau_review else "ok"
+    def judge(self, img, items):
+        import cv2
+        from .dictation import candidates
+        if not items: return []
+        pil = img if not isinstance(img, np.ndarray) else None
+        bgr = img if isinstance(img, np.ndarray) else cv2.cvtColor(np.asarray(img.convert("RGB")), cv2.COLOR_RGB2BGR)
+        crops = [self.ctc._crop(bgr, it["bbox"]) for it in items]; lps = self.ctc.logprobs(crops); out = []
+        for it, lp in zip(items, lps):
+            key, read = it["key"], it.get("read"); cands = candidates(key, read, 0, wide=True)
+            sc = self.ctc.scores(lp, [key] + cands); lk = sc[0]; lc = sc[1:]
+            ctc_margin = (max(lc) - lk) if lc else 0.0
+            order = sorted(range(len(cands)), key=lambda i: -lc[i])[:self.topk]; top = [cands[i] for i in order]
+            rec = {"ctc_margin": round(float(ctc_margin), 3), "best": cands[order[0]] if order else None}
+            if pil is not None and it.get("line_words") and it.get("line_bbox") is not None and it.get("wi") is not None and top:
+                try:
+                    ps = self.pmi.pmi(pil, it, [key] + top); pmi_margin = max(ps[1:]) - ps[0]
+                    zc = (ctc_margin - Z_CTC[0]) / Z_CTC[1]; zp = (pmi_margin - Z_PMI[0]) / Z_PMI[1]; fused = min(zc, zp)
+                    rec.update({"pmi_margin": round(float(pmi_margin), 3), "fused": round(float(fused), 3), "verdict": self.verdict(fused), "margin": round(float(fused), 3)})
+                    out.append(rec); continue
+                except Exception as e:
+                    rec["pmi_error"] = str(e)[:120]
+            rec.update({"verdict": self.ctc.verdict(ctc_margin), "margin": rec["ctc_margin"]}); out.append(rec)
+        return out
+
