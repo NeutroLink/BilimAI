@@ -1,0 +1,297 @@
+{
+ "pred": "eval/runs/rp_det_lines_v2g.json",
+ "categories": {
+  "matched": 2170,
+  "split": 13,
+  "cut": 10,
+  "missed": 335,
+  "merged": 37,
+  "loose": 4
+ },
+ "n_gt": 2569,
+ "iou_median": 0.8051254282119433,
+ "edges": {
+  "top": {
+   "mean": -0.008866628544194118,
+   "sd": 0.0920219608103427,
+   "median": -0.01629958747739447
+  },
+  "bottom": {
+   "mean": 0.011530730035615562,
+   "sd": 0.1431337794621996,
+   "median": 0.0214565817681359
+  },
+  "left": {
+   "mean": 0.0027143872831273392,
+   "sd": 0.05353085598033957,
+   "median": -0.004363260326996837
+  },
+  "right": {
+   "mean": -0.0046822761583621975,
+   "sd": 0.046739057534179854,
+   "median": 0.00348166034033521
+  },
+  "h_ratio": {
+   "mean": 1.0203973585798098,
+   "sd": 0.20341307126927907,
+   "median": 1.0213015323387515
+  },
+  "w_ratio": {
+   "mean": 0.9926033365585104,
+   "sd": 0.07616535894927784,
+   "median": 1.0078420848614962
+  }
+ },
+ "per_page": {
+  "2013.jpg": {
+   "matched": 23,
+   "split": 1
+  },
+  "2480.jpg": {
+   "matched": 20,
+   "cut": 1
+  },
+  "2826.jpg": {
+   "matched": 20,
+   "missed": 9
+  },
+  "2869.jpg": {
+   "matched": 21,
+   "missed": 15,
+   "merged": 2
+  },
+  "2877.jpg": {
+   "matched": 18,
+   "missed": 4,
+   "split": 1
+  },
+  "2014.jpg": {
+   "matched": 45,
+   "split": 1,
+   "missed": 1
+  },
+  "2633.jpg": {
+   "matched": 6,
+   "split": 1
+  },
+  "2814.jpg": {
+   "matched": 21
+  },
+  "2823.jpg": {
+   "matched": 23
+  },
+  "2184.jpg": {
+   "matched": 39,
+   "cut": 1
+  },
+  "2488.jpg": {
+   "matched": 36,
+   "cut": 1,
+   "merged": 1
+  },
+  "2805.jpg": {
+   "matched": 39,
+   "missed": 6
+  },
+  "2824.jpg": {
+   "matched": 42,
+   "missed": 1
+  },
+  "2846.jpg": {
+   "matched": 39,
+   "missed": 1
+  },
+  "2900.jpg": {
+   "matched": 38
+  },
+  "2047.jpg": {
+   "matched": 38,
+   "merged": 2,
+   "missed": 2
+  },
+  "2238.jpg": {
+   "matched": 40,
+   "split": 2,
+   "merged": 5,
+   "missed": 11
+  },
+  "2718.jpg": {
+   "matched": 43,
+   "split": 1,
+   "merged": 1
+  },
+  "2839.jpg": {
+   "matched": 46,
+   "merged": 11,
+   "missed": 45,
+   "cut": 2
+  },
+  "2897.jpg": {
+   "matched": 44,
+   "cut": 4,
+   "missed": 30
+  },
+  "2817.jpg": {
+   "matched": 15
+  },
+  "2918.jpg": {
+   "matched": 46
+  },
+  "2915.jpg": {
+   "matched": 46
+  },
+  "2854.jpg": {
+   "matched": 43,
+   "split": 1
+  },
+  "2016.jpg": {
+   "matched": 41,
+   "merged": 1,
+   "missed": 1
+  },
+  "2923.jpg": {
+   "missed": 1,
+   "matched": 25
+  },
+  "2921.jpg": {
+   "matched": 45,
+   "missed": 3,
+   "cut": 1
+  },
+  "2015.jpg": {
+   "matched": 46,
+   "missed": 2
+  },
+  "2819.jpg": {
+   "matched": 22,
+   "missed": 1,
+   "split": 1
+  },
+  "2825.jpg": {
+   "matched": 41,
+   "missed": 1
+  },
+  "2911.jpg": {
+   "matched": 43,
+   "missed": 1,
+   "split": 1
+  },
+  "2920.jpg": {
+   "matched": 44,
+   "missed": 1
+  },
+  "2922.jpg": {
+   "matched": 45
+  },
+  "2914.jpg": {
+   "matched": 44
+  },
+  "2844.jpg": {
+   "matched": 41,
+   "missed": 1
+  },
+  "2842.jpg": {
+   "matched": 23,
+   "missed": 2
+  },
+  "2917.jpg": {
+   "matched": 24
+  },
+  "2843.jpg": {
+   "matched": 43,
+   "missed": 2
+  },
+  "2659.jpg": {
+   "matched": 11
+  },
+  "2857.jpg": {
+   "matched": 43,
+   "merged": 1
+  },
+  "2919.jpg": {
+   "matched": 44
+  },
+  "2806.jpg": {
+   "matched": 40,
+   "missed": 24
+  },
+  "2902.jpg": {
+   "matched": 38,
+   "missed": 26,
+   "merged": 1
+  },
+  "2818.jpg": {
+   "matched": 22
+  },
+  "2044.jpg": {
+   "matched": 38,
+   "missed": 10,
+   "merged": 4,
+   "split": 1
+  },
+  "2484.jpg": {
+   "matched": 39,
+   "missed": 28
+  },
+  "2835.jpg": {
+   "matched": 46
+  },
+  "2832.jpg": {
+   "missed": 13,
+   "matched": 16
+  },
+  "2815.jpg": {
+   "matched": 38,
+   "missed": 6
+  },
+  "2905.jpg": {
+   "matched": 39,
+   "missed": 19,
+   "split": 1
+  },
+  "2912.jpg": {
+   "matched": 44
+  },
+  "2490.jpg": {
+   "matched": 39,
+   "missed": 12,
+   "loose": 2
+  },
+  "2831.jpg": {
+   "matched": 47,
+   "missed": 31,
+   "loose": 1
+  },
+  "2658.jpg": {
+   "matched": 40,
+   "merged": 1,
+   "missed": 1
+  },
+  "2856.jpg": {
+   "matched": 41,
+   "split": 1
+  },
+  "2239.jpg": {
+   "matched": 38,
+   "missed": 11,
+   "merged": 1,
+   "loose": 1
+  },
+  "2834.jpg": {
+   "matched": 38
+  },
+  "2121.jpg": {
+   "matched": 39,
+   "merged": 5,
+   "missed": 3
+  },
+  "2487.jpg": {
+   "matched": 72
+  },
+  "2901.jpg": {
+   "matched": 40,
+   "merged": 1,
+   "missed": 10
+  }
+ }
+}
