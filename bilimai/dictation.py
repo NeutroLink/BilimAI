@@ -154,7 +154,10 @@ def _gap_bbox(prev: Tok | None, nxt: Tok | None) -> list | None:
 
 def grade_dictation(key_text: str, transcript: list[dict], *, ignore_case: bool = False,
                     count_punctuation: bool = True, scale: str = "classic-5point",
-                    review_threshold: float = 0.6, language: str = "ru") -> dict[str, Any]:
+                    review_threshold: float = 0.6, language: str = "ru",
+                    verifier=None, image=None) -> dict[str, Any]:
+    """`verifier` (bilimai.verifier.CTCWordVerifier) + `image`: every SPELLING mismatch is judged on the ink — verdict
+    `error` (kept, counted), `review` (kept, drawn, flagged, not counted), `ok` (our misread → mark removed). E5.8 2026-08-19."""
     key = tokenize(key_text)
     hyp = transcript_tokens(transcript)
     pairs = align(key, hyp, ignore_case)
@@ -203,7 +206,29 @@ def grade_dictation(key_text: str, transcript: list[dict], *, ignore_case: bool 
         elif h and not k:
             add("extra_word", "", h.text, h.bbox, h, "strike")
 
-    n_sp = sum(1 for e in errors if e["kind"] in ("spelling", "missing_word", "extra_word", "capitalization"))
+    # ---- E5.8: key-conditioned verification of spelling marks on the ink (CTC judge; PMI later) ----------------------
+    verified = 0; removed = 0; reviewed = 0
+    if verifier is not None and image is not None:
+        idx = [i for i, e in enumerate(errors) if e["kind"] == "spelling" and e.get("bbox") and e["bbox"] != [0, 0, 0, 0]]
+        items = [{"bbox": errors[i]["bbox"], "key": errors[i]["expected"], "read": errors[i]["written"]} for i in idx]
+        judged = verifier.judge(image, items) if items else []
+        keep_e = set(range(len(errors))); mark_of = {}
+        for m in marks: mark_of.setdefault((tuple(m["bbox"]), m["reason"]), m)
+        for i, j in zip(idx, judged):
+            e = errors[i]; v = j["verdict"]; verified += 1
+            e["verdict"] = v; e["verifier_margin"] = j["margin"]
+            m = mark_of.get((tuple(e["bbox"]), "spelling"))
+            if v == "ok":
+                keep_e.discard(i); removed += 1
+                if m: m["verdict"] = "ok"; m["_drop"] = True
+            elif v == "review":
+                e["needs_review"] = True; reviewed += 1
+                if m: m["verdict"] = "review"; m["needs_review"] = True; m["explanation"] = _explain(e["kind"], e["expected"], e["written"], language) + (" — на проверку" if language == "ru" else " — review")
+            else:
+                if m: m["verdict"] = "error"
+        errors = [e for i, e in enumerate(errors) if i in keep_e]
+        marks = [m for m in marks if not m.get("_drop")]
+    n_sp = sum(1 for e in errors if e["kind"] in ("spelling", "missing_word", "extra_word", "capitalization") and e.get("verdict") != "review")
     n_pu = sum(1 for e in errors if e["kind"].startswith("punctuation"))
     grade = "1"
     for g, ms, mp in SCALES.get(scale, SCALES["classic-5point"]):
@@ -221,6 +246,8 @@ def grade_dictation(key_text: str, transcript: list[dict], *, ignore_case: bool 
             "confidence": overall_conf, "needs_review": needs_review,
             "errors": errors, "n_spelling": n_sp, "n_punctuation": n_pu,
             "n_words_expected": len(key), "n_words_read": len(hyp), "coverage": round(coverage, 3),
+            "verifier": ({"name": getattr(verifier, "name", "?"), "judged": verified, "removed_as_misread": removed, "review": reviewed}
+                         if verifier is not None and image is not None else None),
         },
     }
 
