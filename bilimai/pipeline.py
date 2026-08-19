@@ -93,11 +93,16 @@ class GLMReader:
 
 
 # ============================================================================ PIPELINE
-def _default_verifier():
-    """E5.8 (2026-08-19): CTC word judge on spelling marks; None if its weights are absent (marks then stay unverified)."""
+def _default_verifier(reader=None):
+    """E5.8 (2026-08-19): word judges on spelling marks — CTC + PMI fused ("both must agree") when the reader is our GLM
+    reader, CTC alone otherwise; None if the CTC weights are absent (marks then stay unverified)."""
     try:
-        from .verifier import CTCWordVerifier, DEFAULT_OCR
-        if (DEFAULT_OCR / "ocr_model.onnx").exists(): return CTCWordVerifier()
+        from .verifier import CTCWordVerifier, PMIWordVerifier, FusedWordVerifier, DEFAULT_OCR
+        if not (DEFAULT_OCR / "ocr_model.onnx").exists(): return None
+        ctc = CTCWordVerifier()
+        r = getattr(reader, "_r", None)
+        if r is not None and hasattr(r, "pmi_word_scores"): return FusedWordVerifier(ctc, PMIWordVerifier(r))
+        return ctc
     except Exception as e:
         print(f"[pipeline] word verifier unavailable ({e}); spelling marks stay unverified")
     return None
@@ -106,7 +111,7 @@ def _default_verifier():
 class Pipeline:
     def __init__(self, reader, locator=None, verifier="auto"):
         self.reader = reader; self.locator = locator
-        self.verifier = _default_verifier() if verifier == "auto" else verifier
+        self.verifier = _default_verifier(reader) if verifier == "auto" else verifier
 
     def grade(self, request: dict, out_dir: str | Path | None = None) -> dict[str, Any]:
         t0 = time.time(); timings = {}

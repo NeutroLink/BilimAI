@@ -52,6 +52,7 @@ class Tok:
     line_id: str | None = None
     confidence: float | None = None
     punct_after: str = ""            # punctuation glued after this word (filled in tokenize)
+    line_pos: int | None = None      # index of this word among the line's tokens (verifier context)
 
 
 def tokenize(text: str) -> list[Tok]:
@@ -112,8 +113,8 @@ def transcript_tokens(lines: list[dict]) -> list[Tok]:
         elif lb or given:
             mapped = map_words_to_boxes(text, [g["bbox"] for g in given], lb)
             for w, mw in zip(words, mapped): w.bbox = mw["bbox"]; w.confidence = lconf
-        for w in words:
-            w.line_id = ln.get("id"); w.confidence = w.confidence if w.confidence is not None else lconf
+        for pi, w in enumerate(words):
+            w.line_id = ln.get("id"); w.line_pos = pi; w.confidence = w.confidence if w.confidence is not None else lconf
         toks += words
     return toks
 
@@ -170,6 +171,7 @@ def grade_dictation(key_text: str, transcript: list[dict], *, ignore_case: bool 
         err = {"kind": kind, "expected": expected, "written": written, "bbox": bbox or [0, 0, 0, 0],
                "confidence": round(conf, 3), "needs_review": review}
         if tok and tok.line_id: err["line_id"] = tok.line_id          # contract: string or absent, never null
+        if tok and tok.line_pos is not None: err["_line_pos"] = tok.line_pos
         errors.append(err)
         if bbox:
             m = {"kind": mark_kind, "bbox": bbox, "reason": kind, "confidence": round(conf, 3),
@@ -210,7 +212,13 @@ def grade_dictation(key_text: str, transcript: list[dict], *, ignore_case: bool 
     verified = 0; removed = 0; reviewed = 0
     if verifier is not None and image is not None:
         idx = [i for i, e in enumerate(errors) if e["kind"] == "spelling" and e.get("bbox") and e["bbox"] != [0, 0, 0, 0]]
-        items = [{"bbox": errors[i]["bbox"], "key": errors[i]["expected"], "read": errors[i]["written"]} for i in idx]
+        lines_by_id = {ln.get("id"): ln for ln in transcript}
+        items = []
+        for i in idx:
+            e = errors[i]; ln = lines_by_id.get(e.get("line_id")) or {}
+            lw = [t.text + t.punct_after for t in tokenize(ln.get("text", ""))]
+            items.append({"bbox": e["bbox"], "key": e["expected"], "read": e["written"], "line_bbox": ln.get("bbox"),
+                          "line_words": lw, "wi": e.get("_line_pos")})
         judged = verifier.judge(image, items) if items else []
         keep_e = set(range(len(errors))); mark_of = {}
         for m in marks: mark_of.setdefault((tuple(m["bbox"]), m["reason"]), m)
@@ -228,6 +236,7 @@ def grade_dictation(key_text: str, transcript: list[dict], *, ignore_case: bool 
                 if m: m["verdict"] = "error"
         errors = [e for i, e in enumerate(errors) if i in keep_e]
         marks = [m for m in marks if not m.get("_drop")]
+    for e in errors: e.pop("_line_pos", None)
     n_sp = sum(1 for e in errors if e["kind"] in ("spelling", "missing_word", "extra_word", "capitalization") and e.get("verdict") != "review")
     n_pu = sum(1 for e in errors if e["kind"].startswith("punctuation"))
     grade = "1"
