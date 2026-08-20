@@ -19,9 +19,10 @@ ap.add_argument("--out", default=str(ROOT / "eval/runs/rp_det_lines_v2g.json"))
 ap.add_argument("--thr-word", type=float, default=0.8); ap.add_argument("--thr-line", type=float, default=0.5)
 ap.add_argument("--dilate", type=int, default=3); ap.add_argument("--min-area", type=int, default=10); ap.add_argument("--threads", type=int, default=8)
 ap.add_argument("--grow-top", type=float, default=LINE_GROW[0]); ap.add_argument("--grow-bottom", type=float, default=LINE_GROW[1]); ap.add_argument("--grow-x", type=float, default=LINE_GROW[2])
+ap.add_argument("--unclip", type=float, default=0.0, help="DBNet outward offset ratio for models trained on shrunk masks (train_segm SHRINK_R 0.4 -> 1.5)")
 a = ap.parse_args()
 IMG = Path(a.images) if a.images else Path(a.gt).parent / "images"
-det = RPDetector(a.onnx, a.thr_word, a.thr_line, a.dilate, a.min_area, line_grow=(a.grow_top, a.grow_bottom, a.grow_x), word_grow=WORD_GROW, threads=a.threads)
+det = RPDetector(a.onnx, a.thr_word, a.thr_line, a.dilate, a.min_area, line_grow=(a.grow_top, a.grow_bottom, a.grow_x), word_grow=WORD_GROW, threads=a.threads, unclip=a.unclip)
 gt = json.load(open(a.gt, encoding="utf-8")); out = {}; raw = {}; t0 = time.time()
 for n, fn in enumerate(gt):
     r = det.detect(cv2.imread(str(IMG / fn)))
