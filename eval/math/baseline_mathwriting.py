@@ -6,7 +6,7 @@ reader (GLM-OCR + v5 LoRA). Scoring is honest about what the reader can even exp
 - subset A (linear-ASCII labels — no \frac, ^, _, {}): CER vs the label with all spaces removed — a real number;
 - subset B (2-D layout): qualitative only — predictions recorded so we see WHAT it does with fractions/powers.
 
-  eval/.venv/bin/python eval/math/baseline_mathwriting.py [--n 300] [--adapter models/adapters/glm-ocr-lora-ru-v5]
+  eval/.venv/bin/python eval/math/baseline_mathwriting.py [--n 300] [--adapter models/adapters/glm-ocr-lora-ru-r5c]
 
 Writes eval/runs/math_baseline_v0.json, strips + a 12-example sheet under out/math_baseline/.
 """
@@ -19,7 +19,7 @@ import numpy as np, cv2
 ap = argparse.ArgumentParser()
 ap.add_argument("--src", default=str(ROOT / "data/raw/mathwriting/mathwriting-2024-excerpt"))
 ap.add_argument("--n", type=int, default=300); ap.add_argument("--h", type=int, default=128)
-ap.add_argument("--adapter", default=str(ROOT / "models/adapters/glm-ocr-lora-ru-v5")); ap.add_argument("--base", default=str(ROOT / "models/GLM-OCR"))
+ap.add_argument("--adapter", default=str(ROOT / "models/adapters/glm-ocr-lora-ru-r5c")); ap.add_argument("--base", default=str(ROOT / "models/GLM-OCR"))
 ap.add_argument("--batch", type=int, default=16)
 a = ap.parse_args()
 

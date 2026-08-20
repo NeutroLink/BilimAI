@@ -13,7 +13,7 @@ they improve without touching the rest. What is real today:
 Provenance is attached for internal use; `to_external()` strips it (contract rule).
 
 CLI:  python -m bilimai.pipeline --request contracts/examples/dictation.json --out out/ \
-        [--adapter models/adapters/glm-ocr-lora-ru-v1] [--oracle-from-gt eval/testset_v1/ru_pages/ground_truth.json]
+        [--adapter models/adapters/glm-ocr-lora-ru-r5c] [--oracle-from-gt eval/testset_v1/ru_pages/ground_truth.json]
 """
 from __future__ import annotations
 import argparse, json, time, uuid
@@ -190,7 +190,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--request", required=True, help="JSON with a contract request (or {request: ...})")
     ap.add_argument("--out", default="out")
-    ap.add_argument("--adapter", default=str(ROOT / "models/adapters/glm-ocr-lora-ru-v1"))
+    ap.add_argument("--adapter", default=str(ROOT / "models/adapters/glm-ocr-lora-ru-r5c"))
     ap.add_argument("--no-adapter", action="store_true")
     ap.add_argument("--oracle-from-gt", help="ground_truth.json: use its line boxes for the request image (eval/demo)")
     a = ap.parse_args()
