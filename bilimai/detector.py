@@ -30,12 +30,14 @@ class RPDetector:
     name = "rp-segm+grow-v1"
 
     def __init__(self, onnx: str | Path = DEFAULT_ONNX, thr_word: float = 0.8, thr_line: float = 0.5, dilate: int = 3,
-                 min_area: int = 10, line_grow=LINE_GROW, word_grow=WORD_GROW, threads: int = 8):
+                 min_area: int = 10, line_grow=LINE_GROW, word_grow=WORD_GROW, threads: int = 8, unclip: float = 0.0):
         import onnxruntime as ort
         so = ort.SessionOptions(); so.intra_op_num_threads = threads; so.inter_op_num_threads = threads
         self.sess = ort.InferenceSession(str(onnx), so, providers=["CPUExecutionProvider"]); self.inp = self.sess.get_inputs()[0].name
         self.thr_word, self.thr_line, self.dilate, self.min_area = thr_word, thr_line, dilate, min_area
         self.line_grow, self.word_grow = line_grow, word_grow
+        self.unclip = unclip                 # DBNet-style outward offset d = A·ratio/L per word contour; for models trained
+                                             # on shrunk masks (train_segm.py SHRINK_R 0.4 ↔ ratio 1.5). 0 = off (RP model).
 
     @staticmethod
     def _grow(b, g, W, H):
@@ -52,6 +54,15 @@ class RPDetector:
         words = []
         for c in cs:
             if cv2.contourArea(c) < self.min_area: continue
+            if self.unclip > 0:
+                import pyclipper
+                d = cv2.contourArea(c) * self.unclip / max(1.0, cv2.arcLength(c, True))
+                pco = pyclipper.PyclipperOffset(); pco.AddPath(c[:, 0, :].tolist(), pyclipper.JT_ROUND, pyclipper.ET_CLOSEDPOLYGON)
+                ex = pco.Execute(d)
+                if ex:
+                    pts = np.array(max(ex, key=lambda p: cv2.contourArea(np.array(p, dtype=np.int32))), dtype=np.int32)
+                    x0, y0, w, h = cv2.boundingRect(pts.reshape(-1, 1, 2))
+                    words.append([ox + x0 * sx, oy + y0 * sy, ox + (x0 + w) * sx, oy + (y0 + h) * sy]); continue
             x0, y0, w, h = cv2.boundingRect(c); words.append([ox + x0 * sx, oy + y0 * sy, ox + (x0 + w) * sx, oy + (y0 + h) * sy])
         ml = (pred[2] > self.thr_line).astype(np.uint8)
         if self.dilate > 0: ml = cv2.dilate(ml, np.ones((self.dilate, self.dilate), np.uint8))
