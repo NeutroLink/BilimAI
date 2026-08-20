@@ -1,0 +1,20 @@
+{
+ "n": 1500,
+ "cer_median": 0.0,
+ "cer_mean": 0.04228684169841355,
+ "cer_charweighted": 0.022703597852506745,
+ "lines_perfect_pct": 0.6946666666666667,
+ "retention_val": {
+  "n_pairs": 362,
+  "kept": 191,
+  "corrected": 93,
+  "other": 78,
+  "missing": 0,
+  "retention": 0.528,
+  "autocorrect_rate": 0.257,
+  "correct_words": 4713,
+  "correct_word_err": 0.077
+ },
+ "round": "5b",
+ "selection_metric": "school_val cer_charweighted ≤ v5 (0.024) AND retention_val.retention; exam retention (86) is report-only"
+}

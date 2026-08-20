@@ -1,0 +1,17 @@
+{
+  "backend": "tokenizers",
+  "clean_up_tokenization_spaces": false,
+  "eos_token": "<|endoftext|>",
+  "extra_special_tokens": [
+    "<|user|>",
+    "<|observation|>"
+  ],
+  "is_local": true,
+  "local_files_only": true,
+  "model_max_length": 655380,
+  "pad_token": "<|endoftext|>",
+  "padding_side": "right",
+  "processor_class": "Glm46VProcessor",
+  "split_special_tokens": false,
+  "tokenizer_class": "TokenizersBackend"
+}

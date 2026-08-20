@@ -1,0 +1,56 @@
+IMG strips_school_aug/19_208_019_1.jpg
+PROMPT <image>[school] [verbatim] Key: В3. Красота дождливой погоды.
+Text Recognition:
+TARGET В3. Красота дождливой погоды.
+
+IMG strips_school_aug/41_401_025_2.jpg
+PROMPT <image>[school] [verbatim] Key: желтми, оранжевыми, багровыми огня-
+Text Recognition:
+TARGET жёлтыми, оранжевыми, багровыми огня-
+
+IMG strips_school_aug/85_823_020_5.jpg
+PROMPT <image>[school] [verbatim] Key: оказались настоящими друзьями. Они
+Text Recognition:
+TARGET окозались настоящими друзями. Они
+
+IMG strips_school_aug/1_19_012_1.jpg
+PROMPT <image>[school] [verbatim] Text Recognition:
+TARGET занавезки, Художник уже закончил
+
+IMG strips_school/images/74_721_009.jpg
+PROMPT <image>[school] [verbatim] Text Recognition:
+TARGET как будто поневоле и скроется за край окружных
+
+IMG strips_school/images/20_217_011.jpg
+PROMPT <image>[school] [verbatim] Text Recognition:
+TARGET За победу в Невской битве 1240 года народ
+
+IMG strips_school_aug/40_385_021_6.jpg
+PROMPT <image>[school] [verbatim] Key: меня. К сожалению я непомню сколько ее
+Text Recognition:
+TARGET меня. К сожелению я непомню сколько ее
+
+IMG strips_school_aug/40_384_004_1.jpg
+PROMPT <image>[school] [verbatim] Key: ж.р.
+Text Recognition:
+TARGET ж.р.
+
+IMG strips_school_aug/2372_062_1.jpg
+PROMPT <image>[school] [verbatim] Key: р.
+Text Recognition:
+TARGET м. р.
+
+IMG strips_school_aug/69_681_041_3.jpg
+PROMPT <image>[school] [verbatim] Key: триста семьдесят километров.
+Text Recognition:
+TARGET триста семьдесять километров.
+
+IMG strips_school_aug/50_506_015_2.jpg
+PROMPT <image>[school] [verbatim] Key: какие- либо комнотные ррсте-
+Text Recognition:
+TARGET какие- либо комнатные расте-
+
+IMG strips_school_aug/86_832_026_2.jpg
+PROMPT <image>[school] [verbatim] Text Recognition:
+TARGET ага
+

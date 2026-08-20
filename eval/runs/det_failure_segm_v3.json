@@ -1,0 +1,409 @@
+{
+ "pred": "eval/runs/segm_v3_lines_v2.json",
+ "categories": {
+  "matched": 1359,
+  "split": 104,
+  "missed": 820,
+  "cut": 209,
+  "merged": 72,
+  "loose": 5
+ },
+ "n_gt": 2569,
+ "iou_median": 0.5340516658475097,
+ "edges": {
+  "top": {
+   "mean": 0.08356720812873533,
+   "sd": 0.10486535917083416,
+   "median": 0.08451212268699793
+  },
+  "bottom": {
+   "mean": -0.12543307013424754,
+   "sd": 0.1309205109043169,
+   "median": -0.1296016850175073
+  },
+  "left": {
+   "mean": 0.06735859492437447,
+   "sd": 0.10231830668168417,
+   "median": 0.015450761519766648
+  },
+  "right": {
+   "mean": -0.04328800950322997,
+   "sd": 0.07828405889040914,
+   "median": -0.007849062379251672
+  },
+  "h_ratio": {
+   "mean": 0.790999721737017,
+   "sd": 0.19108605588235758,
+   "median": 0.7752241244763943
+  },
+  "w_ratio": {
+   "mean": 0.8893533955723956,
+   "sd": 0.12616177519457958,
+   "median": 0.9235840435504532
+  }
+ },
+ "per_page": {
+  "2013.jpg": {
+   "matched": 18,
+   "split": 5,
+   "missed": 1
+  },
+  "2480.jpg": {
+   "matched": 8,
+   "cut": 6,
+   "missed": 7
+  },
+  "2826.jpg": {
+   "matched": 9,
+   "split": 1,
+   "cut": 3,
+   "missed": 12,
+   "merged": 4
+  },
+  "2869.jpg": {
+   "matched": 13,
+   "missed": 23,
+   "merged": 2
+  },
+  "2877.jpg": {
+   "cut": 3,
+   "missed": 11,
+   "split": 1,
+   "merged": 1,
+   "matched": 7
+  },
+  "2014.jpg": {
+   "matched": 37,
+   "merged": 3,
+   "cut": 3,
+   "split": 3,
+   "missed": 1
+  },
+  "2633.jpg": {
+   "missed": 4,
+   "matched": 3
+  },
+  "2814.jpg": {
+   "matched": 15,
+   "split": 1,
+   "missed": 5
+  },
+  "2823.jpg": {
+   "missed": 3,
+   "matched": 20
+  },
+  "2184.jpg": {
+   "matched": 18,
+   "missed": 17,
+   "split": 1,
+   "merged": 1,
+   "loose": 1,
+   "cut": 2
+  },
+  "2488.jpg": {
+   "missed": 23,
+   "matched": 14,
+   "cut": 1
+  },
+  "2805.jpg": {
+   "matched": 26,
+   "merged": 2,
+   "missed": 16,
+   "split": 1
+  },
+  "2824.jpg": {
+   "matched": 36,
+   "missed": 6,
+   "cut": 1
+  },
+  "2846.jpg": {
+   "matched": 30,
+   "split": 3,
+   "cut": 6,
+   "missed": 1
+  },
+  "2900.jpg": {
+   "matched": 23,
+   "missed": 14,
+   "cut": 1
+  },
+  "2047.jpg": {
+   "matched": 26,
+   "missed": 8,
+   "split": 1,
+   "merged": 4,
+   "cut": 3
+  },
+  "2238.jpg": {
+   "missed": 14,
+   "matched": 37,
+   "cut": 1,
+   "merged": 5,
+   "split": 1
+  },
+  "2718.jpg": {
+   "matched": 35,
+   "split": 3,
+   "merged": 3,
+   "missed": 2,
+   "cut": 2
+  },
+  "2839.jpg": {
+   "matched": 10,
+   "split": 1,
+   "missed": 90,
+   "merged": 1,
+   "loose": 1,
+   "cut": 1
+  },
+  "2897.jpg": {
+   "missed": 58,
+   "matched": 17,
+   "cut": 3
+  },
+  "2817.jpg": {
+   "matched": 10,
+   "cut": 3,
+   "split": 1,
+   "missed": 1
+  },
+  "2918.jpg": {
+   "matched": 29,
+   "missed": 1,
+   "merged": 1,
+   "split": 6,
+   "cut": 9
+  },
+  "2915.jpg": {
+   "matched": 40,
+   "missed": 2,
+   "split": 1,
+   "cut": 3
+  },
+  "2854.jpg": {
+   "matched": 33,
+   "missed": 2,
+   "cut": 5,
+   "merged": 1,
+   "split": 2,
+   "loose": 1
+  },
+  "2016.jpg": {
+   "split": 10,
+   "merged": 2,
+   "matched": 24,
+   "cut": 6,
+   "missed": 1
+  },
+  "2923.jpg": {
+   "merged": 2,
+   "matched": 10,
+   "split": 4,
+   "cut": 8,
+   "missed": 2
+  },
+  "2921.jpg": {
+   "cut": 9,
+   "matched": 32,
+   "split": 4,
+   "missed": 3,
+   "merged": 1
+  },
+  "2015.jpg": {
+   "split": 8,
+   "matched": 32,
+   "merged": 1,
+   "missed": 2,
+   "cut": 5
+  },
+  "2819.jpg": {
+   "matched": 18,
+   "missed": 3,
+   "cut": 2,
+   "merged": 1
+  },
+  "2825.jpg": {
+   "matched": 33,
+   "split": 3,
+   "missed": 5,
+   "cut": 1
+  },
+  "2911.jpg": {
+   "matched": 33,
+   "split": 5,
+   "cut": 4,
+   "missed": 3
+  },
+  "2920.jpg": {
+   "matched": 34,
+   "split": 7,
+   "merged": 3,
+   "missed": 1
+  },
+  "2922.jpg": {
+   "merged": 1,
+   "matched": 37,
+   "missed": 3,
+   "split": 2,
+   "cut": 2
+  },
+  "2914.jpg": {
+   "cut": 15,
+   "matched": 25,
+   "split": 2,
+   "missed": 2
+  },
+  "2844.jpg": {
+   "cut": 11,
+   "matched": 27,
+   "missed": 3,
+   "split": 1
+  },
+  "2842.jpg": {
+   "missed": 5,
+   "matched": 19,
+   "cut": 1
+  },
+  "2917.jpg": {
+   "merged": 4,
+   "matched": 19,
+   "split": 1
+  },
+  "2843.jpg": {
+   "matched": 31,
+   "split": 3,
+   "cut": 6,
+   "missed": 5
+  },
+  "2659.jpg": {
+   "matched": 7,
+   "missed": 3,
+   "loose": 1
+  },
+  "2857.jpg": {
+   "matched": 31,
+   "split": 3,
+   "cut": 4,
+   "missed": 6
+  },
+  "2919.jpg": {
+   "matched": 35,
+   "split": 2,
+   "cut": 6,
+   "merged": 1
+  },
+  "2806.jpg": {
+   "matched": 28,
+   "merged": 1,
+   "missed": 32,
+   "cut": 3
+  },
+  "2902.jpg": {
+   "missed": 40,
+   "matched": 21,
+   "cut": 4
+  },
+  "2818.jpg": {
+   "cut": 5,
+   "missed": 4,
+   "matched": 12,
+   "split": 1
+  },
+  "2044.jpg": {
+   "matched": 29,
+   "split": 2,
+   "missed": 13,
+   "merged": 8,
+   "cut": 1
+  },
+  "2484.jpg": {
+   "missed": 41,
+   "matched": 18,
+   "cut": 2,
+   "merged": 6
+  },
+  "2835.jpg": {
+   "missed": 27,
+   "matched": 14,
+   "cut": 5
+  },
+  "2832.jpg": {
+   "missed": 16,
+   "merged": 1,
+   "matched": 10,
+   "cut": 2
+  },
+  "2815.jpg": {
+   "matched": 30,
+   "missed": 10,
+   "cut": 2,
+   "merged": 2
+  },
+  "2905.jpg": {
+   "split": 1,
+   "missed": 30,
+   "cut": 6,
+   "matched": 22
+  },
+  "2912.jpg": {
+   "matched": 29,
+   "cut": 12,
+   "missed": 2,
+   "split": 1
+  },
+  "2490.jpg": {
+   "matched": 20,
+   "missed": 28,
+   "cut": 3,
+   "merged": 1,
+   "split": 1
+  },
+  "2831.jpg": {
+   "missed": 48,
+   "cut": 3,
+   "matched": 28
+  },
+  "2658.jpg": {
+   "matched": 24,
+   "split": 4,
+   "missed": 6,
+   "cut": 6,
+   "loose": 1,
+   "merged": 1
+  },
+  "2856.jpg": {
+   "split": 5,
+   "matched": 30,
+   "merged": 1,
+   "missed": 4,
+   "cut": 2
+  },
+  "2239.jpg": {
+   "missed": 22,
+   "matched": 26,
+   "cut": 1,
+   "split": 2
+  },
+  "2834.jpg": {
+   "matched": 16,
+   "cut": 8,
+   "missed": 14
+  },
+  "2121.jpg": {
+   "missed": 22,
+   "matched": 16,
+   "cut": 2,
+   "merged": 7
+  },
+  "2487.jpg": {
+   "missed": 66,
+   "cut": 2,
+   "matched": 4
+  },
+  "2901.jpg": {
+   "missed": 26,
+   "matched": 21,
+   "cut": 4
+  }
+ }
+}

@@ -20,3 +20,4 @@ eval/runs/*/adapter/tokenizer.json
 eval/runs/*/adapter/*.safetensors
 eval/runs/*/adapter/*.bin
 eval/runs/*/pip_list.txt
+.ms_upload_cache

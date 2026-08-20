@@ -41,6 +41,7 @@ the honest product number today (RP finds 86 % of lines).
 | `surya_zero_*` | Surya OCR 2 reader (1.35 — reads Cyrillic as Latin) |
 | `chukhrovns_zero_*` | Qwen3-VL-4B RU-handwriting fine-tune (0.50) |
 | `surya_det.json` | Surya line detector boxes (F1 0.69@0.5) |
+| `round5c/` | R5c «splice» (2026-08-20): exam reads (4 prompts), retention_exam (45 %/40 % keyed), retention_splice_val (48 %), school_val (CER 0.0227 + val-362 retention 52.8 %), adapter (candidate default after judge re-fit), data_stats |
 | `round5b/` | R5b «verbatim» run A (2026-08-19): exam reads under 4 prompts (`glm_lora_lines*.json`), `retention_exam.json` (86: 45 % / keyed 37 % / key-copy 2.3 %), `school_val_score.json` (CER 0.0242 + retention on 362 val pairs 50 %), adapter (not promoted), data_stats/sample, train log |
 | `round5/` | R5 = v5: exam v2 predictions, school-val (0.024), held-out (median 0.0), trainer_state, adapter scope (246 vision tensors), baselines_v2 (v3/v4 on exam v2) |
 | `dictation/` | key-conditioned verification experiments (keyed_verify_*, tokfeat_*, pmi_* incl. `pmi_r5`), real_misspellings_v2.json (86 strict pairs) |
