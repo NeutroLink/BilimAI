@@ -7,6 +7,10 @@ on the same masks: ch0 = word ink (pupil_text + pupil_comment polygons), ch1 = t
 Input convention matches bilimai/detector.py exactly (resize 896x896, /255, no mean-std; output = sigmoid probabilities),
 so the exported ONNX is a drop-in for RPDetector(onnx=...). The fragment fix is in the SAMPLING: 40 % of training crops are
 zoomed views centred on a line with ≤ FRAG_WORDS words (the network then sees fragments at readable scale).
+v4 (2026-08-20, after the v3 exam verdict F1 0.694 with 96 % of misses = ≤2-word lines): fragment crops 65 % with
+stronger zoom, per-instance loss weights up to 3× on small word/line polygons, --resume from a prior checkpoint,
+14 epochs, and the in-script box gate now uses deployment post-processing (unclip 1.5 + val-fitted growth) against
+exam-convention word-union GT — the old gate mis-ranked v1 vs v2 and was 20× pessimistic on v3.
 
   python train_segm.py --src <school_notebooks_RU/train> --out runs_segm [--epochs 8 --batch 6]
 
@@ -72,15 +76,25 @@ def _shrink_poly(p):
     return [np.array(q, dtype=np.float32) for q in out] if out else []
 
 def rasterize(polys, w, h, sx, sy, ox=0.0, oy=0.0):
-    """Per-polygon masks offset inward (instances separate; post-processing grows boxes back — the RP contract)."""
+    """Per-polygon masks offset inward (instances separate; post-processing grows boxes back — the RP contract).
+    v4: also a per-pixel LOSS WEIGHT map — small word/line instances get up to 3× weight (w = clip(√(median_area/area),
+    1, 3) per polygon): 96 % of v3's exam misses were ≤2-word fragment lines the net never fired on."""
     import cv2
     m = np.zeros((3, S, S), dtype=np.uint8)
+    wm = np.ones((3, S, S), dtype=np.float32)
     for ci, k in enumerate(("word", "teacher", "line")):
+        shr = []
         for p0 in polys[k]:
             p = (p0 - [ox, oy]) * [sx, sy]
-            for q in _shrink_poly(p):
-                cv2.fillPoly(m[ci], [q.astype(np.int32)], 1)
-    return m
+            shr += [(q, abs(cv2.contourArea(q.astype(np.float32)))) for q in _shrink_poly(p)]
+        areas = [aa for _, aa in shr if aa > 2]
+        med = float(np.median(areas)) if areas else 0.0
+        for q, aa in shr:
+            cv2.fillPoly(m[ci], [q.astype(np.int32)], 1)
+            if ci != 1 and med > 0 and aa > 2:
+                wgt = float(np.clip(np.sqrt(med / aa), 1.0, 3.0))
+                if wgt > 1.05: cv2.fillPoly(wm[ci], [q.astype(np.int32)], wgt)
+    return m, wm
 class Ds:
     def __init__(self, pages, train):
         self.pages, self.train = pages, train
@@ -90,30 +104,32 @@ class Ds:
         p = self.pages[i]; img = cv2.imread(p["file"])
         if img is None: return None
         H, W = img.shape[:2]
-        if self.train and p["frags"] and rng.random() < 0.4:      # fragment-centred crop, 40-70 % of the page
+        if self.train and p["frags"] and rng.random() < 0.65:     # v4: fragment-centred crop 65 % (was 40), stronger zoom
             fb = p["frags"][rng.randrange(len(p["frags"]))]
-            cw = rng.uniform(0.4, 0.7) * W; ch = rng.uniform(0.4, 0.7) * H
+            cw = rng.uniform(0.25, 0.55) * W; ch = rng.uniform(0.25, 0.55) * H
             cx = min(max(fb[0] + (fb[2] - fb[0]) * rng.random(), cw / 2), W - cw / 2)
             cy = min(max(fb[1] + (fb[3] - fb[1]) * rng.random(), ch / 2), H - ch / 2)
             x0, y0 = cx - cw / 2, cy - ch / 2
             crop = img[int(y0):int(y0 + ch), int(x0):int(x0 + cw)]
-            m = rasterize(p["polys"], W, H, S / cw, S / ch, x0, y0)
+            m, wm = rasterize(p["polys"], W, H, S / cw, S / ch, x0, y0)
         else:
-            crop = img; m = rasterize(p["polys"], W, H, S / W, S / H)
+            crop = img; m, wm = rasterize(p["polys"], W, H, S / W, S / H)
         x = cv2.resize(crop, (S, S)).astype(np.float32) / 255.0
         if self.train and rng.random() < 0.5: x = x * rng.uniform(0.8, 1.2) + rng.uniform(-0.08, 0.08); x = np.clip(x, 0, 1)
-        return np.transpose(x, (2, 0, 1)), m.astype(np.float32)
+        return np.transpose(x, (2, 0, 1)), m.astype(np.float32), wm
 
 def collate(batch):
     import torch
-    xs, ms = zip(*batch); return torch.from_numpy(np.stack(xs)), torch.from_numpy(np.stack(ms))
+    xs, ms, ws = zip(*batch)
+    return torch.from_numpy(np.stack(xs)), torch.from_numpy(np.stack(ms)), torch.from_numpy(np.stack(ws))
 
 def main():
     import torch, cv2
     ap = argparse.ArgumentParser()
     ap.add_argument("--src", required=True); ap.add_argument("--out", default="runs_segm")
-    ap.add_argument("--epochs", type=int, default=int(os.environ.get("EPOCHS", 8))); ap.add_argument("--batch", type=int, default=int(os.environ.get("BATCH", 6)))
+    ap.add_argument("--epochs", type=int, default=int(os.environ.get("EPOCHS", 14))); ap.add_argument("--batch", type=int, default=int(os.environ.get("BATCH", 6)))
     ap.add_argument("--lr", type=float, default=3e-4); ap.add_argument("--workers", type=int, default=6); ap.add_argument("--val-pages", type=int, default=40); ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--resume", default="", help="load net weights from a prior best.pt/last.pt and continue (fresh optimizer)")
     a = ap.parse_args(); out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     log = open(out / "log.txt", "a")
     def P(*s): print(*s, flush=True); print(*s, file=log, flush=True)
@@ -121,11 +137,13 @@ def main():
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     try: net = smp.Linknet("resnet34", encoder_weights="imagenet", classes=3, activation=None).to(dev)
     except Exception as e: P("imagenet weights unavailable, training from random init:", str(e)[:100]); net = smp.Linknet("resnet34", encoder_weights=None, classes=3, activation=None).to(dev)
+    if a.resume:
+        net.load_state_dict(torch.load(a.resume, map_location=dev)); P(f"resumed weights from {a.resume}")
     tr = Ds(build_pages(a.src, "train"), True); va = Ds(build_pages(a.src, "val"), False)
     P(f"pages: train {len(tr.pages)} val {len(va.pages)} | frag-lines/page median {np.median([len(p['frags']) for p in tr.pages])} | device {dev}")
     opt = torch.optim.AdamW(net.parameters(), lr=a.lr); sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, a.epochs)
     scaler = torch.amp.GradScaler(dev) if dev == "cuda" else None
-    bce = torch.nn.BCEWithLogitsLoss()
+    bce_none = torch.nn.BCEWithLogitsLoss(reduction="none")
     def dice(logit, m):
         p = torch.sigmoid(logit); num = 2 * (p * m).sum((2, 3)); den = p.sum((2, 3)) + m.sum((2, 3)) + 1e-6
         return 1 - (num / den).mean()
@@ -135,10 +153,10 @@ def main():
         for s in range(0, len(idx), a.batch):
             batch = [b for b in (tr.sample(i, rng) for i in idx[s:s + a.batch]) if b]
             if not batch: continue
-            x, m = collate(batch); x, m = x.to(dev), m.to(dev)
+            x, m, wm = collate(batch); x, m, wm = x.to(dev), m.to(dev), wm.to(dev)
             opt.zero_grad()
             with torch.autocast(dev, enabled=dev == "cuda"):
-                y = net(x); loss = bce(y, m) + dice(y, m)
+                y = net(x); loss = (bce_none(y, m) * wm).mean() + dice(y, m)
             if scaler: scaler.scale(loss).backward(); scaler.step(opt); scaler.update()
             else: loss.backward(); opt.step()
             losses.append(float(loss))
@@ -150,7 +168,7 @@ def main():
             for i in range(len(va)):
                 b = va.sample(i, rng)
                 if not b: continue
-                x, m = b; y = torch.sigmoid(net(torch.from_numpy(x[None]).to(dev)))[0].cpu().numpy()
+                x, m, _ = b; y = torch.sigmoid(net(torch.from_numpy(x[None]).to(dev)))[0].cpu().numpy()
                 for c, thr in ((0, .8), (1, .5), (2, .5)):
                     pr = y[c] > thr; gt = m[c] > .5
                     tp[c] += (pr & gt).sum(); fp[c] += (pr & ~gt).sum(); fn[c] += (~pr & gt).sum()
@@ -165,16 +183,26 @@ def main():
         json.dump({"epoch": ep, "pixel_f1": f1.tolist(), "box_line_f1": box_f1, "best": best}, open(out / "val_metrics.json", "w"), indent=1)
     P("DONE best box line F1", best)
 
-def boxes_from_mask(y):
-    """Production post-processing (bilimai/detector.py constants): line channel thr .5 + dilate 3, word channel thr .8;
-    words grouped by nearest line polyline; grow by LINE_GROW. Returns grown line boxes at mask scale."""
-    import cv2
-    LINE_GROW = (0.25, 0.365, 0.02)
+def boxes_from_mask(y, unclip=1.5, grow=(0.153, 0.293, 0.014)):
+    """Deployment post-processing for shrunk-mask models (v4 gate fix: v3's in-script metric used the RP constants and no
+    unclip → 0.030 in-script vs 0.694 on the exam, and mis-ranked v1 vs v2): word contours pyclipper-expanded by
+    d = A·unclip/L, grouped by nearest line polyline, grown by the val-fitted fractions (derive_growth.py, 2026-08-20)."""
+    import cv2, pyclipper
+    LINE_GROW = grow
     m = (y[2] > 0.5).astype(np.uint8); m = cv2.dilate(m, np.ones((3, 3), np.uint8))
     cl, _ = cv2.findContours(m, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     mw = (y[0] > 0.8).astype(np.uint8); cw, _ = cv2.findContours(mw, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-    words = [cv2.boundingRect(c) for c in cw if cv2.contourArea(c) >= 4]
-    words = [[x, yy, x + w, yy + h] for x, yy, w, h in words]
+    words = []
+    for c in cw:
+        if cv2.contourArea(c) < 4: continue
+        if unclip > 0:
+            d = cv2.contourArea(c) * unclip / max(1.0, cv2.arcLength(c, True))
+            pco = pyclipper.PyclipperOffset(); pco.AddPath(c[:, 0, :].tolist(), pyclipper.JT_ROUND, pyclipper.ET_CLOSEDPOLYGON)
+            ex = pco.Execute(d)
+            if ex:
+                pts = np.array(max(ex, key=lambda p: cv2.contourArea(np.array(p, dtype=np.int32))), dtype=np.int32)
+                bx, by, bw, bh = cv2.boundingRect(pts.reshape(-1, 1, 2)); words.append([bx, by, bx + bw, by + bh]); continue
+        bx, by, bw, bh = cv2.boundingRect(c); words.append([bx, by, bx + bw, by + bh])
     lines = [c[:, 0, :].astype(np.float32) for c in cl if len(c) >= 5]
     groups = [[] for _ in lines]
     for wi, wb in enumerate(words):
@@ -208,10 +236,16 @@ def box_line_f1(net, va, dev, n=40, iou_thr=0.5):
             x = np.transpose(cv2.resize(img, (S, S)).astype(np.float32) / 255.0, (2, 0, 1))
             y = torch.sigmoid(net(torch.from_numpy(x[None]).to(dev)))[0].cpu().numpy()
             pred = boxes_from_mask(y)
-            # GT line boxes = word-group boxes (frags file has only fragments; rebuild from polys quickly via line polygons)
+            # GT line boxes in the EXAM convention (v4 gate fix): union of the word polygons whose centroid falls in a
+            # text_line polygon's bbox — build_exam_gt.py convention, not the tighter raw text_line bbox
             gt = []
+            wcs = [(poly[:, 0].mean(), poly[:, 1].mean(), poly) for poly in p["polys"]["word"]]
             for poly in p["polys"]["line"]:
-                b = [poly[:, 0].min() * S / W, poly[:, 1].min() * S / H, poly[:, 0].max() * S / W, poly[:, 1].max() * S / H]
+                lb = [poly[:, 0].min(), poly[:, 1].min(), poly[:, 0].max(), poly[:, 1].max()]
+                grp = [wp for cx, cy, wp in wcs if lb[0] <= cx <= lb[2] and lb[1] <= cy <= lb[3]]
+                if not grp: continue
+                b = [min(w[:, 0].min() for w in grp) * S / W, min(w[:, 1].min() for w in grp) * S / H,
+                     max(w[:, 0].max() for w in grp) * S / W, max(w[:, 1].max() for w in grp) * S / H]
                 if b[2] - b[0] > 4 and b[3] - b[1] > 2: gt.append(b)
             used = set()
             for g in gt:
