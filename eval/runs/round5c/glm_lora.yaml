@@ -1,0 +1,46 @@
+### model
+model_name_or_path: /kaggle/models/GLM-OCR
+trust_remote_code: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 32
+lora_alpha: 64
+lora_target: all
+freeze_vision_tower: false
+freeze_multi_modal_projector: true
+additional_target: merger
+
+### dataset
+dataset: bilimai_train
+eval_dataset: bilimai_val
+template: glm_ocr
+cutoff_len: 512
+preprocessing_num_workers: 8
+image_max_pixels: 262144
+
+### output
+output_dir: /kaggle/working/saves
+logging_steps: 20
+save_steps: 2000
+save_total_limit: 2
+plot_loss: true
+overwrite_output_dir: true
+report_to: none
+
+### train
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 1
+learning_rate: 1.0e-4
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_steps: 0.05
+bf16: true
+gradient_checkpointing: true
+
+### eval
+per_device_eval_batch_size: 8
+eval_strategy: steps
+eval_steps: 1000
