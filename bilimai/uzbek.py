@@ -40,6 +40,67 @@ def normalize(text: str) -> str | None:
     return s
 
 
+def corrupt_word(word: str, rng) -> str | None:
+    """One child-like Uzbek misspelling of `word` (normalised text), or None if the word is unsuitable.
+    Ops weighted by what Uzbek learners actually do: dropping the oʻ/gʻ mark or the tutuq, h↔x confusion,
+    vowel substitutions, digraph simplification (sh→s, ng→n), letter drop/double/swap."""
+    core = [c for c in word if c.isalpha() or c in (OKINA, TUTUQ)]
+    if len(core) < 3 or not any(c.isalpha() for c in word):
+        return None
+    ops = []
+    if OKINA in word or TUTUQ in word: ops += [("apo", 3.0)]
+    if any(c in "hxHX" for c in word): ops += [("hx", 2.0)]
+    if any(c in "ouiea" for c in word.lower()): ops += [("vowel", 2.0)]
+    if "sh" in word.lower() or "ng" in word.lower(): ops += [("digraph", 1.5)]
+    ops += [("drop", 1.2), ("double", 0.8), ("swap", 1.0)]
+    for _ in range(8):
+        op = rng.choices([o for o, _ in ops], weights=[w for _, w in ops])[0]
+        w = word
+        if op == "apo":
+            k = [i for i, c in enumerate(w) if c in (OKINA, TUTUQ)]
+            if not k: continue
+            i = rng.choice(k); w = w[:i] + w[i + 1:]
+        elif op == "hx":
+            k = [i for i, c in enumerate(w) if c in "hxHX"]
+            i = rng.choice(k); c = w[i]; w = w[:i] + {"h": "x", "x": "h", "H": "X", "X": "H"}[c] + w[i + 1:]
+        elif op == "vowel":
+            pairs = {"o": "u", "u": "o", "i": "e", "e": "i", "a": "o"}
+            k = [i for i, c in enumerate(w) if c.lower() in pairs]
+            if not k: continue
+            i = rng.choice(k); c = w[i]; r = pairs[c.lower()]; w = w[:i] + (r.upper() if c.isupper() else r) + w[i + 1:]
+        elif op == "digraph":
+            lw = w.lower()
+            if "sh" in lw: i = lw.index("sh"); w = w[:i + 1] + w[i + 2:]
+            elif "ng" in lw: i = lw.index("ng"); w = w[:i + 1] + w[i + 2:]
+            else: continue
+        elif op == "drop":
+            k = [i for i, c in enumerate(w) if c.isalpha() and i > 0]
+            if not k: continue
+            i = rng.choice(k); w = w[:i] + w[i + 1:]
+        elif op == "double":
+            k = [i for i, c in enumerate(w) if c.isalpha()]
+            i = rng.choice(k); w = w[:i] + w[i] + w[i:]
+        elif op == "swap":
+            k = [i for i in range(len(w) - 1) if w[i].isalpha() and w[i + 1].isalpha() and w[i].lower() != w[i + 1].lower()]
+            if not k: continue
+            i = rng.choice(k); w = w[:i] + w[i + 1] + w[i] + w[i + 2:]
+        if w != word and len(w) >= 2:
+            return w
+    return None
+
+
+def corrupt_line(text: str, rng, max_words: int = 2) -> tuple[str, int]:
+    """Corrupt 1–max_words words of a normalised line; returns (new_text, n_edits) — (text, 0) if nothing was suitable."""
+    words = text.split(" ")
+    idx = [i for i, w in enumerate(words) if sum(c.isalpha() for c in w) >= 3]
+    rng.shuffle(idx)
+    n = 0
+    for i in idx[:rng.randint(1, max_words)]:
+        c = corrupt_word(words[i], rng)
+        if c: words[i] = c; n += 1
+    return " ".join(words), n
+
+
 def chunk_lines(text: str, rng, lo: int = 20, hi: int = 68) -> list[str]:
     """Greedy word-wrap of an article into dictation-line-sized chunks; each chunk gets its own random target length."""
     chunks = []
