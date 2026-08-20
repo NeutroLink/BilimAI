@@ -191,11 +191,12 @@ class PMIWordVerifier:
 
 
 # -------------------------------------------------------------------------------------------------------------- fused
-# z-standardisation constants and thresholds from the full-exam measurement (eval/runs/dictation/ctc_r5all_fused.json,
-# 7,783 words): fused = min(z_pmi, z_ctc) — "both judges must agree". Design B (judge reader-mismatch words only):
-#   τ_error 2.29 → ≈ 0.65 false red / 100 words, catches 26 % (precision ≈ 0.45 at 2 % prevalence)
-#   τ_review 0.74 → catch 71 % at ≈ 6.5 review marks / 100 words
-Z_PMI = (-2.059, 4.067); Z_CTC = (-5.413, 7.805); TAU_F_ERROR, TAU_F_REVIEW = 2.29, 0.74
+# z-standardisation constants and thresholds from the full-exam measurement — re-fit for the R5c adapter 2026-08-20
+# (eval/runs/dictation/ctc_r5c_all_fused.json via eval/dictation/fuse_refit.py; v5 constants: Z_PMI (-2.059, 4.067),
+# τ 2.29/0.74). fused = min(z_pmi, z_ctc) — "both judges must agree". Design B (judge reader-mismatch words only):
+#   τ_error 2.30 → ≈ 0.65 false red / 100 words, catches ≈ 27 % of all real misspellings (36 % of judged)
+#   τ_review 0.68 → catch incl. review ≈ 71 % of all (95 % of judged) at ≈ 6.5 marks / 100 words
+Z_PMI = (-2.095, 3.829); Z_CTC = (-5.413, 7.805); TAU_F_ERROR, TAU_F_REVIEW = 2.30, 0.68
 
 class FusedWordVerifier:
     """CTC judge on all ~500 spellings → its top-K go to the PMI judge → fused = min of standardised margins → verdict.
