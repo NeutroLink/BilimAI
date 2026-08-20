@@ -1,0 +1,6 @@
+{
+ "tensors": 438,
+ "vision_side": 246,
+ "lm_side": 192,
+ "vision_lora_B_nonzero": 120
+}

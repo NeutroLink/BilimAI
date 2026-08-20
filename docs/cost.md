@@ -6,9 +6,9 @@ Rule (from 2026-08-19): every rental line in ENGINEERING-LOG records **credit be
 ## GPU spend — Vast.ai (measured)
 | item | value |
 |---|---|
-| Deposits 16–19 Aug 2026 | $6 + $5 + $9 + $10 + $8 + $4 = **$42.00** |
-| Credit left 19 Aug 2026 17:15 UTC+5 | **$3.27** |
-| **Spent** | **$38.73** |
+| Deposits 16–20 Aug 2026 | $6 + $5 + $9 + $10 + $8 + $4 + $5 = **$47.00** |
+| Credit left 20 Aug 2026 13:20 UTC+5 | **$1.21** |
+| **Spent** | **$45.79** |
 
 ## Itemised (from ENGINEERING-LOG; the rest is the round-4 day)
 | date | run | box | wall | cost |
@@ -18,6 +18,8 @@ Rule (from 2026-08-19): every rental line in ENGINEERING-LOG records **credit be
 | 18 Aug | Round 5 (vision LoRA, 425 k strips, 1 epoch) → v5 + baselines/E2E | Netherlands 4× 5090 | 2 h 02 m + evals | ≈ $6.5 |
 | 19 Aug | `pmi_all` — 7,783-word verifier scoring | Belgium 3× 5090 | 7 min (4 provisioning + 2.3 job) | **$0.40** (credit 2.33 → 1.94) |
 | 19 Aug | R5b «verbatim» run A (128 px, 1 epoch, 440 k records) + 4-prompt exam eval; 15 min lost to the thread-limit crash | Japan 4× RTX PRO 6000 ($5.87/h) | 1 h 57 m | **$6.64** (credit 9.92 → 3.27) |
+| 20 Aug | R5c «splice» (511 k records incl. 71 k spliced) + 4-prompt exam + splice-val evals | Taiwan 4× 5090 ($2.04/h) | 3 h 11 m | **$6.50** (credit 7.71 → 1.21) |
+| 20 Aug | Detector fine-tune attempts v1+v2 (E4.2 step 3) + R5c-era data mirror to ModelScope | ModelScope/PAI-DSW free GPU | ~1.3 h GPU quota | **$0** |
 
 ## Kaggle (free tier)
 Kernels A/B for HWR200 salvage and early rounds: $0 (quota hours only). Kaggle datasets: free.

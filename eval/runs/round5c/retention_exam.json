@@ -1,0 +1,51 @@
+{
+ "verbatim": {
+  "n_pairs": 86,
+  "kept": 39,
+  "corrected": 20,
+  "other": 25,
+  "missing": 2,
+  "retention": 0.453,
+  "autocorrect_rate": 0.233,
+  "correct_words": 7669,
+  "correct_word_err": 0.124
+ },
+ "oldprompt": {
+  "n_pairs": 86,
+  "kept": 39,
+  "corrected": 20,
+  "other": 25,
+  "missing": 2,
+  "retention": 0.453,
+  "autocorrect_rate": 0.233,
+  "correct_words": 7669,
+  "correct_word_err": 0.1252
+ },
+ "keyed": {
+  "n_pairs": 86,
+  "kept": 34,
+  "corrected": 38,
+  "other": 14,
+  "missing": 0,
+  "retention": 0.395,
+  "autocorrect_rate": 0.442,
+  "correct_words": 7669,
+  "correct_word_err": 0.0335
+ },
+ "keyed_damaged": {
+  "n_pairs": 86,
+  "kept": 34,
+  "corrected": 41,
+  "other": 11,
+  "missing": 0,
+  "retention": 0.395,
+  "autocorrect_rate": 0.477,
+  "correct_words": 7669,
+  "correct_word_err": 0.0421
+ },
+ "key_copy_rate_damaged": {
+  "copied": 56,
+  "n": 2016,
+  "rate": 0.0278
+ }
+}

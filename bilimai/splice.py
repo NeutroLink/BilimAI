@@ -103,9 +103,9 @@ def apply_edit(word: str, edit) -> str:
 class LetterAligner:
     """CTC forced alignment → per-letter page-pixel spans for a word box. Trusts only words the CTC reads exactly."""
 
-    def __init__(self, threads: int = 1, batch: int = 64):
+    def __init__(self, threads: int = 1, batch: int = 64, coreml: bool = False):
         from .verifier import CTCWordVerifier
-        self.v = CTCWordVerifier(threads=threads, batch=batch)
+        self.v = CTCWordVerifier(threads=threads, batch=batch, coreml=coreml)
 
     def _bestpath(self, lp):
         ids = lp.argmax(-1); out = []; prev = -1

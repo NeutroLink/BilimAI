@@ -32,13 +32,18 @@ class CTCWordVerifier:
     name = "ctc-word-verifier@rp-notebooks"
 
     def __init__(self, model_dir: str | Path = DEFAULT_OCR, tau_error: float = TAU_ERROR, tau_review: float = TAU_REVIEW,
-                 threads: int = 8, max_cands: int = 0, batch: int = 64):
+                 threads: int = 8, max_cands: int = 0, batch: int = 64, coreml: bool = False):
+        """coreml=True (Mac only): run the CRNN on Apple's GPU/Neural Engine via onnxruntime's CoreML provider (MLProgram) —
+        measured 2026-08-19: 5.7 ms/crop vs 190 ms on one CPU thread, max |Δlogprob| 2e-5. Off by default (product = CPU)."""
         import json, onnxruntime as ort
         cfg = json.load(open(Path(model_dir) / "ocr_config.json", encoding="utf-8"))
         self.alpha = cfg["alphabet"]; self.H, self.W = cfg["image"]["height"], cfg["image"]["width"]
         self.ch = {c: i + 2 for i, c in enumerate(self.alpha)}; self.BLANK, self.OOV = 0, 1
-        so = ort.SessionOptions(); so.intra_op_num_threads = threads; so.inter_op_num_threads = threads
-        self.sess = ort.InferenceSession(str(Path(model_dir) / "ocr_model.onnx"), so, providers=["CPUExecutionProvider"])
+        so = ort.SessionOptions(); so.intra_op_num_threads = threads; so.inter_op_num_threads = threads; so.log_severity_level = 3
+        providers = ["CPUExecutionProvider"]
+        if coreml and "CoreMLExecutionProvider" in ort.get_available_providers():
+            providers = [("CoreMLExecutionProvider", {"MLComputeUnits": "ALL", "ModelFormat": "MLProgram"}), "CPUExecutionProvider"]
+        self.sess = ort.InferenceSession(str(Path(model_dir) / "ocr_model.onnx"), so, providers=providers)
         self.inp = self.sess.get_inputs()[0].name
         self.tau_error, self.tau_review, self.max_cands, self.batch = tau_error, tau_review, max_cands, batch
 
