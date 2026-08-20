@@ -1,0 +1,1887 @@
+{
+ "summary": {
+  "n": 300,
+  "linear_n": 14,
+  "linear_mean_cer": 0.4912142857142857,
+  "linear_exact": 2,
+  "reader": "glm-ocr@glm-ocr-lora-ru-v5",
+  "examples_2d": [
+   {
+    "label": "\\vartheta=-\\frac{log\\frac{\\phi_{\\varsigma_{1}}}{\\phi_{\\varsigma_{2}}}}{log\\frac{\\varsigma_{1}}{\\varsigma_{2}}}",
+    "pred": "О- -ое"
+   },
+   {
+    "label": "\\Phi=\\int E(\\hat{e}_{\\angle}\\cdot dA)",
+    "pred": "ф= I (ёс. дд)"
+   },
+   {
+    "label": "q=\\frac{1}{\\sqrt{1\\cdot\\frac{v^{5}}{c^{5}}}}\\xi",
+    "pred": "2= 1"
+   },
+   {
+    "label": "[\\frac{2n\\pi}{3};\\frac{2(n+1)\\pi}{3}]",
+    "pred": "[ 3 , 3 ]"
+   },
+   {
+    "label": "\\tilde{g}_{lk}\\overline{n}=g_{kl}",
+    "pred": "дек п = дке"
+   },
+   {
+    "label": "\\underline{P}X=\\emptyset",
+    "pred": "Рх=о"
+   },
+   {
+    "label": "k=\\lceil log_{2}n+1\\rceil",
+    "pred": "к [под 2н + 1]"
+   },
+   {
+    "label": "\\int d^{3}xJ^{0}",
+    "pred": "Рд х"
+   },
+   {
+    "label": "w_{1}\\cdot\\cdot\\cdot w_{p}",
+    "pred": "ш, ш,"
+   },
+   {
+    "label": "\\Delta S=\\oint\\frac{\\delta Q}{T}",
+    "pred": "дс. р бо"
+   },
+   {
+    "label": "\\Omega=\\frac{\\Delta PE}{\\Delta t}",
+    "pred": "грр"
+   },
+   {
+    "label": "i_{Q}:Q\\hookrightarrow E",
+    "pred": "и: и с Е"
+   },
+   {
+    "label": "C(X)>X^{0.332}",
+    "pred": "с (х) х 332"
+   },
+   {
+    "label": "\\frac{1+\\frac{n}{c}cos\\iota_{s}}{\\sqrt{1\\cdot\\frac{n^{3}}{c^{3}}}}",
+    "pred": "12сосс"
+   },
+   {
+    "label": "\\lambda:A\\longrightarrow A^{\\vee}",
+    "pred": "л: а а"
+   }
+  ]
+ },
+ "records": [
+  {
+   "file": "000aa4c444cba3f2.jpg",
+   "label": "\\vartheta=-\\frac{log\\frac{\\phi_{\\varsigma_{1}}}{\\phi_{\\varsigma_{2}}}}{log\\frac{\\varsigma_{1}}{\\varsigma_{2}}}",
+   "linear": false,
+   "pred": "О- -ое"
+  },
+  {
+   "file": "004970a2ad0fcb27.jpg",
+   "label": "\\Phi=\\int E(\\hat{e}_{\\angle}\\cdot dA)",
+   "linear": false,
+   "pred": "ф= I (ёс. дд)"
+  },
+  {
+   "file": "0050464363a7d02d.jpg",
+   "label": "q=\\frac{1}{\\sqrt{1\\cdot\\frac{v^{5}}{c^{5}}}}\\xi",
+   "linear": false,
+   "pred": "2= 1"
+  },
+  {
+   "file": "0053f4751a1d9065.jpg",
+   "label": "[\\frac{2n\\pi}{3};\\frac{2(n+1)\\pi}{3}]",
+   "linear": false,
+   "pred": "[ 3 , 3 ]"
+  },
+  {
+   "file": "005f0a6b379cc5db.jpg",
+   "label": "\\tilde{g}_{lk}\\overline{n}=g_{kl}",
+   "linear": false,
+   "pred": "дек п = дке"
+  },
+  {
+   "file": "00874649f83c08b3.jpg",
+   "label": "\\underline{P}X=\\emptyset",
+   "linear": false,
+   "pred": "Рх=о"
+  },
+  {
+   "file": "00bc1c89dff0672e.jpg",
+   "label": "k=\\lceil log_{2}n+1\\rceil",
+   "linear": false,
+   "pred": "к [под 2н + 1]"
+  },
+  {
+   "file": "00bddacfb3de33ce.jpg",
+   "label": "O(nlogn)",
+   "linear": true,
+   "pred": "О (плоди)",
+   "cer": 0.75
+  },
+  {
+   "file": "00c0cefd35f09179.jpg",
+   "label": "\\int d^{3}xJ^{0}",
+   "linear": false,
+   "pred": "Рд х"
+  },
+  {
+   "file": "00e206f3a5cdc7fb.jpg",
+   "label": "w_{1}\\cdot\\cdot\\cdot w_{p}",
+   "linear": false,
+   "pred": "ш, ш,"
+  },
+  {
+   "file": "010c427bf30599d3.jpg",
+   "label": "\\Delta S=\\oint\\frac{\\delta Q}{T}",
+   "linear": false,
+   "pred": "дс. р бо"
+  },
+  {
+   "file": "0112074a000acff4.jpg",
+   "label": "\\Omega=\\frac{\\Delta PE}{\\Delta t}",
+   "linear": false,
+   "pred": "грр"
+  },
+  {
+   "file": "01650d074915628e.jpg",
+   "label": "i_{Q}:Q\\hookrightarrow E",
+   "linear": false,
+   "pred": "и: и с Е"
+  },
+  {
+   "file": "01751ea13ceb1817.jpg",
+   "label": "C(X)>X^{0.332}",
+   "linear": false,
+   "pred": "с (х) х 332"
+  },
+  {
+   "file": "018cd2d904174062.jpg",
+   "label": "\\frac{1+\\frac{n}{c}cos\\iota_{s}}{\\sqrt{1\\cdot\\frac{n^{3}}{c^{3}}}}",
+   "linear": false,
+   "pred": "12сосс"
+  },
+  {
+   "file": "01a043f03146f76c.jpg",
+   "label": "\\lambda:A\\longrightarrow A^{\\vee}",
+   "linear": false,
+   "pred": "л: а а"
+  },
+  {
+   "file": "01d4536a52886b73.jpg",
+   "label": "N_{0}||X-\\hat{X}||^{2}/2",
+   "linear": false,
+   "pred": "No ||х- х||/2"
+  },
+  {
+   "file": "01d4ae95eb9e94c8.jpg",
+   "label": "O(F)\\hookrightarrow g^{*}",
+   "linear": false,
+   "pred": "О( ф) гх"
+  },
+  {
+   "file": "01e8ffa2afd3ae8e.jpg",
+   "label": "\\iint_{R}(x^{2}+z^{2})dS",
+   "linear": false,
+   "pred": "ШП (х+ 2) ас"
+  },
+  {
+   "file": "01f2f6142ec1c97f.jpg",
+   "label": "E\\mapsto\\int_{E}fd\\mu",
+   "linear": false,
+   "pred": "Eю fdp"
+  },
+  {
+   "file": "01fdfab60060594b.jpg",
+   "label": "|S|\\le(\\begin{matrix}n\\\\ \\lfloor n/2\\rfloor\\end{matrix})",
+   "linear": false,
+   "pred": "15|с (п.п)"
+  },
+  {
+   "file": "020ebba0c00073be.jpg",
+   "label": "\\epsilon_{2}=\\lambda^{\\lambda^{\\lambda^{\\cdot^{\\cdot^{\\cdot}}}}}",
+   "linear": false,
+   "pred": "Е2= 1+1+..."
+  },
+  {
+   "file": "021aff768b53ac50.jpg",
+   "label": "\\nu(A)=\\int_{A}f_{n}d\\mu",
+   "linear": false,
+   "pred": "(А) = 1 л. дм"
+  },
+  {
+   "file": "02210ec4545e3b0a.jpg",
+   "label": "l_{2}\\equiv\\partial_{xy}+\\frac{1}{x+y}\\partial_{y}",
+   "linear": false,
+   "pred": "е2= ду+ 1 х+ у ду"
+  },
+  {
+   "file": "02229a0c174d8dbe.jpg",
+   "label": "d\\approx\\sqrt{2\\cdot k\\cdot R\\cdot h}",
+   "linear": false,
+   "pred": "1х 2.к.п"
+  },
+  {
+   "file": "02270559509706de.jpg",
+   "label": "\\tilde{\\varphi}:\\mathbb{S}^{\\lambda}E\\rightarrow M",
+   "linear": false,
+   "pred": "й: 5 Е м"
+  },
+  {
+   "file": "025f579aa67dfd7c.jpg",
+   "label": "\\{A_{i}|i\\in\\underline{m}\\backslash A\\}",
+   "linear": false,
+   "pred": "{А.!|ием|а}"
+  },
+  {
+   "file": "028a59322b50b764.jpg",
+   "label": "v_{i}:X\\longrightarrow R_{+}",
+   "linear": false,
+   "pred": "И: х К +"
+  },
+  {
+   "file": "02a7f7f172671fb4.jpg",
+   "label": "F_{out}d_{out}=\\eta F_{in}d_{in}",
+   "linear": false,
+   "pred": "Fold fold = 7 Findim"
+  },
+  {
+   "file": "02c82a919e114b86.jpg",
+   "label": "\\Psi(\\rho,\\phi,z)",
+   "linear": false,
+   "pred": "I (р.ф. 2)"
+  },
+  {
+   "file": "02f5816611877c27.jpg",
+   "label": "\\frac{\\Delta f}{f}\\simeq-\\frac{vcos\\theta}{c}",
+   "linear": false,
+   "pred": "н/ н- -союз"
+  },
+  {
+   "file": "02f72a386327c6d9.jpg",
+   "label": "P(\\omega)=\\frac{2}{3}\\omega^{4}|d_{i}|^{2}",
+   "linear": false,
+   "pred": "р (гл) = 2 шл/дал"
+  },
+  {
+   "file": "032130fddec53c78.jpg",
+   "label": "P\\in\\mathbb{R}^{2k\\times d}",
+   "linear": false,
+   "pred": "Р (Р 2к хд)"
+  },
+  {
+   "file": "0326c8496e189144.jpg",
+   "label": "-\\frac{\\epsilon_{0}}{q}\\nabla^{2}",
+   "linear": false,
+   "pred": "- в 2"
+  },
+  {
+   "file": "032cab7514e408ba.jpg",
+   "label": "\\hat{\\mu}_{3}=56/3=18.67",
+   "linear": false,
+   "pred": "М 3= 56/3= 18. 67"
+  },
+  {
+   "file": "032e674bf4a61ff0.jpg",
+   "label": "2(\\sqrt{2}-1)\\approx0.828",
+   "linear": false,
+   "pred": "2 (№2- 1) = 0. 8 2 8"
+  },
+  {
+   "file": "033bbf63000c086d.jpg",
+   "label": "\\overline{Y}_{1}",
+   "linear": false,
+   "pred": "У,"
+  },
+  {
+   "file": "033d57e0703ab948.jpg",
+   "label": "lim_{n\\longrightarrow\\infty}\\alpha(G_{n},\\epsilon)=0",
+   "linear": false,
+   "pred": "Лит п - 0 а (Пп, Е) = 0"
+  },
+  {
+   "file": "03474b3d9a7ae87b.jpg",
+   "label": "B^{\\prime}\\in(\\begin{matrix}C\\\\ B\\end{matrix})",
+   "linear": false,
+   "pred": "В (с)"
+  },
+  {
+   "file": "0368471ca4fbe892.jpg",
+   "label": "R_{U}\\in R_{U}\\iff R_{U}\\notin R_{U}",
+   "linear": false,
+   "pred": "R и < R и <- R и"
+  },
+  {
+   "file": "038ccb46ae3443db.jpg",
+   "label": "\\mathbb{E}[logX!]=\\overline{logX!}",
+   "linear": false,
+   "pred": "I [log x!] = log x!"
+  },
+  {
+   "file": "03af7845cfbbde59.jpg",
+   "label": "GS_{f}",
+   "linear": false,
+   "pred": "G5,"
+  },
+  {
+   "file": "03bd51165a1a81b1.jpg",
+   "label": "\\frac{A(O\\cap P)}{A(P)}",
+   "linear": false,
+   "pred": "А (опр) к (е)"
+  },
+  {
+   "file": "03c3977784c8f56c.jpg",
+   "label": "C=[I-A]^{-1}d_{\\perp}",
+   "linear": false,
+   "pred": "с= [1-а]- 1дл"
+  },
+  {
+   "file": "03d01506fe3647c4.jpg",
+   "label": "f_{n}:S\\rightarrow\\mathbb{C}",
+   "linear": false,
+   "pred": "пп: с С"
+  },
+  {
+   "file": "03d92e3e170bb629.jpg",
+   "label": "(\\begin{matrix}\\pm\\sqrt{N}\\\\ 1\\end{matrix})",
+   "linear": false,
+   "pred": "(=п)"
+  },
+  {
+   "file": "04026cefc5bee356.jpg",
+   "label": "(0,1)^{n}\\subseteq R^{n}",
+   "linear": false,
+   "pred": "(О,п) ср"
+  },
+  {
+   "file": "0417ce94315c0dea.jpg",
+   "label": "\\beta>-0.5",
+   "linear": false,
+   "pred": "В - 0. 5"
+  },
+  {
+   "file": "0426225e4adc4605.jpg",
+   "label": "\\vartheta(KG_{n,k})=(\\begin{matrix}n-1\\\\ k-1\\end{matrix})",
+   "linear": false,
+   "pred": "г (кдт.к) (т- 1)"
+  },
+  {
+   "file": "0435a7e82431e973.jpg",
+   "label": "\\langle Pu,u\\rangle>0,\\forall u\\ne0",
+   "linear": false,
+   "pred": "(Р.п.п) О. И= 0"
+  },
+  {
+   "file": "0443cdf212ee67b1.jpg",
+   "label": "t=\\frac{0}{\\sqrt{0+\\frac{u^{2}}{c^{2}}}}\\kappa",
+   "linear": false,
+   "pred": "т= о к"
+  },
+  {
+   "file": "046728735864246f.jpg",
+   "label": "K=Q(\\sqrt{-d})d>0",
+   "linear": false,
+   "pred": "К= О ( -л ) а> о"
+  },
+  {
+   "file": "046fde10ad80f6f4.jpg",
+   "label": "\\tilde{\\Sigma}=V\\otimes\\Sigma",
+   "linear": false,
+   "pred": "Ё=V02"
+  },
+  {
+   "file": "047ce2586c0b5f0c.jpg",
+   "label": "\\xi=\\frac{x}{2\\sqrt{t}}",
+   "linear": false,
+   "pred": "Ё= х 2т"
+  },
+  {
+   "file": "04852f06a82865c1.jpg",
+   "label": "\\frac{\\partial\\Pi}{\\partial x_{j}}",
+   "linear": false,
+   "pred": "эл,"
+  },
+  {
+   "file": "0491ecbb62f31a6e.jpg",
+   "label": "\\overline{K}_{n}",
+   "linear": false,
+   "pred": "К.п"
+  },
+  {
+   "file": "049aa166f1cfb206.jpg",
+   "label": "\\sqrt{3}^{\\sqrt{3}^{\\sqrt{3}^{\\cdot^{\\cdot^{\\cdot}}}}}",
+   "linear": false,
+   "pred": "3 5 5."
+  },
+  {
+   "file": "049d2cf3f10ac2d7.jpg",
+   "label": "\\mu=A_{H}T\\cdot e^{Q_{L}/RT}",
+   "linear": false,
+   "pred": "м= Ант. е гл/гт"
+  },
+  {
+   "file": "04a855ef776363c2.jpg",
+   "label": "Q(\\sqrt{2})\\supseteq Q",
+   "linear": false,
+   "pred": "1 (№2) = 2 1"
+  },
+  {
+   "file": "04aeed012ef93461.jpg",
+   "label": "n=\\frac{M_{1}-M_{0}}{t}",
+   "linear": false,
+   "pred": "п.- М- Мо"
+  },
+  {
+   "file": "04e2d85cba0103e9.jpg",
+   "label": "x=\\frac{4}{\\sqrt{4+\\frac{v^{2}}{c^{2}}}}\\upsilon",
+   "linear": false,
+   "pred": "х- 1"
+  },
+  {
+   "file": "04e56f2e30f866d8.jpg",
+   "label": "q=min(al,\\frac{k}{\\sigma})",
+   "linear": false,
+   "pred": "а= тап (ал, к)"
+  },
+  {
+   "file": "04f16ee0cbb55791.jpg",
+   "label": "\\frac{\\partial E}{\\partial t}",
+   "linear": false,
+   "pred": "ж"
+  },
+  {
+   "file": "04f65fb089280e4c.jpg",
+   "label": "(\\frac{4}{364})^{\\sqrt{7}}+84^{9}",
+   "linear": false,
+   "pred": "(3 б) + 84 ч"
+  },
+  {
+   "file": "04fc707abea3e7a1.jpg",
+   "label": "B=\\nabla\\times\\hat{A}",
+   "linear": false,
+   "pred": "В= Т- А"
+  },
+  {
+   "file": "04fc9a7665035a0d.jpg",
+   "label": "a_{b,i}=\\gamma_{b,i}\\frac{b_{i}}{b^{\\ominus}}",
+   "linear": false,
+   "pred": "а,ь,й= зв,й в,о"
+  },
+  {
+   "file": "050eb35c2f18a695.jpg",
+   "label": "p20+1,\\cdot\\cdot\\cdot,p20+\\lambda",
+   "linear": false,
+   "pred": "Р20+ 1, ..., Р20+ л"
+  },
+  {
+   "file": "050f08e2fe6fe162.jpg",
+   "label": "M=\\mathbb{R}^{n}",
+   "linear": false,
+   "pred": "н=п"
+  },
+  {
+   "file": "051a9b215ce2f7dc.jpg",
+   "label": "\\overline{S_{n}}=a\\mathbb{I}\\{S_{n}>a\\}",
+   "linear": false,
+   "pred": "Рп= п II {п п}"
+  },
+  {
+   "file": "05373ec225cc541a.jpg",
+   "label": "f=g(\\theta^{\\prime})",
+   "linear": false,
+   "pred": "f = д (о')"
+  },
+  {
+   "file": "0578f6b97d18358a.jpg",
+   "label": "U=-m\\sum G\\frac{M}{r}",
+   "linear": false,
+   "pred": "I = - т Б М"
+  },
+  {
+   "file": "05882db6930f636c.jpg",
+   "label": "\\Rightarrow ln\\frac{x(t)}{x(0)}=kt",
+   "linear": false,
+   "pred": "3 н х (н) х (о) = к+"
+  },
+  {
+   "file": "059225965e1e5dd6.jpg",
+   "label": "\\frac{1}{16}[\\begin{matrix}-&\\#&7\\\\ 3&5&1\\end{matrix}]",
+   "linear": false,
+   "pred": "1 [ 3 5 1]"
+  },
+  {
+   "file": "059ac88233086bc0.jpg",
+   "label": "f(w)\\Vdash^{\\prime}p",
+   "linear": false,
+   "pred": "f(я) ||'р"
+  },
+  {
+   "file": "05c704f21b802507.jpg",
+   "label": "\\iint_{S}FdS",
+   "linear": false,
+   "pred": "II f d s"
+  },
+  {
+   "file": "05f2be02bbe36bd4.jpg",
+   "label": "(\\begin{matrix}i&j\\\\ k&l\\end{matrix})",
+   "linear": false,
+   "pred": "(к л)"
+  },
+  {
+   "file": "05fa73b7807336c8.jpg",
+   "label": "\\frac{d}{dt}\\frac{\\partial R}{\\partial\\dot{\\zeta}_{j}}=\\frac{\\partial R}{\\partial\\zeta_{j}}",
+   "linear": false,
+   "pred": "л гл. гл."
+  },
+  {
+   "file": "0606da46464a5804.jpg",
+   "label": "E_{1}=\\frac{1}{2}",
+   "linear": false,
+   "pred": "Е. =л"
+  },
+  {
+   "file": "060ab59eeba54d2f.jpg",
+   "label": "[\\begin{matrix}1&0\\\\ -sC&1\\end{matrix}]",
+   "linear": false,
+   "pred": "-ск'"
+  },
+  {
+   "file": "06186bea537734a2.jpg",
+   "label": "x,y\\in\\mathbb{Z}+\\mathbb{Z}\\sqrt{10}",
+   "linear": false,
+   "pred": "х, у е И + 2то"
+  },
+  {
+   "file": "063aa42f5d0ef5be.jpg",
+   "label": "e^{(\\frac{\\Upsilon}{\\phi})[1-\\sqrt{1-\\frac{5\\phi^{5}m}{\\Upsilon}}]}",
+   "linear": false,
+   "pred": "с [ч] [1- н- 5 б б б]"
+  },
+  {
+   "file": "0656e77f512563c5.jpg",
+   "label": "\\hat{A}_{n,\\alpha}^{\\dagger}",
+   "linear": false,
+   "pred": "А пд"
+  },
+  {
+   "file": "0667cabda0ae2b81.jpg",
+   "label": "\\Xi(p)=\\frac{e^{-\\frac{p^{3}}{3}}}{\\sqrt{3\\pi}}",
+   "linear": false,
+   "pred": "I (р) = с .р'"
+  },
+  {
+   "file": "0668dd347d600906.jpg",
+   "label": "\\frac{d\\theta}{dt}=\\omega",
+   "linear": false,
+   "pred": "до и"
+  },
+  {
+   "file": "067a327b0c92095f.jpg",
+   "label": "\\underline{x}\\in\\mathbb{R}^{n}",
+   "linear": false,
+   "pred": "х в П"
+  },
+  {
+   "file": "068de3aad90c403c.jpg",
+   "label": "\\forall b_{1},...,b_{n}\\notin T(s)",
+   "linear": false,
+   "pred": "в, ..., в, Т(п)"
+  },
+  {
+   "file": "0698cd5349dae70c.jpg",
+   "label": "\\sqrt{tr(A^{\\top}A)}",
+   "linear": false,
+   "pred": "ж (ата)"
+  },
+  {
+   "file": "06a81979619c88e4.jpg",
+   "label": "\\mathbb{Q}(\\sqrt{-19})",
+   "linear": false,
+   "pred": "а (Глаз)"
+  },
+  {
+   "file": "06b2711e539715e0.jpg",
+   "label": "\\Leftrightarrow1-\\frac{1}{r}<[\\frac{m}{r}]_{1}",
+   "linear": false,
+   "pred": "= 1- [м']"
+  },
+  {
+   "file": "06c6f0395cdee938.jpg",
+   "label": "\\frac{4\\zeta m}{\\sqrt{1-\\frac{0m}{vu^{0}}}}",
+   "linear": false,
+   "pred": "4 зм"
+  },
+  {
+   "file": "0703652c7a0c26f7.jpg",
+   "label": "G(Y^{\\prime})=G(Y)\\oplus R",
+   "linear": false,
+   "pred": "и (ч) = и (ч) + R"
+  },
+  {
+   "file": "070c12a71a7265a3.jpg",
+   "label": "(\\frac{q}{p})=(\\frac{p^{*}}{q})",
+   "linear": false,
+   "pred": "(п/р) = (п/р)"
+  },
+  {
+   "file": "0717c14705cc721d.jpg",
+   "label": "t_{i}-1\\le x<t_{i}",
+   "linear": false,
+   "pred": "ти- 1 л х т"
+  },
+  {
+   "file": "073036bdd616605d.jpg",
+   "label": "x\\#=\\prod_{p\\le x}p",
+   "linear": false,
+   "pred": "хж= П р"
+  },
+  {
+   "file": "07406a1470c708c4.jpg",
+   "label": "C=P\\times\\frac{F_{L}}{F_{n}}",
+   "linear": false,
+   "pred": "с=р+ Пп"
+  },
+  {
+   "file": "07534c098d424d5f.jpg",
+   "label": "\\vec{R}(\\nu)",
+   "linear": false,
+   "pred": "Р (и)"
+  },
+  {
+   "file": "07549352bfb72996.jpg",
+   "label": "\\vec{p}_{0}=(0,1,0)",
+   "linear": false,
+   "pred": "р= (0, 1, 0)"
+  },
+  {
+   "file": "07556e5288679e40.jpg",
+   "label": "\\vartheta(n)=\\frac{1}{\\sqrt{1-\\frac{n^{7}}{c^{7}}}}",
+   "linear": false,
+   "pred": "1-"
+  },
+  {
+   "file": "076be7470d48f458.jpg",
+   "label": "K(x)=x\\cdot K^{\\prime}(x)",
+   "linear": false,
+   "pred": "к (х) = х. к' (х)"
+  },
+  {
+   "file": "076e7b58bfaba0f1.jpg",
+   "label": "(\\cup A)\\cap(\\cup B)\\ne\\emptyset",
+   "linear": false,
+   "pred": "(ИА) П (ИВ) <?"
+  },
+  {
+   "file": "00000b332dcd6fe5.jpg",
+   "label": "(\\begin{matrix}j\\\\ m+1\\end{matrix})",
+   "linear": false,
+   "pred": "(т-11)"
+  },
+  {
+   "file": "000453d57c3d334d.jpg",
+   "label": "\\int_{E}f(x)\\mu(dx)",
+   "linear": false,
+   "pred": "J Е f (х) м (дх)"
+  },
+  {
+   "file": "0005d0be8e507b24.jpg",
+   "label": "\\overline{z}=1-i\\sqrt{\\nu}",
+   "linear": false,
+   "pred": "з- i-и"
+  },
+  {
+   "file": "0005ea8e21185d36.jpg",
+   "label": "S=\\int_{M}BF",
+   "linear": false,
+   "pred": "S =м ВF"
+  },
+  {
+   "file": "00061be0501a1fa8.jpg",
+   "label": "Q:=\\bigcup_{\\sigma\\in\\sigma(T_{0})}Q_{\\sigma}",
+   "linear": false,
+   "pred": "Q= I 0 б (Т.)"
+  },
+  {
+   "file": "0013be3abc070fb7.jpg",
+   "label": "\\frac{1}{\\sqrt{d}_{u}}",
+   "linear": false,
+   "pred": "1"
+  },
+  {
+   "file": "00146a32fdab9e8e.jpg",
+   "label": "\\frac{d^{2}x}{dt^{2}}",
+   "linear": false,
+   "pred": "д 2 х"
+  },
+  {
+   "file": "00184588166a4dac.jpg",
+   "label": "\\frac{dP}{d\\tau}",
+   "linear": false,
+   "pred": "др бр"
+  },
+  {
+   "file": "0019bb8e97507f8e.jpg",
+   "label": "\\int x\\cdot dx",
+   "linear": false,
+   "pred": "х .дх"
+  },
+  {
+   "file": "001f0c3d8940f546.jpg",
+   "label": "\\frac{dC_{U}}{dC_{W}}",
+   "linear": false,
+   "pred": "1 скл"
+  },
+  {
+   "file": "001f0f96215e2d84.jpg",
+   "label": "\\tilde{C}_{8}",
+   "linear": false,
+   "pred": "ёъ"
+  },
+  {
+   "file": "00235ec3dee919dd.jpg",
+   "label": "\\int_{0}^{\\infty}\\frac{sin(x)}{x}dx",
+   "linear": false,
+   "pred": "Роо sing (х) dx"
+  },
+  {
+   "file": "0023e88388577dc1.jpg",
+   "label": "V=(\\begin{matrix}0&1\\\\ 1&0\\end{matrix})",
+   "linear": false,
+   "pred": "v= (;0)"
+  },
+  {
+   "file": "00245713d08b4f1a.jpg",
+   "label": "R=\\int_{0}^{\\tau}X(s)ds",
+   "linear": false,
+   "pred": "R=р. х(д) ас"
+  },
+  {
+   "file": "00253e181f0200ab.jpg",
+   "label": "T=(\\begin{matrix}1&0\\\\ 1&0\\end{matrix})",
+   "linear": false,
+   "pred": "т= (:о)"
+  },
+  {
+   "file": "0025484cf71c8ab7.jpg",
+   "label": "F",
+   "linear": true,
+   "pred": "F",
+   "cer": 0.0
+  },
+  {
+   "file": "002651244bc93554.jpg",
+   "label": "\\int_{A}P_{A}dA=1",
+   "linear": false,
+   "pred": "ПРДА= 1"
+  },
+  {
+   "file": "002b6a98000765fb.jpg",
+   "label": "\\frac{\\partial\\varphi}{\\partial t}(x,t)=F(\\varphi).",
+   "linear": false,
+   "pred": "х (х.т): ф (ф)."
+  },
+  {
+   "file": "002c168eb422aab9.jpg",
+   "label": "10^{-12}W/\\sqrt{Hz}",
+   "linear": false,
+   "pred": "10^2 ш/Н2"
+  },
+  {
+   "file": "003169384315282b.jpg",
+   "label": "\\int x^{s}\\phi(x)dx",
+   "linear": false,
+   "pred": "Гх ф (ж)ж"
+  },
+  {
+   "file": "003921302c543b2c.jpg",
+   "label": "\\frac{d^{2}u}{dx^{2}}-u=0",
+   "linear": false,
+   "pred": "л 2 и -и = 0"
+  },
+  {
+   "file": "0040a950663bd899.jpg",
+   "label": "pz\\overline{z}+gz+\\overline{gz}=q",
+   "linear": false,
+   "pred": "227- д2- д2"
+  },
+  {
+   "file": "004466873ec97648.jpg",
+   "label": "o_{n}(R)",
+   "linear": false,
+   "pred": "Оп (Р)"
+  },
+  {
+   "file": "0047f70eafca2534.jpg",
+   "label": "[\\begin{matrix}a\\\\ b\\\\ c\\end{matrix}]",
+   "linear": false,
+   "pred": "[ ]"
+  },
+  {
+   "file": "00622d73c8739bd8.jpg",
+   "label": "[\\begin{matrix}A&U\\\\ V&C\\end{matrix}]",
+   "linear": false,
+   "pred": "[ и ]"
+  },
+  {
+   "file": "006631d6baa51d31.jpg",
+   "label": "V=|a\\cdot(b\\times c)|",
+   "linear": false,
+   "pred": "V= (а. (в ж)"
+  },
+  {
+   "file": "0067440924b60b2b.jpg",
+   "label": "[g^{ij}]=\\frac{1}{g}\\frac{\\partial g}{\\partial g_{ij}}",
+   "linear": false,
+   "pred": "[дй']= 1 дд"
+  },
+  {
+   "file": "0068bc1f523b42d8.jpg",
+   "label": "P(e^{\\prime})=\\{a_{1},b_{4}\\}",
+   "linear": false,
+   "pred": "р (ё) = {а..вс}"
+  },
+  {
+   "file": "006b9bfab1127fac.jpg",
+   "label": "X\\frac{d}{dX}",
+   "linear": false,
+   "pred": "х д"
+  },
+  {
+   "file": "006fb32b84a99137.jpg",
+   "label": "[\\begin{matrix}1&1\\\\ 0&1\\end{matrix}]",
+   "linear": false,
+   "pred": "[!]"
+  },
+  {
+   "file": "0075591d8b2ba4d2.jpg",
+   "label": "F_{x}[f(x)]",
+   "linear": false,
+   "pred": "Fx [f (х)]"
+  },
+  {
+   "file": "007a46e2dd19428e.jpg",
+   "label": "4^{-N}(\\begin{matrix}2N\\\\ N\\end{matrix})\\approx\\frac{1}{\\sqrt{\\pi N}}",
+   "linear": false,
+   "pred": "F (2N) = 1"
+  },
+  {
+   "file": "007a639f47c479d0.jpg",
+   "label": "\\sqrt[3]{z}",
+   "linear": false,
+   "pred": "3г 2"
+  },
+  {
+   "file": "008004981b5b3ee1.jpg",
+   "label": "\\tilde{E}=E\\times\\mathbb{Z}_{n}",
+   "linear": false,
+   "pred": "Ё= [х] п"
+  },
+  {
+   "file": "008d3f60da3e972b.jpg",
+   "label": "(\\begin{matrix}n+1\\\\ 3\\end{matrix})+1",
+   "linear": false,
+   "pred": "(3) +1"
+  },
+  {
+   "file": "008f588f1c25ce16.jpg",
+   "label": "v_{y}\\sqrt{v_{x}^{2}+v_{y}^{2}}",
+   "linear": false,
+   "pred": "Из Р п +у"
+  },
+  {
+   "file": "009183c575123315.jpg",
+   "label": "\\prod_{i=1}^{n}",
+   "linear": false,
+   "pred": "||"
+  },
+  {
+   "file": "00997a3afd226540.jpg",
+   "label": "r=a-|n|\\lfloor\\frac{a}{|n|}\\rfloor",
+   "linear": false,
+   "pred": "г= а- [м] [т]"
+  },
+  {
+   "file": "009f7b727b467490.jpg",
+   "label": "\\frac{\\pi}{2}(i-1)\\le v_{i}<\\frac{\\pi}{2}i",
+   "linear": false,
+   "pred": "+ (й-1) е и: е"
+  },
+  {
+   "file": "009fc6849e2b7909.jpg",
+   "label": "|\\omega_{i}|=q^{1/2}",
+   "linear": false,
+   "pred": "(ш.):=ед'ез"
+  },
+  {
+   "file": "00a32b900a4aa32f.jpg",
+   "label": "(\\begin{matrix}0\\\\ 1\\end{matrix})",
+   "linear": false,
+   "pred": "(?)"
+  },
+  {
+   "file": "00a58f479a9d95b9.jpg",
+   "label": "S_{0}+h\\nu_{ex}\\rightarrow S_{1}",
+   "linear": false,
+   "pred": "5 и 1 н с 3 р."
+  },
+  {
+   "file": "00ac5cd85e462376.jpg",
+   "label": "\\forall u(wR_{i}u\\Rightarrow u\\Vdash A)",
+   "linear": false,
+   "pred": "V и (шР;и и I I А)"
+  },
+  {
+   "file": "00b2a1efdeae0ced.jpg",
+   "label": "H_{n}(\\underline{q},\\underline{x})",
+   "linear": false,
+   "pred": "Нп (д,х)"
+  },
+  {
+   "file": "00b2ce18a5aa30a6.jpg",
+   "label": "\\sum_{i=1}^{k}\\sum_{w\\in V}f_{i}(s_{i},w)",
+   "linear": false,
+   "pred": "ж ж (г, ж)"
+  },
+  {
+   "file": "00b45d3bd1d56ead.jpg",
+   "label": "\\int v_{i}dm",
+   "linear": false,
+   "pred": "Р.п. Ат"
+  },
+  {
+   "file": "00c22b6f5407cf2d.jpg",
+   "label": "K_{h_{\\lambda}}(X_{0},X)",
+   "linear": false,
+   "pred": "Кп (Хо, Х)"
+  },
+  {
+   "file": "00c4f34b460c7933.jpg",
+   "label": "\\hat{f}(k)",
+   "linear": false,
+   "pred": "ф (к)"
+  },
+  {
+   "file": "00c94cb75d8df0bf.jpg",
+   "label": "\\int^{c\\in C}F(c,c)",
+   "linear": false,
+   "pred": "жжж"
+  },
+  {
+   "file": "00d3c94d3fc0dd27.jpg",
+   "label": "arctan\\sqrt{2}=54.7^{\\circ}",
+   "linear": false,
+   "pred": "ачстап№2= 54.7"
+  },
+  {
+   "file": "00e00364101abad0.jpg",
+   "label": "[\\begin{matrix}a&b\\\\ c&d\\\\ \\end{matrix}]",
+   "linear": false,
+   "pred": "[ а в ]"
+  },
+  {
+   "file": "00e6d1340b0b48b7.jpg",
+   "label": "(\\begin{matrix}k-1\\\\ D-1\\end{matrix})",
+   "linear": false,
+   "pred": "(к-1)"
+  },
+  {
+   "file": "00e8bf4cde24f874.jpg",
+   "label": ";u",
+   "linear": true,
+   "pred": "зи",
+   "cer": 1.0
+  },
+  {
+   "file": "00ed2238753c9850.jpg",
+   "label": "G,\\overline{G},\\tilde{G}",
+   "linear": false,
+   "pred": "А. п. Г"
+  },
+  {
+   "file": "00ee5698f103452f.jpg",
+   "label": "F=Mg=\\dot{m}\\Delta v",
+   "linear": false,
+   "pred": "F= Мд= т 00"
+  },
+  {
+   "file": "00f3fa64f4c2235f.jpg",
+   "label": "(X,Y,Z,aZ^{4})",
+   "linear": false,
+   "pred": "(Х, У, ч, а ч)"
+  },
+  {
+   "file": "00f546829c405447.jpg",
+   "label": "[K^{j},P^{k}]=i\\delta^{jk}H",
+   "linear": false,
+   "pred": "[К' р']= ижн"
+  },
+  {
+   "file": "0101e1e2b84d7837.jpg",
+   "label": "H_{i}=\\langle h_{i},G^{\\prime}\\rangle",
+   "linear": false,
+   "pred": "Н;= [н, б']"
+  },
+  {
+   "file": "01054bf06792066a.jpg",
+   "label": "\\sum_{0\\le k\\le n}(\\begin{matrix}n\\\\ k\\end{matrix})=2^{n}",
+   "linear": false,
+   "pred": "2 (п) = 2"
+  },
+  {
+   "file": "01058e873802b3d2.jpg",
+   "label": "\\xi_{[t]}=(\\xi_{1},...,\\xi_{t})",
+   "linear": false,
+   "pred": "3 [т] = (3,...., 3, 3)"
+  },
+  {
+   "file": "010963a06d1d5a79.jpg",
+   "label": "\\tilde{\\gamma}(0)=p",
+   "linear": false,
+   "pred": "П(о) = р"
+  },
+  {
+   "file": "0114d751a72fd56b.jpg",
+   "label": "y=c_{1}e^{x}+xe^{x}",
+   "linear": false,
+   "pred": "у= с. е+ хе"
+  },
+  {
+   "file": "0115ad5ee12ad7d4.jpg",
+   "label": "(\\begin{matrix}[n]\\\\ 1\\end{matrix})",
+   "linear": false,
+   "pred": "(п)"
+  },
+  {
+   "file": "011a66ef71133c7d.jpg",
+   "label": "c\\notin A",
+   "linear": false,
+   "pred": "с А"
+  },
+  {
+   "file": "011bc2c4d3e15714.jpg",
+   "label": "T_{0}=2\\pi\\sqrt{\\frac{l}{g}}",
+   "linear": false,
+   "pred": "т. = 2п гля"
+  },
+  {
+   "file": "011f633d896bd07b.jpg",
+   "label": "p\\in Z(g^{*})",
+   "linear": false,
+   "pred": "р ез (д'"
+  },
+  {
+   "file": "012c517a05e2c2d4.jpg",
+   "label": "\\int x^{k}d\\mu(x)=m_{k}",
+   "linear": false,
+   "pred": "х к дм (х): тк"
+  },
+  {
+   "file": "012cebd6f0be97bb.jpg",
+   "label": "X_{i}=(Y|Y>K)",
+   "linear": false,
+   "pred": "х: =(У/Ук)"
+  },
+  {
+   "file": "012f1f23d40a2995.jpg",
+   "label": "\\int_{\\gamma}f(z)dz",
+   "linear": false,
+   "pred": "П, 7 (п) а7"
+  },
+  {
+   "file": "013b7229b727f967.jpg",
+   "label": "a\\notin A",
+   "linear": false,
+   "pred": "а А"
+  },
+  {
+   "file": "013f565c7a547d0b.jpg",
+   "label": "\\mu_{G}(H_{1},H_{2})=(-1)^{k}p^{(\\begin{matrix}k\\\\ 2\\end{matrix})}",
+   "linear": false,
+   "pred": "Ма (Н, Н2) = (1) к (к)"
+  },
+  {
+   "file": "01468b08b993df97.jpg",
+   "label": "lim_{\\lambda\\in\\Lambda}||ae_{\\lambda}-a||\\rightarrow0",
+   "linear": false,
+   "pred": "(ит, ел, а, о)"
+  },
+  {
+   "file": "01470b33b8c78f3f.jpg",
+   "label": "X:=\\bigcup_{k=1}^{m}3B_{j_{k}}",
+   "linear": false,
+   "pred": "х: = и, 3 в.ж"
+  },
+  {
+   "file": "014be054e72e64fd.jpg",
+   "label": "\\int_{1}^{0}\\frac{dt}{t}=-\\infty",
+   "linear": false,
+   "pred": "%+/-=+/-"
+  },
+  {
+   "file": "014d90d483380e66.jpg",
+   "label": "\\langle\\psi^{jk}|\\psi_{lm}\\rangle=\\delta_{jl}\\delta_{km}",
+   "linear": false,
+   "pred": "(ч')(ч,п)"
+  },
+  {
+   "file": "01529aa0572f4897.jpg",
+   "label": "R_{x}=(R_{2}/R_{1})\\cdot R_{3}",
+   "linear": false,
+   "pred": "Рх= (Р2/Р1). Р3"
+  },
+  {
+   "file": "0154666b7b559c17.jpg",
+   "label": "a\\cdot(pb)\\ne pa\\cdot b",
+   "linear": false,
+   "pred": "а. (рв) =р а. в"
+  },
+  {
+   "file": "0155c0fe01231b04.jpg",
+   "label": "\\tilde{X}\\in T_{e}E",
+   "linear": false,
+   "pred": "хетеЕ"
+  },
+  {
+   "file": "016af79ba8f2cca8.jpg",
+   "label": "1.3\\frac{a}{d}\\sqrt{n}",
+   "linear": false,
+   "pred": "1.3 л п"
+  },
+  {
+   "file": "016e9b0a2882071d.jpg",
+   "label": "x=\\sqrt[3]{u}+\\sqrt[3]{v}",
+   "linear": false,
+   "pred": "х и + гл"
+  },
+  {
+   "file": "0178bf7cceb64473.jpg",
+   "label": "L>>(x+a/2)",
+   "linear": true,
+   "pred": "L\" (х+ а/г)",
+   "cer": 0.5
+  },
+  {
+   "file": "017a79eea7fa5f63.jpg",
+   "label": "(l_{1}+l_{2})^{\\theta}=l_{1}^{\\theta}+l_{2}^{\\theta}",
+   "linear": false,
+   "pred": "(1, -1) = 1, -1"
+  },
+  {
+   "file": "017b290258802288.jpg",
+   "label": "A_{\\mu}\\rightarrow A_{\\mu}+\\partial_{\\mu}\\phi(x)",
+   "linear": false,
+   "pred": "Ам- Ам- О,п(х)"
+  },
+  {
+   "file": "017c4e5970880570.jpg",
+   "label": "2,\\sqrt{5},\\sqrt{6},3",
+   "linear": false,
+   "pred": "2, Р. 3"
+  },
+  {
+   "file": "01844e9baa82698c.jpg",
+   "label": "\\rho(r)\\sim e^{-2Z_{\\alpha}r}",
+   "linear": false,
+   "pred": "р (г) -е -2х.г"
+  },
+  {
+   "file": "018b8fb309ce7af2.jpg",
+   "label": "d\\overline{v}=-\\frac{e\\cdot\\overline{E}}{m}dt",
+   "linear": false,
+   "pred": "бй=- е. Е дт"
+  },
+  {
+   "file": "018f456e217f1301.jpg",
+   "label": "log\\hat{\\lambda}\\approx Z\\sqrt{4/D}",
+   "linear": false,
+   "pred": "(од) = 2 4 /Д"
+  },
+  {
+   "file": "018f48ac8fe4bd53.jpg",
+   "label": "|0|<|1|+|-2|",
+   "linear": true,
+   "pred": "(0) [||+ -2]",
+   "cer": 0.5
+  },
+  {
+   "file": "018f8eb18419d5bb.jpg",
+   "label": "\\tilde{v}",
+   "linear": false,
+   "pred": "й"
+  },
+  {
+   "file": "018fb881d2eef21d.jpg",
+   "label": "F_{r}=\\frac{v}{\\sqrt{g\\frac{A}{B}}}",
+   "linear": false,
+   "pred": "F, = ,"
+  },
+  {
+   "file": "01927fe0f1d3c23d.jpg",
+   "label": "(\\begin{matrix}0&1\\\\ -1&0\\\\ \\end{matrix})",
+   "linear": false,
+   "pred": "(0 1)"
+  },
+  {
+   "file": "0198a68035125b5a.jpg",
+   "label": "G",
+   "linear": true,
+   "pred": "Д",
+   "cer": 1.0
+  },
+  {
+   "file": "01992bb808919d17.jpg",
+   "label": "1^{\\prime}s",
+   "linear": false,
+   "pred": "is"
+  },
+  {
+   "file": "01998b624db95830.jpg",
+   "label": "\\hat{\\beta}=(\\overline{y/x})",
+   "linear": false,
+   "pred": "р: (ч/х)"
+  },
+  {
+   "file": "019d0ab8b91ae217.jpg",
+   "label": "L_{X}dz=f(z)dz",
+   "linear": false,
+   "pred": "1х д2= ф(г)д2"
+  },
+  {
+   "file": "01a0415f932322d3.jpg",
+   "label": "\\rho(\\nu)d\\nu=\\frac{u(\\nu)d\\nu}{V}",
+   "linear": false,
+   "pred": "р (и) 6д = и (и) 6д"
+  },
+  {
+   "file": "01a0b54b759ab60d.jpg",
+   "label": "3k+1=2^{a}k^{\\prime}",
+   "linear": false,
+   "pred": "3к+1= 2к"
+  },
+  {
+   "file": "01a33dcbdaf5d858.jpg",
+   "label": "\\hat{\\theta}=\\hat{z}",
+   "linear": false,
+   "pred": "о"
+  },
+  {
+   "file": "01a595d8d764a7b7.jpg",
+   "label": "f_{c}=\\frac{1}{2\\pi C(R+S)}",
+   "linear": false,
+   "pred": "f: -ппс (е+5)"
+  },
+  {
+   "file": "01ab63ab784befeb.jpg",
+   "label": "C[x,y]/(x,y)\\cong C",
+   "linear": false,
+   "pred": "С [х, у] / (х, у) = с"
+  },
+  {
+   "file": "000a4e8ca49c5a1c.jpg",
+   "label": "(x-y)/sqrt(2)",
+   "linear": true,
+   "pred": "х- у/ сqrt (г)",
+   "cer": 0.4615
+  },
+  {
+   "file": "001083e26028da36.jpg",
+   "label": "\\nabla I=(I_{x},I_{y})",
+   "linear": false,
+   "pred": "I (I, I,)"
+  },
+  {
+   "file": "0017bb5822bcba69.jpg",
+   "label": "P=P(C(Z))",
+   "linear": true,
+   "pred": "Р=Р (с(з))",
+   "cer": 0.4444
+  },
+  {
+   "file": "002ae6d5dd4173e4.jpg",
+   "label": "x_{1}-x_{2}+x_{0}=0",
+   "linear": false,
+   "pred": "х- х 2 + хо = О"
+  },
+  {
+   "file": "00386113d577085b.jpg",
+   "label": "\\langle a_{0},a_{1},...\\rangle\\in R^{\\omega}",
+   "linear": false,
+   "pred": "(А., а, ...) е Р"
+  },
+  {
+   "file": "003ca9082c7047d3.jpg",
+   "label": "\\partial_{i}f=\\frac{\\partial f}{\\partial\\xi^{i}}:=\\frac{\\partial\\overline{f}}{\\partial\\xi^{i}}",
+   "linear": false,
+   "pred": "0' = - б б' = - б б'"
+  },
+  {
+   "file": "004c9413be3ff1be.jpg",
+   "label": "\\langle A\\rangle_{\\psi}=||A\\psi||^{2}",
+   "linear": false,
+   "pred": "< А > = < А ф >"
+  },
+  {
+   "file": "004fc8d3f626f1d9.jpg",
+   "label": "\\delta_{j,j_{1}}\\delta_{m,m_{1}}",
+   "linear": false,
+   "pred": "бд, д 2 т.т."
+  },
+  {
+   "file": "0052b8e13b5f4a36.jpg",
+   "label": "w(\\neg\\theta)=F_{\\neg}(w(\\theta))",
+   "linear": false,
+   "pred": "ш (-о) = F, (ш (о))"
+  },
+  {
+   "file": "00692074bbc0f678.jpg",
+   "label": "t\\longrightarrow F(t,t_{0},x)",
+   "linear": false,
+   "pred": "+ f (+, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,"
+  },
+  {
+   "file": "006badbfc63bbd21.jpg",
+   "label": "p=(p_{x},p_{y},p_{z})",
+   "linear": false,
+   "pred": "р (Рх, Р., Р2)"
+  },
+  {
+   "file": "0082d4aa943b9f8c.jpg",
+   "label": "|\\frac{d^{2}y}{dx^{2}}|\\approx\\frac{1}{R}",
+   "linear": false,
+   "pred": "(пп')= 1"
+  },
+  {
+   "file": "0083f66ddd05c46c.jpg",
+   "label": "m_{i,j}=x^{i}\\cdot x^{j}",
+   "linear": false,
+   "pred": "т. ,= х- х'"
+  },
+  {
+   "file": "0090db2a639b5c98.jpg",
+   "label": "S_{ijk}\\rightarrow S_{ij}(\\omega_{k})",
+   "linear": false,
+   "pred": "Сйь  Ёз (шк)"
+  },
+  {
+   "file": "00915f0ffe17930e.jpg",
+   "label": "(g^{a}modp,g,p)",
+   "linear": false,
+   "pred": "(д т.в.,г.р.)"
+  },
+  {
+   "file": "009d124a50399bba.jpg",
+   "label": "J_{i}=\\sum_{j}L_{ij}\\frac{\\partial F_{j}}{\\partial x_{j}}",
+   "linear": false,
+   "pred": "Г; = , л; , ж"
+  },
+  {
+   "file": "009fb93aab47d6f5.jpg",
+   "label": "\\{f_{X}(\\cdot;\\theta)|\\theta\\in\\Theta\\}",
+   "linear": false,
+   "pred": "{fx(;:о) |о ео}"
+  },
+  {
+   "file": "00ad7566b9f1d872.jpg",
+   "label": "\\dot{x}(t)=f(x(t))",
+   "linear": false,
+   "pred": "х (т) = ф (х (т))"
+  },
+  {
+   "file": "00ba90fe7f71d8c6.jpg",
+   "label": "\\Omega((logn)/n^{2})",
+   "linear": false,
+   "pred": "г (Пунп)"
+  },
+  {
+   "file": "00c46c9b07b39bb7.jpg",
+   "label": "l_{n}=kl_{n}\\cdot\\frac{b_{n}}{b_{a}}\\cdot\\frac{s_{n}}{s_{a}}",
+   "linear": false,
+   "pred": "п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п п"
+  },
+  {
+   "file": "00d4fc6636cbf2d9.jpg",
+   "label": "\\tilde{g}_{n}=[\\begin{matrix}g_{n}\\\\ \\gamma_{n}\\end{matrix}]",
+   "linear": false,
+   "pred": "д п = [ д п]"
+  },
+  {
+   "file": "00db5331b85f4d47.jpg",
+   "label": "N=|V|",
+   "linear": true,
+   "pred": "N= (N)",
+   "cer": 0.6
+  },
+  {
+   "file": "00eaf4f2d3d20bb1.jpg",
+   "label": "B=ln(-b)",
+   "linear": true,
+   "pred": "В= Пп (-ь)",
+   "cer": 0.5
+  },
+  {
+   "file": "00fcddfee1ebfee6.jpg",
+   "label": "2sin(x/2)",
+   "linear": true,
+   "pred": "2sin (х/г)",
+   "cer": 0.2222
+  },
+  {
+   "file": "00fee560e6c9af79.jpg",
+   "label": "\\sqrt{1-\\omega^{2}r_{0}^{2}}",
+   "linear": false,
+   "pred": "1- [г] 2"
+  },
+  {
+   "file": "010d0f9e951a7a44.jpg",
+   "label": "x_{i}^{\\prime}\\equiv\\frac{1}{1+e^{-\\frac{x_{i}-\\mu_{i}}{\\sigma_{i}}}}",
+   "linear": false,
+   "pred": "х- -е- -и"
+  },
+  {
+   "file": "010d4fea2361f01f.jpg",
+   "label": "Inj(M_{i})<\\epsilon(n)",
+   "linear": false,
+   "pred": "(п) (М.) е (п)"
+  },
+  {
+   "file": "0111fa141bb73b48.jpg",
+   "label": "-a^{n}u[-n-1]",
+   "linear": false,
+   "pred": "-а и [п-]"
+  },
+  {
+   "file": "0114e881d8b22bbb.jpg",
+   "label": "(\\Lambda(A):A\\in B_{b}(S))",
+   "linear": false,
+   "pred": "(л(а) : а (в ь (г))"
+  },
+  {
+   "file": "011f1f41eb55b661.jpg",
+   "label": "(\\frac{lnN}{N})\\rightarrow0",
+   "linear": false,
+   "pred": "(п п) о"
+  },
+  {
+   "file": "0121d7fdad59c8ab.jpg",
+   "label": "\\Leftrightarrow|PA|^{2}=9|PB|^{2}",
+   "linear": false,
+   "pred": "2 2"
+  },
+  {
+   "file": "01292cf19c2c9c7c.jpg",
+   "label": "u=1+l^{2}+m^{2}",
+   "linear": false,
+   "pred": "и= 1+ т"
+  },
+  {
+   "file": "013a32b84ce6252f.jpg",
+   "label": "\\{L(u,v):u,v\\in X\\}",
+   "linear": false,
+   "pred": "[ (и,и) :и,иех]"
+  },
+  {
+   "file": "01453872d3d2afe5.jpg",
+   "label": "=J+\\epsilon_{0}\\frac{\\partial E}{\\partial t}",
+   "linear": false,
+   "pred": "=] - [о - [от"
+  },
+  {
+   "file": "014f7412fa06f5c0.jpg",
+   "label": "||L_{x}||_{(l^{p})^{*}}=||x||_{q}",
+   "linear": false,
+   "pred": "||(х||(ср)'=||х||п"
+  },
+  {
+   "file": "015e012d8baa97f3.jpg",
+   "label": "\\epsilon,\\delta,K>0",
+   "linear": false,
+   "pred": "е,д,к о"
+  },
+  {
+   "file": "016a39f81ff20b8d.jpg",
+   "label": "\\frac{\\partial}{\\partial\\overline{z}}w(z)=0",
+   "linear": false,
+   "pred": "б з (з) = о"
+  },
+  {
+   "file": "01752f0f5fba0225.jpg",
+   "label": "L=(\\begin{matrix}1&0\\\\ \\frac{-1}{f}&1\\end{matrix})",
+   "linear": false,
+   "pred": "л= ( 1 )"
+  },
+  {
+   "file": "0175c1fb5814dc11.jpg",
+   "label": "\\Omega=\\sqrt{|\\chi_{g,e}|^{2}+\\delta^{2}}",
+   "linear": false,
+   "pred": "г = [х] + б"
+  },
+  {
+   "file": "0180366e774d93be.jpg",
+   "label": "\\Omega(eg)=g^{-1}\\Omega(e)g",
+   "linear": false,
+   "pred": "2 (ед) = д (е) д"
+  },
+  {
+   "file": "01859fc130dc9008.jpg",
+   "label": "(++++)",
+   "linear": true,
+   "pred": "(++++)",
+   "cer": 0.0
+  },
+  {
+   "file": "01917677eaf160bb.jpg",
+   "label": "Pr(s|I)\\propto1/s",
+   "linear": false,
+   "pred": "р, (3 I) а е' ш"
+  },
+  {
+   "file": "0199f657babdf636.jpg",
+   "label": "\\prod_{p}p/(p-1)",
+   "linear": false,
+   "pred": "||р/ (р- 1)"
+  },
+  {
+   "file": "01a2f3186b7e33e1.jpg",
+   "label": "(2n,n,\\lambda,1)",
+   "linear": false,
+   "pred": "(2п, п, 1, 1)"
+  },
+  {
+   "file": "01a53ae1e3a9b918.jpg",
+   "label": "E:R^{n}\\rightarrow T_{p}M",
+   "linear": false,
+   "pred": "с: Р т. м"
+  },
+  {
+   "file": "01ab618a2350036f.jpg",
+   "label": "f_{n}\\rightarrow\\chi_{[1,2)}",
+   "linear": false,
+   "pred": "п [1, 2)"
+  },
+  {
+   "file": "01b552b8a037ab13.jpg",
+   "label": "T_{pq}(e_{p}\\otimes e_{q})",
+   "linear": false,
+   "pred": "Тп (ер ез)"
+  },
+  {
+   "file": "01b74db41e479782.jpg",
+   "label": "\\vec{x}\\in S",
+   "linear": false,
+   "pred": "х е 5"
+  },
+  {
+   "file": "01c37bbe7ea55c56.jpg",
+   "label": "T+ATT=1+E",
+   "linear": true,
+   "pred": "T+ Атт= 1+Е",
+   "cer": 0.4444
+  },
+  {
+   "file": "01cdd808862eab64.jpg",
+   "label": "T^{t}:=S^{1}\\times\\cdot\\cdot\\cdot\\times S^{1}",
+   "linear": false,
+   "pred": "т = с' х ... х с'"
+  },
+  {
+   "file": "01cf085d26abe325.jpg",
+   "label": "G^{p^{k}}=\\{g^{p^{k}}|g\\in G\\}",
+   "linear": false,
+   "pred": "ср'= [др'] д ср'"
+  },
+  {
+   "file": "01d12458811a5a38.jpg",
+   "label": "\\Omega=arg(-z_{2},z_{1})",
+   "linear": false,
+   "pred": "2= avg (-т., т.)"
+  },
+  {
+   "file": "01d2b56291c7ffdd.jpg",
+   "label": "N_{i}\\overline{r_{i}}",
+   "linear": false,
+   "pred": "N; г;"
+  },
+  {
+   "file": "01d2f97f90ed79e6.jpg",
+   "label": "m\\equiv\\frac{RF_{,R}}{F}",
+   "linear": false,
+   "pred": "т= F, 2"
+  },
+  {
+   "file": "01d4d9a9dc145333.jpg",
+   "label": "K_{m}=\\frac{1}{2}(k_{1}+k_{2})",
+   "linear": false,
+   "pred": "Кт= - (к, +к)"
+  },
+  {
+   "file": "01d54b93c127e89c.jpg",
+   "label": "F^{0}[f]=f",
+   "linear": false,
+   "pred": "F [f] = f"
+  },
+  {
+   "file": "01d90fce29b20f64.jpg",
+   "label": "A\\models_{X}^{+}Rt_{1}...t_{n}",
+   "linear": false,
+   "pred": "А/=х Рт.. т."
+  },
+  {
+   "file": "01e4c8973307a964.jpg",
+   "label": "|g,n\\rangle\\rightarrow|e,n-1\\rangle",
+   "linear": false,
+   "pred": "(д, п) (е, п- )"
+  },
+  {
+   "file": "01e6c79f4d27bc54.jpg",
+   "label": "N(t)=N_{0}2^{-t/t_{1/2}}",
+   "linear": false,
+   "pred": "N (т) =№2 т/т.п"
+  },
+  {
+   "file": "01f3445177808c3d.jpg",
+   "label": "X_{2i}\\epsilon R^{Q}",
+   "linear": false,
+   "pred": "Х 2 е В 0"
+  },
+  {
+   "file": "0204f1101b3f4033.jpg",
+   "label": "(x,y,\\theta,\\kappa,\\kappa^{\\prime})",
+   "linear": false,
+   "pred": "(х,ч,о,к,к')"
+  },
+  {
+   "file": "02248037ee4a5528.jpg",
+   "label": "(h,h(\\hat{k}),h(\\hat{l}))",
+   "linear": false,
+   "pred": "(н, н (К, н (т)"
+  },
+  {
+   "file": "022b4cfb5a5a3856.jpg",
+   "label": "d^{\\prime}=V_{ud}d+V_{us}s",
+   "linear": false,
+   "pred": "а'= Vnd а+ Vns S"
+  },
+  {
+   "file": "022be26e0a8ab535.jpg",
+   "label": "|\\psi\\rangle=\\sum_{n=0}^{\\infty}a_{n}|\\psi_{n}\\rangle",
+   "linear": false,
+   "pred": "(и) = пп (фп)"
+  },
+  {
+   "file": "0235a447c15a24d7.jpg",
+   "label": "nlog_{2}n-\\frac{n}{ln2}",
+   "linear": false,
+   "pred": "предп- пред"
+  },
+  {
+   "file": "023a443f36a838ff.jpg",
+   "label": "\\nabla_{\\vec{\\theta}}=D_{d}\\nabla",
+   "linear": false,
+   "pred": "т = ДдV"
+  },
+  {
+   "file": "024279a4b8037bae.jpg",
+   "label": "f(y)=2+2y+y^{2}",
+   "linear": false,
+   "pred": "f(у) = 2+2у+у²"
+  },
+  {
+   "file": "0247a5d7e1002d66.jpg",
+   "label": "|V_{0}|\\gg E_{f}",
+   "linear": false,
+   "pred": "(В0) \"Е."
+  },
+  {
+   "file": "0255dc5b14261907.jpg",
+   "label": "1+x+\\frac{x^{2}}{2}",
+   "linear": false,
+   "pred": "1+ х+ х²"
+  },
+  {
+   "file": "025f51bee0e59494.jpg",
+   "label": "g=g_{-1}\\oplus g_{0}\\oplus g_{1}",
+   "linear": false,
+   "pred": "д=д, +д. +д,"
+  },
+  {
+   "file": "02657f6bba1d2004.jpg",
+   "label": "f_{a}(bx)=f_{f_{a}(b)}(x)",
+   "linear": false,
+   "pred": "f. (bx) = ф (ь) (и)"
+  },
+  {
+   "file": "026fd85034106735.jpg",
+   "label": "T^{-1}=(T_{b}^{a})^{-1}",
+   "linear": false,
+   "pred": "т'=(т'п')-"
+  },
+  {
+   "file": "02720f6a67e8bc09.jpg",
+   "label": "L_{10}=(C/P)^{p}",
+   "linear": false,
+   "pred": "Лю= (с/р)"
+  },
+  {
+   "file": "0272a794109d5d2d.jpg",
+   "label": "P_{F}=\\sqrt{P_{P}\\cdot P_{L}}",
+   "linear": false,
+   "pred": "Р.р =Рр.р"
+  },
+  {
+   "file": "0276c02c9b9222e9.jpg",
+   "label": "f^{-1}(y)=\\sqrt{y}",
+   "linear": false,
+   "pred": "f'(у)=у"
+  },
+  {
+   "file": "028414d36ea98262.jpg",
+   "label": "\\Delta b/b^{2}\\approx\\Delta f/f^{2}",
+   "linear": false,
+   "pred": "Дь/ь= Дф/ф"
+  },
+  {
+   "file": "02894b4ff1ee6c7b.jpg",
+   "label": "0/x=0,x/x=1",
+   "linear": true,
+   "pred": "О/х=О, х/х=1",
+   "cer": 0.4545
+  },
+  {
+   "file": "028cf1f0507df703.jpg",
+   "label": "U_{i}(I)=I_{L_{i}}",
+   "linear": false,
+   "pred": "I: (I) = I;"
+  },
+  {
+   "file": "029b5da0999d4903.jpg",
+   "label": "\\omega_{\\{(k,i),(k^{\\prime},i^{\\prime}),(k^{\\prime\\prime},i^{\\prime\\prime})\\}}",
+   "linear": false,
+   "pred": "ш- (к;), (к;); (к\", ;\")"
+  },
+  {
+   "file": "029decc2d74fd082.jpg",
+   "label": "abca^{-1}b^{-1}d\\sim?",
+   "linear": false,
+   "pred": "авст в алч?"
+  },
+  {
+   "file": "02ace78dfc726867.jpg",
+   "label": "2sin(\\theta/2)r",
+   "linear": false,
+   "pred": "2 sin (0/2) r"
+  },
+  {
+   "file": "02aced0c052805c6.jpg",
+   "label": "1/x\\approx1-x",
+   "linear": false,
+   "pred": "1/х 1- х"
+  },
+  {
+   "file": "02b1dc6d4efd493a.jpg",
+   "label": "\\Omega(R)=cP(R)",
+   "linear": false,
+   "pred": "г (г) = ср (г)"
+  },
+  {
+   "file": "02b7060b95d998eb.jpg",
+   "label": "-|I|>I_{0}",
+   "linear": false,
+   "pred": "(1) I."
+  },
+  {
+   "file": "02c39c1be9d660b7.jpg",
+   "label": "1-4\\pi r^{3}/3V",
+   "linear": false,
+   "pred": "1- 4- 9- 3 4"
+  },
+  {
+   "file": "02c6f6dea91a2a06.jpg",
+   "label": "(RU^{2}D^{-1}BD^{-1})",
+   "linear": false,
+   "pred": "(ВДВР)"
+  },
+  {
+   "file": "02c9daf282f5a1e3.jpg",
+   "label": "\\sum_{x\\in\\{0,1\\}^{T}}|x\\rangle|f(x)\\rangle",
+   "linear": false,
+   "pred": "х (х) 1ф (п)"
+  },
+  {
+   "file": "02d5b5f98ac5fbd2.jpg",
+   "label": "f_{z}(x)=e^{ix^{t}Zx/2}",
+   "linear": false,
+   "pred": "т 2 (х) = е 2 х 2 (ж)"
+  },
+  {
+   "file": "02da6f52e30f674d.jpg",
+   "label": "2^{k}t_{0}",
+   "linear": false,
+   "pred": "2'то"
+  },
+  {
+   "file": "02dcdb815d18cdf1.jpg",
+   "label": "f(x_{t},t)=x_{t}e^{\\theta t}",
+   "linear": false,
+   "pred": "f (х, т) = х е"
+  },
+  {
+   "file": "02de91b624143438.jpg",
+   "label": "y^{2}=x^{3}-n^{2}x",
+   "linear": false,
+   "pred": "у 2 = х 3 - п 2 х"
+  },
+  {
+   "file": "030373f9d3edac3b.jpg",
+   "label": "\\frac{R_{U}}{r_{e}}\\approx\\frac{r_{H}}{r_{e}}\\approx10^{42}",
+   "linear": false,
+   "pred": "ге= гн= 10"
+  },
+  {
+   "file": "030a0f18b6fcb87b.jpg",
+   "label": "\\pi(x)-\\pi(\\frac{x}{2})\\ge1",
+   "linear": false,
+   "pred": "П(х)- П(х2) 1"
+  },
+  {
+   "file": "030ea5646116a251.jpg",
+   "label": "M_{2}=P_{1}^{\\prime}|P_{2}|...",
+   "linear": false,
+   "pred": "М2= Р2 (Р2).."
+  },
+  {
+   "file": "0316d949cd776194.jpg",
+   "label": "X_{k}=p(e^{2\\pi i\\frac{k}{2^{n}}})",
+   "linear": false,
+   "pred": "Хн=р (е'н'г)"
+  },
+  {
+   "file": "032278982233fefa.jpg",
+   "label": "L_{r},L_{t},L_{L}/10",
+   "linear": false,
+   "pred": "L1, L2, L3/10"
+  },
+  {
+   "file": "032360b882783120.jpg",
+   "label": "\\kappa_{2}=\\mu_{2}^{\\prime}-{\\mu_{1}^{\\prime}}^{2}",
+   "linear": false,
+   "pred": "К2= м2- м'2"
+  },
+  {
+   "file": "0325d90612c71772.jpg",
+   "label": "\\hat{\\Sigma}_{j,/j}",
+   "linear": false,
+   "pred": "д,.л,"
+  },
+  {
+   "file": "03277de2f80a8aaf.jpg",
+   "label": "Y_{n+1}=I-XY_{n}",
+   "linear": false,
+   "pred": "Упр 2- хп"
+  },
+  {
+   "file": "0333d9584ff7c0d0.jpg",
+   "label": "f^{-1}(x)=\\frac{1}{f(x)}",
+   "linear": false,
+   "pred": "f'(х)= ф(х)"
+  }
+ ]
+}
