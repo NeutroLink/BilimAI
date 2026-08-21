@@ -92,9 +92,142 @@ def rasterize(polys, w, h, sx, sy, ox=0.0, oy=0.0):
         for q, aa in shr:
             cv2.fillPoly(m[ci], [q.astype(np.int32)], 1)
             if ci != 1 and med > 0 and aa > 2:
-                wgt = float(np.clip(np.sqrt(med / aa), 1.0, 3.0))
+                wgt = float(np.clip(np.sqrt(med / aa), 1.0, float(os.environ.get("WMAX", 3.0))))
                 if wgt > 1.05: cv2.fillPoly(wm[ci], [q.astype(np.int32)], wgt)
     return m, wm
+_SYNTH_FONTS = None
+_SYNTH_VOCAB = ("Упражнение Задача Домашняя работа Классная Диктант Правило Ответ Проверка Словарь Число"
+                " осень зима весна лето снег дождь ветер солнце небо земля вода лес поле река дом село город"
+                " мама папа брат сестра друг школа класс урок книга ручка тетрадь доска стол окно дверь"
+                " бежит идёт стоит лежит поёт живёт растёт цветёт падает светит хорошо плохо быстро медленно").split()
+
+def synth_paste(img, p, rng):
+    """v6: render synthetic cursive Cyrillic words (6 school-script fonts + shear/rotate variety), colour them with ink
+    SAMPLED FROM THIS PAGE'S OWN WRITING, and sit them on the page's real ruled rows — the empty x-stretches of GT
+    text-line bands — so unlike v5's floating crops they land exactly where real writing would. SYNTH_P / SYNTH_N
+    env-tunable; fonts from eval/detectors/fonts_ru or data/fonts/ru_school."""
+    import cv2
+    from PIL import Image, ImageDraw, ImageFont
+    global _SYNTH_FONTS
+    if _SYNTH_FONTS is None:
+        from pathlib import Path as _P
+        for d in (_P(__file__).parent / "fonts_ru", _P(__file__).resolve().parents[2] / "data/fonts/ru_school"):
+            if d.is_dir() and list(d.glob("*.ttf")): _SYNTH_FONTS = sorted(str(f) for f in d.glob("*.ttf")); break
+        if _SYNTH_FONTS is None: _SYNTH_FONTS = []
+    lines = p["polys"]["line"]
+    if not _SYNTH_FONTS or not lines: return img, p
+    H, W = img.shape[:2]
+    boxes = [[q[:, 0].min(), q[:, 1].min(), q[:, 0].max(), q[:, 1].max()]
+             for k in ("word", "teacher", "line") for q in p["polys"][k]]
+    # ink samples from this page's real words (dark pixels inside word polys)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY); samples = []
+    for q in p["polys"]["word"][:12]:
+        x0, y0 = int(q[:, 0].min()), int(q[:, 1].min()); x1, y1 = int(q[:, 0].max()), int(q[:, 1].max())
+        if x1 - x0 < 4 or y1 - y0 < 4: continue
+        g = gray[y0:y1, x0:x1]; c = img[y0:y1, x0:x1]
+        ink = c[g < max(40, int(np.median(g)) - 35)]
+        if len(ink): samples.append(ink[:: max(1, len(ink) // 200)])
+    if not samples: return img, p
+    samples = np.concatenate(samples).astype(np.float32)
+    samples = samples[samples[:, 2] < samples[:, 0] + 25]        # drop reddish pixels — teacher ink bleeding into word boxes
+    if len(samples) < 50: return img, p
+    dark = samples[samples.sum(1) <= np.percentile(samples.sum(1), 30)]   # ink CORE, not the pale anti-aliased fringe
+    # classic blue ballpoint (founder reference sample 2026-08-21): saturated blue core, BGR ≈ (150, 62, 42)
+    base = np.median(dark, 0) * 0.35 + np.float32([150, 62, 42]) * 0.65
+    img = img.copy(); polys = {k: list(v) for k, v in p["polys"].items()}; frags = list(p["frags"])
+    rows = [[q[:, 0].min(), q[:, 1].min(), q[:, 0].max(), q[:, 1].max()] for q in lines]
+    rows = [r for r in rows if 18 <= r[3] - r[1] <= H * 0.08]
+    if not rows: return img, p
+    med_h = float(np.median([r[3] - r[1] for r in rows]))       # page-typical text height; thin outlier rows mislead
+    lo, hi = (int(v) for v in os.environ.get("SYNTH_N", "4,12").split(","))
+    for _ in range(rng.randint(lo, hi)):
+        rb = rows[rng.randrange(len(rows))]                     # row gives the Y (sits on a real rule); X roams the spread
+        rh = med_h * rng.uniform(0.9, 1.3)
+        word = _SYNTH_VOCAB[rng.randrange(len(_SYNTH_VOCAB))]
+        if rng.random() < 0.15: word = str(rng.randint(1, 599)) + ("." if rng.random() < 0.5 else "")
+        f = ImageFont.truetype(_SYNTH_FONTS[rng.randrange(len(_SYNTH_FONTS))], int(rh * 1.1))
+        tw = int(f.getlength(word)) + 20
+        tim = Image.new("L", (tw, int(rh * 2.2)), 0)
+        ImageDraw.Draw(tim).text((10, int(rh * 0.2)), word, fill=255, font=f)
+        m0 = np.array(tim)
+        sh = rng.uniform(-0.05, 0.30); rot = rng.uniform(-0.03, 0.03)   # school slant leans right
+        A = np.float32([[1, sh + rot, 0], [0, 1, 0]])
+        m0 = cv2.warpAffine(m0, A, (m0.shape[1] + int(m0.shape[0] * abs(sh + rot)) + 4, m0.shape[0]))
+        ys, xs = np.nonzero(m0 > 32)
+        if not len(ys): continue
+        m0 = m0[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+        s = (rh * rng.uniform(0.85, 1.15)) / m0.shape[0]     # GT line boxes span ascender→descender; match them
+        m0 = cv2.resize(m0, (max(2, int(m0.shape[1] * s)), max(2, int(m0.shape[0] * s))))
+        dh, dw = m0.shape
+        # find an empty x-stretch in this row band (12 px margins), baseline on the rule
+        ty = int(rb[3] - dh - rh * rng.uniform(0.02, 0.10))
+        if ty < 0 or ty + dh > H: continue                   # ascender-tall word on a top-of-page rule
+        x_lo, x_hi = int(W * 0.04), int(W * 0.96 - dw)
+        if x_hi <= x_lo: continue
+        spot = None
+        for _t in range(25):
+            tx = rng.randrange(x_lo, x_hi)
+            if all(tx + dw + 12 <= b[0] or b[2] + 12 <= tx or ty + dh + 12 <= b[1] or b[3] + 12 <= ty for b in boxes):
+                spot = tx; break
+        if spot is None: continue
+        tx = spot
+        a = cv2.GaussianBlur(m0.astype(np.float32) / 255.0, (3, 3), 0)[..., None] * rng.uniform(0.88, 1.0)
+        # solid dark-blue ink: page-sampled core colour + SMOOTH low-frequency variation (per-pixel noise reads as speckle)
+        field = cv2.GaussianBlur(np.random.normal(0, 18, (dh, dw, 3)).astype(np.float32), (0, 0), max(2, dh / 10))
+        ink = np.clip(base[None, None, :] + field, 0, 255)
+        reg = img[ty:ty + dh, tx:tx + dw].astype(np.float32)
+        img[ty:ty + dh, tx:tx + dw] = (a * ink + (1 - a) * reg).astype(np.uint8)
+        nq = np.array([[tx, ty], [tx + dw, ty], [tx + dw, ty + dh], [tx, ty + dh]], np.float32)
+        polys["word"].append(nq); polys["line"].append(nq)
+        boxes.append([tx, ty, tx + dw, ty + dh]); frags.append([tx, ty, tx + dw, ty + dh])
+    p2 = dict(p); p2["polys"] = polys; p2["frags"] = frags
+    return img, p2
+
+def paste_frags(img, p, rng):
+    """v5 synthetic fragment augmentation: cut 1–2-word snippets from THIS page (same pen/paper/lighting, so the paste
+    is hard to tell from real writing) and feather-blend them onto empty ruled regions. Each paste is appended to the
+    word AND line channels and to frags — the net then sees many more short lines per page, which is exactly what v3/v4
+    miss (96 % of exam misses are ≤2-word lines). PASTE_P / PASTE_N env-tunable."""
+    import cv2
+    H, W = img.shape[:2]
+    words = p["polys"]["word"]
+    if not words: return img, p
+    boxes = [[q[:, 0].min(), q[:, 1].min(), q[:, 0].max(), q[:, 1].max()]
+             for k in ("word", "teacher", "line") for q in p["polys"][k]]
+    donors = [q for q in words if 15 < (q[:, 1].max() - q[:, 1].min()) < H * 0.08
+              and 15 < (q[:, 0].max() - q[:, 0].min()) < W * 0.3]
+    if not donors: return img, p
+    img = img.copy(); polys = {k: list(v) for k, v in p["polys"].items()}; frags = list(p["frags"])
+    # landing zone = bbox of the page's existing writing (+3 % slack) — keeps pastes on the notebook, off the desk
+    zx0 = max(0, min(b[0] for b in boxes) - W * 0.03); zy0 = max(0, min(b[1] for b in boxes) - H * 0.03)
+    zx1 = min(W, max(b[2] for b in boxes) + W * 0.03); zy1 = min(H, max(b[3] for b in boxes) + H * 0.03)
+    lo, hi = (int(v) for v in os.environ.get("PASTE_N", "4,12").split(","))
+    for _ in range(rng.randint(lo, hi)):
+        q = donors[rng.randrange(len(donors))]
+        pad = 6
+        x0 = max(0, int(q[:, 0].min()) - pad); y0 = max(0, int(q[:, 1].min()) - pad)
+        x1 = min(W, int(q[:, 0].max()) + pad); y1 = min(H, int(q[:, 1].max()) + pad)
+        dw, dh = x1 - x0, y1 - y0
+        if dw < 10 or dh < 10 or zx1 - dw <= zx0 or zy1 - dh <= zy0: continue
+        spot = None
+        for _t in range(25):     # rejection-sample an empty landing spot (12 px margin from every existing box)
+            tx = rng.randrange(int(zx0), int(zx1 - dw)); ty = rng.randrange(int(zy0), int(zy1 - dh))
+            if all(tx + dw + 12 <= b[0] or b[2] + 12 <= tx or ty + dh + 12 <= b[1] or b[3] + 12 <= ty for b in boxes):
+                spot = (tx, ty); break
+        if spot is None: continue
+        tx, ty = spot
+        patch = img[y0:y1, x0:x1].astype(np.float32); tgt = img[ty:ty + dh, tx:tx + dw].astype(np.float32)
+        patch = np.clip(patch * np.clip(np.median(tgt) / max(1.0, np.median(patch)), 0.85, 1.18), 0, 255)
+        a = np.zeros((dh, dw), np.float32)
+        cv2.fillPoly(a, [(q - [x0, y0]).astype(np.int32)], 1.0)
+        a = cv2.GaussianBlur(cv2.dilate(a, np.ones((9, 9), np.uint8)), (21, 21), 0)[..., None]
+        img[ty:ty + dh, tx:tx + dw] = (a * patch + (1 - a) * tgt).astype(np.uint8)
+        nq = q + [tx - x0, ty - y0]                   # translate poly into the landing spot's frame
+        polys["word"].append(nq); polys["line"].append(nq)
+        boxes.append([tx, ty, tx + dw, ty + dh]); frags.append([tx, ty, tx + dw, ty + dh])
+    p2 = dict(p); p2["polys"] = polys; p2["frags"] = frags
+    return img, p2
+
 class Ds:
     def __init__(self, pages, train):
         self.pages, self.train = pages, train
@@ -103,8 +236,12 @@ class Ds:
         import cv2
         p = self.pages[i]; img = cv2.imread(p["file"])
         if img is None: return None
+        if self.train and rng.random() < float(os.environ.get("PASTE_P", 0.5)):
+            img, p = paste_frags(img, p, rng)
+        if self.train and rng.random() < float(os.environ.get("SYNTH_P", 0.0)):
+            img, p = synth_paste(img, p, rng)
         H, W = img.shape[:2]
-        if self.train and p["frags"] and rng.random() < 0.65:     # v4: fragment-centred crop 65 % (was 40), stronger zoom
+        if self.train and p["frags"] and rng.random() < float(os.environ.get("FRAG_P", 0.65)):   # v4: fragment-centred crop (was 40 %), stronger zoom; FRAG_P/WMAX env-overridable for the 4-GPU variant sweep
             fb = p["frags"][rng.randrange(len(p["frags"]))]
             cw = rng.uniform(0.25, 0.55) * W; ch = rng.uniform(0.25, 0.55) * H
             cx = min(max(fb[0] + (fb[2] - fb[0]) * rng.random(), cw / 2), W - cw / 2)
