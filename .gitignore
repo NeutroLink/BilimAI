@@ -16,8 +16,11 @@ eval/testset_v1/ru_pages/images/
 eval/testset_v2/ru_pages/images/
 eval/runs/_selftest_*
 eval/runs/_smoke_*
-eval/runs/*/adapter/tokenizer.json
-eval/runs/*/adapter/*.safetensors
-eval/runs/*/adapter/*.bin
-eval/runs/*/pip_list.txt
+# 2026-08-22: a single * does not cross directory separators — eval/runs/r6/<arm>/adapter/... is one level
+# deeper than the old patterns and 1.1 GB of adapter weights nearly got committed. ** matches at any depth.
+eval/runs/**/adapter/tokenizer.json
+eval/runs/**/adapter/*.safetensors
+eval/runs/**/adapter/*.bin
+eval/runs/**/adapter/training_args.bin
+eval/runs/**/pip_list.txt
 .ms_upload_cache

@@ -1,8 +1,14 @@
-"""BilimAI — batched GLM-OCR line reader (2026-08-18). One class used by the product pipeline and every eval script, so
-inference is batched everywhere instead of one line at a time (rule: scripts must use the hardware fully).
+"""BilimAI — batched VLM line reader. One class used by the product pipeline and every eval script, so inference is
+batched everywhere instead of one line at a time (rule: scripts must use the hardware fully).
 
-    r = GLMBatchReader(base, adapter, device=None, prompt="Text Recognition:", line_h=128)
+    r = make_reader(base, adapter)                       # picks the class from config.json model_type
     texts, confs = r.read(crops, batch_size=16)          # crops: list[PIL.Image] → same order
+
+2026-08-22 (R6 base bake-off): generalised from GLM-only to any image-text-to-text VLM. Verified that `glm_ocr` AND
+`qwen3_vl` are both in transformers' MODEL_FOR_IMAGE_TEXT_TO_TEXT auto-map, so AutoProcessor + AutoModelForImageTextToText
+load either one through this identical path — the reader was never really GLM-specific, only its name and dtype were.
+`GLMBatchReader` stays as a subclass with byte-identical behaviour (10 call sites depend on it, and on its
+`name` = "glm-ocr@<adapter>" which lands in the API response as provenance.reader_model).
 
 Batched generation with LEFT padding (decoder-only), same crop recipe as training (resize to height 128), greedy decoding,
 per-line confidence = mean token probability. Deterministic and equal to single-line reads up to fp16 noise (see
@@ -12,18 +18,31 @@ from __future__ import annotations
 from pathlib import Path
 from PIL import Image
 
-class GLMBatchReader:
+class VLMLineReader:
+    """Any image-text-to-text VLM as a batched line reader. Subclasses only set `family` (the provenance name) and the
+    preferred dtype; every method below is model-agnostic."""
+    family = "vlm"
+    prefer_bf16 = False          # set on families trained in bf16 (Qwen3-VL); fp16 can overflow on those weights
+
     def __init__(self, base: str | Path, adapter: str | Path | None = None, device: str | None = None,
-                 prompt: str = "Text Recognition:", line_h: int = 128, max_new_tokens: int = 96):
+                 prompt: str = "Text Recognition:", line_h: int = 128, max_new_tokens: int = 96,
+                 dtype: str | None = None, name: str | None = None):
         self.base, self.adapter, self.prompt, self.line_h, self.max_new = str(base), (str(adapter) if adapter else None), prompt, line_h, max_new_tokens
-        self.device = device; self._m = None
-        self.name = f"glm-ocr@{Path(self.adapter).name if self.adapter else 'base'}"
+        self.device = device; self._m = None; self.dtype = dtype
+        self.name = name or f"{self.family}@{Path(self.adapter).name if self.adapter else 'base'}"
+
+    def _resolve_dtype(self, torch, dev):
+        """Explicit `dtype` wins. Else bf16 for bf16-trained families on CUDA (fp16 can overflow their weights); MPS keeps
+        fp16 because its bf16 support is partial; CPU stays fp32."""
+        if self.dtype is not None: return getattr(torch, self.dtype)
+        if dev == "cuda": return torch.bfloat16 if self.prefer_bf16 else torch.float16
+        return torch.float16 if dev == "mps" else torch.float32
 
     def _load(self):
         import torch
         from transformers import AutoProcessor, AutoModelForImageTextToText
         dev = self.device or ("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
-        dtype = torch.float16 if dev in ("mps", "cuda") else torch.float32
+        dtype = self._resolve_dtype(torch, dev)
         self.proc = AutoProcessor.from_pretrained(self.base)
         self.proc.tokenizer.padding_side = "left"
         m = AutoModelForImageTextToText.from_pretrained(self.base, dtype=dtype).to(dev).eval()
@@ -142,3 +161,36 @@ class GLMBatchReader:
             a, b = sp[wi]; out.append(sum(li[a:b]) - lam * sum(ln[a:b]))
         return out
 
+
+class GLMBatchReader(VLMLineReader):
+    """GLM-OCR (the production reader). Unchanged behaviour: fp16 everywhere, name "glm-ocr@<adapter>"."""
+    family = "glm-ocr"
+    prefer_bf16 = False
+
+
+class QwenVLLineReader(VLMLineReader):
+    """Qwen3-VL family (R6 base bake-off), incl. the community RU-handwriting fine-tunes (gbull25 / Rukopys).
+    bf16 on CUDA: these checkpoints ship bfloat16 and fp16 can overflow them. The prompt default is unchanged —
+    measured 2026-08-18 on gbull25, "Text Recognition:" beat a Russian instruction (0.43 vs 0.47 CER) and English (0.52)."""
+    family = "qwen3-vl"
+    prefer_bf16 = True
+
+
+_FAMILIES = {"glm_ocr": GLMBatchReader, "qwen3_vl": QwenVLLineReader}
+
+
+def reader_class_for(base: str | Path):
+    """Pick the reader class from the checkpoint's own config.json `model_type`. Unknown types fall back to the generic
+    VLMLineReader rather than guessing a family — it still loads, it just carries a neutral provenance name."""
+    import json
+    cfg = Path(base) / "config.json"
+    mt = None
+    if cfg.is_file():
+        try: mt = json.loads(cfg.read_text(encoding="utf-8")).get("model_type")
+        except Exception: mt = None
+    return _FAMILIES.get(mt, VLMLineReader)
+
+
+def make_reader(base: str | Path, adapter: str | Path | None = None, **kw):
+    """The one entry point callers should use: returns the right reader for whatever checkpoint `base` is."""
+    return reader_class_for(base)(base, adapter, **kw)
