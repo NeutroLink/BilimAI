@@ -79,9 +79,8 @@ def _default_locator():
 # ============================================================================ READ
 class GLMReader:
     """VLM line reader (+ optional LoRA adapter). Thin wrapper over bilimai.reader (batched, 2026-08-18).
-    2026-08-22: picks the reader family from the checkpoint's own config.json via make_reader, so a Qwen3-VL base works
-    here unchanged. Defaults are untouched — make_reader on models/GLM-OCR returns GLMBatchReader exactly as before.
-    (Class name kept as GLMReader because it is referenced by name elsewhere; it is no longer GLM-only.)"""
+    2026-08-22: picks the reader family from the checkpoint's own config.json via make_reader, so an alternate base
+    works here unchanged. Defaults are untouched. (Class name kept for compatibility; it is no longer family-specific.)"""
     def __init__(self, base: str | Path = ROOT / "models/GLM-OCR", adapter: str | Path | None = None,
                  device: str | None = None, max_new_tokens: int = 96, line_h: int = 128):
         from .reader import make_reader
@@ -97,7 +96,7 @@ class GLMReader:
 
 # ============================================================================ PIPELINE
 def _default_verifier(reader=None):
-    """E5.8 (2026-08-19): word judges on spelling marks — CTC + PMI fused ("both must agree") when the reader is our GLM
+    """E5.8 (2026-08-19): word judges on spelling marks — CTC + PMI fused ("both must agree") when the reader is our production
     reader, CTC alone otherwise; None if the CTC weights are absent (marks then stay unverified)."""
     try:
         from .verifier import CTCWordVerifier, PMIWordVerifier, FusedWordVerifier, DEFAULT_OCR
