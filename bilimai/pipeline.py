@@ -78,11 +78,14 @@ def _default_locator():
 
 # ============================================================================ READ
 class GLMReader:
-    """GLM-OCR line reader (+ optional LoRA adapter). Thin wrapper over bilimai.reader.GLMBatchReader (batched, 2026-08-18)."""
+    """VLM line reader (+ optional LoRA adapter). Thin wrapper over bilimai.reader (batched, 2026-08-18).
+    2026-08-22: picks the reader family from the checkpoint's own config.json via make_reader, so a Qwen3-VL base works
+    here unchanged. Defaults are untouched — make_reader on models/GLM-OCR returns GLMBatchReader exactly as before.
+    (Class name kept as GLMReader because it is referenced by name elsewhere; it is no longer GLM-only.)"""
     def __init__(self, base: str | Path = ROOT / "models/GLM-OCR", adapter: str | Path | None = None,
                  device: str | None = None, max_new_tokens: int = 96, line_h: int = 128):
-        from .reader import GLMBatchReader
-        self._r = GLMBatchReader(base, adapter, device=device, max_new_tokens=max_new_tokens, line_h=line_h)
+        from .reader import make_reader
+        self._r = make_reader(base, adapter, device=device, max_new_tokens=max_new_tokens, line_h=line_h)
         self.name = self._r.name
 
     def read_line(self, crop: Image.Image) -> tuple[str, float]:
