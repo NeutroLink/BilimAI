@@ -134,6 +134,15 @@
   .type .ic { width: 26px; height: 26px; color: var(--pen); margin-top: 2px; }
   .type b { font-size: 17px; }
   .type span { color: var(--muted); font-size: 15px; }
+  /* --- economics --- */
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; }
+  .tier { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 18px; }
+  .tier .load { font-size: 14px; color: var(--muted); letter-spacing: .01em; }
+  .tier .pages { display: block; margin-top: 6px; font-size: 15px; }
+  .tier .price { display: block; margin-top: 14px; font-size: clamp(24px, 2.6vw, 30px); font-weight: 650; letter-spacing: -0.02em; color: var(--ok); }
+  .tier .per { display: block; margin-top: 2px; font-size: 13px; color: var(--muted); }
+  .costline { margin-top: 26px; padding: 18px 20px; border-left: 3px solid var(--ok); background: var(--ok-tint); border-radius: 0 var(--r) var(--r) 0; }
+  @media (max-width: 780px) { .tiers { grid-template-columns: 1fr; } }
   .oos { margin-top: 18px; color: var(--muted); font-size: 15px; max-width: 70ch; }
 
   /* ---------- principles: three rows on tint ---------- */
@@ -205,6 +214,46 @@
     </div>
   </div>
 </section>
+
+<section class="cost">
+  <div class="wrap">
+    <h2>Экономика, которая масштабируется</h2>
+    <p class="muted">Платформа построена на собственном, специально обученном движке — компактном, быстром и рассчитанном
+      на поток. Чем больше страниц проходит через систему, тем заметнее выигрыш.</p>
+
+    <div class="tiers tiers-3">
+      <div class="tier">
+        <span class="load">1 страница в день</span>
+        <span class="pages">около 180 страниц за учебный год</span>
+        <span class="price">≈ 4 ¢</span>
+        <span class="per">на ученика в год</span>
+      </div>
+      <div class="tier">
+        <span class="load">4 страницы в день</span>
+        <span class="pages">около 720 страниц за учебный год</span>
+        <span class="price">≈ 15 ¢</span>
+        <span class="per">на ученика в год</span>
+      </div>
+      <div class="tier">
+        <span class="load">8 страниц в день</span>
+        <span class="pages">около 1 440 страниц за учебный год</span>
+        <span class="price">≈ 31 ¢</span>
+        <span class="per">на ученика в год</span>
+      </div>
+    </div>
+
+    <div class="costline">
+      <p><b>Школа на 1 000 учеников по 8 страниц в день — это около 300 долларов обработки за учебный год.</b>
+        Почти полтора миллиона проверенных страниц за стоимость одного школьного принтера.</p>
+    </div>
+
+    <p class="oos">Здесь показана стоимость самой обработки, а не цена подписки: хранение, поддержка и сопровождение
+      считаются отдельно. Мы приводим эти цифры, чтобы было видно главное — масштаб не упирается в вычисления.
+      Расчёт по реальным замерам нашей платформы.</p>
+  </div>
+</section>
+
+
 
 <section id="demo">
   <div class="wrap">
