@@ -4,11 +4,9 @@ batched everywhere instead of one line at a time (rule: scripts must use the har
     r = make_reader(base, adapter)                       # picks the class from config.json model_type
     texts, confs = r.read(crops, batch_size=16)          # crops: list[PIL.Image] → same order
 
-2026-08-22 (R6 base bake-off): generalised from GLM-only to any image-text-to-text VLM. Verified that `glm_ocr` AND
-`qwen3_vl` are both in transformers' MODEL_FOR_IMAGE_TEXT_TO_TEXT auto-map, so AutoProcessor + AutoModelForImageTextToText
-load either one through this identical path — the reader was never really GLM-specific, only its name and dtype were.
-`GLMBatchReader` stays as a subclass with byte-identical behaviour (10 call sites depend on it, and on its
-`name` = "glm-ocr@<adapter>" which lands in the API response as provenance.reader_model).
+2026-08-22: generalised to any image-text-to-text VLM — AutoProcessor + AutoModelForImageTextToText load every
+supported family through this identical path; only the provenance name and the preferred dtype differ per family.
+The production reader class keeps byte-identical behaviour and its provenance name (call sites depend on both).
 
 Batched generation with LEFT padding (decoder-only), same crop recipe as training (resize to height 128), greedy decoding,
 per-line confidence = mean token probability. Deterministic and equal to single-line reads up to fp16 noise (see
@@ -169,9 +167,7 @@ class GLMBatchReader(VLMLineReader):
 
 
 class QwenVLLineReader(VLMLineReader):
-    """Qwen3-VL family (R6 base bake-off), incl. the community RU-handwriting fine-tunes (gbull25 / Rukopys).
-    bf16 on CUDA: these checkpoints ship bfloat16 and fp16 can overflow them. The prompt default is unchanged —
-    measured 2026-08-18 on gbull25, "Text Recognition:" beat a Russian instruction (0.43 vs 0.47 CER) and English (0.52)."""
+    """Alternate reader family. Loads in bf16 on CUDA — these checkpoints ship bfloat16 and fp16 can overflow them."""
     family = "qwen3-vl"
     prefer_bf16 = True
 
