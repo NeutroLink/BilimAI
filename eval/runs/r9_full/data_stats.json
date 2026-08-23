@@ -1,0 +1,69 @@
+{
+ "n_train": 40301,
+ "n_val": 120,
+ "weights": {
+  "regions": 1557,
+  "prose": 25570,
+  "maths": 13174
+ },
+ "per_task": {
+  "regions": {
+   "available": 1557,
+   "taken": 1557,
+   "val": 40,
+   "how": "OVERSAMPLED x1.0 (pool smaller than the weight)"
+  },
+  "prose": {
+   "available": 74478,
+   "taken": 25570,
+   "val": 40,
+   "how": "subsample"
+  },
+  "maths": {
+   "available": 74502,
+   "taken": 13174,
+   "val": 40,
+   "how": "subsample"
+  },
+  "uzbek": {
+   "available": 0,
+   "taken": 0,
+   "note": "not supplied — task absent from this run"
+  }
+ },
+ "prompt_fingerprints": {
+  "region": "4ed883f054e7",
+  "strip": "77e8207573e1",
+  "latex": "1d2c6efa6008"
+ },
+ "seed": 7,
+ "tokens_per_sample": {
+  "regions": 3484,
+  "prose": 165,
+  "maths": 183
+ },
+ "train_tokens_total": 12054480,
+ "image_dirs": {
+  "regions": "/kaggle/tmp/r9_regions/images",
+  "maths": "/kaggle/input/datasets/jahongir713/bilimai-hme100k/train_images/train_images",
+  "prose": "/kaggle/input/datasets/jahongir713/bilimai-strips-ru-v1/images"
+ },
+ "subdirs": {
+  "regions": "regions_ru",
+  "prose": "strips_ru",
+  "maths": "hme_train",
+  "uzbek": "strips_uz"
+ },
+ "mix_by_samples": {
+  "regions": 0.039,
+  "prose": 0.634,
+  "maths": 0.327,
+  "uzbek": 0.0
+ },
+ "mix_by_tokens": {
+  "regions": 0.45,
+  "prose": 0.35,
+  "maths": 0.2,
+  "uzbek": 0.0
+ }
+}

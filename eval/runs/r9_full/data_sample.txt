@@ -1,0 +1,26 @@
+IMG hme_train/train_69569.jpg
+PROMPT <image>Look at this handwritten mathematical expression.
+Write it out in LaTeX, exactly as written. Return ONLY the LaTeX, no explanation, no $ delimiters.
+TARGET 9 : 7 : 2 = 9 : 7 : 2
+
+IMG strips_ru/13_157_041.jpg
+PROMPT <image>Text Recognition:
+TARGET спиши упражнение. звонкая гитара,
+
+IMG strips_ru/70_692_030.jpg
+PROMPT <image>Text Recognition:
+TARGET металлу, употребить для
+
+IMG regions_ru/0_8.jpg
+PROMPT <image>This is a photograph of a page from a school exercise book.
+Find EVERY separate piece of handwriting and say WHAT KIND it is. Do not transcribe anything.
+Return ONLY a JSON array, ordered top t
+TARGET [{"bbox_2d": [202,151,206,167],"type": "pupil_note"},
+ {"bbox_2d": [152,155,246,198],"type": "pupil_line"},
+ {"bbox_2d": [132,177,286,229],"type": "pupil_line"},
+ {"bbox_2d": [133,197,439,261],"type": "pupil_line"},
+ {"bbox_2d": [130,242,311,293],"type": "pupil_line"},
+ {"bbox_2d": [134,272,289,334],"type": "pupil_line"},
+ {"bbox_2d": [156,324,323,388],"type": "pupil_line"},
+ {"bbox_2d": [318,333,
+
