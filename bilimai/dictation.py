@@ -145,6 +145,107 @@ def align(key: list[Tok], hyp: list[Tok], ignore_case: bool) -> list[tuple[int |
     return pairs[::-1]
 
 
+def _spans(counts: list[int]) -> list[tuple[int, int]]:
+    """[(start, end)] into a flat token list, from per-line token counts."""
+    out, s = [], 0
+    for c in counts:
+        out.append((s, s + c)); s += c
+    return out
+
+def _badness(key, hyp, pairs, ignore_case) -> int:
+    """How many marks this alignment would produce — the objective we minimise when choosing between two."""
+    n = 0
+    for ki, hj in pairs:
+        if ki is not None and hj is not None:
+            n += _norm(key[ki].text, True) != _norm(hyp[hj].text, True)
+        elif ki is not None:
+            n += 1
+    return n
+
+
+def align_order_robust(key: list[Tok], hyp: list[Tok], hyp_spans: list[tuple[int, int]],
+                       ignore_case: bool) -> list[tuple[int | None, int | None]]:
+    """Alignment that does not punish the pupil for lines arriving in the wrong order.
+
+    WHY THIS EXISTS (measured 2026-08-23). `align` flattens the page into one word stream and aligns it in a
+    single pass. One line delivered out of place slips the two streams out of step, and the words around the
+    slip are compared against the wrong key words and reported as the pupil's spelling mistakes. On real
+    page-level model output: **27.2 invented errors per page**, mean grade 4.75 -> 3.2, half the pages
+    mis-graded, for text that was transcribed perfectly. eval/score.py cannot see any of it — it reassembles
+    lines in ground-truth order before scoring, so it reports the cost of bad ordering as exactly zero.
+
+    HOW. Align once as before; ask each transcript LINE where its words actually landed in the key; re-sort the
+    lines by that; align again. The key is the authority on order, so this needs no correspondence between the
+    key's line breaks and the pupil's — which matters, because there is none: a dictation key is a paragraph
+    and the child wraps it wherever the page ends. (An earlier version matched key lines to transcript lines
+    one-to-one. It scored perfectly when the two happened to share a line structure and collapsed completely
+    when they did not — every word came back `extra_word`. Do not reintroduce it.)
+
+    The result is never worse than the flat alignment: both are scored with `_badness` and the better wins.
+
+    Rejected, measured, do not revisit without a new argument: sorting the model's boxes by position on the
+    page instead of trusting its emission order reaches only ~8.0 invented errors/page (still worth doing —
+    it is free and independent — but not a fix); quantising y into row bands before that sort was WORSE at
+    every width tried (0.5/0.8/1.0/1.3 median line-heights).
+    """
+    flat = align(key, hyp, ignore_case)
+    if len(hyp_spans) < 2:
+        return flat
+
+    # Locate each line in the key INDEPENDENTLY of the flat alignment. Using the flat alignment's own matches
+    # was the obvious idea and it does not work: the lines that are out of place are exactly the ones whose
+    # words the flat pass failed to match, so they are the ones with no anchor — it recovered nothing.
+    # Instead, vote on the offset. Every word of the line that occurs at key position p, at line position i,
+    # is one vote for "this line starts at p - i"; the winning offset is where the line belongs.
+    kn = [_norm(t.text, True) for t in key]
+    at: dict[str, list[int]] = {}
+    for p, w in enumerate(kn):
+        at.setdefault(w, []).append(p)
+    ranked: list[list[tuple[int, int]]] = []            # per line: [(votes, offset), …] best first
+    for s, e in hyp_spans:
+        votes: dict[int, int] = {}
+        for i, j in enumerate(range(s, e)):
+            for p in at.get(_norm(hyp[j].text, True), ()):
+                votes[p - i] = votes.get(p - i, 0) + 1
+        ranked.append(sorted(((v, o) for o, v in votes.items()), key=lambda t: (-t[0], t[1]))[:4])
+
+    # A page repeats itself — «Изложение» heads both halves of a spread, and short lines recur. Both copies
+    # then vote for the same offset, both land on the same anchor, and the sort leaves them where they were.
+    # So offsets are CLAIMED: the most confident line assigns first, and a line whose best slot is taken falls
+    # through to its next-best. Without this, page 2047 (a spread Qwen read one column at a time, with two
+    # duplicate titles) kept 20 invented marks.
+    anchors: list[float | None] = [None] * len(hyp_spans)
+    taken: set[int] = set()
+    for li in sorted(range(len(ranked)), key=lambda i: -(ranked[i][0][0] if ranked[i] else 0)):
+        for v, o in ranked[li]:
+            if o not in taken:
+                anchors[li] = float(o); taken.add(o); break
+        else:
+            if ranked[li]:
+                anchors[li] = float(ranked[li][0][1])
+
+    # A line whose words matched nothing has no opinion about where it belongs — keep it between the
+    # neighbours it was already between, rather than inventing a position for it.
+    last = -1.0
+    for i, v in enumerate(anchors):
+        if v is None:
+            nxt = next((anchors[j] for j in range(i + 1, len(anchors)) if anchors[j] is not None), None)
+            anchors[i] = last if nxt is None else (last + nxt) / 2.0
+        last = anchors[i]
+
+    perm = sorted(range(len(hyp_spans)), key=lambda i: (anchors[i], i))     # stable: ties keep page order
+    if perm == list(range(len(hyp_spans))):
+        return flat                                                        # already in key order — nothing to do
+
+    new2old: list[int] = []
+    for i in perm:
+        new2old.extend(range(*hyp_spans[i]))
+    reordered = [hyp[j] for j in new2old]
+    pairs = [(ki, new2old[hj] if hj is not None else None)
+             for ki, hj in align(key, reordered, ignore_case)]
+    return pairs if _badness(key, hyp, pairs, ignore_case) <= _badness(key, hyp, flat, ignore_case) else flat
+
+
 def _gap_bbox(prev: Tok | None, nxt: Tok | None) -> list | None:
     if prev and prev.bbox:
         x = prev.bbox[2]; return [x, prev.bbox[1], x + max(8, (prev.bbox[3] - prev.bbox[1]) * 0.3), prev.bbox[3]]
@@ -156,12 +257,24 @@ def _gap_bbox(prev: Tok | None, nxt: Tok | None) -> list | None:
 def grade_dictation(key_text: str, transcript: list[dict], *, ignore_case: bool = False,
                     count_punctuation: bool = True, scale: str = "classic-5point",
                     review_threshold: float = 0.6, language: str = "ru",
-                    verifier=None, image=None) -> dict[str, Any]:
+                    verifier=None, image=None, line_align: bool = True) -> dict[str, Any]:
     """`verifier` (bilimai.verifier.CTCWordVerifier) + `image`: every SPELLING mismatch is judged on the ink — verdict
-    `error` (kept, counted), `review` (kept, drawn, flagged, not counted), `ok` (our misread → mark removed). E5.8 2026-08-19."""
+    `error` (kept, counted), `review` (kept, drawn, flagged, not counted), `ok` (our misread → mark removed). E5.8 2026-08-19.
+
+    `line_align` (default ON since 2026-08-23): match transcript lines to key lines by content before aligning
+    words, so a line delivered out of order cannot invent spelling mistakes. See `align_line_first` for the
+    measurements — the old flat behaviour invented 27.2 errors per page on real page-level output and cost half
+    the pages more than a whole grade. Pass `line_align=False` for the pre-2026-08-23 behaviour."""
     key = tokenize(key_text)
     hyp = transcript_tokens(transcript)
-    pairs = align(key, hyp, ignore_case)
+    if line_align:
+        # `transcript_tokens` concatenates tokenize() per line, so these spans are exact by construction.
+        hspans = _spans([len(tokenize(ln.get("text", ""))) for ln in transcript])
+        pairs = (align_order_robust(key, hyp, hspans, ignore_case)
+                 if hspans and hspans[-1][1] == len(hyp)          # else fall back rather than mis-index
+                 else align(key, hyp, ignore_case))
+    else:
+        pairs = align(key, hyp, ignore_case)
 
     errors: list[dict] = []; marks: list[dict] = []
     matched = 0

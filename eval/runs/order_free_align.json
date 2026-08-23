@@ -1,0 +1,199 @@
+{
+ "summary": {
+  "run": "eval/runs/qwen_hard20.json",
+  "pages": 20,
+  "words": 2357,
+  "current_flat_alignment": {
+   "invented_errors": 140,
+   "per_page": 7.0,
+   "per_100_words": 5.94
+  },
+  "proposed_line_matched": {
+   "invented_errors": 0,
+   "per_page": 0.0,
+   "per_100_words": 0.0
+  },
+  "reduction_pct": 100.0,
+  "pages_clean_now": 20,
+  "pages_clean_before": 10,
+  "worst_remaining": [
+   {
+    "file": "2839.jpg",
+    "lines": 27,
+    "words": 39,
+    "flat": 4,
+    "linematched": 0
+   },
+   {
+    "file": "2831.jpg",
+    "lines": 28,
+    "words": 49,
+    "flat": 2,
+    "linematched": 0
+   },
+   {
+    "file": "2897.jpg",
+    "lines": 45,
+    "words": 84,
+    "flat": 16,
+    "linematched": 0
+   },
+   {
+    "file": "2484.jpg",
+    "lines": 33,
+    "words": 117,
+    "flat": 0,
+    "linematched": 0
+   },
+   {
+    "file": "2902.jpg",
+    "lines": 39,
+    "words": 159,
+    "flat": 0,
+    "linematched": 0
+   }
+  ]
+ },
+ "per_page": [
+  {
+   "file": "2839.jpg",
+   "lines": 27,
+   "words": 39,
+   "flat": 4,
+   "linematched": 0
+  },
+  {
+   "file": "2831.jpg",
+   "lines": 28,
+   "words": 49,
+   "flat": 2,
+   "linematched": 0
+  },
+  {
+   "file": "2897.jpg",
+   "lines": 45,
+   "words": 84,
+   "flat": 16,
+   "linematched": 0
+  },
+  {
+   "file": "2484.jpg",
+   "lines": 33,
+   "words": 117,
+   "flat": 0,
+   "linematched": 0
+  },
+  {
+   "file": "2902.jpg",
+   "lines": 39,
+   "words": 159,
+   "flat": 0,
+   "linematched": 0
+  },
+  {
+   "file": "2806.jpg",
+   "lines": 4,
+   "words": 8,
+   "flat": 0,
+   "linematched": 0
+  },
+  {
+   "file": "2905.jpg",
+   "lines": 13,
+   "words": 20,
+   "flat": 2,
+   "linematched": 0
+  },
+  {
+   "file": "2238.jpg",
+   "lines": 23,
+   "words": 96,
+   "flat": 20,
+   "linematched": 0
+  },
+  {
+   "file": "2869.jpg",
+   "lines": 23,
+   "words": 103,
+   "flat": 25,
+   "linematched": 0
+  },
+  {
+   "file": "2044.jpg",
+   "lines": 36,
+   "words": 160,
+   "flat": 0,
+   "linematched": 0
+  },
+  {
+   "file": "2832.jpg",
+   "lines": 4,
+   "words": 4,
+   "flat": 2,
+   "linematched": 0
+  },
+  {
+   "file": "2490.jpg",
+   "lines": 23,
+   "words": 85,
+   "flat": 0,
+   "linematched": 0
+  },
+  {
+   "file": "2239.jpg",
+   "lines": 39,
+   "words": 156,
+   "flat": 0,
+   "linematched": 0
+  },
+  {
+   "file": "2901.jpg",
+   "lines": 29,
+   "words": 119,
+   "flat": 0,
+   "linematched": 0
+  },
+  {
+   "file": "2826.jpg",
+   "lines": 18,
+   "words": 98,
+   "flat": 17,
+   "linematched": 0
+  },
+  {
+   "file": "2919.jpg",
+   "lines": 42,
+   "words": 222,
+   "flat": 0,
+   "linematched": 0
+  },
+  {
+   "file": "2835.jpg",
+   "lines": 46,
+   "words": 176,
+   "flat": 6,
+   "linematched": 0
+  },
+  {
+   "file": "2912.jpg",
+   "lines": 43,
+   "words": 319,
+   "flat": 0,
+   "linematched": 0
+  },
+  {
+   "file": "2834.jpg",
+   "lines": 38,
+   "words": 197,
+   "flat": 0,
+   "linematched": 0
+  },
+  {
+   "file": "2487.jpg",
+   "lines": 72,
+   "words": 146,
+   "flat": 46,
+   "linematched": 0
+  }
+ ]
+}

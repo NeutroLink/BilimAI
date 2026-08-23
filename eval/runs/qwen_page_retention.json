@@ -1,0 +1,40 @@
+{
+ "pages": 18,
+ "prompt_variants": [
+  "complete"
+ ],
+ "prompt_fingerprints": [
+  "0959319b19b7"
+ ],
+ "gt_lines": 833,
+ "lines_found": 626,
+ "found_rate": 0.752,
+ "strict_pairs_on_these_pages": 58,
+ "strict_pairs_on_found_lines": 46,
+ "retention_all_pairs": {
+  "n_pairs": 58,
+  "kept": 3,
+  "corrected": 5,
+  "other": 21,
+  "missing": 29,
+  "retention": 0.052,
+  "autocorrect_rate": 0.086,
+  "correct_words": 2073,
+  "correct_word_err": 0.7892
+ },
+ "retention_on_found": {
+  "n_pairs": 46,
+  "kept": 3,
+  "corrected": 5,
+  "other": 21,
+  "missing": 17,
+  "retention": 0.065,
+  "autocorrect_rate": 0.109,
+  "correct_words": 1521,
+  "correct_word_err": 0.7554
+ },
+ "reference_glm_oracle_crops": {
+  "R5b": 0.45,
+  "R6_best_qwen_ft": 0.586
+ }
+}
