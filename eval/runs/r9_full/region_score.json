@@ -1,0 +1,31 @@
+{
+ "pages": 60,
+ "line_recall": 0.951,
+ "line_matched": 2443,
+ "line_total": 2569,
+ "rp_line_recall": 0.8916,
+ "qwen_zeroshot_line_recall": 0.826,
+ "beats_rp": true,
+ "region_recall": 0.924,
+ "type_accuracy_on_matched": 0.9858,
+ "teacher_regions": 236,
+ "teacher_typed_correctly": 0.6144,
+ "teacher_read_as_pupil": 3,
+ "predicted_type_counts": {
+  "pupil_line": 2254,
+  "pupil_note": 284,
+  "teacher_mark": 191
+ },
+ "median_pred_regions": 47,
+ "median_gt_regions": 47,
+ "len_ratio": 1.0,
+ "types_emitted": [
+  "pupil_line",
+  "pupil_note",
+  "teacher_mark"
+ ],
+ "type_collapse": false,
+ "len_gate": "OK",
+ "derailed_pages": 0,
+ "derailed": []
+}

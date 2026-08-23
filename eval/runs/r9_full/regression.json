@@ -1,0 +1,1688 @@
+{
+ "set_fingerprint": "923aff9a8b31",
+ "base_model": "/kaggle/models/Qwen3-VL-4B-Instruct",
+ "tol": 0.1,
+ "base": {
+  "math_plain": {
+   "n": 14,
+   "mean_cer": 0.1271,
+   "exact": 8
+  },
+  "math_latex": {
+   "n": 60,
+   "mean_cer": 0.361,
+   "exact": 6
+  },
+  "uz_strip": {
+   "n": 24,
+   "mean_cer": 0.0047,
+   "exact": 21
+  },
+  "uz_page": {
+   "n": 3,
+   "mean_cer": 0.005,
+   "exact": 1,
+   "mean_lines_returned": 16.0
+  },
+  "_seconds": 76.1
+ },
+ "adapter": {
+  "math_plain": {
+   "n": 14,
+   "mean_cer": 0.1905,
+   "exact": 6
+  },
+  "math_latex": {
+   "n": 60,
+   "mean_cer": 0.4564,
+   "exact": 7
+  },
+  "uz_strip": {
+   "n": 24,
+   "mean_cer": 0.4496,
+   "exact": 2
+  },
+  "uz_page": {
+   "n": 3,
+   "mean_cer": 0.3638,
+   "exact": 0,
+   "mean_lines_returned": 16.0
+  },
+  "_seconds": 145.6
+ },
+ "delta_cer": {
+  "math_plain": 0.0634,
+  "math_latex": 0.0954,
+  "uz_strip": 0.4449,
+  "uz_page": 0.3588
+ },
+ "page_lines": {
+  "base": 16.0,
+  "adapter": 16.0
+ },
+ "failures": [
+  "uz_strip: CER 0.0047 -> 0.4496 (+0.4449 > tol 0.1)",
+  "uz_page: CER 0.0050 -> 0.3638 (+0.3588 > tol 0.1)"
+ ],
+ "verdict": "REGRESSION_FAIL",
+ "base_rows": [
+  {
+   "image": "math_plain_00bddacfb3de33ce.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "O(nlogn)",
+   "pred": "O(nlogn)"
+  },
+  {
+   "image": "math_plain_0025484cf71c8ab7.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "F",
+   "pred": " F"
+  },
+  {
+   "image": "math_plain_00e8bf4cde24f874.jpg",
+   "task": "math_plain",
+   "cer": 1.0,
+   "n_items": null,
+   "label": ";u",
+   "pred": " jμ"
+  },
+  {
+   "image": "math_plain_0178bf7cceb64473.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "L>>(x+a/2)",
+   "pred": "L >> (x + a/2)"
+  },
+  {
+   "image": "math_plain_018f48ac8fe4bd53.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "|0|<|1|+|-2|",
+   "pred": "|0|<|1|+|-2|"
+  },
+  {
+   "image": "math_plain_0198a68035125b5a.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "G",
+   "pred": "G"
+  },
+  {
+   "image": "math_plain_000a4e8ca49c5a1c.jpg",
+   "task": "math_plain",
+   "cer": 0.1538,
+   "n_items": null,
+   "label": "(x-y)/sqrt(2)",
+   "pred": "x-y/sqrt(2)"
+  },
+  {
+   "image": "math_plain_0017bb5822bcba69.jpg",
+   "task": "math_plain",
+   "cer": 0.2222,
+   "n_items": null,
+   "label": "P=P(C(Z))",
+   "pred": "P=P(c(z))"
+  },
+  {
+   "image": "math_plain_00db5331b85f4d47.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "N=|V|",
+   "pred": "N = |V|"
+  },
+  {
+   "image": "math_plain_00eaf4f2d3d20bb1.jpg",
+   "task": "math_plain",
+   "cer": 0.125,
+   "n_items": null,
+   "label": "B=ln(-b)",
+   "pred": "β = ln(-b)"
+  },
+  {
+   "image": "math_plain_00fcddfee1ebfee6.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "2sin(x/2)",
+   "pred": "2sin(x/2)"
+  },
+  {
+   "image": "math_plain_01859fc130dc9008.jpg",
+   "task": "math_plain",
+   "cer": 0.1667,
+   "n_items": null,
+   "label": "(++++)",
+   "pred": "(+ + +)"
+  },
+  {
+   "image": "math_plain_01c37bbe7ea55c56.jpg",
+   "task": "math_plain",
+   "cer": 0.1111,
+   "n_items": null,
+   "label": "T+ATT=1+E",
+   "pred": "T+ATT=1+TE"
+  },
+  {
+   "image": "math_plain_02894b4ff1ee6c7b.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "0/x=0,x/x=1",
+   "pred": "0/x=0,x/x=1"
+  },
+  {
+   "image": "math_latex_00000b332dcd6fe5.jpg",
+   "task": "math_latex",
+   "cer": 0.7059,
+   "n_items": null,
+   "label": "(\\begin{matrix}j\\\\ m+1\\end{matrix})",
+   "pred": "$\\binom{j}{m+1}$"
+  },
+  {
+   "image": "math_latex_000a4e8ca49c5a1c.jpg",
+   "task": "math_latex",
+   "cer": 0.1538,
+   "n_items": null,
+   "label": "(x-y)/sqrt(2)",
+   "pred": "x-y/sqrt(2)"
+  },
+  {
+   "image": "math_latex_0017bb5822bcba69.jpg",
+   "task": "math_latex",
+   "cer": 0.2222,
+   "n_items": null,
+   "label": "P=P(C(Z))",
+   "pred": "P = P(c(z))"
+  },
+  {
+   "image": "math_latex_00235ec3dee919dd.jpg",
+   "task": "math_latex",
+   "cer": 0.0286,
+   "n_items": null,
+   "label": "\\int_{0}^{\\infty}\\frac{sin(x)}{x}dx",
+   "pred": "\\int_{0}^{\\infty}\\frac{\\sin(x)}{x}dx"
+  },
+  {
+   "image": "math_latex_002651244bc93554.jpg",
+   "task": "math_latex",
+   "cer": 0.2941,
+   "n_items": null,
+   "label": "\\int_{A}P_{A}dA=1",
+   "pred": "\\int_{A} P \\, dA = !"
+  },
+  {
+   "image": "math_latex_00386113d577085b.jpg",
+   "task": "math_latex",
+   "cer": 0.6667,
+   "n_items": null,
+   "label": "\\langle a_{0},a_{1},...\\rangle\\in R^{\\omega}",
+   "pred": "\\langle a_0,a_1,\\ldots\\rangle\\in\\mathbb{R}^{\\mathbb{N}}"
+  },
+  {
+   "image": "math_latex_0047f70eafca2534.jpg",
+   "task": "math_latex",
+   "cer": 0.3143,
+   "n_items": null,
+   "label": "[\\begin{matrix}a\\\\ b\\\\ c\\end{matrix}]",
+   "pred": "$$\\left[ \\begin{array}{c} a \\\\ b \\\\ c \\end{array} \\right]$$"
+  },
+  {
+   "image": "math_latex_0052b8e13b5f4a36.jpg",
+   "task": "math_latex",
+   "cer": 0.2727,
+   "n_items": null,
+   "label": "w(\\neg\\theta)=F_{\\neg}(w(\\theta))",
+   "pred": "w(-\\theta)=F_{\\gamma}(w(\\theta))"
+  },
+  {
+   "image": "math_latex_0067440924b60b2b.jpg",
+   "task": "math_latex",
+   "cer": 0.0385,
+   "n_items": null,
+   "label": "[g^{ij}]=\\frac{1}{g}\\frac{\\partial g}{\\partial g_{ij}}",
+   "pred": "$$[ g ^ { i j } ] = \\frac { 1 } { g } \\frac { \\partial g } { \\partial x ^ { i j } }$$"
+  },
+  {
+   "image": "math_latex_006fb32b84a99137.jpg",
+   "task": "math_latex",
+   "cer": 0.8889,
+   "n_items": null,
+   "label": "[\\begin{matrix}1&1\\\\ 0&1\\end{matrix}]",
+   "pred": "$$[ 0 ; 1 ]$$"
+  },
+  {
+   "image": "math_latex_0082d4aa943b9f8c.jpg",
+   "task": "math_latex",
+   "cer": 0.439,
+   "n_items": null,
+   "label": "|\\frac{d^{2}y}{dx^{2}}|\\approx\\frac{1}{R}",
+   "pred": "| x^2 y | \\approx \\frac{1}{R}"
+  },
+  {
+   "image": "math_latex_0090db2a639b5c98.jpg",
+   "task": "math_latex",
+   "cer": 0.3,
+   "n_items": null,
+   "label": "S_{ijk}\\rightarrow S_{ij}(\\omega_{k})",
+   "pred": "S_{ij} \\rightarrow S_{ij}(w_k)"
+  },
+  {
+   "image": "math_latex_009f7b727b467490.jpg",
+   "task": "math_latex",
+   "cer": 0.6341,
+   "n_items": null,
+   "label": "\\frac{\\pi}{2}(i-1)\\le v_{i}<\\frac{\\pi}{2}i",
+   "pred": "\\frac{1}{2} \\leq u \\leq 2"
+  },
+  {
+   "image": "math_latex_00ac5cd85e462376.jpg",
+   "task": "math_latex",
+   "cer": 0.2222,
+   "n_items": null,
+   "label": "\\forall u(wR_{i}u\\Rightarrow u\\Vdash A)",
+   "pred": "\\forall u(wRiu\\Rightarrow u\\in A)"
+  },
+  {
+   "image": "math_latex_00ba90fe7f71d8c6.jpg",
+   "task": "math_latex",
+   "cer": 0.5,
+   "n_items": null,
+   "label": "\\Omega((logn)/n^{2})",
+   "pred": "\\sum ((\\log n)^2)"
+  },
+  {
+   "image": "math_latex_00c46c9b07b39bb7.jpg",
+   "task": "math_latex",
+   "cer": 0.0667,
+   "n_items": null,
+   "label": "l_{n}=kl_{n}\\cdot\\frac{b_{n}}{b_{a}}\\cdot\\frac{s_{n}}{s_{a}}",
+   "pred": "$$ l _ { h } = k l _ { a } \\cdot \\frac { b _ { a } } { b _ { a } } \\cdot \\frac { s _ { a } } { s _ { a } } $$"
+  },
+  {
+   "image": "math_latex_00db5331b85f4d47.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "N=|V|",
+   "pred": "N = |V|"
+  },
+  {
+   "image": "math_latex_00eaf4f2d3d20bb1.jpg",
+   "task": "math_latex",
+   "cer": 0.75,
+   "n_items": null,
+   "label": "B=ln(-b)",
+   "pred": "$\\beta = \\ln(-b)$"
+  },
+  {
+   "image": "math_latex_00fcddfee1ebfee6.jpg",
+   "task": "math_latex",
+   "cer": 0.1111,
+   "n_items": null,
+   "label": "2sin(x/2)",
+   "pred": "2\\sin(x/2)"
+  },
+  {
+   "image": "math_latex_010963a06d1d5a79.jpg",
+   "task": "math_latex",
+   "cer": 0.4737,
+   "n_items": null,
+   "label": "\\tilde{\\gamma}(0)=p",
+   "pred": "\\bar{\\gamma}(0)=\\rho"
+  },
+  {
+   "image": "math_latex_0112074a000acff4.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "\\Omega=\\frac{\\Delta PE}{\\Delta t}",
+   "pred": "$$ \\Omega = \\frac { \\Delta P E } { \\Delta t } $$"
+  },
+  {
+   "image": "math_latex_011bc2c4d3e15714.jpg",
+   "task": "math_latex",
+   "cer": 0.0714,
+   "n_items": null,
+   "label": "T_{0}=2\\pi\\sqrt{\\frac{l}{g}}",
+   "pred": "T_{0}=2\\pi\\sqrt{\\frac{8}{9}}"
+  },
+  {
+   "image": "math_latex_012c517a05e2c2d4.jpg",
+   "task": "math_latex",
+   "cer": 0.0455,
+   "n_items": null,
+   "label": "\\int x^{k}d\\mu(x)=m_{k}",
+   "pred": "\\int x^{k}d\\mu(x):=m_{k}"
+  },
+  {
+   "image": "math_latex_013f565c7a547d0b.jpg",
+   "task": "math_latex",
+   "cer": 0.5692,
+   "n_items": null,
+   "label": "\\mu_{G}(H_{1},H_{2})=(-1)^{k}p^{(\\begin{matrix}k\\\\ 2\\end{matrix})}",
+   "pred": "Mg(H_{1},H_{2})=(-1)^{k}p^{(9)}"
+  },
+  {
+   "image": "math_latex_014d90d483380e66.jpg",
+   "task": "math_latex",
+   "cer": 0.5714,
+   "n_items": null,
+   "label": "\\langle\\psi^{jk}|\\psi_{lm}\\rangle=\\delta_{jl}\\delta_{km}",
+   "pred": "\\langle \\psi_{i}^{\\dagger} \\psi_{i} \\rangle = 0 \\text{ for } i \\neq j"
+  },
+  {
+   "image": "math_latex_015e012d8baa97f3.jpg",
+   "task": "math_latex",
+   "cer": 0.6316,
+   "n_items": null,
+   "label": "\\epsilon,\\delta,K>0",
+   "pred": "\\in_{d,K}>0"
+  },
+  {
+   "image": "math_latex_01751ea13ceb1817.jpg",
+   "task": "math_latex",
+   "cer": 0.2143,
+   "n_items": null,
+   "label": "C(X)>X^{0.332}",
+   "pred": "c(x) > x^{0.332}"
+  },
+  {
+   "image": "math_latex_017b290258802288.jpg",
+   "task": "math_latex",
+   "cer": 0.5122,
+   "n_items": null,
+   "label": "A_{\\mu}\\rightarrow A_{\\mu}+\\partial_{\\mu}\\phi(x)",
+   "pred": "A_{m} \\rightarrow A_{m+2} \\delta(x)"
+  },
+  {
+   "image": "math_latex_018b8fb309ce7af2.jpg",
+   "task": "math_latex",
+   "cer": 0.4,
+   "n_items": null,
+   "label": "d\\overline{v}=-\\frac{e\\cdot\\overline{E}}{m}dt",
+   "pred": "$$ d \\vec { r } = - \\frac { e \\vec { E } } { m } d t $$"
+  },
+  {
+   "image": "math_latex_018fb881d2eef21d.jpg",
+   "task": "math_latex",
+   "cer": 0.3143,
+   "n_items": null,
+   "label": "F_{r}=\\frac{v}{\\sqrt{g\\frac{A}{B}}}",
+   "pred": "F_{r}=\\frac{v}{\\sqrt{g}}"
+  },
+  {
+   "image": "math_latex_01998b624db95830.jpg",
+   "task": "math_latex",
+   "cer": 0.3214,
+   "n_items": null,
+   "label": "\\hat{\\beta}=(\\overline{y/x})",
+   "pred": "\\hat{\\beta} = (\\sqrt{x})"
+  },
+  {
+   "image": "math_latex_01a0b54b759ab60d.jpg",
+   "task": "math_latex",
+   "cer": 0.6,
+   "n_items": null,
+   "label": "3k+1=2^{a}k^{\\prime}",
+   "pred": "3k+1=2^k'"
+  },
+  {
+   "image": "math_latex_01ab618a2350036f.jpg",
+   "task": "math_latex",
+   "cer": 0.5909,
+   "n_items": null,
+   "label": "f_{n}\\rightarrow\\chi_{[1,2)}",
+   "pred": "f_n \\to X[1,2)"
+  },
+  {
+   "image": "math_latex_01cdd808862eab64.jpg",
+   "task": "math_latex",
+   "cer": 0.4545,
+   "n_items": null,
+   "label": "T^{t}:=S^{1}\\times\\cdot\\cdot\\cdot\\times S^{1}",
+   "pred": "T^t := S' \\times \\cdots \\times S'"
+  },
+  {
+   "image": "math_latex_01d4536a52886b73.jpg",
+   "task": "math_latex",
+   "cer": 0.5833,
+   "n_items": null,
+   "label": "N_{0}||X-\\hat{X}||^{2}/2",
+   "pred": "No \\left|x - x\\right|^{2} / 2"
+  },
+  {
+   "image": "math_latex_01e4c8973307a964.jpg",
+   "task": "math_latex",
+   "cer": 0.1724,
+   "n_items": null,
+   "label": "|g,n\\rangle\\rightarrow|e,n-1\\rangle",
+   "pred": "$$ 1 g , n \\rangle \\to | e , n - 1 \\rangle $$"
+  },
+  {
+   "image": "math_latex_01fdfab60060594b.jpg",
+   "task": "math_latex",
+   "cer": 0.4444,
+   "n_items": null,
+   "label": "|S|\\le(\\begin{matrix}n\\\\ \\lfloor n/2\\rfloor\\end{matrix})",
+   "pred": "|S| \\leq \\binom{n}{\\lfloor n/2 \\rfloor}"
+  },
+  {
+   "image": "math_latex_02229a0c174d8dbe.jpg",
+   "task": "math_latex",
+   "cer": 0.2941,
+   "n_items": null,
+   "label": "d\\approx\\sqrt{2\\cdot k\\cdot R\\cdot h}",
+   "pred": "dx\\sqrt{2\\cdot12\\cdot12\\cdot h}"
+  },
+  {
+   "image": "math_latex_0235a447c15a24d7.jpg",
+   "task": "math_latex",
+   "cer": 0.087,
+   "n_items": null,
+   "label": "nlog_{2}n-\\frac{n}{ln2}",
+   "pred": "n\\log_{2}n-\\frac{n}{\\ln2}"
+  },
+  {
+   "image": "math_latex_025f51bee0e59494.jpg",
+   "task": "math_latex",
+   "cer": 0.1333,
+   "n_items": null,
+   "label": "g=g_{-1}\\oplus g_{0}\\oplus g_{1}",
+   "pred": "g = g_{-1} \\oplus g_0 \\oplus g_1"
+  },
+  {
+   "image": "math_latex_0272a794109d5d2d.jpg",
+   "task": "math_latex",
+   "cer": 0.2143,
+   "n_items": null,
+   "label": "P_{F}=\\sqrt{P_{P}\\cdot P_{L}}",
+   "pred": "P_F = \\sqrt{P_P \\cdot P_L}"
+  },
+  {
+   "image": "math_latex_028cf1f0507df703.jpg",
+   "task": "math_latex",
+   "cer": 0.2778,
+   "n_items": null,
+   "label": "U_{i}(I)=I_{L_{i}}",
+   "pred": "U_{i}(t)=I_{i}"
+  },
+  {
+   "image": "math_latex_02aced0c052805c6.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "1/x\\approx1-x",
+   "pred": "1/x \\approx 1-x"
+  },
+  {
+   "image": "math_latex_02c82a919e114b86.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "\\Psi(\\rho,\\phi,z)",
+   "pred": "\\Psi(\\rho,\\phi,z)"
+  },
+  {
+   "image": "math_latex_02de91b624143438.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "y^{2}=x^{3}-n^{2}x",
+   "pred": "y^{2}=x^{3}-n^{2}x"
+  },
+  {
+   "image": "math_latex_030ea5646116a251.jpg",
+   "task": "math_latex",
+   "cer": 0.3,
+   "n_items": null,
+   "label": "M_{2}=P_{1}^{\\prime}|P_{2}|...",
+   "pred": "M_{2}=P_{1}'|P_{2}|..."
+  },
+  {
+   "image": "math_latex_0325d90612c71772.jpg",
+   "task": "math_latex",
+   "cer": 0.7895,
+   "n_items": null,
+   "label": "\\hat{\\Sigma}_{j,/j}",
+   "pred": "\\sum_{j=1}^z"
+  },
+  {
+   "image": "math_latex_0333d9584ff7c0d0.jpg",
+   "task": "math_latex",
+   "cer": 0.2083,
+   "n_items": null,
+   "label": "f^{-1}(x)=\\frac{1}{f(x)}",
+   "pred": "f''(x) = \\frac{1}{f(x)}"
+  },
+  {
+   "image": "math_latex_038ccb46ae3443db.jpg",
+   "task": "math_latex",
+   "cer": 0.1765,
+   "n_items": null,
+   "label": "\\mathbb{E}[logX!]=\\overline{logX!}",
+   "pred": "\\mathbb{E}[\\log X^1] = \\overline{\\log X^1}"
+  },
+  {
+   "image": "math_latex_03d92e3e170bb629.jpg",
+   "task": "math_latex",
+   "cer": 0.6905,
+   "n_items": null,
+   "label": "(\\begin{matrix}\\pm\\sqrt{N}\\\\ 1\\end{matrix})",
+   "pred": "\\left( \\pm \\sqrt{n} \\right)"
+  },
+  {
+   "image": "math_latex_0443cdf212ee67b1.jpg",
+   "task": "math_latex",
+   "cer": 0.2174,
+   "n_items": null,
+   "label": "t=\\frac{0}{\\sqrt{0+\\frac{u^{2}}{c^{2}}}}\\kappa",
+   "pred": "t = \\frac{0}{\\sqrt{0 + \\frac{u^2}{c^2}}} K"
+  },
+  {
+   "image": "math_latex_0491ecbb62f31a6e.jpg",
+   "task": "math_latex",
+   "cer": 0.6875,
+   "n_items": null,
+   "label": "\\overline{K}_{n}",
+   "pred": "K_{n}"
+  },
+  {
+   "image": "math_latex_04e2d85cba0103e9.jpg",
+   "task": "math_latex",
+   "cer": 0.375,
+   "n_items": null,
+   "label": "x=\\frac{4}{\\sqrt{4+\\frac{v^{2}}{c^{2}}}}\\upsilon",
+   "pred": "x = \\frac{1}{\\sqrt{1 + \\frac{v}{c}}}"
+  },
+  {
+   "image": "math_latex_04fc9a7665035a0d.jpg",
+   "task": "math_latex",
+   "cer": 0.2667,
+   "n_items": null,
+   "label": "a_{b,i}=\\gamma_{b,i}\\frac{b_{i}}{b^{\\ominus}}",
+   "pred": "a_{b,i} = \\gamma_{b,i} \\frac{b_i}{b_0}"
+  },
+  {
+   "image": "math_latex_0578f6b97d18358a.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "U=-m\\sum G\\frac{M}{r}",
+   "pred": "U=-m\\sum G\\frac{M}{r}"
+  },
+  {
+   "image": "math_latex_05f2be02bbe36bd4.jpg",
+   "task": "math_latex",
+   "cer": 0.75,
+   "n_items": null,
+   "label": "(\\begin{matrix}i&j\\\\ k&l\\end{matrix})",
+   "pred": "$$\\binom{i}{j}$$"
+  },
+  {
+   "image": "math_latex_063aa42f5d0ef5be.jpg",
+   "task": "math_latex",
+   "cer": 0.6418,
+   "n_items": null,
+   "label": "e^{(\\frac{\\Upsilon}{\\phi})[1-\\sqrt{1-\\frac{5\\phi^{5}m}{\\Upsilon}}]}",
+   "pred": "$$(\\frac{5}{2})[1 - \\frac{y}{\\sqrt{5 - 5y}}]$$"
+  },
+  {
+   "image": "math_latex_068de3aad90c403c.jpg",
+   "task": "math_latex",
+   "cer": 0.375,
+   "n_items": null,
+   "label": "\\forall b_{1},...,b_{n}\\notin T(s)",
+   "pred": "\\forall b_1,\\dots,b_n\\in T(s)"
+  },
+  {
+   "image": "math_latex_0703652c7a0c26f7.jpg",
+   "task": "math_latex",
+   "cer": 0.68,
+   "n_items": null,
+   "label": "G(Y^{\\prime})=G(Y)\\oplus R",
+   "pred": "g(Y)=g(Y)⊕R"
+  },
+  {
+   "image": "math_latex_07534c098d424d5f.jpg",
+   "task": "math_latex",
+   "cer": 0.9167,
+   "n_items": null,
+   "label": "\\vec{R}(\\nu)",
+   "pred": "$\\mathbb{R}^{(1)}$"
+  },
+  {
+   "image": "uz_strip_uz_p00_l01.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "Fargʻonada Lacetti velosipedchini urib yubordi. Jabrlanuvchi",
+   "pred": "Farg'onada Lacetti velosipedchini urib yubordi. Jabrlanuvchi"
+  },
+  {
+   "image": "uz_strip_uz_p00_l03.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "Fargʻona viloyatining Dangʻara tumanida",
+   "pred": "Fargʻona viloyatining Dangʻara tumanida"
+  },
+  {
+   "image": "uz_strip_uz_p00_l05.jpg",
+   "task": "uz_strip",
+   "cer": 0.0577,
+   "n_items": null,
+   "label": "sodir boʻldi. Bu haqda “Daryo”ga viloyat IIB axborot xizmati",
+   "pred": "sodir bo'ldi. Bu haqda \"Daryo\" ga viloyat JIB axborot xizmati"
+  },
+  {
+   "image": "uz_strip_uz_p00_l07.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "boshqaruvidagi Lacetti Toshkent",
+   "pred": "boshqaruvidagi Lacetti Toshkent"
+  },
+  {
+   "image": "uz_strip_uz_p00_l09.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "velosipedda kesib oʻtayotgan A.B.ni urib yuborgan.",
+   "pred": "velosipedda kesib o'tayotgan A.B.ni urib yuborgan."
+  },
+  {
+   "image": "uz_strip_uz_p00_l11.jpg",
+   "task": "uz_strip",
+   "cer": 0.0217,
+   "n_items": null,
+   "label": "Holat yuzasidan Dangʻara tuman IIB huzuridagi tergov",
+   "pred": "Holat yuzasidan Dang'ara tuman JIB huzuridagi tergov"
+  },
+  {
+   "image": "uz_strip_uz_p00_l13.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "kodeksining 266-moddasi 2-qismi (transport",
+   "pred": "kodeksining 266-moddasi 2-qismi (transport"
+  },
+  {
+   "image": "uz_strip_uz_p00_l15.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "qoidalarini buzish) bilan jinoyat ishi qoʻzgʻatilgan.",
+   "pred": "qoidalarini buzish) bilan jinoyat ishi qo'zg'atilgan."
+  },
+  {
+   "image": "uz_strip_uz_p01_l01.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "Eslatib oʻtamiz, avvalroq Yakkasaroyda Lacetti, Damas",
+   "pred": "Eslatib o'tamiz, avvalroq Yakkasaroyda Lacetti, Damas"
+  },
+  {
+   "image": "uz_strip_uz_p01_l03.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "mashinasi va 2 avtomobil ishtirokidagi YTH oqibatda 1",
+   "pred": " mashinasi va 2 avtomobil ishtirokidagi YTH oqibatda 1"
+  },
+  {
+   "image": "uz_strip_uz_p01_l05.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "Tushkunlik va kuzgi mayuslikni qanday qilib",
+   "pred": "Tushkunlik va kuzgi mayuslikni qanday qilib"
+  },
+  {
+   "image": "uz_strip_uz_p01_l07.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "Oʻzbekistonda kuz yetarlicha issiq",
+   "pred": "O'zbekistonda kuz yetarlicha issiq"
+  },
+  {
+   "image": "uz_strip_uz_p01_l09.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "koʻpchiligimiz uchun tanish holat. Yoz va taʼtillar",
+   "pred": "ko'pchiligimiz uchun tanish holat. Yoz va ta'tillar"
+  },
+  {
+   "image": "uz_strip_uz_p01_l11.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "tantanalarigacha esa hali yetarlicha muddat",
+   "pred": "tantanalarigacha esa hali yetarlicha muddat"
+  },
+  {
+   "image": "uz_strip_uz_p01_l13.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "qaytishingiz bilan qorongʻi tushadi. Quyoshli kunlar",
+   "pred": "qaytishingiz bilan qorong'i tushadi. Quyoshli kunlar"
+  },
+  {
+   "image": "uz_strip_uz_p01_l15.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "Xoʻsh, bunday sharoitda zerikish va tushkunlikka qarshi",
+   "pred": "Xo'sh, bunday sharoitda zerikish va tushkunlikka qarshi"
+  },
+  {
+   "image": "uz_strip_uz_p02_l01.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "Birinchi navbatda, uyqu rejimingizni qayta koʻrib",
+   "pred": "Birinchi navbatda, uyqu rejimingizni qayta ko'rib"
+  },
+  {
+   "image": "uz_strip_uz_p02_l03.jpg",
+   "task": "uz_strip",
+   "cer": 0.0323,
+   "n_items": null,
+   "label": "uygʻonish juda muhim! 23:00 dan kech",
+   "pred": " wyg'onish juda muhim! 23:00 dan kech"
+  },
+  {
+   "image": "uz_strip_uz_p02_l05.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "Shunda sifatli uyqu nima ekanligini anglab yetasiz, kayfiyatingiz",
+   "pred": "Shunda sifatli uyqu nima ekanligini anglab yetasiz, kayfiyatingiz"
+  },
+  {
+   "image": "uz_strip_uz_p02_l07.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "ovqatlanish. Koʻproq meva va",
+   "pred": "ovqatlanish. Ko'proq meva va"
+  },
+  {
+   "image": "uz_strip_uz_p02_l09.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "hazm qilish uchun koʻp vaqt talab qiluvchi yogʻli",
+   "pred": " hazm qilish uchun ko'p vaqt talab qiluvchi yog'li"
+  },
+  {
+   "image": "uz_strip_uz_p02_l11.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "Shirinliklarni ham minimal",
+   "pred": "Shirinliklarni ham minimal"
+  },
+  {
+   "image": "uz_strip_uz_p02_l13.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "etamiz. U tushkunlikka qarshi",
+   "pred": "etamiz. U tushkunlikka qarshi"
+  },
+  {
+   "image": "uz_strip_uz_p02_l15.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "(shokolad boʻlakchasi yoki",
+   "pred": "(shokolad bo'lakchasi yoki"
+  },
+  {
+   "image": "uz_page_uz_page_00.jpg",
+   "task": "uz_page",
+   "cer": 0.012,
+   "n_items": 16,
+   "label": "Fargʻonada Lacetti velosipedchini urib yubordi. Jabrlanuvchi\nshifoxonada vafot etdi\nFargʻona viloyatining Dangʻara tumanida\nLacetti va velosiped ishtirokida yoʻ",
+   "pred": "[\n    {\"bbox_2d\": [87, 69, 483, 105], \"text\": \"Farg'onada Lacetti velosipedchini urib yubordi. Jabrlanuvchi\"},\n    {\"bbox_2d\": [84, 115, 227, 151], \"text\": \"shifoxonada vafot etdi\"},\n    {\"bbox_2d\": [98, 170, 417, 206], \"text\": \"Farg'ona viloyatining Dang'ara tumanida\"},\n    {\"bbox_2d\": [90, 220, 43"
+  },
+  {
+   "image": "uz_page_uz_page_01.jpg",
+   "task": "uz_page",
+   "cer": 0.0029,
+   "n_items": 16,
+   "label": "Eslatib oʻtamiz, avvalroq Yakkasaroyda Lacetti, Damas\nhamda Spark ishtirokida YTH sodir boʻlgani, Jizzaxda esa yuk\nmashinasi va 2 avtomobil ishtirokidagi YTH oq",
+   "pred": "[\n    {\"bbox_2d\": [109, 73, 534, 106], \"text\": \"Eslatib o'tamiz, avvalroq Yakkasaroyda Lacetti, Damas\"},\n    {\"bbox_2d\": [105, 118, 613, 156], \"text\": \"hamda Spark ishtirokida YTH sodir bo'lgani, Jizzaxda esa yuk\"},\n    {\"bbox_2d\": [105, 167, 567, 204], \"text\": \"mashinasi va 2 avtomobil ishtirokidag"
+  },
+  {
+   "image": "uz_page_uz_page_02.jpg",
+   "task": "uz_page",
+   "cer": 0.0,
+   "n_items": 16,
+   "label": "Birinchi navbatda, uyqu rejimingizni qayta koʻrib\nchiqing. Bu davrda oʻz vaqtida uyquga yotib, vaqtida\nuygʻonish juda muhim! 23:00 dan kech\nboʻlmasdan uyquga yo",
+   "pred": "[\n    {\"bbox_2d\": [103, 65, 454, 98], \"text\": \"Birinchi navbatda, uyqu rejimingizni qayta ko'rib\"},\n    {\"bbox_2d\": [97, 120, 517, 157], \"text\": \"chiqing. Bu davrda o'z vaqtida uyquga yotib, vaqtida\"},\n    {\"bbox_2d\": [94, 175, 376, 207], \"text\": \"uyg'onish juda muhim! 23:00 dan kech\"},\n    {\"bbox_2"
+  }
+ ],
+ "adapter_rows": [
+  {
+   "image": "math_plain_00bddacfb3de33ce.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "O(nlogn)",
+   "pred": "O ( n log n )"
+  },
+  {
+   "image": "math_plain_0025484cf71c8ab7.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "F",
+   "pred": "F"
+  },
+  {
+   "image": "math_plain_00e8bf4cde24f874.jpg",
+   "task": "math_plain",
+   "cer": 0.5,
+   "n_items": null,
+   "label": ";u",
+   "pred": ";и"
+  },
+  {
+   "image": "math_plain_0178bf7cceb64473.jpg",
+   "task": "math_plain",
+   "cer": 0.2,
+   "n_items": null,
+   "label": "L>>(x+a/2)",
+   "pred": "L 2 2 ( x + a / 2 )"
+  },
+  {
+   "image": "math_plain_018f48ac8fe4bd53.jpg",
+   "task": "math_plain",
+   "cer": 0.5,
+   "n_items": null,
+   "label": "|0|<|1|+|-2|",
+   "pred": "1 0 1 < 1 1 1 + 1 - 2 1"
+  },
+  {
+   "image": "math_plain_0198a68035125b5a.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "G",
+   "pred": "G"
+  },
+  {
+   "image": "math_plain_000a4e8ca49c5a1c.jpg",
+   "task": "math_plain",
+   "cer": 0.6154,
+   "n_items": null,
+   "label": "(x-y)/sqrt(2)",
+   "pred": "х- у/ 59- + (2)"
+  },
+  {
+   "image": "math_plain_0017bb5822bcba69.jpg",
+   "task": "math_plain",
+   "cer": 0.1111,
+   "n_items": null,
+   "label": "P=P(C(Z))",
+   "pred": "P = P ( C ( E ) )"
+  },
+  {
+   "image": "math_plain_00db5331b85f4d47.jpg",
+   "task": "math_plain",
+   "cer": 0.4,
+   "n_items": null,
+   "label": "N=|V|",
+   "pred": "N=1V1"
+  },
+  {
+   "image": "math_plain_00eaf4f2d3d20bb1.jpg",
+   "task": "math_plain",
+   "cer": 0.25,
+   "n_items": null,
+   "label": "B=ln(-b)",
+   "pred": "B = \\ln ( - 6 )"
+  },
+  {
+   "image": "math_plain_00fcddfee1ebfee6.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "2sin(x/2)",
+   "pred": "2 sin (x/2)"
+  },
+  {
+   "image": "math_plain_01859fc130dc9008.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "(++++)",
+   "pred": "( + + + + )"
+  },
+  {
+   "image": "math_plain_01c37bbe7ea55c56.jpg",
+   "task": "math_plain",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "T+ATT=1+E",
+   "pred": "T+ATT=1+E"
+  },
+  {
+   "image": "math_plain_02894b4ff1ee6c7b.jpg",
+   "task": "math_plain",
+   "cer": 0.0909,
+   "n_items": null,
+   "label": "0/x=0,x/x=1",
+   "pred": "0/x=0, x/0=1"
+  },
+  {
+   "image": "math_latex_00000b332dcd6fe5.jpg",
+   "task": "math_latex",
+   "cer": 0.8235,
+   "n_items": null,
+   "label": "(\\begin{matrix}j\\\\ m+1\\end{matrix})",
+   "pred": "( m \\dot { - } 1 )"
+  },
+  {
+   "image": "math_latex_000a4e8ca49c5a1c.jpg",
+   "task": "math_latex",
+   "cer": 0.6154,
+   "n_items": null,
+   "label": "(x-y)/sqrt(2)",
+   "pred": "x - y / 5 q ^ { - t } + ( 2 )"
+  },
+  {
+   "image": "math_latex_0017bb5822bcba69.jpg",
+   "task": "math_latex",
+   "cer": 1.2222,
+   "n_items": null,
+   "label": "P=P(C(Z))",
+   "pred": "P = P ( C ( \\varepsilon ) )"
+  },
+  {
+   "image": "math_latex_00235ec3dee919dd.jpg",
+   "task": "math_latex",
+   "cer": 0.0286,
+   "n_items": null,
+   "label": "\\int_{0}^{\\infty}\\frac{sin(x)}{x}dx",
+   "pred": "\\int _ { 0 } ^ { \\infty } \\frac { \\sin ( x ) } { x } d x"
+  },
+  {
+   "image": "math_latex_002651244bc93554.jpg",
+   "task": "math_latex",
+   "cer": 0.1765,
+   "n_items": null,
+   "label": "\\int_{A}P_{A}dA=1",
+   "pred": "\\int _ { A } ^ { P _ { A } d A = 1 }"
+  },
+  {
+   "image": "math_latex_00386113d577085b.jpg",
+   "task": "math_latex",
+   "cer": 0.5238,
+   "n_items": null,
+   "label": "\\langle a_{0},a_{1},...\\rangle\\in R^{\\omega}",
+   "pred": "< a _ { 0 } , a _ { 1 } , \\cdots > \\in R ^ { w }"
+  },
+  {
+   "image": "math_latex_0047f70eafca2534.jpg",
+   "task": "math_latex",
+   "cer": 0.7714,
+   "n_items": null,
+   "label": "[\\begin{matrix}a\\\\ b\\\\ c\\end{matrix}]",
+   "pred": "[ \\frac { a } { b } c ]"
+  },
+  {
+   "image": "math_latex_0052b8e13b5f4a36.jpg",
+   "task": "math_latex",
+   "cer": 0.2424,
+   "n_items": null,
+   "label": "w(\\neg\\theta)=F_{\\neg}(w(\\theta))",
+   "pred": "w ( - \\theta ) = F _ { 1 } ( w ( \\theta ) )"
+  },
+  {
+   "image": "math_latex_0067440924b60b2b.jpg",
+   "task": "math_latex",
+   "cer": 0.0192,
+   "n_items": null,
+   "label": "[g^{ij}]=\\frac{1}{g}\\frac{\\partial g}{\\partial g_{ij}}",
+   "pred": "[ g ^ { i j } ] = \\frac { 1 } { g } \\frac { \\partial g } { \\partial g ^ { i j } }"
+  },
+  {
+   "image": "math_latex_006fb32b84a99137.jpg",
+   "task": "math_latex",
+   "cer": 0.8889,
+   "n_items": null,
+   "label": "[\\begin{matrix}1&1\\\\ 0&1\\end{matrix}]",
+   "pred": "[ 0 : 1 ]"
+  },
+  {
+   "image": "math_latex_0082d4aa943b9f8c.jpg",
+   "task": "math_latex",
+   "cer": 0.3415,
+   "n_items": null,
+   "label": "|\\frac{d^{2}y}{dx^{2}}|\\approx\\frac{1}{R}",
+   "pred": "\\vert \\frac { x ^ { 2 } } { x ^ { 2 } } \\vert = \\frac { 1 } { R }"
+  },
+  {
+   "image": "math_latex_0090db2a639b5c98.jpg",
+   "task": "math_latex",
+   "cer": 0.3667,
+   "n_items": null,
+   "label": "S_{ijk}\\rightarrow S_{ij}(\\omega_{k})",
+   "pred": "S _ { i j } b \\rightarrow S _ { i j } ( w k )"
+  },
+  {
+   "image": "math_latex_009f7b727b467490.jpg",
+   "task": "math_latex",
+   "cer": 0.1707,
+   "n_items": null,
+   "label": "\\frac{\\pi}{2}(i-1)\\le v_{i}<\\frac{\\pi}{2}i",
+   "pred": "\\frac { \\pi } { 2 } ( : - 1 ) \\leq v : < \\frac { \\pi } { 2 }"
+  },
+  {
+   "image": "math_latex_00ac5cd85e462376.jpg",
+   "task": "math_latex",
+   "cer": 0.4722,
+   "n_items": null,
+   "label": "\\forall u(wR_{i}u\\Rightarrow u\\Vdash A)",
+   "pred": "H u ( w R : u \\Rightarrow u H A )"
+  },
+  {
+   "image": "math_latex_00ba90fe7f71d8c6.jpg",
+   "task": "math_latex",
+   "cer": 0.5,
+   "n_items": null,
+   "label": "\\Omega((logn)/n^{2})",
+   "pred": "S 2 ( ( C y n ) n ^ { 2 } )"
+  },
+  {
+   "image": "math_latex_00c46c9b07b39bb7.jpg",
+   "task": "math_latex",
+   "cer": 0.2,
+   "n_items": null,
+   "label": "l_{n}=kl_{n}\\cdot\\frac{b_{n}}{b_{a}}\\cdot\\frac{s_{n}}{s_{a}}",
+   "pred": "9 _ { n } = k \\rho _ { a } \\cdot \\frac { b _ { a } } { D _ { a } } \\cdot \\frac { S _ { a } } { S _ { 4 } }"
+  },
+  {
+   "image": "math_latex_00db5331b85f4d47.jpg",
+   "task": "math_latex",
+   "cer": 2.2,
+   "n_items": null,
+   "label": "N=|V|",
+   "pred": "N = \\vert N \\vert"
+  },
+  {
+   "image": "math_latex_00eaf4f2d3d20bb1.jpg",
+   "task": "math_latex",
+   "cer": 0.25,
+   "n_items": null,
+   "label": "B=ln(-b)",
+   "pred": "B = \\ln ( - 6 )"
+  },
+  {
+   "image": "math_latex_00fcddfee1ebfee6.jpg",
+   "task": "math_latex",
+   "cer": 0.1111,
+   "n_items": null,
+   "label": "2sin(x/2)",
+   "pred": "2 \\sin ( x / 2 )"
+  },
+  {
+   "image": "math_latex_010963a06d1d5a79.jpg",
+   "task": "math_latex",
+   "cer": 0.7895,
+   "n_items": null,
+   "label": "\\tilde{\\gamma}(0)=p",
+   "pred": "T ( 0 ) = P"
+  },
+  {
+   "image": "math_latex_0112074a000acff4.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "\\Omega=\\frac{\\Delta PE}{\\Delta t}",
+   "pred": "\\Omega = \\frac { \\Delta P E } { \\Delta t }"
+  },
+  {
+   "image": "math_latex_011bc2c4d3e15714.jpg",
+   "task": "math_latex",
+   "cer": 0.0357,
+   "n_items": null,
+   "label": "T_{0}=2\\pi\\sqrt{\\frac{l}{g}}",
+   "pred": "T _ { 0 } = 2 \\pi \\sqrt { \\frac { R } { g } }"
+  },
+  {
+   "image": "math_latex_012c517a05e2c2d4.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "\\int x^{k}d\\mu(x)=m_{k}",
+   "pred": "\\int x ^ { k } d \\mu ( x ) = m _ { k }"
+  },
+  {
+   "image": "math_latex_013f565c7a547d0b.jpg",
+   "task": "math_latex",
+   "cer": 0.5846,
+   "n_items": null,
+   "label": "\\mu_{G}(H_{1},H_{2})=(-1)^{k}p^{(\\begin{matrix}k\\\\ 2\\end{matrix})}",
+   "pred": "M G ( H _ { 1 } , H _ { 2 } ) = ( - 1 ) ^ { k } p ( g )"
+  },
+  {
+   "image": "math_latex_014d90d483380e66.jpg",
+   "task": "math_latex",
+   "cer": 0.875,
+   "n_items": null,
+   "label": "\\langle\\psi^{jk}|\\psi_{lm}\\rangle=\\delta_{jl}\\delta_{km}",
+   "pred": "( 4 j k - 1 4 _ { 1 } ) = - 8 k a"
+  },
+  {
+   "image": "math_latex_015e012d8baa97f3.jpg",
+   "task": "math_latex",
+   "cer": 0.5789,
+   "n_items": null,
+   "label": "\\epsilon,\\delta,K>0",
+   "pred": "\\in , d , k > 0"
+  },
+  {
+   "image": "math_latex_01751ea13ceb1817.jpg",
+   "task": "math_latex",
+   "cer": 0.1429,
+   "n_items": null,
+   "label": "C(X)>X^{0.332}",
+   "pred": "C ( x ) > x ^ { 0 . 3 3 2 }"
+  },
+  {
+   "image": "math_latex_017b290258802288.jpg",
+   "task": "math_latex",
+   "cer": 0.5366,
+   "n_items": null,
+   "label": "A_{\\mu}\\rightarrow A_{\\mu}+\\partial_{\\mu}\\phi(x)",
+   "pred": "A _ { m } \\rightarrow A ^ { M } + O _ { m } ( 6 e )"
+  },
+  {
+   "image": "math_latex_018b8fb309ce7af2.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "d\\overline{v}=-\\frac{e\\cdot\\overline{E}}{m}dt",
+   "pred": "d \\overline { v } = - \\frac { e \\cdot \\overline { E } } { m } d t"
+  },
+  {
+   "image": "math_latex_018fb881d2eef21d.jpg",
+   "task": "math_latex",
+   "cer": 0.3429,
+   "n_items": null,
+   "label": "F_{r}=\\frac{v}{\\sqrt{g\\frac{A}{B}}}",
+   "pred": "F _ { 1 } = \\frac { V } { \\sqrt { a ^ { 2 } - B ^ { 2 } } }"
+  },
+  {
+   "image": "math_latex_01998b624db95830.jpg",
+   "task": "math_latex",
+   "cer": 0.5357,
+   "n_items": null,
+   "label": "\\hat{\\beta}=(\\overline{y/x})",
+   "pred": "\\widehat { \\beta } = ( y / x )"
+  },
+  {
+   "image": "math_latex_01a0b54b759ab60d.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "3k+1=2^{a}k^{\\prime}",
+   "pred": "3 k + 1 = 2 ^ { a } k ^ { \\prime }"
+  },
+  {
+   "image": "math_latex_01ab618a2350036f.jpg",
+   "task": "math_latex",
+   "cer": 0.3182,
+   "n_items": null,
+   "label": "f_{n}\\rightarrow\\chi_{[1,2)}",
+   "pred": "f _ { n } \\rightarrow x [ 1 , 2 )"
+  },
+  {
+   "image": "math_latex_01cdd808862eab64.jpg",
+   "task": "math_latex",
+   "cer": 0.2273,
+   "n_items": null,
+   "label": "T^{t}:=S^{1}\\times\\cdot\\cdot\\cdot\\times S^{1}",
+   "pred": "T ^ { t } : = S ^ { 1 } \\times \\cdots \\times S ^ { 1 }"
+  },
+  {
+   "image": "math_latex_01d4536a52886b73.jpg",
+   "task": "math_latex",
+   "cer": 0.5,
+   "n_items": null,
+   "label": "N_{0}||X-\\hat{X}||^{2}/2",
+   "pred": "N o 1 1 x - \\dot { x } 1 1 ^ { 2 } / 2"
+  },
+  {
+   "image": "math_latex_01e4c8973307a964.jpg",
+   "task": "math_latex",
+   "cer": 0.5862,
+   "n_items": null,
+   "label": "|g,n\\rangle\\rightarrow|e,n-1\\rangle",
+   "pred": "( g , h ) \\rightarrow ( e , n - 1 )"
+  },
+  {
+   "image": "math_latex_01fdfab60060594b.jpg",
+   "task": "math_latex",
+   "cer": 0.8333,
+   "n_items": null,
+   "label": "|S|\\le(\\begin{matrix}n\\\\ \\lfloor n/2\\rfloor\\end{matrix})",
+   "pred": "\\vert S \\vert \\leq ( ^ { n } C _ { [ 0 , 1 2 ] } )"
+  },
+  {
+   "image": "math_latex_02229a0c174d8dbe.jpg",
+   "task": "math_latex",
+   "cer": 0.2941,
+   "n_items": null,
+   "label": "d\\approx\\sqrt{2\\cdot k\\cdot R\\cdot h}",
+   "pred": "\\lambda x \\sqrt { 2 \\cdot 1 < \\cdot 1 2 \\cdot h }"
+  },
+  {
+   "image": "math_latex_0235a447c15a24d7.jpg",
+   "task": "math_latex",
+   "cer": 0.087,
+   "n_items": null,
+   "label": "nlog_{2}n-\\frac{n}{ln2}",
+   "pred": "n \\log _ { 2 } n - \\frac { n } { \\ln 2 }"
+  },
+  {
+   "image": "math_latex_025f51bee0e59494.jpg",
+   "task": "math_latex",
+   "cer": 1.0,
+   "n_items": null,
+   "label": "g=g_{-1}\\oplus g_{0}\\oplus g_{1}",
+   "pred": "y = g - 1 \\textcircled { + } g _ { 0 } \\textcircled { + } g _ { 1 }"
+  },
+  {
+   "image": "math_latex_0272a794109d5d2d.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "P_{F}=\\sqrt{P_{P}\\cdot P_{L}}",
+   "pred": "P _ { F } = \\sqrt { P _ { P } \\cdot P _ { L } }"
+  },
+  {
+   "image": "math_latex_028cf1f0507df703.jpg",
+   "task": "math_latex",
+   "cer": 0.2778,
+   "n_items": null,
+   "label": "U_{i}(I)=I_{L_{i}}",
+   "pred": "U _ { 1 } : ( I ) = I _ { L i }"
+  },
+  {
+   "image": "math_latex_02aced0c052805c6.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "1/x\\approx1-x",
+   "pred": "1 / x \\approx 1 - x"
+  },
+  {
+   "image": "math_latex_02c82a919e114b86.jpg",
+   "task": "math_latex",
+   "cer": 0.6471,
+   "n_items": null,
+   "label": "\\Psi(\\rho,\\phi,z)",
+   "pred": "\\mathbb { Z } ( p , \\phi , z )"
+  },
+  {
+   "image": "math_latex_02de91b624143438.jpg",
+   "task": "math_latex",
+   "cer": 0.2778,
+   "n_items": null,
+   "label": "y^{2}=x^{3}-n^{2}x",
+   "pred": "y ^ { 2 } = x ^ { 3 } \\cdot n ^ { 2 } x"
+  },
+  {
+   "image": "math_latex_030ea5646116a251.jpg",
+   "task": "math_latex",
+   "cer": 0.5333,
+   "n_items": null,
+   "label": "M_{2}=P_{1}^{\\prime}|P_{2}|...",
+   "pred": "M _ { 2 } = \\rho _ { 1 } ^ { \\prime } / \\rho _ { 2 } / \\cdots"
+  },
+  {
+   "image": "math_latex_0325d90612c71772.jpg",
+   "task": "math_latex",
+   "cer": 0.6316,
+   "n_items": null,
+   "label": "\\hat{\\Sigma}_{j,/j}",
+   "pred": "\\dot { S } , / ;"
+  },
+  {
+   "image": "math_latex_0333d9584ff7c0d0.jpg",
+   "task": "math_latex",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "f^{-1}(x)=\\frac{1}{f(x)}",
+   "pred": "f ^ { - 1 } ( x ) = \\frac { 1 } { f ( x ) }"
+  },
+  {
+   "image": "math_latex_038ccb46ae3443db.jpg",
+   "task": "math_latex",
+   "cer": 0.7941,
+   "n_items": null,
+   "label": "\\mathbb{E}[logX!]=\\overline{logX!}",
+   "pred": "E [ 1 0 g x ^ { 1 } ] = \\sqrt { 1 0 g x ^ { 1 } }"
+  },
+  {
+   "image": "math_latex_03d92e3e170bb629.jpg",
+   "task": "math_latex",
+   "cer": 0.6905,
+   "n_items": null,
+   "label": "(\\begin{matrix}\\pm\\sqrt{N}\\\\ 1\\end{matrix})",
+   "pred": "( \\pm \\sqrt { n } )"
+  },
+  {
+   "image": "math_latex_0443cdf212ee67b1.jpg",
+   "task": "math_latex",
+   "cer": 0.413,
+   "n_items": null,
+   "label": "t=\\frac{0}{\\sqrt{0+\\frac{u^{2}}{c^{2}}}}\\kappa",
+   "pred": "t = \\frac { o } { \\sqrt { D ^ { 2 } + a ^ { 2 } } } k"
+  },
+  {
+   "image": "math_latex_0491ecbb62f31a6e.jpg",
+   "task": "math_latex",
+   "cer": 0.6875,
+   "n_items": null,
+   "label": "\\overline{K}_{n}",
+   "pred": "K _ { n }"
+  },
+  {
+   "image": "math_latex_04e2d85cba0103e9.jpg",
+   "task": "math_latex",
+   "cer": 0.2083,
+   "n_items": null,
+   "label": "x=\\frac{4}{\\sqrt{4+\\frac{v^{2}}{c^{2}}}}\\upsilon",
+   "pred": "x = \\frac { 1 } { \\sqrt { 1 + \\frac { v ^ { 2 } } { c ^ { 2 } } } } v"
+  },
+  {
+   "image": "math_latex_04fc9a7665035a0d.jpg",
+   "task": "math_latex",
+   "cer": 0.2889,
+   "n_items": null,
+   "label": "a_{b,i}=\\gamma_{b,i}\\frac{b_{i}}{b^{\\ominus}}",
+   "pred": "a _ { b , c } = \\gamma _ { b , i } \\frac { b i } { b o }"
+  },
+  {
+   "image": "math_latex_0578f6b97d18358a.jpg",
+   "task": "math_latex",
+   "cer": 0.3,
+   "n_items": null,
+   "label": "U=-m\\sum G\\frac{M}{r}",
+   "pred": "U = - m g \\frac { M } { R }"
+  },
+  {
+   "image": "math_latex_05f2be02bbe36bd4.jpg",
+   "task": "math_latex",
+   "cer": 0.75,
+   "n_items": null,
+   "label": "(\\begin{matrix}i&j\\\\ k&l\\end{matrix})",
+   "pred": "( \\frac { i } { k } \\frac { j } { l } )"
+  },
+  {
+   "image": "math_latex_063aa42f5d0ef5be.jpg",
+   "task": "math_latex",
+   "cer": 0.4925,
+   "n_items": null,
+   "label": "e^{(\\frac{\\Upsilon}{\\phi})[1-\\sqrt{1-\\frac{5\\phi^{5}m}{\\Upsilon}}]}",
+   "pred": "C ( \\frac { 2 } { 9 } ) [ 1 - \\sqrt { 1 - \\frac { 5 0 . 0 4 } { 7 } } ]"
+  },
+  {
+   "image": "math_latex_068de3aad90c403c.jpg",
+   "task": "math_latex",
+   "cer": 0.5312,
+   "n_items": null,
+   "label": "\\forall b_{1},...,b_{n}\\notin T(s)",
+   "pred": "v b _ { 1 } , \\cdots , b _ { n } \\neq T ( s )"
+  },
+  {
+   "image": "math_latex_0703652c7a0c26f7.jpg",
+   "task": "math_latex",
+   "cer": 0.92,
+   "n_items": null,
+   "label": "G(Y^{\\prime})=G(Y)\\oplus R",
+   "pred": "g ( y ) = g ( y ) \\textcircled { + } R"
+  },
+  {
+   "image": "math_latex_07534c098d424d5f.jpg",
+   "task": "math_latex",
+   "cer": 0.75,
+   "n_items": null,
+   "label": "\\vec{R}(\\nu)",
+   "pred": "\\overline { R } ( v )"
+  },
+  {
+   "image": "uz_strip_uz_p00_l01.jpg",
+   "task": "uz_strip",
+   "cer": 0.9636,
+   "n_items": null,
+   "label": "Fargʻonada Lacetti velosipedchini urib yubordi. Jabrlanuvchi",
+   "pred": "Фарг'онада Ласетти велосипедчики ирив увборди. Забрлативши"
+  },
+  {
+   "image": "uz_strip_uz_p00_l03.jpg",
+   "task": "uz_strip",
+   "cer": 0.0278,
+   "n_items": null,
+   "label": "Fargʻona viloyatining Dangʻara tumanida",
+   "pred": "Farj'ona viloyatining Dang'ara tumanida"
+  },
+  {
+   "image": "uz_strip_uz_p00_l05.jpg",
+   "task": "uz_strip",
+   "cer": 0.9808,
+   "n_items": null,
+   "label": "sodir boʻldi. Bu haqda “Daryo”ga viloyat IIB axborot xizmati",
+   "pred": "содирво!ди. Букафда \"Дарю\" да вьлоят ТВ ахворот хитати"
+  },
+  {
+   "image": "uz_strip_uz_p00_l07.jpg",
+   "task": "uz_strip",
+   "cer": 0.069,
+   "n_items": null,
+   "label": "boshqaruvidagi Lacetti Toshkent",
+   "pred": "boshqaruvchidagi Lacetti To shkent"
+  },
+  {
+   "image": "uz_strip_uz_p00_l09.jpg",
+   "task": "uz_strip",
+   "cer": 0.8,
+   "n_items": null,
+   "label": "velosipedda kesib oʻtayotgan A.B.ni urib yuborgan.",
+   "pred": "велосипедда кесив о' тayotдат А.Б. пi ирив уивордан."
+  },
+  {
+   "image": "uz_strip_uz_p00_l11.jpg",
+   "task": "uz_strip",
+   "cer": 0.9783,
+   "n_items": null,
+   "label": "Holat yuzasidan Dangʻara tuman IIB huzuridagi tergov",
+   "pred": "1-Ноат ызасидат Дандара тутан 773 квзридаги тердor"
+  },
+  {
+   "image": "uz_strip_uz_p00_l13.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "kodeksining 266-moddasi 2-qismi (transport",
+   "pred": "kodeksining 266-moddasi 2-qismi (transport"
+  },
+  {
+   "image": "uz_strip_uz_p00_l15.jpg",
+   "task": "uz_strip",
+   "cer": 0.8958,
+   "n_items": null,
+   "label": "qoidalarini buzish) bilan jinoyat ishi qoʻzgʻatilgan.",
+   "pred": "додаварити вузіш) вілам ýтогат іshi доздати."
+  },
+  {
+   "image": "uz_strip_uz_p01_l01.jpg",
+   "task": "uz_strip",
+   "cer": 0.7292,
+   "n_items": null,
+   "label": "Eslatib oʻtamiz, avvalroq Yakkasaroyda Lacetti, Damas",
+   "pred": "Елатив 'тамиз, авралрог Яккасаароыда Lacetti, Daimar"
+  },
+  {
+   "image": "uz_strip_uz_p01_l03.jpg",
+   "task": "uz_strip",
+   "cer": 0.0217,
+   "n_items": null,
+   "label": "mashinasi va 2 avtomobil ishtirokidagi YTH oqibatda 1",
+   "pred": "mashinasiva 2 avtomobil ishtirokidagi YJH oqibatda 1"
+  },
+  {
+   "image": "uz_strip_uz_p01_l05.jpg",
+   "task": "uz_strip",
+   "cer": 0.3684,
+   "n_items": null,
+   "label": "Tushkunlik va kuzgi mayuslikni qanday qilib",
+   "pred": "Тушкунлик va Kuzdi tayuselikni qanday qilib"
+  },
+  {
+   "image": "uz_strip_uz_p01_l07.jpg",
+   "task": "uz_strip",
+   "cer": 0.0323,
+   "n_items": null,
+   "label": "Oʻzbekistonda kuz yetarlicha issiq",
+   "pred": "О'zbekistonda kuz yetarlicha issiq"
+  },
+  {
+   "image": "uz_strip_uz_p01_l09.jpg",
+   "task": "uz_strip",
+   "cer": 0.1778,
+   "n_items": null,
+   "label": "koʻpchiligimiz uchun tanish holat. Yoz va taʼtillar",
+   "pred": "ко'pchiliginiz uchun tanish h. hobat. Yoz va ta'elllar"
+  },
+  {
+   "image": "uz_strip_uz_p01_l11.jpg",
+   "task": "uz_strip",
+   "cer": 0.0,
+   "n_items": null,
+   "label": "tantanalarigacha esa hali yetarlicha muddat",
+   "pred": "tantanalarigacha esa hali yetarlicha muddat"
+  },
+  {
+   "image": "uz_strip_uz_p01_l13.jpg",
+   "task": "uz_strip",
+   "cer": 0.7234,
+   "n_items": null,
+   "label": "qaytishingiz bilan qorongʻi tushadi. Quyoshli kunlar",
+   "pred": "действий из вилан дороги тушади. Quyoshli kumbar"
+  },
+  {
+   "image": "uz_strip_uz_p01_l15.jpg",
+   "task": "uz_strip",
+   "cer": 0.2857,
+   "n_items": null,
+   "label": "Xoʻsh, bunday sharoitda zerikish va tushkunlikka qarshi",
+   "pred": "Хо'ш, будьай Sharoiida zemkish va tushkunlikka qarshi"
+  },
+  {
+   "image": "uz_strip_uz_p02_l01.jpg",
+   "task": "uz_strip",
+   "cer": 0.9545,
+   "n_items": null,
+   "label": "Birinchi navbatda, uyqu rejimingizni qayta koʻrib",
+   "pred": "Виринчи павытада, шуфи рэйтэндизи фаыта. к'ив"
+  },
+  {
+   "image": "uz_strip_uz_p02_l03.jpg",
+   "task": "uz_strip",
+   "cer": 0.1613,
+   "n_items": null,
+   "label": "uygʻonish juda muhim! 23:00 dan kech",
+   "pred": "шуд'онish juda muhim! 23:00 dan kech"
+  },
+  {
+   "image": "uz_strip_uz_p02_l05.jpg",
+   "task": "uz_strip",
+   "cer": 0.0517,
+   "n_items": null,
+   "label": "Shunda sifatli uyqu nima ekanligini anglab yetasiz, kayfiyatingiz",
+   "pred": "Khun da sifatli uydu nima ekanligini anglab yetasiz, kayfiyatindiz"
+  },
+  {
+   "image": "uz_strip_uz_p02_l07.jpg",
+   "task": "uz_strip",
+   "cer": 0.92,
+   "n_items": null,
+   "label": "ovqatlanish. Koʻproq meva va",
+   "pred": "овдатланиш. Ко'прод тева ва"
+  },
+  {
+   "image": "uz_strip_uz_p02_l09.jpg",
+   "task": "uz_strip",
+   "cer": 0.9762,
+   "n_items": null,
+   "label": "hazm qilish uchun koʻp vaqt talab qiluvchi yogʻli",
+   "pred": "назт филин искуп ко'р  тав тав филинги дод.И"
+  },
+  {
+   "image": "uz_strip_uz_p02_l11.jpg",
+   "task": "uz_strip",
+   "cer": 0.2083,
+   "n_items": null,
+   "label": "Shirinliklarni ham minimal",
+   "pred": "Shirinklati ham minital"
+  },
+  {
+   "image": "uz_strip_uz_p02_l13.jpg",
+   "task": "uz_strip",
+   "cer": 0.4231,
+   "n_items": null,
+   "label": "etamiz. U tushkunlikka qarshi",
+   "pred": "етатиз. И тishkunelikka darshi"
+  },
+  {
+   "image": "uz_strip_uz_p02_l15.jpg",
+   "task": "uz_strip",
+   "cer": 0.0417,
+   "n_items": null,
+   "label": "(shokolad boʻlakchasi yoki",
+   "pred": "(shokolad bo'lagchasi yoki"
+  },
+  {
+   "image": "uz_page_uz_page_00.jpg",
+   "task": "uz_page",
+   "cer": 0.1324,
+   "n_items": 16,
+   "label": "Fargʻonada Lacetti velosipedchini urib yubordi. Jabrlanuvchi\nshifoxonada vafot etdi\nFargʻona viloyatining Dangʻara tumanida\nLacetti va velosiped ishtirokida yoʻ",
+   "pred": "[{\"bbox_2d\": [89,70,483,106],\"text\": \"Far goda Lacetti velosipedchini uchiborda; Zabklatuvchi\"},\n {\"bbox_2d\": [85,121,229,154],\"text\": \"shifoxotada vafot etdi\"},\n {\"bbox_2d\": [99,173,418,211],\"text\": \"Far goda viloyatining Dang'ara tumanida\"},\n {\"bbox_2d\": [92,224,432,259],\"text\": \"Lacetti va velosi"
+  },
+  {
+   "image": "uz_page_uz_page_01.jpg",
+   "task": "uz_page",
+   "cer": 0.1179,
+   "n_items": 16,
+   "label": "Eslatib oʻtamiz, avvalroq Yakkasaroyda Lacetti, Damas\nhamda Spark ishtirokida YTH sodir boʻlgani, Jizzaxda esa yuk\nmashinasi va 2 avtomobil ishtirokidagi YTH oq",
+   "pred": "[{\"bbox_2d\": [109,73,534,108],\"text\": \"Елатив о тати, автавроф Yakkasaroyska Lasseti, Damas\"},\n {\"bbox_2d\": [106,124,614,161],\"text\": \"Ramda Spark ishtirokida YTH sodim-bo'lgani, Jizzaxda esa zik\"},\n {\"bbox_2d\": [107,173,569,209],\"text\": \"mashinas va 2 avtomobil ishtirokidagi YTH oqibatda 1\"},\n {\"bb"
+  },
+  {
+   "image": "uz_page_uz_page_02.jpg",
+   "task": "uz_page",
+   "cer": 0.8411,
+   "n_items": 16,
+   "label": "Birinchi navbatda, uyqu rejimingizni qayta koʻrib\nchiqing. Bu davrda oʻz vaqtida uyquga yotib, vaqtida\nuygʻonish juda muhim! 23:00 dan kech\nboʻlmasdan uyquga yo",
+   "pred": "[{\"bbox_2d\": [106,67,453,101],\"text\": \"Бирючи навбатда, чуди рэжимэдзинь чудыка ро'иб\"}, {\"bbox_2d\": [98,125,518,162],\"text\": \"чуйдг. Би давтда о'з чудига чуйи, чудига\"}, {\"bbox_2d\": [95,176,378,210],\"text\": \"чуд'онш юда тийм! 23:00 дан кечк\"}, {\"bbox_2d\": [105,229,494,268],\"text\": \"бо. Омасдан чуди"
+  }
+ ]
+}
