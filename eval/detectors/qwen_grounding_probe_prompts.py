@@ -50,3 +50,36 @@ PROMPTS = {
 }
 
 PAGE_PROMPT = PROMPTS["complete"]
+
+
+# ---------------------------------------------------------------------------------------------------
+# REGION_PROMPT — pass 1 of the two-pass architecture (plans/QWEN-ALL-DOMAINS-ROADMAP.md §1).
+#
+# Pass 1 asks WHERE and WHAT KIND, never WHAT IT SAYS. Three reasons that split is the whole design:
+#   * a flat [{bbox_2d, text}] cannot express a table, a stacked fraction or a ticked option, and three
+#     of the five assignment types need one of those. "Add a region type" beats "invent a new model".
+#   * resolution: measured 2026-08-23, sending the page bigger makes the whole-page pass WORSE
+#     (recall 0.658 -> 0.652 at max-side 2560, and the large-text controls lose 0.068). You cannot buy
+#     the crop reader's 128 px per line by resizing the page — only by sending a crop.
+#   * finding regions is LAYOUT work, so one model serves both languages and every paper type; reading
+#     is language work and belongs in pass 2.
+#
+# The three types below are exactly what `annotations_train.json` already labels — pupil_text (244,529),
+# pupil_comment (14,581) and teacher_comment (10,327) — so this trains on data that already exists.
+# Separating the teacher's ink is not cosmetic: 2.9 % of boxes in the zero-shot run were the teacher's
+# red pen read as if the pupil had written it.
+REGION_PROMPT = (
+    'This is a photograph of a page from a school exercise book.\n'
+    'Find EVERY separate piece of handwriting and say WHAT KIND it is. Do not transcribe anything.\n'
+    'Return ONLY a JSON array, ordered top to bottom, left column before right.\n'
+    'Each element: {"bbox_2d": [x1, y1, x2, y2], "type": "..."}\n'
+    'The three kinds are:\n'
+    '  - "pupil_line"   a line of the pupil\'s own work\n'
+    '  - "pupil_note"   something the pupil squeezed above, between or beside the lines: a short note,\n'
+    '                   a grammar mark, a single letter or digit in the margin\n'
+    '  - "teacher_mark" anything written by the teacher — corrections, ticks, crosses, a grade\n'
+    'Miss nothing, however short or however faint. Do not stop early. Continue to the bottom of the page.\n'
+    'No text, no transcription, no commentary — boxes and kinds only.\n'
+)
+
+REGION_TYPES = ("pupil_line", "pupil_note", "teacher_mark")

@@ -27,7 +27,7 @@ import hashlib
 import json
 import re
 
-__all__ = ["prompt_fingerprint", "check_prompt", "check_output", "check_page", "Verdict"]
+__all__ = ["prompt_fingerprint", "check_prompt", "check_output", "check_runaway", "check_page", "Verdict"]
 
 
 class Verdict:
@@ -108,6 +108,57 @@ def check_output(raw: str, items: list, page_wh: tuple[int, int],
             reasons.append(f"only {len(items)} boxes for ~{expected_lines} expected lines (stopped early?)")
             level = Verdict.REJECT
     return Verdict(level, reasons, {"n_items": len(items), "bad_geom": bad_geom})
+
+
+def check_runaway(items: list, raw: str | None = None, min_unique: float = 0.5,
+                  review_unique: float = 0.8, max_run: int = 5) -> Verdict:
+    """Catch a generation that fell into a repetition loop. Needs no ground truth.
+
+    `check_output` can only spot over-segmenting when you already know how many lines to expect, which
+    at inference time you do not. This spots the failure from the output's own shape.
+
+    MEASURED (markup probe, 2026-08-23). One page in six derailed: 136 items in 78 s against 6 real
+    ones, of which **135 were the identical word** — unique ratio **0.01**, where all five healthy
+    pages scored exactly **1.00**. The separation is not marginal, so the threshold does not need to
+    be delicate. Same failure family as R6's adapter emitting one line and stopping: a whole-page
+    generation fails as a whole, and nothing downstream would have flagged it.
+
+    That run also ended mid-object, so `check_output`'s truncation test would have caught this one
+    too — but only because it happened to hit the token cap. A loop that repeats and then closes the
+    array cleanly slips past every other check here. Hence a check on repetition itself.
+    """
+    if not items:
+        return Verdict(Verdict.REJECT, ["no items to check for runaway"], {"n_items": 0})
+
+    def key(it):
+        t = it.get("text") if it.get("text") is not None else it.get("word")
+        return re.sub(r"\s+", " ", str(t or "")).strip().lower()
+
+    keys = [key(it) for it in items]
+    nonempty = [k for k in keys if k]
+    uniq = len(set(nonempty)) / len(nonempty) if nonempty else 0.0
+
+    run = best = 1
+    for a, b in zip(keys, keys[1:]):
+        run = run + 1 if a and a == b else 1
+        best = max(best, run)
+
+    stats = {"n_items": len(items), "unique_ratio": round(uniq, 3), "longest_repeat_run": best}
+    reasons, level = [], Verdict.OK
+    if nonempty and uniq < min_unique:
+        reasons.append(f"repetition loop: only {uniq:.0%} of {len(nonempty)} items are distinct")
+        level = Verdict.REJECT
+    elif nonempty and uniq < review_unique:
+        reasons.append(f"suspicious repetition: {uniq:.0%} of items are distinct")
+        level = Verdict.REVIEW
+    if best > max_run:
+        reasons.append(f"{best} identical items in a row")
+        level = Verdict.REJECT
+    if raw is not None and raw.strip() and not raw.strip().endswith("]"):
+        reasons.append("reply did not close its JSON array — cut off by the token cap")
+        level = Verdict.REJECT
+        stats["hit_token_cap"] = True
+    return Verdict(level, reasons, stats)
 
 
 # ---------------------------------------------------------------- 3. page invariants
