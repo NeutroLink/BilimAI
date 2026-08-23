@@ -1,0 +1,524 @@
+{
+ "name": "bilimai-capability-regression",
+ "fingerprint": "923aff9a8b31",
+ "built_from": {
+  "maths": "out/math_baseline/strips + eval/runs/qwen_math_baseline.json",
+  "uzbek": "out/uz_page_probe/{pages,strips} + gt.json"
+ },
+ "counts": {
+  "math_plain": 14,
+  "math_latex": 60,
+  "uz_strip": 24,
+  "uz_page": 3
+ },
+ "items": [
+  {
+   "image": "math_plain_00bddacfb3de33ce.jpg",
+   "task": "math_plain",
+   "label": "O(nlogn)"
+  },
+  {
+   "image": "math_plain_0025484cf71c8ab7.jpg",
+   "task": "math_plain",
+   "label": "F"
+  },
+  {
+   "image": "math_plain_00e8bf4cde24f874.jpg",
+   "task": "math_plain",
+   "label": ";u"
+  },
+  {
+   "image": "math_plain_0178bf7cceb64473.jpg",
+   "task": "math_plain",
+   "label": "L>>(x+a/2)"
+  },
+  {
+   "image": "math_plain_018f48ac8fe4bd53.jpg",
+   "task": "math_plain",
+   "label": "|0|<|1|+|-2|"
+  },
+  {
+   "image": "math_plain_0198a68035125b5a.jpg",
+   "task": "math_plain",
+   "label": "G"
+  },
+  {
+   "image": "math_plain_000a4e8ca49c5a1c.jpg",
+   "task": "math_plain",
+   "label": "(x-y)/sqrt(2)"
+  },
+  {
+   "image": "math_plain_0017bb5822bcba69.jpg",
+   "task": "math_plain",
+   "label": "P=P(C(Z))"
+  },
+  {
+   "image": "math_plain_00db5331b85f4d47.jpg",
+   "task": "math_plain",
+   "label": "N=|V|"
+  },
+  {
+   "image": "math_plain_00eaf4f2d3d20bb1.jpg",
+   "task": "math_plain",
+   "label": "B=ln(-b)"
+  },
+  {
+   "image": "math_plain_00fcddfee1ebfee6.jpg",
+   "task": "math_plain",
+   "label": "2sin(x/2)"
+  },
+  {
+   "image": "math_plain_01859fc130dc9008.jpg",
+   "task": "math_plain",
+   "label": "(++++)"
+  },
+  {
+   "image": "math_plain_01c37bbe7ea55c56.jpg",
+   "task": "math_plain",
+   "label": "T+ATT=1+E"
+  },
+  {
+   "image": "math_plain_02894b4ff1ee6c7b.jpg",
+   "task": "math_plain",
+   "label": "0/x=0,x/x=1"
+  },
+  {
+   "image": "math_latex_00000b332dcd6fe5.jpg",
+   "task": "math_latex",
+   "label": "(\\begin{matrix}j\\\\ m+1\\end{matrix})"
+  },
+  {
+   "image": "math_latex_000a4e8ca49c5a1c.jpg",
+   "task": "math_latex",
+   "label": "(x-y)/sqrt(2)"
+  },
+  {
+   "image": "math_latex_0017bb5822bcba69.jpg",
+   "task": "math_latex",
+   "label": "P=P(C(Z))"
+  },
+  {
+   "image": "math_latex_00235ec3dee919dd.jpg",
+   "task": "math_latex",
+   "label": "\\int_{0}^{\\infty}\\frac{sin(x)}{x}dx"
+  },
+  {
+   "image": "math_latex_002651244bc93554.jpg",
+   "task": "math_latex",
+   "label": "\\int_{A}P_{A}dA=1"
+  },
+  {
+   "image": "math_latex_00386113d577085b.jpg",
+   "task": "math_latex",
+   "label": "\\langle a_{0},a_{1},...\\rangle\\in R^{\\omega}"
+  },
+  {
+   "image": "math_latex_0047f70eafca2534.jpg",
+   "task": "math_latex",
+   "label": "[\\begin{matrix}a\\\\ b\\\\ c\\end{matrix}]"
+  },
+  {
+   "image": "math_latex_0052b8e13b5f4a36.jpg",
+   "task": "math_latex",
+   "label": "w(\\neg\\theta)=F_{\\neg}(w(\\theta))"
+  },
+  {
+   "image": "math_latex_0067440924b60b2b.jpg",
+   "task": "math_latex",
+   "label": "[g^{ij}]=\\frac{1}{g}\\frac{\\partial g}{\\partial g_{ij}}"
+  },
+  {
+   "image": "math_latex_006fb32b84a99137.jpg",
+   "task": "math_latex",
+   "label": "[\\begin{matrix}1&1\\\\ 0&1\\end{matrix}]"
+  },
+  {
+   "image": "math_latex_0082d4aa943b9f8c.jpg",
+   "task": "math_latex",
+   "label": "|\\frac{d^{2}y}{dx^{2}}|\\approx\\frac{1}{R}"
+  },
+  {
+   "image": "math_latex_0090db2a639b5c98.jpg",
+   "task": "math_latex",
+   "label": "S_{ijk}\\rightarrow S_{ij}(\\omega_{k})"
+  },
+  {
+   "image": "math_latex_009f7b727b467490.jpg",
+   "task": "math_latex",
+   "label": "\\frac{\\pi}{2}(i-1)\\le v_{i}<\\frac{\\pi}{2}i"
+  },
+  {
+   "image": "math_latex_00ac5cd85e462376.jpg",
+   "task": "math_latex",
+   "label": "\\forall u(wR_{i}u\\Rightarrow u\\Vdash A)"
+  },
+  {
+   "image": "math_latex_00ba90fe7f71d8c6.jpg",
+   "task": "math_latex",
+   "label": "\\Omega((logn)/n^{2})"
+  },
+  {
+   "image": "math_latex_00c46c9b07b39bb7.jpg",
+   "task": "math_latex",
+   "label": "l_{n}=kl_{n}\\cdot\\frac{b_{n}}{b_{a}}\\cdot\\frac{s_{n}}{s_{a}}"
+  },
+  {
+   "image": "math_latex_00db5331b85f4d47.jpg",
+   "task": "math_latex",
+   "label": "N=|V|"
+  },
+  {
+   "image": "math_latex_00eaf4f2d3d20bb1.jpg",
+   "task": "math_latex",
+   "label": "B=ln(-b)"
+  },
+  {
+   "image": "math_latex_00fcddfee1ebfee6.jpg",
+   "task": "math_latex",
+   "label": "2sin(x/2)"
+  },
+  {
+   "image": "math_latex_010963a06d1d5a79.jpg",
+   "task": "math_latex",
+   "label": "\\tilde{\\gamma}(0)=p"
+  },
+  {
+   "image": "math_latex_0112074a000acff4.jpg",
+   "task": "math_latex",
+   "label": "\\Omega=\\frac{\\Delta PE}{\\Delta t}"
+  },
+  {
+   "image": "math_latex_011bc2c4d3e15714.jpg",
+   "task": "math_latex",
+   "label": "T_{0}=2\\pi\\sqrt{\\frac{l}{g}}"
+  },
+  {
+   "image": "math_latex_012c517a05e2c2d4.jpg",
+   "task": "math_latex",
+   "label": "\\int x^{k}d\\mu(x)=m_{k}"
+  },
+  {
+   "image": "math_latex_013f565c7a547d0b.jpg",
+   "task": "math_latex",
+   "label": "\\mu_{G}(H_{1},H_{2})=(-1)^{k}p^{(\\begin{matrix}k\\\\ 2\\end{matrix})}"
+  },
+  {
+   "image": "math_latex_014d90d483380e66.jpg",
+   "task": "math_latex",
+   "label": "\\langle\\psi^{jk}|\\psi_{lm}\\rangle=\\delta_{jl}\\delta_{km}"
+  },
+  {
+   "image": "math_latex_015e012d8baa97f3.jpg",
+   "task": "math_latex",
+   "label": "\\epsilon,\\delta,K>0"
+  },
+  {
+   "image": "math_latex_01751ea13ceb1817.jpg",
+   "task": "math_latex",
+   "label": "C(X)>X^{0.332}"
+  },
+  {
+   "image": "math_latex_017b290258802288.jpg",
+   "task": "math_latex",
+   "label": "A_{\\mu}\\rightarrow A_{\\mu}+\\partial_{\\mu}\\phi(x)"
+  },
+  {
+   "image": "math_latex_018b8fb309ce7af2.jpg",
+   "task": "math_latex",
+   "label": "d\\overline{v}=-\\frac{e\\cdot\\overline{E}}{m}dt"
+  },
+  {
+   "image": "math_latex_018fb881d2eef21d.jpg",
+   "task": "math_latex",
+   "label": "F_{r}=\\frac{v}{\\sqrt{g\\frac{A}{B}}}"
+  },
+  {
+   "image": "math_latex_01998b624db95830.jpg",
+   "task": "math_latex",
+   "label": "\\hat{\\beta}=(\\overline{y/x})"
+  },
+  {
+   "image": "math_latex_01a0b54b759ab60d.jpg",
+   "task": "math_latex",
+   "label": "3k+1=2^{a}k^{\\prime}"
+  },
+  {
+   "image": "math_latex_01ab618a2350036f.jpg",
+   "task": "math_latex",
+   "label": "f_{n}\\rightarrow\\chi_{[1,2)}"
+  },
+  {
+   "image": "math_latex_01cdd808862eab64.jpg",
+   "task": "math_latex",
+   "label": "T^{t}:=S^{1}\\times\\cdot\\cdot\\cdot\\times S^{1}"
+  },
+  {
+   "image": "math_latex_01d4536a52886b73.jpg",
+   "task": "math_latex",
+   "label": "N_{0}||X-\\hat{X}||^{2}/2"
+  },
+  {
+   "image": "math_latex_01e4c8973307a964.jpg",
+   "task": "math_latex",
+   "label": "|g,n\\rangle\\rightarrow|e,n-1\\rangle"
+  },
+  {
+   "image": "math_latex_01fdfab60060594b.jpg",
+   "task": "math_latex",
+   "label": "|S|\\le(\\begin{matrix}n\\\\ \\lfloor n/2\\rfloor\\end{matrix})"
+  },
+  {
+   "image": "math_latex_02229a0c174d8dbe.jpg",
+   "task": "math_latex",
+   "label": "d\\approx\\sqrt{2\\cdot k\\cdot R\\cdot h}"
+  },
+  {
+   "image": "math_latex_0235a447c15a24d7.jpg",
+   "task": "math_latex",
+   "label": "nlog_{2}n-\\frac{n}{ln2}"
+  },
+  {
+   "image": "math_latex_025f51bee0e59494.jpg",
+   "task": "math_latex",
+   "label": "g=g_{-1}\\oplus g_{0}\\oplus g_{1}"
+  },
+  {
+   "image": "math_latex_0272a794109d5d2d.jpg",
+   "task": "math_latex",
+   "label": "P_{F}=\\sqrt{P_{P}\\cdot P_{L}}"
+  },
+  {
+   "image": "math_latex_028cf1f0507df703.jpg",
+   "task": "math_latex",
+   "label": "U_{i}(I)=I_{L_{i}}"
+  },
+  {
+   "image": "math_latex_02aced0c052805c6.jpg",
+   "task": "math_latex",
+   "label": "1/x\\approx1-x"
+  },
+  {
+   "image": "math_latex_02c82a919e114b86.jpg",
+   "task": "math_latex",
+   "label": "\\Psi(\\rho,\\phi,z)"
+  },
+  {
+   "image": "math_latex_02de91b624143438.jpg",
+   "task": "math_latex",
+   "label": "y^{2}=x^{3}-n^{2}x"
+  },
+  {
+   "image": "math_latex_030ea5646116a251.jpg",
+   "task": "math_latex",
+   "label": "M_{2}=P_{1}^{\\prime}|P_{2}|..."
+  },
+  {
+   "image": "math_latex_0325d90612c71772.jpg",
+   "task": "math_latex",
+   "label": "\\hat{\\Sigma}_{j,/j}"
+  },
+  {
+   "image": "math_latex_0333d9584ff7c0d0.jpg",
+   "task": "math_latex",
+   "label": "f^{-1}(x)=\\frac{1}{f(x)}"
+  },
+  {
+   "image": "math_latex_038ccb46ae3443db.jpg",
+   "task": "math_latex",
+   "label": "\\mathbb{E}[logX!]=\\overline{logX!}"
+  },
+  {
+   "image": "math_latex_03d92e3e170bb629.jpg",
+   "task": "math_latex",
+   "label": "(\\begin{matrix}\\pm\\sqrt{N}\\\\ 1\\end{matrix})"
+  },
+  {
+   "image": "math_latex_0443cdf212ee67b1.jpg",
+   "task": "math_latex",
+   "label": "t=\\frac{0}{\\sqrt{0+\\frac{u^{2}}{c^{2}}}}\\kappa"
+  },
+  {
+   "image": "math_latex_0491ecbb62f31a6e.jpg",
+   "task": "math_latex",
+   "label": "\\overline{K}_{n}"
+  },
+  {
+   "image": "math_latex_04e2d85cba0103e9.jpg",
+   "task": "math_latex",
+   "label": "x=\\frac{4}{\\sqrt{4+\\frac{v^{2}}{c^{2}}}}\\upsilon"
+  },
+  {
+   "image": "math_latex_04fc9a7665035a0d.jpg",
+   "task": "math_latex",
+   "label": "a_{b,i}=\\gamma_{b,i}\\frac{b_{i}}{b^{\\ominus}}"
+  },
+  {
+   "image": "math_latex_0578f6b97d18358a.jpg",
+   "task": "math_latex",
+   "label": "U=-m\\sum G\\frac{M}{r}"
+  },
+  {
+   "image": "math_latex_05f2be02bbe36bd4.jpg",
+   "task": "math_latex",
+   "label": "(\\begin{matrix}i&j\\\\ k&l\\end{matrix})"
+  },
+  {
+   "image": "math_latex_063aa42f5d0ef5be.jpg",
+   "task": "math_latex",
+   "label": "e^{(\\frac{\\Upsilon}{\\phi})[1-\\sqrt{1-\\frac{5\\phi^{5}m}{\\Upsilon}}]}"
+  },
+  {
+   "image": "math_latex_068de3aad90c403c.jpg",
+   "task": "math_latex",
+   "label": "\\forall b_{1},...,b_{n}\\notin T(s)"
+  },
+  {
+   "image": "math_latex_0703652c7a0c26f7.jpg",
+   "task": "math_latex",
+   "label": "G(Y^{\\prime})=G(Y)\\oplus R"
+  },
+  {
+   "image": "math_latex_07534c098d424d5f.jpg",
+   "task": "math_latex",
+   "label": "\\vec{R}(\\nu)"
+  },
+  {
+   "image": "uz_strip_uz_p00_l01.jpg",
+   "task": "uz_strip",
+   "label": "Fargʻonada Lacetti velosipedchini urib yubordi. Jabrlanuvchi"
+  },
+  {
+   "image": "uz_strip_uz_p00_l03.jpg",
+   "task": "uz_strip",
+   "label": "Fargʻona viloyatining Dangʻara tumanida"
+  },
+  {
+   "image": "uz_strip_uz_p00_l05.jpg",
+   "task": "uz_strip",
+   "label": "sodir boʻldi. Bu haqda “Daryo”ga viloyat IIB axborot xizmati"
+  },
+  {
+   "image": "uz_strip_uz_p00_l07.jpg",
+   "task": "uz_strip",
+   "label": "boshqaruvidagi Lacetti Toshkent"
+  },
+  {
+   "image": "uz_strip_uz_p00_l09.jpg",
+   "task": "uz_strip",
+   "label": "velosipedda kesib oʻtayotgan A.B.ni urib yuborgan."
+  },
+  {
+   "image": "uz_strip_uz_p00_l11.jpg",
+   "task": "uz_strip",
+   "label": "Holat yuzasidan Dangʻara tuman IIB huzuridagi tergov"
+  },
+  {
+   "image": "uz_strip_uz_p00_l13.jpg",
+   "task": "uz_strip",
+   "label": "kodeksining 266-moddasi 2-qismi (transport"
+  },
+  {
+   "image": "uz_strip_uz_p00_l15.jpg",
+   "task": "uz_strip",
+   "label": "qoidalarini buzish) bilan jinoyat ishi qoʻzgʻatilgan."
+  },
+  {
+   "image": "uz_strip_uz_p01_l01.jpg",
+   "task": "uz_strip",
+   "label": "Eslatib oʻtamiz, avvalroq Yakkasaroyda Lacetti, Damas"
+  },
+  {
+   "image": "uz_strip_uz_p01_l03.jpg",
+   "task": "uz_strip",
+   "label": "mashinasi va 2 avtomobil ishtirokidagi YTH oqibatda 1"
+  },
+  {
+   "image": "uz_strip_uz_p01_l05.jpg",
+   "task": "uz_strip",
+   "label": "Tushkunlik va kuzgi mayuslikni qanday qilib"
+  },
+  {
+   "image": "uz_strip_uz_p01_l07.jpg",
+   "task": "uz_strip",
+   "label": "Oʻzbekistonda kuz yetarlicha issiq"
+  },
+  {
+   "image": "uz_strip_uz_p01_l09.jpg",
+   "task": "uz_strip",
+   "label": "koʻpchiligimiz uchun tanish holat. Yoz va taʼtillar"
+  },
+  {
+   "image": "uz_strip_uz_p01_l11.jpg",
+   "task": "uz_strip",
+   "label": "tantanalarigacha esa hali yetarlicha muddat"
+  },
+  {
+   "image": "uz_strip_uz_p01_l13.jpg",
+   "task": "uz_strip",
+   "label": "qaytishingiz bilan qorongʻi tushadi. Quyoshli kunlar"
+  },
+  {
+   "image": "uz_strip_uz_p01_l15.jpg",
+   "task": "uz_strip",
+   "label": "Xoʻsh, bunday sharoitda zerikish va tushkunlikka qarshi"
+  },
+  {
+   "image": "uz_strip_uz_p02_l01.jpg",
+   "task": "uz_strip",
+   "label": "Birinchi navbatda, uyqu rejimingizni qayta koʻrib"
+  },
+  {
+   "image": "uz_strip_uz_p02_l03.jpg",
+   "task": "uz_strip",
+   "label": "uygʻonish juda muhim! 23:00 dan kech"
+  },
+  {
+   "image": "uz_strip_uz_p02_l05.jpg",
+   "task": "uz_strip",
+   "label": "Shunda sifatli uyqu nima ekanligini anglab yetasiz, kayfiyatingiz"
+  },
+  {
+   "image": "uz_strip_uz_p02_l07.jpg",
+   "task": "uz_strip",
+   "label": "ovqatlanish. Koʻproq meva va"
+  },
+  {
+   "image": "uz_strip_uz_p02_l09.jpg",
+   "task": "uz_strip",
+   "label": "hazm qilish uchun koʻp vaqt talab qiluvchi yogʻli"
+  },
+  {
+   "image": "uz_strip_uz_p02_l11.jpg",
+   "task": "uz_strip",
+   "label": "Shirinliklarni ham minimal"
+  },
+  {
+   "image": "uz_strip_uz_p02_l13.jpg",
+   "task": "uz_strip",
+   "label": "etamiz. U tushkunlikka qarshi"
+  },
+  {
+   "image": "uz_strip_uz_p02_l15.jpg",
+   "task": "uz_strip",
+   "label": "(shokolad boʻlakchasi yoki"
+  },
+  {
+   "image": "uz_page_uz_page_00.jpg",
+   "task": "uz_page",
+   "label": "Fargʻonada Lacetti velosipedchini urib yubordi. Jabrlanuvchi\nshifoxonada vafot etdi\nFargʻona viloyatining Dangʻara tumanida\nLacetti va velosiped ishtirokida yoʻl-transport hodisasi\nsodir boʻldi. Bu haqda “Daryo”ga viloyat IIB axborot xizmati\nMaʼlum qilinishicha, 2021-yilning 8-aprel kuni fuqaro N.Yo.\nboshqaruvidagi Lacetti Toshkent\nkoʻchasida ketayotib, yoʻlning qatnov qismini\nvelosipedda kesib oʻtayotgan A.B.ni urib yuborgan.\nOqibatda A.B. tan jarohati olib, shifoxonada vafot\nHolat yuzasidan Dangʻara tuman IIB huzuridagi tergov\nboʻlinmasi tomonidan Jinoyat\nkodeksining 266-moddasi 2-qismi (transport\nvositalari harakati yoki ulardan foydalanish xavfsizligi\nqoidalarini buzish) bilan jinoyat ishi qoʻzgʻatilgan.\nAyni paytda tergov harakatlari",
+   "n_lines": 16
+  },
+  {
+   "image": "uz_page_uz_page_01.jpg",
+   "task": "uz_page",
+   "label": "Eslatib oʻtamiz, avvalroq Yakkasaroyda Lacetti, Damas\nhamda Spark ishtirokida YTH sodir boʻlgani, Jizzaxda esa yuk\nmashinasi va 2 avtomobil ishtirokidagi YTH oqibatda 1\nkishi vafot etgani haqida xabar berilgandi.\nTushkunlik va kuzgi mayuslikni qanday qilib\nyengib oʻtish mumkin?\nOʻzbekistonda kuz yetarlicha issiq\nkelganiga qaramay, kuzgi zerikish\nkoʻpchiligimiz uchun tanish holat. Yoz va taʼtillar\nortda qoldi, yangi yil\ntantanalarigacha esa hali yetarlicha muddat\nbor. Kunlar qisqarib, ishdan\nqaytishingiz bilan qorongʻi tushadi. Quyoshli kunlar\nkamayib boravergani sayin zerikish\nXoʻsh, bunday sharoitda zerikish va tushkunlikka qarshi\nkurashish uchun qaysi usullarni qoʻllay olamiz?",
+   "n_lines": 16
+  },
+  {
+   "image": "uz_page_uz_page_02.jpg",
+   "task": "uz_page",
+   "label": "Birinchi navbatda, uyqu rejimingizni qayta koʻrib\nchiqing. Bu davrda oʻz vaqtida uyquga yotib, vaqtida\nuygʻonish juda muhim! 23:00 dan kech\nboʻlmasdan uyquga yotishga harakat qiling.\nShunda sifatli uyqu nima ekanligini anglab yetasiz, kayfiyatingiz\nIkkinchi muhim jihat —\novqatlanish. Koʻproq meva va\nsabzavotlar isteʼmol qilib,\nhazm qilish uchun koʻp vaqt talab qiluvchi yogʻli\ntaomlarni kamroq tanovul qiling.\nShirinliklarni ham minimal\ndarajagacha kamaytirishni tavsiya\netamiz. U tushkunlikka qarshi\nkurashishda yordam bersa ham, kichikroq boʻlakchalar\n(shokolad boʻlakchasi yoki\nbitta bulochka) bilan",
+   "n_lines": 16
+  }
+ ]
+}

@@ -1,0 +1,343 @@
+{
+ "model": "Qwen3-VL-4B-Instruct-MLX-8bit",
+ "pages": [
+  {
+   "file": "uz_page_00.jpg",
+   "seconds": 36.7,
+   "n_items": 16,
+   "raw": "[\n    {\"bbox_2d\": [87, 69, 481, 103], \"text\": \"Farg'onada Lacetti velosipedchini urib yubordi. Jabrlanuvchi\"},\n    {\"bbox_2d\": [85, 115, 226, 150], \"text\": \"shifoxonada vafot etdi\"},\n    {\"bbox_2d\": [99, 172, 415, 206], \"text\": \"Farg'ona viloyatining Dang'ara tumanida\"},\n    {\"bbox_2d\": [90, 220, 430, 254], \"text\": \"Lacetti va velosiped ishtirokida yo'l-transport hodisasi\"},\n    {\"bbox_2d\": [90, 275, 562, 310], \"text\": \"sodir boldi. Bu haqda \\\"Daryo\\\"ga viloyat JIB axborot xizmati\"},\n    {\"bbox_2d\": [90, 323, 516, 358], \"text\": \"Ma'lum qilinishicha, 2021-yilning 8-aprel kuni fuqaro N.Yo.\"},\n    {\"bbox_2d\": [85, 379, 321, 413], \"text\": \"boshqaruvidagi Lacetti Toshkent\"},\n    {\"bbox_2d\": [87, 436, 443, 470], \"text\": \"ko'chasida ketayotib, yo'lning qatnov qismini\"},\n    {\"bbox_2d\": [87, 491, 442, 525], \"text\": \"velosipedda kesib o'tayotgan A.B.ni urib yuborgan.\"},\n    {\"bbox_2d\": [95, 540, 468, 574], \"text\": \"Oqibatda A.B. tan jarohati olib, shifoxonada vafot\"},\n    {\"bbox_2d\": [90, 590, 464, 624], \"text\": \"Holat yuzasidan Dang'ara tuman JIB huzuridagi tergov\"},\n    {\"bbox_2d\": [90, 640, 325, 674], \"text\": \"bo'linmasi tomonidan Jinoyat\"},\n    {\"bbox_2d\": [87, 695, 455, 730], \"text\": \"kodeksining 266-moddasi 2-qismi (transport\"},\n    {\"bbox_2d\": [85, 745, 446, 779], \"text\": \"vositalari harakati yoki ulardan foydalanish xarfsizligi\"},\n    {\"bbox_2d\": [87, 795, 467, 830], \"text\": \"qoidalarini buzish) bilan jinoyat ishi qo'zg'atilgan.\"},\n    {\"bbox_2d\": [87, 845, 314, 880], \"text\": \"Ayni paytda tergov harakatlari\"}\n]"
+  },
+  {
+   "file": "uz_page_01.jpg",
+   "seconds": 36.1,
+   "n_items": 16,
+   "raw": "[\n    {\"bbox_2d\": [109, 73, 534, 106], \"text\": \"Eslatib o'tamiz, avvalroq Yakkasaroyda Lacetti, Damas\"},\n    {\"bbox_2d\": [105, 120, 613, 158], \"text\": \"hamda Spark ishtirokida YTH sodir bo'lgani, Jizzaxda esa yuk\"},\n    {\"bbox_2d\": [105, 170, 567, 206], \"text\": \"mashinasi va 2 avtomobil ishtirokidagi YTH oqibatda 1\"},\n    {\"bbox_2d\": [102, 220, 446, 257], \"text\": \"kishi vajot etgani haqida xabar berilgandi.\"},\n    {\"bbox_2d\": [102, 272, 417, 307], \"text\": \"Tushkunlik va kuzgi mayuslikni qanday qilib\"},\n    {\"bbox_2d\": [109, 325, 265, 360], \"text\": \"yengib o'tish mumkin?\"},\n    {\"bbox_2d\": [102, 380, 353, 416], \"text\": \"O'zbekistonda kuz yetarlicha issiq\"},\n    {\"bbox_2d\": [102, 432, 391, 468], \"text\": \"kelganiga qaramay, kuzgi zerikish\"},\n    {\"bbox_2d\": [99, 484, 543, 520], \"text\": \"ko'pchiligimiz uchun tanish holat. Yoz va ta'tillar\"},\n    {\"bbox_2d\": [102, 537, 280, 573], \"text\": \"ortda qoldi, yangi yil\"},\n    {\"bbox_2d\": [112, 590, 496, 626], \"text\": \"tantanalarigacha esa hali yetarlicha muddat\"},\n    {\"bbox_2d\": [97, 643, 326, 679], \"text\": \"bor. Kunlar qisqarib, ishdan\"},\n    {\"bbox_2d\": [112, 696, 524, 732], \"text\": \"qaytishingiz bilan qorong'i tushadi. Quyoshli kunlar\"},\n    {\"bbox_2d\": [100, 749, 353, 785], \"text\": \"kamayib boraverhani sayin zerikish\"},\n    {\"bbox_2d\": [99, 801, 508, 837], \"text\": \"Xo'sh, bunday sharoitda zerikish va tushkunlikka qarshi\"},\n    {\"bbox_2d\": [102, 854, 498, 890], \"text\": \"kurashish uchun qaysi usullarni qo'llay olamiz?\"}\n]"
+  },
+  {
+   "file": "uz_page_02.jpg",
+   "seconds": 35.2,
+   "n_items": 16,
+   "raw": "[\n    {\"bbox_2d\": [103, 65, 454, 98], \"text\": \"Birinchi navbatda, uyqu rejimingizni qayta ko'rib\"},\n    {\"bbox_2d\": [97, 120, 517, 157], \"text\": \"chiqing. Bu davrda o'z vaqtida uyquga yotib, vaqtida\"},\n    {\"bbox_2d\": [93, 175, 376, 208], \"text\": \"uyg'onish juda muhim! 23:00 dan kech\"},\n    {\"bbox_2d\": [103, 229, 494, 266], \"text\": \"bo'lmasdan uyquga yotishga harakat qiling.\"},\n    {\"bbox_2d\": [99, 279, 710, 318], \"text\": \"Shunda sifatli uyqu nima ekanligini anglab yetasiz, kayfiyatingiz\"},\n    {\"bbox_2d\": [102, 333, 282, 366], \"text\": \"Ikkinchi muhim jihat —\"},\n    {\"bbox_2d\": [103, 385, 345, 418], \"text\": \"ovqatlanish. Ko'proq meva va\"},\n    {\"bbox_2d\": [92, 439, 263, 472], \"text\": \"sabzavotlar iste'mol qilib,\"},\n    {\"bbox_2d\": [103, 492, 442, 525], \"text\": \"hazm qilish uchun ko'p vaqt talab qiluvchi yog'li\"},\n    {\"bbox_2d\": [103, 544, 363, 577], \"text\": \"taomlarni kamroq tanovul qiling.\"},\n    {\"bbox_2d\": [95, 596, 314, 629], \"text\": \"Shirinliklarni ham minimal\"},\n    {\"bbox_2d\": [99, 649, 333, 682], \"text\": \"darajagacha kamaytirishni tavsiya\"},\n    {\"bbox_2d\": [94, 699, 309, 732], \"text\": \"etamiz. U tushkunlikka qarshi\"},\n    {\"bbox_2d\": [97, 752, 473, 785], \"text\": \"kurashishda yordam bersa ham, kichikroq bo'lakchalar\"},\n    {\"bbox_2d\": [95, 804, 287, 837], \"text\": \"(shokolad bo'lakchasi yoki\"},\n    {\"bbox_2d\": [100, 857, 253, 890], \"text\": \"bitta bulochka) bilan\"}\n]"
+  }
+ ],
+ "strips": [
+  {
+   "file": "uz_p00_l01.jpg",
+   "ref": "Fargʻonada Lacetti velosipedchini urib yubordi. Jabrlanuvchi",
+   "hyp": "Farg'onada Lacetti velosipedchini urib yubordi. Jabrlanuvchi",
+   "cer": 0.0167
+  },
+  {
+   "file": "uz_p00_l02.jpg",
+   "ref": "shifoxonada vafot etdi",
+   "hyp": "shifoxonada va fot etdi",
+   "cer": 0.0455
+  },
+  {
+   "file": "uz_p00_l03.jpg",
+   "ref": "Fargʻona viloyatining Dangʻara tumanida",
+   "hyp": "Fargʻona viloyatining Dangʻara tumanida",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p00_l04.jpg",
+   "ref": "Lacetti va velosiped ishtirokida yoʻl-transport hodisasi",
+   "hyp": "Lacetti va velosiped ishtirokida yol-transport hodisasi",
+   "cer": 0.0179
+  },
+  {
+   "file": "uz_p00_l05.jpg",
+   "ref": "sodir boʻldi. Bu haqda “Daryo”ga viloyat IIB axborot xizmati",
+   "hyp": "sodir bo'ldi. Bu haqda \"Daryo\" ga viloyat JIB axborot xizmati",
+   "cer": 0.0833
+  },
+  {
+   "file": "uz_p00_l06.jpg",
+   "ref": "Maʼlum qilinishicha, 2021-yilning 8-aprel kuni fuqaro N.Yo.",
+   "hyp": "Ma'lum qilinishicha, 2021-yilning 8-aprel kuni fuqaro N.Yo.",
+   "cer": 0.0169
+  },
+  {
+   "file": "uz_p00_l07.jpg",
+   "ref": "boshqaruvidagi Lacetti Toshkent",
+   "hyp": "boshqaruvidagi Lacetti Toshkent",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p00_l08.jpg",
+   "ref": "koʻchasida ketayotib, yoʻlning qatnov qismini",
+   "hyp": "ko'chasida ketayotib, yo'lning qatnov qismini",
+   "cer": 0.0444
+  },
+  {
+   "file": "uz_p00_l09.jpg",
+   "ref": "velosipedda kesib oʻtayotgan A.B.ni urib yuborgan.",
+   "hyp": "velosipedda kesib o'tayotgan A.B.ni urib yuborgan.",
+   "cer": 0.02
+  },
+  {
+   "file": "uz_p00_l10.jpg",
+   "ref": "Oqibatda A.B. tan jarohati olib, shifoxonada vafot",
+   "hyp": "Oqibatda A.B. tan jarohati olib, shifoxonada vafot",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p00_l11.jpg",
+   "ref": "Holat yuzasidan Dangʻara tuman IIB huzuridagi tergov",
+   "hyp": "Holat yuzasidan Dang'ara tumani JIB huzuridagi tergov",
+   "cer": 0.0577
+  },
+  {
+   "file": "uz_p00_l12.jpg",
+   "ref": "boʻlinmasi tomonidan Jinoyat",
+   "hyp": "bolinmasi tomonidan Jinoyat",
+   "cer": 0.0357
+  },
+  {
+   "file": "uz_p00_l13.jpg",
+   "ref": "kodeksining 266-moddasi 2-qismi (transport",
+   "hyp": "kodeksining 266-moddasi 2-qismi (transport",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p00_l14.jpg",
+   "ref": "vositalari harakati yoki ulardan foydalanish xavfsizligi",
+   "hyp": "vositalari harakati yoki ulardan foydalanish xavfsizligi",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p00_l15.jpg",
+   "ref": "qoidalarini buzish) bilan jinoyat ishi qoʻzgʻatilgan.",
+   "hyp": "qoidalarini buzish) bilan jinoyat ishi qo'zg'atilgan.",
+   "cer": 0.0377
+  },
+  {
+   "file": "uz_p00_l16.jpg",
+   "ref": "Ayni paytda tergov harakatlari",
+   "hyp": "Ayni paytda tergov harakatlarini",
+   "cer": 0.0667
+  },
+  {
+   "file": "uz_p01_l01.jpg",
+   "ref": "Eslatib oʻtamiz, avvalroq Yakkasaroyda Lacetti, Damas",
+   "hyp": "Eslatib o'tamiz, avvalroq Yakkasaroyda Lacetti, Damas",
+   "cer": 0.0189
+  },
+  {
+   "file": "uz_p01_l02.jpg",
+   "ref": "hamda Spark ishtirokida YTH sodir boʻlgani, Jizzaxda esa yuk",
+   "hyp": "hamda Spark ishtirokida YTH sodir bo'lgani, Jizzaxda esa yuk",
+   "cer": 0.0167
+  },
+  {
+   "file": "uz_p01_l03.jpg",
+   "ref": "mashinasi va 2 avtomobil ishtirokidagi YTH oqibatda 1",
+   "hyp": "mashinasi va 2 avtomobil ishtirokidagi YTH oqibatda 1",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p01_l04.jpg",
+   "ref": "kishi vafot etgani haqida xabar berilgandi.",
+   "hyp": "kishi vaqot etgani haqida xabar berilgandi.",
+   "cer": 0.0233
+  },
+  {
+   "file": "uz_p01_l05.jpg",
+   "ref": "Tushkunlik va kuzgi mayuslikni qanday qilib",
+   "hyp": "Tushkunlik va kuzgi mayuslikni qanday qilib",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p01_l06.jpg",
+   "ref": "yengib oʻtish mumkin?",
+   "hyp": "yengib o'tish mumkin?",
+   "cer": 0.0476
+  },
+  {
+   "file": "uz_p01_l07.jpg",
+   "ref": "Oʻzbekistonda kuz yetarlicha issiq",
+   "hyp": "O'zbekistonda kuz yetarlicha issiq",
+   "cer": 0.0294
+  },
+  {
+   "file": "uz_p01_l08.jpg",
+   "ref": "kelganiga qaramay, kuzgi zerikish",
+   "hyp": "kelganiga qaramay, kuzgi zerikish",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p01_l09.jpg",
+   "ref": "koʻpchiligimiz uchun tanish holat. Yoz va taʼtillar",
+   "hyp": "ko'pchiligimiz uchun tanish holat. Yoz va ta'tillar",
+   "cer": 0.0392
+  },
+  {
+   "file": "uz_p01_l10.jpg",
+   "ref": "ortda qoldi, yangi yil",
+   "hyp": "ortda qoldi, yangi yil",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p01_l11.jpg",
+   "ref": "tantanalarigacha esa hali yetarlicha muddat",
+   "hyp": "tantanalarigacha esa hali yetarlicha muddat",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p01_l12.jpg",
+   "ref": "bor. Kunlar qisqarib, ishdan",
+   "hyp": "bor. Kunlar qisqarib, ishdan",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p01_l13.jpg",
+   "ref": "qaytishingiz bilan qorongʻi tushadi. Quyoshli kunlar",
+   "hyp": "qaytishingiz bilan qorong'i tushadi. Quyoshli kunlar",
+   "cer": 0.0192
+  },
+  {
+   "file": "uz_p01_l14.jpg",
+   "ref": "kamayib boravergani sayin zerikish",
+   "hyp": "kamayjib boraverhani sayin zerikish",
+   "cer": 0.0588
+  },
+  {
+   "file": "uz_p01_l15.jpg",
+   "ref": "Xoʻsh, bunday sharoitda zerikish va tushkunlikka qarshi",
+   "hyp": "Xo'sh, bunday sharoitda zerikish va tushkunlikka qarshi",
+   "cer": 0.0182
+  },
+  {
+   "file": "uz_p01_l16.jpg",
+   "ref": "kurashish uchun qaysi usullarni qoʻllay olamiz?",
+   "hyp": "kurashish uchun qaysi usullarni qo'llay olamiz?",
+   "cer": 0.0213
+  },
+  {
+   "file": "uz_p02_l01.jpg",
+   "ref": "Birinchi navbatda, uyqu rejimingizni qayta koʻrib",
+   "hyp": "Birinchi navbatda, uyqu rejimingizni qayta ko'rib",
+   "cer": 0.0204
+  },
+  {
+   "file": "uz_p02_l02.jpg",
+   "ref": "chiqing. Bu davrda oʻz vaqtida uyquga yotib, vaqtida",
+   "hyp": "chiqing. Bu davrda o'z vaqtida uyquga yotib, vaqtida",
+   "cer": 0.0192
+  },
+  {
+   "file": "uz_p02_l03.jpg",
+   "ref": "uygʻonish juda muhim! 23:00 dan kech",
+   "hyp": "wyg'onish juda muhim! 23:00 dan kech",
+   "cer": 0.0556
+  },
+  {
+   "file": "uz_p02_l04.jpg",
+   "ref": "boʻlmasdan uyquga yotishga harakat qiling.",
+   "hyp": "bo'lmasdan uyquga yotishga harakat qiling.",
+   "cer": 0.0238
+  },
+  {
+   "file": "uz_p02_l05.jpg",
+   "ref": "Shunda sifatli uyqu nima ekanligini anglab yetasiz, kayfiyatingiz",
+   "hyp": "Shunda sifatli uyqu nima ekanligini anglab yetasiz, kayfiyatingiz",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p02_l06.jpg",
+   "ref": "Ikkinchi muhim jihat —",
+   "hyp": "Ikkinchi muhim jihat —",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p02_l07.jpg",
+   "ref": "ovqatlanish. Koʻproq meva va",
+   "hyp": "ovqatlanish. Ko'proq meva va",
+   "cer": 0.0357
+  },
+  {
+   "file": "uz_p02_l08.jpg",
+   "ref": "sabzavotlar isteʼmol qilib,",
+   "hyp": "sabzavotlar iste'mol qilib,",
+   "cer": 0.037
+  },
+  {
+   "file": "uz_p02_l09.jpg",
+   "ref": "hazm qilish uchun koʻp vaqt talab qiluvchi yogʻli",
+   "hyp": "hazm qilish uchun ko'p vaqt talab qiluvchi yog'li",
+   "cer": 0.0408
+  },
+  {
+   "file": "uz_p02_l10.jpg",
+   "ref": "taomlarni kamroq tanovul qiling.",
+   "hyp": "taomlarni kamroq tanovul qiling.",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p02_l11.jpg",
+   "ref": "Shirinliklarni ham minimal",
+   "hyp": "Shirinliklarni ham minimal",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p02_l12.jpg",
+   "ref": "darajagacha kamaytirishni tavsiya",
+   "hyp": "darajagacha kamaytirishni tavsiya",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p02_l13.jpg",
+   "ref": "etamiz. U tushkunlikka qarshi",
+   "hyp": "etamiz. U tushkunlikka qarshi",
+   "cer": 0.0
+  },
+  {
+   "file": "uz_p02_l14.jpg",
+   "ref": "kurashishda yordam bersa ham, kichikroq boʻlakchalar",
+   "hyp": "kurashishda yordam bersa ham, kichikroq bo'lakchalar",
+   "cer": 0.0192
+  },
+  {
+   "file": "uz_p02_l15.jpg",
+   "ref": "(shokolad boʻlakchasi yoki",
+   "hyp": "(shokolad bo'lakchasi yoki",
+   "cer": 0.0385
+  },
+  {
+   "file": "uz_p02_l16.jpg",
+   "ref": "bitta bulochka) bilan",
+   "hyp": "bitta bulochka) bilan",
+   "cer": 0.0
+  }
+ ],
+ "summary": {
+  "strip_cer_charweighted": 0.0216,
+  "strip_n": 48,
+  "page_gt_lines": 48,
+  "page_pred_lines": 48,
+  "page_matched": 48,
+  "page_matched_pct": 100.0,
+  "page_median_iou": 0.72,
+  "page_cer_charweighted": 0.0196,
+  "folded_rescore": {
+   "strips": {
+    "n": 48,
+    "cer_strict": 0.0216,
+    "cer_folded": 0.0075,
+    "median_folded": 0.0,
+    "above_0.10_folded": 0,
+    "mark_agreement": "2/27",
+    "pct_of_error_that_is_only_the_mark": 65
+   },
+   "pages": {
+    "matched": 48,
+    "gt_lines": 48,
+    "cer_strict": 0.0196,
+    "cer_folded": 0.004,
+    "mark_agreement": "0/30",
+    "pct_of_error_that_is_only_the_mark": 79
+   },
+   "headline": "Quote the FOLDED CER for reading ability. The strict number also charges for the okina/tutuq convention, which 58 of 59 bridge fonts cannot draw — so the ink does not carry it. Mark agreement is reported separately: the marker needs to know."
+  }
+ }
+}
