@@ -16,6 +16,28 @@ from __future__ import annotations
 from pathlib import Path
 from PIL import Image
 
+import re as _re
+
+_THINK = _re.compile(r"^\s*<think>.*?</think>\s*", _re.S)
+
+
+def strip_think(text: str) -> str:
+    """Drop a leading <think>…</think> block from a generation.
+
+    R6 (2026-08-22) cost a whole rented run to this: under `TEMPLATE=qwen3_vl` — Qwen3-VL's *thinking*
+    template — 100 % of 1,770 predictions came back prefixed with an EMPTY `<think>  </think>`. That is 19
+    characters against a 30-character median line, so character CER read 0.78266 instead of the true 0.02188,
+    and the run still passed its VERIFIED gate. Word-aligned metrics were untouched, and that contradiction is
+    the only thing that exposed it.
+
+    Training with `qwen3_vl_nothink` is the primary fix; this is the belt-and-braces one, because the failure
+    is silent, it is invisible to word-level metrics, and a thinking template can arrive from any future base.
+    """
+    if not text or "<think>" not in text:
+        return text
+    return _THINK.sub("", text, count=1)
+
+
 class VLMLineReader:
     """Any image-text-to-text VLM as a batched line reader. Subclasses only set `family` (the provenance name) and the
     preferred dtype; every method below is model-agnostic."""
@@ -77,7 +99,7 @@ class VLMLineReader:
             P = inputs["input_ids"].shape[1]
             for b, i in enumerate(idx):
                 seq = out.sequences[b][P:]
-                texts[i] = self.proc.decode(seq, skip_special_tokens=True).strip().replace("\n", " ")
+                texts[i] = strip_think(self.proc.decode(seq, skip_special_tokens=True)).strip().replace("\n", " ")
                 if with_conf:
                     probs = []
                     for t, sc in zip(seq, out.scores):

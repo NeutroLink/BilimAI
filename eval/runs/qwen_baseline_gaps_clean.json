@@ -1,0 +1,255 @@
+{
+ "records": 19,
+ "pred_boxes": 766,
+ "matched_pupil_lines": 665,
+ "reading_order": {
+  "adjacent_pairs": 646,
+  "in_correct_order": 608,
+  "pct_correct": 94.1,
+  "total_inversions": 1416,
+  "pages_perfectly_ordered": 10,
+  "pages_with_matches": 19
+ },
+ "teacher_ink": {
+  "boxes_matching_no_pupil_line": 101,
+  "of_those_containing_teacher_marking": 22,
+  "pct_of_extras_that_are_teacher": 21.8,
+  "pct_of_all_boxes_that_are_teacher": 2.9,
+  "examples": [
+   {
+    "file": "2044.jpg",
+    "pred": "5-14.",
+    "teacher_marks_inside": [
+     "5-/4."
+    ]
+   },
+   {
+    "file": "2047.jpg",
+    "pred": "474.",
+    "teacher_marks_inside": [
+     "4/4."
+    ]
+   },
+   {
+    "file": "2047.jpg",
+    "pred": "Мило повторов „он“ нарушена",
+    "teacher_marks_inside": [
+     "Много",
+     "повторов",
+     "\"он\",",
+     "нарушена"
+    ]
+   },
+   {
+    "file": "2047.jpg",
+    "pred": "последовательность текста.",
+    "teacher_marks_inside": [
+     "последовательность",
+     "текста"
+    ]
+   },
+   {
+    "file": "2121.jpg",
+    "pred": "3 —",
+    "teacher_marks_inside": [
+     "3-"
+    ]
+   },
+   {
+    "file": "2184.jpg",
+    "pred": "Хорошо! 4.",
+    "teacher_marks_inside": [
+     "4.",
+     "Хорошо!"
+    ]
+   },
+   {
+    "file": "2184.jpg",
+    "pred": "см",
+    "teacher_marks_inside": [
+     "см"
+    ]
+   },
+   {
+    "file": "2238.jpg",
+    "pred": "посеет поза поза поза поза",
+    "teacher_marks_inside": [
+     "полосатая"
+    ]
+   }
+  ]
+ },
+ "per_page": [
+  {
+   "file": "2013.jpg",
+   "region": "full",
+   "pred": 23,
+   "matched": 22,
+   "adjacent_ok": 21,
+   "adjacent": 21,
+   "inversions": 0
+  },
+  {
+   "file": "2014.jpg",
+   "region": "full",
+   "pred": 46,
+   "matched": 44,
+   "adjacent_ok": 38,
+   "adjacent": 43,
+   "inversions": 225
+  },
+  {
+   "file": "2015.jpg",
+   "region": "full",
+   "pred": 45,
+   "matched": 42,
+   "adjacent_ok": 41,
+   "adjacent": 41,
+   "inversions": 0
+  },
+  {
+   "file": "2016.jpg",
+   "region": "full",
+   "pred": 41,
+   "matched": 39,
+   "adjacent_ok": 36,
+   "adjacent": 38,
+   "inversions": 0
+  },
+  {
+   "file": "2044.jpg",
+   "region": "full",
+   "pred": 43,
+   "matched": 36,
+   "adjacent_ok": 33,
+   "adjacent": 35,
+   "inversions": 2
+  },
+  {
+   "file": "2047.jpg",
+   "region": "full",
+   "pred": 39,
+   "matched": 35,
+   "adjacent_ok": 31,
+   "adjacent": 34,
+   "inversions": 175
+  },
+  {
+   "file": "2121.jpg",
+   "region": "full",
+   "pred": 38,
+   "matched": 37,
+   "adjacent_ok": 31,
+   "adjacent": 36,
+   "inversions": 237
+  },
+  {
+   "file": "2184.jpg",
+   "region": "full",
+   "pred": 42,
+   "matched": 40,
+   "adjacent_ok": 39,
+   "adjacent": 39,
+   "inversions": 0
+  },
+  {
+   "file": "2238.jpg",
+   "region": "full",
+   "pred": 45,
+   "matched": 42,
+   "adjacent_ok": 38,
+   "adjacent": 41,
+   "inversions": 170
+  },
+  {
+   "file": "2239.jpg",
+   "region": "full",
+   "pred": 43,
+   "matched": 37,
+   "adjacent_ok": 36,
+   "adjacent": 36,
+   "inversions": 0
+  },
+  {
+   "file": "2718.jpg",
+   "region": "full",
+   "pred": 44,
+   "matched": 44,
+   "adjacent_ok": 40,
+   "adjacent": 43,
+   "inversions": 208
+  },
+  {
+   "file": "2121.jpg",
+   "region": "full",
+   "pred": 38,
+   "matched": 37,
+   "adjacent_ok": 31,
+   "adjacent": 36,
+   "inversions": 237
+  },
+  {
+   "file": "2815.jpg",
+   "region": "full",
+   "pred": 39,
+   "matched": 37,
+   "adjacent_ok": 36,
+   "adjacent": 36,
+   "inversions": 0
+  },
+  {
+   "file": "2817.jpg",
+   "region": "full",
+   "pred": 15,
+   "matched": 15,
+   "adjacent_ok": 14,
+   "adjacent": 14,
+   "inversions": 0
+  },
+  {
+   "file": "2806.jpg",
+   "region": "full",
+   "pred": 44,
+   "matched": 35,
+   "adjacent_ok": 34,
+   "adjacent": 34,
+   "inversions": 0
+  },
+  {
+   "file": "2484.jpg",
+   "region": "full",
+   "pred": 38,
+   "matched": 38,
+   "adjacent_ok": 37,
+   "adjacent": 37,
+   "inversions": 0
+  },
+  {
+   "file": "2805.jpg",
+   "region": "full",
+   "pred": 38,
+   "matched": 34,
+   "adjacent_ok": 31,
+   "adjacent": 33,
+   "inversions": 114
+  },
+  {
+   "file": "2897.jpg",
+   "region": "full",
+   "pred": 83,
+   "matched": 29,
+   "adjacent_ok": 20,
+   "adjacent": 28,
+   "inversions": 48
+  },
+  {
+   "file": "2818.jpg",
+   "region": "full",
+   "pred": 22,
+   "matched": 22,
+   "adjacent_ok": 21,
+   "adjacent": 21,
+   "inversions": 0
+  }
+ ]
+}

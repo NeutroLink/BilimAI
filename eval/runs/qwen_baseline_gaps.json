@@ -1,0 +1,439 @@
+{
+ "records": 40,
+ "pred_boxes": 1540,
+ "matched_pupil_lines": 625,
+ "reading_order": {
+  "adjacent_pairs": 587,
+  "in_correct_order": 554,
+  "pct_correct": 94.4,
+  "total_inversions": 466,
+  "pages_perfectly_ordered": 26,
+  "pages_with_matches": 38
+ },
+ "teacher_ink": {
+  "boxes_matching_no_pupil_line": 915,
+  "of_those_containing_teacher_marking": 40,
+  "pct_of_extras_that_are_teacher": 4.4,
+  "pct_of_all_boxes_that_are_teacher": 2.6,
+  "examples": [
+   {
+    "file": "2839.jpg",
+    "pred": "4",
+    "teacher_marks_inside": [
+     "4"
+    ]
+   },
+   {
+    "file": "2839.jpg",
+    "pred": "5",
+    "teacher_marks_inside": [
+     "5."
+    ]
+   },
+   {
+    "file": "2897.jpg",
+    "pred": "5",
+    "teacher_marks_inside": [
+     "5"
+    ]
+   },
+   {
+    "file": "2897.jpg",
+    "pred": "б",
+    "teacher_marks_inside": [
+     "5"
+    ]
+   },
+   {
+    "file": "2897.jpg",
+    "pred": "б",
+    "teacher_marks_inside": [
+     "5"
+    ]
+   },
+   {
+    "file": "2902.jpg",
+    "pred": "4",
+    "teacher_marks_inside": [
+     "4"
+    ]
+   },
+   {
+    "file": "2902.jpg",
+    "pred": "5",
+    "teacher_marks_inside": [
+     "5"
+    ]
+   },
+   {
+    "file": "2902.jpg",
+    "pred": "5-",
+    "teacher_marks_inside": [
+     "5-"
+    ]
+   }
+  ]
+ },
+ "per_page": [
+  {
+   "file": "2839.jpg",
+   "region": "left",
+   "pred": 29,
+   "matched": 25,
+   "adjacent_ok": 21,
+   "adjacent": 24,
+   "inversions": 4
+  },
+  {
+   "file": "2839.jpg",
+   "region": "right",
+   "pred": 68,
+   "matched": 2,
+   "adjacent_ok": 1,
+   "adjacent": 1,
+   "inversions": 0
+  },
+  {
+   "file": "2831.jpg",
+   "region": "left",
+   "pred": 83,
+   "matched": 15,
+   "adjacent_ok": 13,
+   "adjacent": 14,
+   "inversions": 2
+  },
+  {
+   "file": "2831.jpg",
+   "region": "right",
+   "pred": 75,
+   "matched": 13,
+   "adjacent_ok": 12,
+   "adjacent": 12,
+   "inversions": 0
+  },
+  {
+   "file": "2897.jpg",
+   "region": "left",
+   "pred": 34,
+   "matched": 32,
+   "adjacent_ok": 20,
+   "adjacent": 31,
+   "inversions": 18
+  },
+  {
+   "file": "2897.jpg",
+   "region": "right",
+   "pred": 79,
+   "matched": 13,
+   "adjacent_ok": 10,
+   "adjacent": 12,
+   "inversions": 4
+  },
+  {
+   "file": "2484.jpg",
+   "region": "left",
+   "pred": 20,
+   "matched": 20,
+   "adjacent_ok": 19,
+   "adjacent": 19,
+   "inversions": 0
+  },
+  {
+   "file": "2484.jpg",
+   "region": "right",
+   "pred": 71,
+   "matched": 13,
+   "adjacent_ok": 12,
+   "adjacent": 12,
+   "inversions": 0
+  },
+  {
+   "file": "2902.jpg",
+   "region": "left",
+   "pred": 23,
+   "matched": 19,
+   "adjacent_ok": 18,
+   "adjacent": 18,
+   "inversions": 0
+  },
+  {
+   "file": "2902.jpg",
+   "region": "right",
+   "pred": 32,
+   "matched": 20,
+   "adjacent_ok": 19,
+   "adjacent": 19,
+   "inversions": 0
+  },
+  {
+   "file": "2806.jpg",
+   "region": "left",
+   "pred": 84,
+   "matched": 0,
+   "adjacent_ok": 0,
+   "adjacent": 0,
+   "inversions": 0
+  },
+  {
+   "file": "2806.jpg",
+   "region": "right",
+   "pred": 6,
+   "matched": 4,
+   "adjacent_ok": 3,
+   "adjacent": 3,
+   "inversions": 0
+  },
+  {
+   "file": "2905.jpg",
+   "region": "left",
+   "pred": 59,
+   "matched": 11,
+   "adjacent_ok": 9,
+   "adjacent": 10,
+   "inversions": 1
+  },
+  {
+   "file": "2905.jpg",
+   "region": "right",
+   "pred": 78,
+   "matched": 2,
+   "adjacent_ok": 1,
+   "adjacent": 1,
+   "inversions": 0
+  },
+  {
+   "file": "2238.jpg",
+   "region": "left",
+   "pred": 77,
+   "matched": 2,
+   "adjacent_ok": 1,
+   "adjacent": 1,
+   "inversions": 0
+  },
+  {
+   "file": "2238.jpg",
+   "region": "right",
+   "pred": 25,
+   "matched": 21,
+   "adjacent_ok": 19,
+   "adjacent": 20,
+   "inversions": 90
+  },
+  {
+   "file": "2869.jpg",
+   "region": "left",
+   "pred": 17,
+   "matched": 3,
+   "adjacent_ok": 2,
+   "adjacent": 2,
+   "inversions": 0
+  },
+  {
+   "file": "2869.jpg",
+   "region": "right",
+   "pred": 23,
+   "matched": 20,
+   "adjacent_ok": 14,
+   "adjacent": 19,
+   "inversions": 66
+  },
+  {
+   "file": "2044.jpg",
+   "region": "left",
+   "pred": 22,
+   "matched": 21,
+   "adjacent_ok": 20,
+   "adjacent": 20,
+   "inversions": 0
+  },
+  {
+   "file": "2044.jpg",
+   "region": "right",
+   "pred": 20,
+   "matched": 15,
+   "adjacent_ok": 14,
+   "adjacent": 14,
+   "inversions": 0
+  },
+  {
+   "file": "2832.jpg",
+   "region": "left",
+   "pred": 64,
+   "matched": 4,
+   "adjacent_ok": 1,
+   "adjacent": 3,
+   "inversions": 5
+  },
+  {
+   "file": "2832.jpg",
+   "region": "right",
+   "pred": 4,
+   "matched": 0,
+   "adjacent_ok": 0,
+   "adjacent": 0,
+   "inversions": 0
+  },
+  {
+   "file": "2490.jpg",
+   "region": "left",
+   "pred": 18,
+   "matched": 18,
+   "adjacent_ok": 17,
+   "adjacent": 17,
+   "inversions": 0
+  },
+  {
+   "file": "2490.jpg",
+   "region": "right",
+   "pred": 72,
+   "matched": 5,
+   "adjacent_ok": 4,
+   "adjacent": 4,
+   "inversions": 0
+  },
+  {
+   "file": "2239.jpg",
+   "region": "left",
+   "pred": 22,
+   "matched": 20,
+   "adjacent_ok": 19,
+   "adjacent": 19,
+   "inversions": 0
+  },
+  {
+   "file": "2239.jpg",
+   "region": "right",
+   "pred": 24,
+   "matched": 19,
+   "adjacent_ok": 18,
+   "adjacent": 18,
+   "inversions": 0
+  },
+  {
+   "file": "2901.jpg",
+   "region": "left",
+   "pred": 69,
+   "matched": 10,
+   "adjacent_ok": 9,
+   "adjacent": 9,
+   "inversions": 0
+  },
+  {
+   "file": "2901.jpg",
+   "region": "right",
+   "pred": 21,
+   "matched": 19,
+   "adjacent_ok": 18,
+   "adjacent": 18,
+   "inversions": 0
+  },
+  {
+   "file": "2826.jpg",
+   "region": "left",
+   "pred": 41,
+   "matched": 2,
+   "adjacent_ok": 1,
+   "adjacent": 1,
+   "inversions": 0
+  },
+  {
+   "file": "2826.jpg",
+   "region": "right",
+   "pred": 24,
+   "matched": 16,
+   "adjacent_ok": 13,
+   "adjacent": 15,
+   "inversions": 39
+  },
+  {
+   "file": "2919.jpg",
+   "region": "left",
+   "pred": 22,
+   "matched": 22,
+   "adjacent_ok": 21,
+   "adjacent": 21,
+   "inversions": 0
+  },
+  {
+   "file": "2919.jpg",
+   "region": "right",
+   "pred": 22,
+   "matched": 20,
+   "adjacent_ok": 19,
+   "adjacent": 19,
+   "inversions": 0
+  },
+  {
+   "file": "2835.jpg",
+   "region": "left",
+   "pred": 22,
+   "matched": 20,
+   "adjacent_ok": 19,
+   "adjacent": 19,
+   "inversions": 0
+  },
+  {
+   "file": "2835.jpg",
+   "region": "right",
+   "pred": 28,
+   "matched": 26,
+   "adjacent_ok": 23,
+   "adjacent": 25,
+   "inversions": 4
+  },
+  {
+   "file": "2912.jpg",
+   "region": "left",
+   "pred": 22,
+   "matched": 21,
+   "adjacent_ok": 20,
+   "adjacent": 20,
+   "inversions": 0
+  },
+  {
+   "file": "2912.jpg",
+   "region": "right",
+   "pred": 25,
+   "matched": 22,
+   "adjacent_ok": 21,
+   "adjacent": 21,
+   "inversions": 0
+  },
+  {
+   "file": "2834.jpg",
+   "region": "left",
+   "pred": 21,
+   "matched": 18,
+   "adjacent_ok": 17,
+   "adjacent": 17,
+   "inversions": 0
+  },
+  {
+   "file": "2834.jpg",
+   "region": "right",
+   "pred": 22,
+   "matched": 20,
+   "adjacent_ok": 19,
+   "adjacent": 19,
+   "inversions": 0
+  },
+  {
+   "file": "2487.jpg",
+   "region": "left",
+   "pred": 27,
+   "matched": 27,
+   "adjacent_ok": 24,
+   "adjacent": 26,
+   "inversions": 2
+  },
+  {
+   "file": "2487.jpg",
+   "region": "right",
+   "pred": 45,
+   "matched": 45,
+   "adjacent_ok": 43,
+   "adjacent": 44,
+   "inversions": 231
+  }
+ ]
+}
