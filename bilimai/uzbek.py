@@ -40,6 +40,42 @@ def normalize(text: str) -> str | None:
     return s
 
 
+def fold_marks(text: str) -> str:
+    """SCORING ONLY — collapse every look-alike of the oʻ/gʻ mark and the tutuq to ONE character.
+
+    Why this must exist (measured 2026-08-23). 58 of the 59 fonts in `data/fonts/uz_bridge` cannot draw
+    the okina U+02BB and 50 cannot draw the tutuq U+02BC, so `make_uz_font_strips.py` substitutes ‘/’ at
+    draw time while the LABEL keeps the official letter. The image therefore shows one character and the
+    label asks for another, and no model can be graded on a distinction the ink does not carry.
+    On the 48-strip zero-shot run this alone was **65 % of the whole Uzbek error**: CER 0.0216 strict
+    against **0.0075** folded. The module docstring above has demanded this fold since it was written;
+    it had never been implemented.
+
+    ⚠ NEVER fold when MARKING a pupil. Dropping the oʻ/gʻ mark is a real Uzbek spelling mistake — it is
+    the single heaviest op in `corrupt_word` (weight 3.0). Folding there would delete the mistake class
+    the dictation engine exists to catch. Fold in the OCR metric; keep `normalize()` for labels and for
+    anything that grades a child.
+    """
+    t = unicodedata.normalize("NFC", text)
+    return "".join(OKINA if c in APOS_VARIANTS else c for c in t)
+
+
+def mark_agreement(ref: str, hyp: str) -> tuple[int, int]:
+    """(matched, total) over the mark characters, counted only where the folded strings agree.
+
+    Folding hides whether the reader carries the okina/tutuq distinction at all — which the marker needs.
+    This reports it separately instead of losing it: when the model read the line correctly apart from the
+    marks, did it also pick the right mark? Returns (0, 0) when the line was misread, so it cannot be
+    inflated by lines the model got wrong.
+    """
+    r, h = unicodedata.normalize("NFC", ref), unicodedata.normalize("NFC", hyp)
+    if fold_marks(r) != fold_marks(h):
+        return 0, 0
+    rm = [c for c in r if c in APOS_VARIANTS]
+    hm = [c for c in h if c in APOS_VARIANTS]
+    return sum(1 for a, b in zip(rm, hm) if a == b), len(rm)
+
+
 def corrupt_word(word: str, rng) -> str | None:
     """One child-like Uzbek misspelling of `word` (normalised text), or None if the word is unsuitable.
     Ops weighted by what Uzbek learners actually do: dropping the oʻ/gʻ mark or the tutuq, h↔x confusion,

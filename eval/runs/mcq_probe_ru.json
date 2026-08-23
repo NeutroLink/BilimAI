@@ -1,0 +1,173 @@
+{
+ "task": "mcq",
+ "lang": "ru",
+ "model": "Qwen3-VL-4B-Instruct-MLX-8bit",
+ "pages": 6,
+ "seconds": 73.2,
+ "summary": {
+  "questions": 18,
+  "letter_accuracy": 0.778,
+  "option_text_accuracy": 0.5,
+  "mark_kind_accuracy": 1.0,
+  "by_mark_kind": {
+   "box": "4/4",
+   "circle": "4/5",
+   "cross": "3/5",
+   "tick": "3/4"
+  },
+  "verdict": "OPEN — the model can point at a ticked option; real ticked pages are worth labelling",
+  "caveat": "Synthetic marks are cleaner than a child's. A FAIL here is decisive; a PASS only says the capability is not absent. Real pages still have to be labelled."
+ },
+ "records": [
+  {
+   "file": "mcq_ru_00.jpg",
+   "seconds": 12.6,
+   "items": [
+    {
+     "q": 1,
+     "letter": "Д",
+     "text": "предлог",
+     "mark": "tick"
+    },
+    {
+     "q": 2,
+     "letter": "Б",
+     "text": "Київ",
+     "mark": "circle"
+    },
+    {
+     "q": 3,
+     "letter": "Б",
+     "text": "Меркурій",
+     "mark": "cross"
+    }
+   ],
+   "raw": "[\n    {\"q\": 1, \"letter\": \"Д\", \"text\": \"предлог\", \"mark\": \"tick\"},\n    {\"q\": 2, \"letter\": \"Б\", \"text\": \"Київ\", \"mark\": \"circle\"},\n    {\"q\": 3, \"letter\": \"Б\", \"text\": \"Меркурій\", \"mark\": \"cross\"}\n]"
+  },
+  {
+   "file": "mcq_ru_01.jpg",
+   "seconds": 12.1,
+   "items": [
+    {
+     "q": 1,
+     "letter": "Б",
+     "text": "Вес",
+     "mark": "circle"
+    },
+    {
+     "q": 2,
+     "letter": "В",
+     "text": "64",
+     "mark": "cross"
+    },
+    {
+     "q": 3,
+     "letter": "А",
+     "text": "имя",
+     "mark": "box"
+    }
+   ],
+   "raw": "[\n    {\"q\": 1, \"letter\": \"Б\", \"text\": \"Вес\", \"mark\": \"circle\"},\n    {\"q\": 2, \"letter\": \"В\", \"text\": \"64\", \"mark\": \"cross\"},\n    {\"q\": 3, \"letter\": \"А\", \"text\": \"имя\", \"mark\": \"box\"}\n]"
+  },
+  {
+   "file": "mcq_ru_02.jpg",
+   "seconds": 12.0,
+   "items": [
+    {
+     "q": 1,
+     "letter": "А",
+     "text": "25",
+     "mark": "cross"
+    },
+    {
+     "q": 2,
+     "letter": "А",
+     "text": "Москва",
+     "mark": "box"
+    },
+    {
+     "q": 3,
+     "letter": "В",
+     "text": "соноз",
+     "mark": "tick"
+    }
+   ],
+   "raw": "[\n    {\"q\": 1, \"letter\": \"А\", \"text\": \"25\", \"mark\": \"cross\"},\n    {\"q\": 2, \"letter\": \"А\", \"text\": \"Москва\", \"mark\": \"box\"},\n    {\"q\": 3, \"letter\": \"В\", \"text\": \"соноз\", \"mark\": \"tick\"}\n]"
+  },
+  {
+   "file": "mcq_ru_03.jpg",
+   "seconds": 12.1,
+   "items": [
+    {
+     "q": 1,
+     "letter": "Г",
+     "text": "17",
+     "mark": "box"
+    },
+    {
+     "q": 2,
+     "letter": "А",
+     "text": "глагол",
+     "mark": "tick"
+    },
+    {
+     "q": 3,
+     "letter": "Б",
+     "text": "Днепр",
+     "mark": "circle"
+    }
+   ],
+   "raw": "[\n    {\"q\": 1, \"letter\": \"Г\", \"text\": \"17\", \"mark\": \"box\"},\n    {\"q\": 2, \"letter\": \"А\", \"text\": \"глагол\", \"mark\": \"tick\"},\n    {\"q\": 3, \"letter\": \"Б\", \"text\": \"Днепр\", \"mark\": \"circle\"}\n]"
+  },
+  {
+   "file": "mcq_ru_04.jpg",
+   "seconds": 12.2,
+   "items": [
+    {
+     "q": 1,
+     "letter": "А",
+     "text": "Тушкін",
+     "mark": "tick"
+    },
+    {
+     "q": 2,
+     "letter": "В",
+     "text": "сюз",
+     "mark": "circle"
+    },
+    {
+     "q": 3,
+     "letter": "А",
+     "text": "Венера",
+     "mark": "cross"
+    }
+   ],
+   "raw": "[\n    {\"q\": 1, \"letter\": \"А\", \"text\": \"Тушкін\", \"mark\": \"tick\"},\n    {\"q\": 2, \"letter\": \"В\", \"text\": \"сюз\", \"mark\": \"circle\"},\n    {\"q\": 3, \"letter\": \"А\", \"text\": \"Венера\", \"mark\": \"cross\"}\n]"
+  },
+  {
+   "file": "mcq_ru_05.jpg",
+   "seconds": 12.1,
+   "items": [
+    {
+     "q": 1,
+     "letter": "Г",
+     "text": "предлог",
+     "mark": "circle"
+    },
+    {
+     "q": 2,
+     "letter": "Б",
+     "text": "Полстой",
+     "mark": "cross"
+    },
+    {
+     "q": 3,
+     "letter": "А",
+     "text": "Венера",
+     "mark": "box"
+    }
+   ],
+   "raw": "[\n    {\"q\": 1, \"letter\": \"Г\", \"text\": \"предлог\", \"mark\": \"circle\"},\n    {\"q\": 2, \"letter\": \"Б\", \"text\": \"Полстой\", \"mark\": \"cross\"},\n    {\"q\": 3, \"letter\": \"А\", \"text\": \"Венера\", \"mark\": \"box\"}\n]"
+  }
+ ]
+}
