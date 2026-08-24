@@ -3,7 +3,7 @@
   "cells": 10,
   "with_engine": 4,
   "with_read_test": 5,
-  "with_grade_test": 0
+  "with_check_test": 1
  },
  "rows": [
   {
@@ -14,8 +14,8 @@
    "read_gt": true,
    "read_score": "CER_all 0.4745 · recall 0.826",
    "read_provenance": "Qwen zero-shot, 18 pages, eval/score.py",
-   "grade_gt": false,
-   "grade_score": null,
+   "check_score": "84/275 = 30.5% @ 0.64 fp/100",
+   "check_provenance": "eval/runs/dictation/gate.json",
    "note": ""
   },
   {
@@ -26,8 +26,8 @@
    "read_gt": true,
    "read_score": "CER 0.0040 folded · marks 0/30",
    "read_provenance": "Qwen zero-shot, pages, SYNTHETIC pages only",
-   "grade_gt": false,
-   "grade_score": null,
+   "check_score": null,
+   "check_provenance": "no check test — needs a supplied key and a scored set",
    "note": "synthetic pages only — ZERO real Uzbek pupil pages exist"
   },
   {
@@ -38,8 +38,8 @@
    "read_gt": true,
    "read_score": "CER 0.4844 · exact 13%",
    "read_provenance": "Qwen zero-shot, LaTeX, n=300",
-   "grade_gt": false,
-   "grade_score": null,
+   "check_score": null,
+   "check_provenance": "no check test — needs a supplied key and a scored set",
    "note": "strips only; nothing routes LaTeX into grade_math yet"
   },
   {
@@ -50,8 +50,8 @@
    "read_gt": false,
    "read_score": null,
    "read_provenance": "never tested in Uzbek",
-   "grade_gt": false,
-   "grade_score": null,
+   "check_score": null,
+   "check_provenance": "no check test — needs a supplied key and a scored set",
    "note": "maths notation is language-neutral; the surrounding words are not"
   },
   {
@@ -62,8 +62,8 @@
    "read_gt": true,
    "read_score": "right option 0.78",
    "read_provenance": "synthetic pages, marks drawn by us — a PASS is suggestive, not proof",
-   "grade_gt": false,
-   "grade_score": null,
+   "check_score": null,
+   "check_provenance": "no check test — needs a supplied key and a scored set",
    "note": "ROW OPEN (2026-08-23): 14/18 on which option is marked, mark TYPE 18/18. Weak link is reading the option text (0.50), not seeing the tick. No engine yet."
   },
   {
@@ -74,8 +74,8 @@
    "read_gt": false,
    "read_score": null,
    "read_provenance": "no probe, no labels",
-   "grade_gt": false,
-   "grade_score": null,
+   "check_score": null,
+   "check_provenance": "no check test — needs a supplied key and a scored set",
    "note": ""
   },
   {
@@ -86,8 +86,8 @@
    "read_gt": true,
    "read_score": "markup recall 0.75",
    "read_provenance": "synthetic pages, marks drawn by us — a PASS is suggestive, not proof",
-   "grade_gt": false,
-   "grade_score": null,
+   "check_score": null,
+   "check_provenance": "no check test — needs a supplied key and a scored set",
    "note": "ROW OPEN (2026-08-23): finds 27/36 marked words. But it CANNOT tell a strike-through from an underline (strike named right 1/12, called underline 7/12) — and those mean opposite things when marking. 1 page in 6 derailed (136 items). Rubric grading still needs a TEXT model."
   },
   {
@@ -98,8 +98,8 @@
    "read_gt": false,
    "read_score": null,
    "read_provenance": "no engine, no labels",
-   "grade_gt": false,
-   "grade_score": null,
+   "check_score": null,
+   "check_provenance": "no check test — needs a supplied key and a scored set",
    "note": ""
   },
   {
@@ -110,8 +110,8 @@
    "read_gt": false,
    "read_score": null,
    "read_provenance": "no engine, no labels",
-   "grade_gt": false,
-   "grade_score": null,
+   "check_score": null,
+   "check_provenance": "no check test — needs a supplied key and a scored set",
    "note": "mvp/app.py grades TYPED text via Ollama; it has never seen a photograph"
   },
   {
@@ -122,10 +122,10 @@
    "read_gt": false,
    "read_score": null,
    "read_provenance": "no engine, no labels",
-   "grade_gt": false,
-   "grade_score": null,
+   "check_score": null,
+   "check_provenance": "no check test — needs a supplied key and a scored set",
    "note": ""
   }
  ],
- "headline": "READ says the words can be lifted off the page. GRADE says it marks like a teacher. No cell has a GRADE number, so no cell is production grade yet."
+ "headline": "READ says the words can be lifted off the page. CHECK says how many in-scope deviations from a supplied key it flags, and at what false-flag rate — the product's actual job. Teacher-agreement grading is SHELVED (plans/SCOPE.md)."
 }
