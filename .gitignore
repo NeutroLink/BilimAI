@@ -19,7 +19,11 @@ eval/runs/_smoke_*
 # 2026-08-22: a single * does not cross directory separators — eval/runs/r6/<arm>/adapter/... is one level
 # deeper than the old patterns and 1.1 GB of adapter weights nearly got committed. ** matches at any depth.
 eval/runs/**/adapter/tokenizer.json
-eval/runs/**/adapter/*.safetensors
+# 2026-08-24: a trailing suffix defeats `*.safetensors`. An interrupted download renamed to
+# adapter_model.safetensors.TRUNCATED-DO-NOT-USE (142 MB, 65 % missing) slipped through this
+# rule and had to be stripped from history — it would have made every push to origin fail,
+# because GitHub refuses any file over 100 MB. Match ANY suffix.
+eval/runs/**/adapter/*.safetensors*
 eval/runs/**/adapter/*.bin
 eval/runs/**/adapter/training_args.bin
 eval/runs/**/pip_list.txt
