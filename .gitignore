@@ -24,3 +24,10 @@ eval/runs/**/adapter/*.bin
 eval/runs/**/adapter/training_args.bin
 eval/runs/**/pip_list.txt
 .ms_upload_cache
+eval/testset_v3/ru_pages/images/
+# 2026-08-24: the raw candidate-score dumps are 161 MB and 96 MB. GitHub rejects any push
+# containing a file over 100 MB, and .git is already 358 MB. They are regenerable compute
+# artifacts, not results — the measurements derived from them ARE committed
+# (score_ladder.json, gate.json, pooled_v4.json). Keep them on disk; use LFS if they must ship.
+eval/runs/dictation/ctc_full_v2.json
+eval/runs/dictation/ctc_full_v3.json
