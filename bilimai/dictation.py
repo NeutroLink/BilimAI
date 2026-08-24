@@ -19,7 +19,7 @@ How it works (plain words):
 Rules: the transcript is never "corrected"; a low reader confidence on the word → needs_review.
 """
 from __future__ import annotations
-import re, unicodedata
+import re, unicodedata, zlib as _zlib
 from dataclasses import dataclass, field
 from difflib import SequenceMatcher
 from typing import Any
@@ -433,7 +433,13 @@ def candidates(word: str, read_word: str | None = None, max_n: int = 10, wide: b
     if len(lw) > 4:
         for i in range(1, len(lw) - 1): out.add(lw[:i] + lw[i + 1:])                            # dropped letter
     out.discard(lw); out = sorted(out)
-    rng = _random.Random(hash(lw) & 0xffff); rng.shuffle(out)
+    # ⚠ NOT `hash(lw)`: CPython salts str hashing per process (PYTHONHASHSEED), so the shuffle — and
+    # therefore WHICH candidates survive `max_n` — differed on every run. Measured 2026-08-24:
+    # candidates('привет', None, 10) returned a different list in two consecutive processes, while
+    # this function's own docstring promised a "deterministic order seeded by the word".
+    # Impact was real: bilimai/keygen.py:35 caps at 12, so the spliced training misspellings were
+    # irreproducible even under a seeded rng. crc32 is stable across processes and versions.
+    rng = _random.Random(_zlib.crc32(lw.encode("utf-8")) & 0xffff); rng.shuffle(out)
     if wide:
         e1 = set()
         for i in range(len(lw) + 1):

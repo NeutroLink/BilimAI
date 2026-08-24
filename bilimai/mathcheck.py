@@ -10,6 +10,12 @@ Deterministic first: SymPy decides equality/equivalence of the FINAL answer agai
 (exact, simplified-equivalent, numeric with tolerance, sets, "x=4"-style solutions, values with
 units). LLM partial credit is a hook (`llm_partial_credit`) — off by default. Reading errors are
 the reader's problem; anything below the confidence threshold → needs_review.
+
+⚠ DEPENDENCY: LaTeX input needs **`lark`** (`pip install lark`), not `antlr4-python3-runtime`.
+sympy 1.14's default antlr backend requires antlr4 `==4.11`, but `omegaconf` — pulled in by the
+Silero stack — pins `4.9.*`, and only one can be installed. See `to_expr`. If the backend is ever
+missing, `ParserUnavailable` is raised rather than swallowed, so the failure is loud; it used to be
+silent, and silently reported every LaTeX answer as correct.
 """
 from __future__ import annotations
 import re
@@ -37,11 +43,32 @@ def normalize(s: str) -> str:
     return s.strip().rstrip(".;")
 
 
+class ParserUnavailable(RuntimeError):
+    """The maths parser itself is broken or missing — an ENVIRONMENT fault, not unreadable input.
+
+    It exists to be un-swallowable. Callers deliberately catch bare `Exception` around `to_expr`,
+    because a smudged line must not crash a page; but that same handler was also hiding a dead
+    parser, turning every LaTeX check into a silent "no error found". A false negative on a child's
+    wrong maths is the worst outcome this module has, so this one is re-raised past those handlers.
+    """
+
+
 def to_expr(s: str):
-    """Parse LaTeX or plain text into a SymPy expression / relation. Raises on failure."""
+    """Parse LaTeX or plain text into a SymPy expression / relation. Raises on failure.
+
+    ⚠ LaTeX uses sympy's **lark** backend, not the default `antlr`. Not a preference — a version
+    conflict. sympy 1.14's antlr backend demands `antlr4-python3-runtime==4.11`, while `omegaconf`
+    (pulled in by the Silero stack) pins `4.9.*`. Only one can be installed, so the antlr path was
+    dead in this venv: `parse_latex` raised ImportError, every caller's bare `except Exception`
+    swallowed it, and maths checking silently reported "no error found" on any LaTeX input.
+    That is a false NEGATIVE on a child's wrong maths, with no signal anywhere. Fixed 2026-08-24.
+    """
     s = normalize(s)
     if "\\" in s:
-        return parse_latex(s)
+        try:
+            return parse_latex(s, backend="lark")
+        except ImportError as e:                 # the backend is absent, not the maths malformed
+            raise ParserUnavailable(f"LaTeX backend unavailable: {e}") from e
     if "=" in s and s.count("=") == 1:
         l, r = s.split("=")
         return sp.Eq(parse_expr(l, transformations=_TRANSFORMS), parse_expr(r, transformations=_TRANSFORMS), evaluate=False)  # keep as an equation even if trivially true (12/4=3)
@@ -79,6 +106,8 @@ def _check_one(read: str, exp: str, kind: str, tol: float | None) -> tuple[bool,
         return (False, "numeric_tolerance")
     try:
         er, ee = to_expr(r), to_expr(e)
+    except ParserUnavailable:
+        raise
     except Exception:
         return (r.replace(" ", "") == e.replace(" ", ""), "string_fallback")
     if kind == "equation_solution":
@@ -116,6 +145,8 @@ def first_wrong_step(steps: list[str]) -> int | None:
     for i, s in enumerate(steps):
         try:
             e = to_expr(s)
+        except ParserUnavailable:
+            raise
         except Exception:
             continue
         val = _rhs_or_self(e) if not isinstance(e, sp.Equality) else e
