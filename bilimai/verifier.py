@@ -222,19 +222,52 @@ Z_PMI = (-2.095, 3.829); Z_CTC = (-5.413, 7.805); TAU_F_ERROR, TAU_F_REVIEW = 2.
 #   v6  + isolation + edit prior + page norm   109/200 = 54.5 %  at 0.64 false red /100 words
 # If either data file is missing the verifier falls back to v5 and says so — it never silently
 # degrades, because a silently different scorer is this project's most expensive failure mode.
-V6_CONST = ROOT / "bilimai/data/verifier_v6.json"
+# ---- READER SILOS (founder decision, 2026-08-25) -------------------------------------------------
+# These constants and the fitted edit-prior models describe ONE READER'S MISTAKES. `reader_model()`
+# is literally "the reader's confusion habits". Stored globally, refitting for Qwen would overwrite
+# GLM's live production thresholds and a GLM run would then score against Qwen's numbers — silently,
+# because nothing errors. So they are scoped per reader family.
+#
+# A family with no constants of its own MUST NOT inherit another's. Falling back loudly to v5 is
+# acceptable; borrowing is not. GLM keeps the original unsuffixed filenames so the shipped reader is
+# untouched by this change.
+DEFAULT_FAMILY = "glm-ocr"
+V6_CONST = ROOT / "bilimai/data/verifier_v6.json"          # legacy path == the GLM silo
 
 
-def _load_v6():
+def _slug(family: str) -> str:
+    """Filesystem-safe family id. Never let a family name escape bilimai/data/."""
+    return "".join(ch if (ch.isalnum() or ch in "-_") else "-" for ch in (family or "")).strip("-").lower()
+
+
+def const_path(family: str = DEFAULT_FAMILY) -> Path:
+    """Where this family's fused-verifier constants live."""
+    return V6_CONST if _slug(family) == _slug(DEFAULT_FAMILY) else \
+        ROOT / f"bilimai/data/verifier_v6_{_slug(family)}.json"
+
+
+def edit_prior_path(family: str = DEFAULT_FAMILY) -> Path:
+    """Where this family's fitted pupil/reader edit models live."""
+    return ROOT / "bilimai/data/edit_prior_models.json" if _slug(family) == _slug(DEFAULT_FAMILY) else \
+        ROOT / f"bilimai/data/edit_prior_models_{_slug(family)}.json"
+
+
+def _load_v6(family: str = DEFAULT_FAMILY):
     import json
     try:
-        c = json.loads(V6_CONST.read_text(encoding="utf-8"))
+        cp = const_path(family)
+        c = json.loads(cp.read_text(encoding="utf-8"))
+        declared = c.get("family", DEFAULT_FAMILY)
+        assert _slug(declared) == _slug(family), \
+            f"{cp.name} declares family {declared!r} but was loaded for {family!r} — refusing to borrow"
         from .edit_prior import load_models
-        pup, rdr = load_models()
+        pup, rdr = load_models(edit_prior_path(family))
         assert c["feature_order"] == ["ctc", "pmi", "iso", "lr"], "v6 feature order changed"
         return c, pup, rdr
     except Exception as e:                      # noqa: BLE001 — any failure means "use v5"
-        print(f"[verifier] v6 unavailable ({type(e).__name__}: {e}); using v5 min(z_ctc, z_pmi)")
+        print(f"[verifier] v6 unavailable for family {family!r} ({type(e).__name__}: {e}); "
+              f"using v5 min(z_ctc, z_pmi). ⚠ v5's TAU constants were also fitted on {DEFAULT_FAMILY} — "
+              "they are NOT calibrated for another reader.")
         return None, None, None
 
 
@@ -246,9 +279,12 @@ class FusedWordVerifier:
     in a second pass. Falls back to the CTC verdict for an item without line context.
     """
     name = "fused-ctc+pmi-word-verifier"
-    def __init__(self, ctc: CTCWordVerifier, pmi: PMIWordVerifier, topk: int = 20, tau_error=None, tau_review=None):
+    def __init__(self, ctc: CTCWordVerifier, pmi: PMIWordVerifier, topk: int = 20, tau_error=None, tau_review=None,
+                 family: str | None = None):
         self.ctc, self.pmi, self.topk = ctc, pmi, topk
-        self.v6, self.pup, self.rdr = _load_v6()
+        # family = which READER produced the transcript these constants were fitted against.
+        self.family = family or getattr(getattr(pmi, "reader", None), "family", None) or DEFAULT_FAMILY
+        self.v6, self.pup, self.rdr = _load_v6(self.family)
         if self.v6:
             self.name = "fused-ctc+pmi+editprior-word-verifier@v6"
             self.tau_error = self.v6["tau_error"] if tau_error is None else tau_error

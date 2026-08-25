@@ -87,6 +87,25 @@ Consequences, so nobody re-derives them:
 - ⚠ Still true and unchanged: every Uzbek number to date is on **font-rendered synthetic** pages.
   Zero real Uzbek pupil pages exist. "Works on fonts we rendered" is not "works on children".
 
+## Two readers, two silos — founder, 2026-08-25
+
+**GLM and Qwen are developed in parallel and must not affect one another.** Tuning one may not move
+the other's numbers.
+
+Why this needed enforcing: two files in `bilimai/data/` describe **one reader's mistakes** —
+`verifier_v6.json` (thresholds and scaling) and `edit_prior_models.json` (`reader_model()` is
+literally "the reader's confusion habits"). Stored globally, refitting for Qwen would have
+overwritten GLM's live production constants, and a GLM run would then have scored against Qwen's
+numbers **silently** — nothing errors, the numbers just quietly become wrong.
+
+Now scoped per reader family. **A family with no constants of its own never inherits another's** —
+it falls back to v5 and says so. GLM keeps the original filenames, so the shipped reader is untouched.
+
+**The destination** (agreed 2026-08-25): one Qwen vision encoder with **two heads** — a reading head
+and a vocabulary-free "does this ink match this string?" head (the Totev & Ward design,
+arXiv:2309.10158, ~135k parameters). One set of vision weights; reading and doubting need different
+outputs on top. The silos come first so that work cannot disturb the shipping reader.
+
 ## What we never do
 
 - Grade, score, rank, or assign marks.
