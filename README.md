@@ -104,12 +104,16 @@ scope, so agreement answers a question we are not asking. The metric is:
 **THE PRODUCT BAR — founder, 2026-08-25: find 7 in 10 of the mistakes a child made, at
 ≤ 0.65 false flags per 100 scored words** (the RED band, unchanged from 2026-08-24).
 
-⚠ **This bar is not currently reachable, and the reason is arithmetic, not tuning.** A mistake the
-reader silently corrects is invisible to every later stage, so end-to-end catch can never exceed
-**verbatim retention**. The best retention ever measured on this project's ink is **57.5 %**
-(CTC free decode, §0d — and that figure is an UPPER BOUND: the CTC was fed ground-truth word
-boxes the VLM did not get) — below the 70 % target on its own, before the verifier loses anything.
-So 7 in 10 requires a large retention gain AND a verifier gain; neither alone can get there.
+⚠ **CORRECTED 2026-08-25.** An earlier version of this section said the bar was unreachable because
+catch can never exceed verbatim retention. **That was wrong.** The CTC verifier scores the CROP
+against the key's 1-edit neighbourhood, so it never needed the reader's transcription: 24 errors were
+caught that the reader had already normalised away (§0e).
+
+**Where the bar actually stands.** On words the reader transcribes faithfully the system already
+catches **70.0 %** — the bar, met. On words it normalises away, **18.3 %**. Overall **44.1 %**.
+So retention is not a wall but it is the dominant lever, worth roughly a 4× difference in catch.
+⚠ The split is confounded — faithfully-read words are likely clearer-ink words, easier on both axes —
+so 70 % is an OPTIMISTIC bound on what fixing retention alone would buy.
 Retention is therefore the programme, not a sub-task.
 
 <!-- SCOPE:END -->
