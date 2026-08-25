@@ -114,8 +114,10 @@ catch can never exceed verbatim retention. **That was wrong.** The CTC verifier 
 against the key's 1-edit neighbourhood, so it never needed the reader's transcription: 24 errors were
 caught that the reader had already normalised away (§0e).
 
-**Where the bar actually stands.** On words the reader transcribes faithfully the system already
-catches **70.0 %** — the bar, met. On words it normalises away, **18.3 %**. Overall **44.1 %**.
+**Where the bar actually stands.** ⚠ **The gate was also over-reporting.** Corrected 2026-08-25: production calibrates
+`page_normalise` on ~11 reader-mismatch words per page, not the ~86 the eval dumps hold, so the
+honest figure is **77/275 = 28.0 %**, not 30.5 %. On words the reader transcribes faithfully the
+system catches **70.0 %** — the bar, met. On words it normalises away, **18.3 %**. Overall **44.1 %**.
 So retention is not a wall but it is the dominant lever, worth roughly a 4× difference in catch.
 ⚠ The split is confounded — faithfully-read words are likely clearer-ink words, easier on both axes —
 so 70 % is an OPTIMISTIC bound on what fixing retention alone would buy.
