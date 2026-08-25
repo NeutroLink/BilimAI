@@ -107,7 +107,8 @@ scope, so agreement answers a question we are not asking. The metric is:
 ⚠ **This bar is not currently reachable, and the reason is arithmetic, not tuning.** A mistake the
 reader silently corrects is invisible to every later stage, so end-to-end catch can never exceed
 **verbatim retention**. The best retention ever measured on this project's ink is **57.5 %**
-(CTC free decode, §0d) — below the 70 % target on its own, before the verifier loses anything.
+(CTC free decode, §0d — and that figure is an UPPER BOUND: the CTC was fed ground-truth word
+boxes the VLM did not get) — below the 70 % target on its own, before the verifier loses anything.
 So 7 in 10 requires a large retention gain AND a verifier gain; neither alone can get there.
 Retention is therefore the programme, not a sub-task.
 
