@@ -73,6 +73,38 @@ Consequences, so nobody re-derives them:
 - ⚠ Still true and unchanged: every Uzbek number to date is on **font-rendered synthetic** pages.
   Zero real Uzbek pupil pages exist. "Works on fonts we rendered" is not "works on children".
 
+## THE VISION ARCHITECTURE — 2 of 3 move to Qwen. Founder, 2026-08-25.
+
+Three components look at the page. **Two migrate to Qwen. One does not, and the reason is
+structural, not a training gap.**
+
+| component | job | decision |
+|---|---|---|
+| **1. Detector** | find the line and word boxes | **→ Qwen.** Already proven: R9's region finder scored line recall **0.951** against ReadingPipeline's **0.8916**. Trained, gated, and *not yet wired in* — free work on the shelf. |
+| **2. Reader** | turn a line of ink into text, and pair each word to the teacher's key | **→ Qwen.** Needs one clean training run. **Gated on verbatim retention, not CER** — the two can move in opposite directions, and optimising CER actively harms the product. |
+| **3. Ink checker** | given a word crop and ~520 candidate spellings, say which the ink matches | **STAYS a CRNN-CTC.** |
+
+**Why the ink checker does not move.** Its entire value is having **no vocabulary**. Qwen is a
+language model that can see; you cannot remove its vocabulary, because that is what it is. Measured
+on our own 261 real pupil misspellings: the LM-backed reader corrected the child toward the key
+**58** times, the vocabulary-free CTC only **24**. Published work agrees — VLMs rewrite 29–65 % of
+corrupted words, traditional OCR **0 %** (Lee et al. 2026, arXiv:2607.21617), and the only
+error-retaining pupil-HTR system in the literature deliberately chose CNN-BLSTM-CTC (Gold et al.,
+BEA 2023). A Qwen checker would be *worse at the one job the checker exists for*.
+
+⚠ **But it is not either/or.** The checker does two separable things — LOOK at the ink, and DECIDE
+without vocabulary. Only the second must be vocabulary-free. The destination remains **one Qwen
+vision encoder with two heads**: a reading head, and a vocabulary-free "does this ink match this
+string?" head (Totev & Ward 2023, arXiv:2309.10158, ~135 k parameters). One set of eyes, two mouths.
+**Not before the Qwen reader clears its retention bar** — otherwise it is built on an unproven encoder.
+
+⚠ Today the checker is **free**: off-the-shelf, MIT, never trained by us. Replacing it means paying
+to train something that currently costs nothing.
+
+⚠ **A concrete gap this exposes: `candidates()` is hardcoded Cyrillic** (32 letters). It does not
+work for Uzbek Latin at all. An Uzbek candidate generator needs its own alphabet plus the okina and
+tutuq marks — and no amount of vision work substitutes for it.
+
 ## Two readers, two silos — founder, 2026-08-25
 
 **GLM and Qwen are developed in parallel and must not affect one another.** Tuning one may not move
