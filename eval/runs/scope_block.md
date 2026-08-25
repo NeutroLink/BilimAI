@@ -59,6 +59,20 @@ comparison with one.
 question and a reference answer.** A pupil's answer alone, without the question and without the
 textbook it came from, cannot be assessed. With both supplied it becomes comparison.
 
+## Uzbek is LATIN script — always
+
+**Founder, 2026-08-25.** Uzbek pupils write the **Latin** alphabet. Not Cyrillic, not mixed.
+
+Consequences, so nobody re-derives them:
+- `bilimai/uzbek.py` is already Latin-only (a–z plus okina `ʻ` U+02BB and tutuq `ʼ` U+02BC, with the
+  five look-alike apostrophes folded). Correct as built.
+- **Cyrillic handwriting corpora do NOT bootstrap Uzbek.** HKR, School Notebooks RU and Digital Peter
+  are Cyrillic — they are Russian-side assets only. Any plan that lists them as Uzbek data is wrong.
+- An Uzbek misspelling generator must cover Latin orthography and the okina/tutuq marks, not Cyrillic
+  letter confusions.
+- ⚠ Still true and unchanged: every Uzbek number to date is on **font-rendered synthetic** pages.
+  Zero real Uzbek pupil pages exist. "Works on fonts we rendered" is not "works on children".
+
 ## What we never do
 
 - Grade, score, rank, or assign marks.
