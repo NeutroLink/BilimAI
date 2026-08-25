@@ -101,7 +101,15 @@ scope, so agreement answers a question we are not asking. The metric is:
 
 > **Of the in-scope deviations, how many do we flag, at what false-flag rate?**
 
-Operating point: **≤ 0.65 false flags per 100 scored words** for the RED band.
+**THE PRODUCT BAR — founder, 2026-08-25: find 7 in 10 of the mistakes a child made, at
+≤ 0.65 false flags per 100 scored words** (the RED band, unchanged from 2026-08-24).
+
+⚠ **This bar is not currently reachable, and the reason is arithmetic, not tuning.** A mistake the
+reader silently corrects is invisible to every later stage, so end-to-end catch can never exceed
+**verbatim retention**. The best retention ever measured on this project's ink is **57.5 %**
+(CTC free decode, §0d) — below the 70 % target on its own, before the verifier loses anything.
+So 7 in 10 requires a large retention gain AND a verifier gain; neither alone can get there.
+Retention is therefore the programme, not a sub-task.
 
 <!-- SCOPE:END -->
 
