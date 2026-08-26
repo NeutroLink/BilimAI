@@ -141,16 +141,46 @@ scope, so agreement answers a question we are not asking. The metric is:
 **THE PRODUCT BAR — founder, 2026-08-25: find 7 in 10 of the mistakes a child made, at
 ≤ 0.65 false flags per 100 scored words** (the RED band, unchanged from 2026-08-24).
 
-⚠ **CORRECTED 2026-08-25.** An earlier version of this section said the bar was unreachable because
-catch can never exceed verbatim retention. **That was wrong.** The CTC verifier scores the CROP
-against the key's 1-edit neighbourhood, so it never needed the reader's transcription: 24 errors were
-caught that the reader had already normalised away (§0e).
+### ⚠ THE BAR IS NOT REACHABLE AS WRITTEN — audit, 2026-08-25
 
-**Where the bar actually stands.** ⚠ **The gate was also over-reporting.** Corrected 2026-08-25: production calibrates
-`page_normalise` on ~11 reader-mismatch words per page, not the ~86 the eval dumps hold, so the
-honest figure is **77/275 = 28.0 %**, not 30.5 %. On words the reader transcribes faithfully the
-system catches **70.0 %** — the bar, met. On words it normalises away, **18.3 %**. Overall **44.1 %**.
-So retention is not a wall but it is the dominant lever, worth roughly a 4× difference in catch.
-⚠ The split is confounded — faithfully-read words are likely clearer-ink words, easier on both axes —
-so 70 % is an OPTIMISTIC bound on what fixing retention alone would buy.
-Retention is therefore the programme, not a sub-task.
+**Both halves of the bar cannot hold at once, and it is not close.** Full derivation, every script and
+every retraction: [`plans/AUDIT-2026-08-25-pipeline.md`](AUDIT-2026-08-25-pipeline.md).
+
+**Where the product actually is.** `77/275 = 28.0 %` at 0.64 false flags per 100
+(`eval/runs/dictation/gate.json`, `production` block). **95 % CI [18.5, 36.4]** — a page-level
+bootstrap of the whole threshold-selection procedure, ~17 points wide. Quote the interval; the point
+estimate alone is not a fact about the world.
+
+**Why the bar cannot be met.** `bilimai/dictation.py` hands the verifier ONLY words where the reader
+disagrees with the key. Of the 275 in-scope labels:
+
+| outcome | n | meaning |
+|---|---|---|
+| inspected | **174** | the reader disagreed, so the judges look at it |
+| **corrected away** | **59** | the reader wrote the key — nothing ever looks. **Unreachable, not missed** |
+| unscoreable | **42** | orphan labels with no word index; the harness cannot evaluate them at all |
+
+Flag every one of the 174 and accept unlimited false alarms, and catch stops at **174/275 = 63.3 %**.
+**So 7-in-10 is unreachable at ANY false-flag budget under the shipped gate.** Judging every aligned
+word instead lifts the ceiling to 84.7 %, and 70 % then costs **≈ 20 false flags per 100 words — 30×
+the stated budget.** This is a product decision about how much teacher time a page is worth, not an
+engineering gap; the measured exchange rate is in the audit.
+
+**Retention is a bounded lever, not the programme.** ⚠ **RETRACTED 2026-08-25.** This section
+previously claimed 24 errors were caught that the reader had normalised away, and concluded
+"retention is therefore the programme". Both are withdrawn. Those figures (70.0 % / 18.3 % / 44.1 %)
+come from `eval/dictation/catch_by_retention.py`, which **never calls `production_subset`** and so
+measures a configuration the product does not run. In production that group catches **0 %** by
+construction — which `tests/test_pipeline_invariants.py` already asserted, in this repository, while
+this file said the opposite. Measured properly: perfect retention reaches **40.1 %**, and even
+granting that every one of the 59 recovered words is then caught, the **hard cap is 136/275 = 49.5 %**
+— twenty points short of the bar, with a perfect reader. Retention is worth ≈ +12 points.
+
+**The binding constraint is measurement, not the model.** 275 labels over 120 pages cannot resolve the
+~8-error effects this programme chases. Every catch figure in the repository carries three
+undisclosed upward biases: computed on **ground-truth annotator word boxes**
+(`eval/dictation/ctc_verify.py:11`), at a **threshold chosen on the fold it is scored on**, over labels
+filtered by `strict:True` — **edit distance exactly 1 AND word length ≥ 6** — which excludes
+multi-edit errors entirely and every word shorter than six letters (32.7 % of all scored words).
+Re-keying the 42 orphans and adjudicating the 20 teacher/dump label conflicts is the cheapest
+available gain in the project and needs no GPU.

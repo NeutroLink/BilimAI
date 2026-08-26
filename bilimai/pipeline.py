@@ -82,7 +82,7 @@ class GLMReader:
     2026-08-22: picks the reader family from the checkpoint's own config.json via make_reader, so an alternate base
     works here unchanged. Defaults are untouched. (Class name kept for compatibility; it is no longer family-specific.)"""
     def __init__(self, base: str | Path = ROOT / "models/GLM-OCR", adapter: str | Path | None = None,
-                 device: str | None = None, max_new_tokens: int = 96, line_h: int = 128):
+                 device: str | None = None, max_new_tokens: int = 192, line_h: int = 128):
         from .reader import make_reader
         self._r = make_reader(base, adapter, device=device, max_new_tokens=max_new_tokens, line_h=line_h)
         self.name = self._r.name

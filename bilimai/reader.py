@@ -38,6 +38,14 @@ def strip_think(text: str) -> str:
     return _THINK.sub("", text, count=1)
 
 
+# Suffix appended to a reader family when the adapter emits letter-separated targets. Kept here so
+# the verifier, the refit script and any future arm all spell it the same way.
+LETTERSEP_FAMILY_SUFFIX = "-lettertgt"
+
+
+from .lettersep import target_is_encoded as _target_is_encoded
+
+
 class VLMLineReader:
     """Any image-text-to-text VLM as a batched line reader. Subclasses only set `family` (the provenance name) and the
     preferred dtype; every method below is model-agnostic."""
@@ -45,10 +53,40 @@ class VLMLineReader:
     prefer_bf16 = False          # set on families trained in bf16 (Qwen3-VL); fp16 can overflow on those weights
 
     def __init__(self, base: str | Path, adapter: str | Path | None = None, device: str | None = None,
-                 prompt: str = "Text Recognition:", line_h: int = 128, max_new_tokens: int = 96,
-                 dtype: str | None = None, name: str | None = None):
+                 prompt: str = "Text Recognition:", line_h: int = 128, max_new_tokens: int = 192,
+                 dtype: str | None = None, name: str | None = None, letter_sep: bool | None = None,
+                 family: str | None = None):
+        """`letter_sep=True` (Arm 1, 2026-08-25): this adapter was trained to emit letter-separated
+        targets, so `read()` decodes them back before returning. Default False — the shipped reader is
+        untouched. See bilimai/lettersep.py and plans/exec/2026-08-25-arm1-letter-targets.md.
+
+        ⚠ THIS IS THE ONLY PLACE THE DECODE MAY LIVE. The codebase graph confirms `strip_think` has a
+        single caller (`VLMLineReader.read`), so decoding here covers every consumer — dictation,
+        verbatim_retention, ctc_verify box mapping, the in-job evals. Decoding anywhere else means
+        two implementations and a silent divergence."""
         self.base, self.adapter, self.prompt, self.line_h, self.max_new = str(base), (str(adapter) if adapter else None), prompt, line_h, max_new_tokens
         self.device = device; self._m = None; self.dtype = dtype
+        # ⚠ DEFAULTS FROM THE SAME ENV VAR AS THE DATA BUILDER (r5b_data.py). It was dead config
+        # before: nothing in the repo passed it, and bilimai/pipeline.py's wrapper has an explicit
+        # signature with no **kw, so the product path could not enable it at all. The result would
+        # have been an arm whose targets were letter-separated while every in-job eval scored the
+        # RAW spaced string against plain labels — school-val CER ~0.9 against a 0.024 gate, i.e. the
+        # arm reads as a catastrophe even if it improved retention. ONE switch now drives both sides.
+        import os as _os
+        self.letter_sep = (_os.environ.get("BILIMAI_LETTERSEP", "0") == "1") \
+            if letter_sep is None else letter_sep
+        self.n_no_separator = 0     # RAW count of separator-less lines — see lettersep.separator_rate
+        # ⚠ A LETTER-SEPARATED READER IS ITS OWN FAMILY, DERIVED — NOT REMEMBERED.
+        # `family` decides which verifier constants and fitted reader-edit model get loaded
+        # (bilimai/verifier.py const_path/edit_prior_path). Those describe "the reader's confusion
+        # habits", and a reader trained to emit one letter at a time errs DIFFERENTLY by construction
+        # — that is the entire point of Arm 1. Leaving it as plain "glm-ocr" would silently load
+        # R5c's thresholds and edit prior for a reader they do not describe.
+        # It is DERIVED from letter_sep rather than passed, so it cannot be forgotten: the family
+        # changes exactly when the behaviour it names changes. `family=` still overrides explicitly.
+        # See plans/exec/2026-08-25-arm1-letter-targets.md §3b.
+        self.family = family if family is not None else (
+            type(self).family + LETTERSEP_FAMILY_SUFFIX if self.letter_sep else type(self).family)
         self.name = name or f"{self.family}@{Path(self.adapter).name if self.adapter else 'base'}"
 
     def _resolve_dtype(self, torch, dev):
@@ -99,7 +137,13 @@ class VLMLineReader:
             P = inputs["input_ids"].shape[1]
             for b, i in enumerate(idx):
                 seq = out.sequences[b][P:]
-                texts[i] = strip_think(self.proc.decode(seq, skip_special_tokens=True)).strip().replace("\n", " ")
+                raw = strip_think(self.proc.decode(seq, skip_special_tokens=True)).strip().replace("\n", " ")
+                # ⚠ PER-PROMPT, NOT PER-READER. One Arm 1 adapter emits letter-separated targets for
+                # ink prompts and PLAIN text for [essay] prompts, because r5b_data.py only encodes the
+                # former. Decoding an essay line welds it into a single word — silently, and the
+                # 1500-line HWR200 hold-out score goes with it. See lettersep.target_is_encoded.
+                texts[i] = (self._undo_letter_sep(raw)
+                            if self.letter_sep and _target_is_encoded(prompts[i]) else raw)
                 if with_conf:
                     probs = []
                     for t, sc in zip(seq, out.scores):
@@ -108,6 +152,19 @@ class VLMLineReader:
                         probs.append(torch.softmax(sc[b].float(), dim=-1)[tid].item())
                     confs[i] = float(sum(probs) / len(probs)) if probs else 0.0
         return texts, confs
+
+    def _undo_letter_sep(self, raw: str) -> str:
+        """Letter-separated generation -> ordinary text.
+
+        `n_no_separator` counts separator-less lines. It is NOT a defect count — a correctly encoded
+        single word has no separator, and 12.9 % of sealed-exam lines are single words. Judge a RUN
+        by comparing `lettersep.separator_rate` against the same rate over its labels; a per-line
+        verdict is impossible from the string alone (see lettersep.separator_rate's docstring).
+        """
+        from .lettersep import WORD_SEP, decode
+        if WORD_SEP not in raw:
+            self.n_no_separator += 1        # NOT a defect count: a single-word line has no separator
+        return decode(raw)
 
     def read_line(self, crop: Image.Image):
         t, c = self.read([crop], batch_size=1); return t[0], c[0]
