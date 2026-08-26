@@ -212,6 +212,9 @@ class PMIWordVerifier:
 # τ 2.29/0.74). fused = min(z_pmi, z_ctc) — "both judges must agree". Design B (judge reader-mismatch words only):
 #   τ_error 2.30 → ≈ 0.65 false red / 100 words, catches ≈ 27 % of all real misspellings (36 % of judged)
 #   τ_review 0.68 → catch incl. review ≈ 71 % of all (95 % of judged) at ≈ 6.5 marks / 100 words
+#   ⚠ SUPERSEDED 2026-08-25: on the 275-label sealed set, 6.50 fp/100 gives 57.1 % and catch
+#     SATURATES at 63.3 % at ANY budget (59 corrected away + 42 unscoreable can never be flagged).
+#     The 71 % is the retired 200-judged/261-total population. See plans/AUDIT-2026-08-25-pipeline.md.
 Z_PMI = (-2.095, 3.829); Z_CTC = (-5.413, 7.805); TAU_F_ERROR, TAU_F_REVIEW = 2.30, 0.68
 
 # ------------------------------------------------------------------------------------------------ v6
@@ -235,6 +238,53 @@ DEFAULT_FAMILY = "glm-ocr"
 V6_CONST = ROOT / "bilimai/data/verifier_v6.json"          # legacy path == the GLM silo
 
 
+class AdapterMismatch(Exception):
+    """Constants fitted on one ADAPTER are being loaded for another.
+
+    ⚠ MUST NOT be swallowed by the v5 fallback. Falling back to v5 on an adapter mismatch is not a
+    graceful degradation — v5's own TAU constants were fitted on the same adapter, so the fallback
+    is wrong in exactly the same way, and it happens silently. An adapter mismatch is a stop, not a
+    downgrade. (Audit 2026-08-25: the first version of this check raised a bare AssertionError,
+    which the blanket `except Exception` below caught and turned into a silent v5 fallback — the
+    opposite of the advertised hard fail.)
+    """
+
+
+def _ad_slug(a) -> str:
+    """Compare adapters by what DISTINGUISHES them, not by their mount path or family prefix.
+
+    ⚠ MEASURED 2026-08-25. The same R5c adapter is written two ways in this repo:
+        dumps / constants : '/kaggle/input/datasets/jahongir713/bilimai-glm-lora-ru-r5c'
+        everywhere else   : 'models/adapters/glm-ocr-lora-ru-r5c'  (bilimai/pipeline.py default)
+    A last-segment slug splits one adapter into two names and rejects the repo's own canonical
+    spelling. Since FAMILY is already guarded separately, the adapter slug only has to discriminate
+    WITHIN a family — so family-ish tokens are dropped and the distinguishing tail is compared.
+    Both spellings above reduce to **'ru-r5c'** ('lora' is in the drop set too).
+
+    ⚠ KNOWN LIMITATION — IT CAN COLLIDE, and the drop set is why. Family-ish tokens are removed, so
+    'bilimai-qwen3-vl-lora-ru-r7' and 'bilimai-glm-ocr-lora-ru-r7' BOTH reduce to 'ru-r7'. Inside
+    `_load_v6` that is harmless: constants are routed by FAMILY first (`const_path`) and the declared
+    family is asserted, so a Qwen adapter can never reach a GLM constants file. But
+    `eval/dictation/score_ladder.py` imports this same function and compares `BILIMAI_ADAPTER` against
+    a dump's stamp with **no family dimension**, where two same-round adapters from different families
+    would compare equal. Not reachable with any adapter name on disk today, and Arm 1's own pair
+    separates cleanly — recorded as a trap, not a live fault. If cross-family adapter names ever
+    collide, compare (family, adapter) as a pair rather than widening this function.
+    """
+    tail = str(a).rstrip("/").split("/")[-1].strip().lower()
+    drop = {"bilimai", "glm", "ocr", "qwen", "qwen3", "vl", "lora"}
+    parts = [t for t in tail.replace("_", "-").split("-") if t and t not in drop]
+    slug = "-".join(parts)
+    if not slug:
+        # Every token was family-ish ('glm-ocr-lora', 'out/lora'). Two unrelated adapters would then
+        # compare EQUAL, which is the one collision that is silent AND certain. Refuse instead.
+        raise ValueError(
+            f"adapter name {a!r} carries no distinguishing token — every part is a family/vendor word "
+            f"({sorted(drop)}). Two such names would compare equal. Rename the adapter so it says "
+            f"which round or arm it is (e.g. '...-r5c', '...-arm1').")
+    return slug
+
+
 def _slug(family: str) -> str:
     """Filesystem-safe family id. Never let a family name escape bilimai/data/."""
     return "".join(ch if (ch.isalnum() or ch in "-_") else "-" for ch in (family or "")).strip("-").lower()
@@ -252,7 +302,24 @@ def edit_prior_path(family: str = DEFAULT_FAMILY) -> Path:
         ROOT / f"bilimai/data/edit_prior_models_{_slug(family)}.json"
 
 
-def _load_v6(family: str = DEFAULT_FAMILY):
+def _load_v6(family: str = DEFAULT_FAMILY, adapter: str | None = None):
+    """Load this family's fused-verifier constants.
+
+    ⚠ THE SILO PROTECTS A FAMILY SWITCH, NOT AN ADAPTER SWITCH (audit 2026-08-25).
+    `family` comes from the reader CLASS, so every GLM adapter — v5, R5c, and a letter-target Arm 1
+    adapter whose whole purpose is to make DIFFERENT mistakes — reports `"glm-ocr"` and silently
+    loads R5c's τ, gmed/gmad and fitted READER edit model. Nothing errors; the numbers are simply
+    wrong, under the new adapter's name. `reader_model()` is literally "the reader's confusion
+    habits", so constants fitted on one adapter describe another only by luck.
+    See plans/CODE-DEFECTS-2026-08-25.md and plans/exec/2026-08-25-arm1-letter-targets.md §3b.
+
+    So constants may ALSO stamp the adapter they were fitted on. Rules:
+      * both sides declare an adapter and they differ  -> HARD FAIL (falls back to v5, loudly)
+      * the constants carry no stamp                   -> warn; cannot be verified (legacy files)
+      * no adapter passed                              -> unchanged behaviour
+    `eval/dictation/refit_verifier_v6.py` stamps new constants, so the check tightens over time
+    rather than breaking the shipped path today.
+    """
     import json
     try:
         cp = const_path(family)
@@ -260,11 +327,24 @@ def _load_v6(family: str = DEFAULT_FAMILY):
         declared = c.get("family", DEFAULT_FAMILY)
         assert _slug(declared) == _slug(family), \
             f"{cp.name} declares family {declared!r} but was loaded for {family!r} — refusing to borrow"
+        stamped = c.get("adapter")
+        if stamped and adapter and _ad_slug(stamped) != _ad_slug(adapter):
+            raise AdapterMismatch(
+                f"{cp.name} was fitted on adapter {stamped!r} but is being loaded for {adapter!r} "
+                f"(slugs {_ad_slug(stamped)!r} vs {_ad_slug(adapter)!r}). These constants describe "
+                "the OTHER adapter's mistakes — refusing to borrow, and refusing to fall back to v5, "
+                "whose TAUs were fitted on the same adapter. Re-fit with "
+                "eval/dictation/refit_verifier_v6.py --family/--adapter, or declare a distinct family.")
+        if adapter and not stamped:
+            print(f"[verifier] ⚠ {cp.name} carries no adapter stamp, so it cannot be checked against "
+                  f"adapter {adapter!r}. Re-fit to stamp it. Audit 2026-08-25.")
         from .edit_prior import load_models
         pup, rdr = load_models(edit_prior_path(family))
         assert c["feature_order"] == ["ctc", "pmi", "iso", "lr"], "v6 feature order changed"
         return c, pup, rdr
-    except Exception as e:                      # noqa: BLE001 — any failure means "use v5"
+    except AdapterMismatch:
+        raise                                   # ⚠ a stop, not a downgrade — see AdapterMismatch
+    except Exception as e:                      # noqa: BLE001 — any other failure means "use v5"
         print(f"[verifier] v6 unavailable for family {family!r} ({type(e).__name__}: {e}); "
               f"using v5 min(z_ctc, z_pmi). ⚠ v5's TAU constants were also fitted on {DEFAULT_FAMILY} — "
               "they are NOT calibrated for another reader.")
@@ -280,11 +360,20 @@ class FusedWordVerifier:
     """
     name = "fused-ctc+pmi-word-verifier"
     def __init__(self, ctc: CTCWordVerifier, pmi: PMIWordVerifier, topk: int = 20, tau_error=None, tau_review=None,
-                 family: str | None = None):
+                 family: str | None = None, adapter: str | None = None):
         self.ctc, self.pmi, self.topk = ctc, pmi, topk
         # family = which READER produced the transcript these constants were fitted against.
         self.family = family or getattr(getattr(pmi, "reader", None), "family", None) or DEFAULT_FAMILY
-        self.v6, self.pup, self.rdr = _load_v6(self.family)
+        # ⚠ ADAPTER CHECKING IS EXPLICIT OPT-IN, and deliberately NOT derived from the reader.
+        # Deriving it looked helpful and was wrong twice over: (a) the shipped constants carry no
+        # stamp — they are GENERATED and must never be hand-edited (see this file's header) — so
+        # every production construction would print an un-actionable warning; (b) a warning that
+        # fires on every page is one nobody reads, which is worse than no warning. Pass `adapter=`
+        # when you want the check; pass nothing and behaviour is exactly as before the audit.
+        # The next `refit_verifier_v6.py --adapter ...` stamps the constants, at which point a
+        # mismatch becomes a hard AdapterMismatch rather than a warning.
+        self.adapter = adapter
+        self.v6, self.pup, self.rdr = _load_v6(self.family, self.adapter)
         if self.v6:
             self.name = "fused-ctc+pmi+editprior-word-verifier@v6"
             self.tau_error = self.v6["tau_error"] if tau_error is None else tau_error

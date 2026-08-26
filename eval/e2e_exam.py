@@ -29,7 +29,7 @@ from pathlib import Path
 ap = argparse.ArgumentParser()
 ap.add_argument("--det", required=True); ap.add_argument("--adapter", required=True); ap.add_argument("--out", required=True)
 ap.add_argument("--exam"); ap.add_argument("--base"); ap.add_argument("--min-conf", type=float, default=0.0)
-ap.add_argument("--score", action="store_true"); ap.add_argument("--max-new", type=int, default=96)
+ap.add_argument("--score", action="store_true"); ap.add_argument("--max-new", type=int, default=192)
 ap.add_argument("--no-resize", action="store_true", help="keep crop resolution (Qwen3-VL runs; GLM runs resize to h=128 like training)")
 ap.add_argument("--prompt", default="Text Recognition:"); ap.add_argument("--batch-size", type=int, default=16)
 a = ap.parse_args()
