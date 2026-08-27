@@ -1,0 +1,185 @@
+{
+ "summary": {
+  "mode": "real-run-order",
+  "run": "eval/runs/qwen_baseline_complete10.json",
+  "pages": 10,
+  "words": 1685,
+  "errors_perfect_order_total": 2,
+  "extra_false_errors_from_order": 4.0,
+  "extra_false_errors_per_page": 0.4,
+  "extra_false_errors_per_100_words": 0.24,
+  "pages_hurt": 2,
+  "mean_score_perfect_order": 5.0,
+  "mean_score_after_reordering": 4.8,
+  "pages_whose_grade_dropped": 2,
+  "worst": [
+   {
+    "file": "2047.jpg",
+    "lines": 42,
+    "words": 153,
+    "errors_perfect_order": 0,
+    "errors_permuted_mean": 2.0,
+    "extra_errors": 2.0,
+    "score_perfect": 5,
+    "score_permuted_mean": 4.0,
+    "coverage_permuted_mean": 0.993
+   },
+   {
+    "file": "2121.jpg",
+    "lines": 47,
+    "words": 136,
+    "errors_perfect_order": 1,
+    "errors_permuted_mean": 3.0,
+    "extra_errors": 2.0,
+    "score_perfect": 5,
+    "score_permuted_mean": 4.0,
+    "coverage_permuted_mean": 0.992
+   },
+   {
+    "file": "2013.jpg",
+    "lines": 24,
+    "words": 109,
+    "errors_perfect_order": 0,
+    "errors_permuted_mean": 0.0,
+    "extra_errors": 0.0,
+    "score_perfect": 5,
+    "score_permuted_mean": 5.0,
+    "coverage_permuted_mean": 1.0
+   },
+   {
+    "file": "2014.jpg",
+    "lines": 47,
+    "words": 202,
+    "errors_perfect_order": 0,
+    "errors_permuted_mean": 0.0,
+    "extra_errors": 0.0,
+    "score_perfect": 5,
+    "score_permuted_mean": 5.0,
+    "coverage_permuted_mean": 1.0
+   },
+   {
+    "file": "2015.jpg",
+    "lines": 48,
+    "words": 208,
+    "errors_perfect_order": 1,
+    "errors_permuted_mean": 1.0,
+    "extra_errors": 0.0,
+    "score_perfect": 5,
+    "score_permuted_mean": 5.0,
+    "coverage_permuted_mean": 1.0
+   }
+  ]
+ },
+ "per_page": [
+  {
+   "file": "2013.jpg",
+   "lines": 24,
+   "words": 109,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2014.jpg",
+   "lines": 47,
+   "words": 202,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2015.jpg",
+   "lines": 48,
+   "words": 208,
+   "errors_perfect_order": 1,
+   "errors_permuted_mean": 1.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2016.jpg",
+   "lines": 43,
+   "words": 193,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2044.jpg",
+   "lines": 53,
+   "words": 186,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2047.jpg",
+   "lines": 42,
+   "words": 153,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 2.0,
+   "extra_errors": 2.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 4.0,
+   "coverage_permuted_mean": 0.993
+  },
+  {
+   "file": "2121.jpg",
+   "lines": 47,
+   "words": 136,
+   "errors_perfect_order": 1,
+   "errors_permuted_mean": 3.0,
+   "extra_errors": 2.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 4.0,
+   "coverage_permuted_mean": 0.992
+  },
+  {
+   "file": "2184.jpg",
+   "lines": 40,
+   "words": 111,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2238.jpg",
+   "lines": 58,
+   "words": 215,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2239.jpg",
+   "lines": 51,
+   "words": 172,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  }
+ ]
+}
