@@ -157,9 +157,11 @@ def _badness(key, hyp, pairs, ignore_case) -> int:
     n = 0
     for ki, hj in pairs:
         if ki is not None and hj is not None:
-            n += _norm(key[ki].text, True) != _norm(hyp[hj].text, True)
+            n += _norm(key[ki].text, ignore_case) != _norm(hyp[hj].text, ignore_case)
         elif ki is not None:
-            n += 1
+            n += 1                                  # missing_word
+        else:
+            n += 1                                  # extra_word — grade_dictation strikes and counts it too
     return n
 
 
@@ -181,12 +183,20 @@ def align_order_robust(key: list[Tok], hyp: list[Tok], hyp_spans: list[tuple[int
     one-to-one. It scored perfectly when the two happened to share a line structure and collapsed completely
     when they did not — every word came back `extra_word`. Do not reintroduce it.)
 
-    The result is never worse than the flat alignment: both are scored with `_badness` and the better wins.
+    The result is never worse than the flat alignment: both are scored with `_badness` and the better wins;
+    a genuine tie keeps the flat alignment (reordering on a tie only moves the red marks — D1, 2026-08-27).
 
     Rejected, measured, do not revisit without a new argument: sorting the model's boxes by position on the
     page instead of trusting its emission order reaches only ~8.0 invented errors/page (still worth doing —
     it is free and independent — but not a fix); quantising y into row bands before that sort was WORSE at
     every width tried (0.5/0.8/1.0/1.3 median line-heights).
+
+    Re-measured 2026-08-27 under the D1-corrected objective (extra_word costs 1; ties keep flat), same
+    two saved runs via eval/dictation/order_cost_marking.py --from-run: after-figures UNCHANGED — 0.4
+    invented marks/page on the 10 clean pages, 0.1 on the 20 hardest (before-figures do not consult
+    `_badness`, so they cannot move). Artifacts: eval/runs/order_cost_complete10_d1obj.json and
+    order_cost_hard20_d1obj.json. The measured pair behind the headline is 54.0/13.5 -> 0.40/0.10,
+    ENGINEERING-LOG 2026-08-23 "Line order: measured, then fixed".
     """
     flat = align(key, hyp, ignore_case)
     if len(hyp_spans) < 2:
@@ -243,7 +253,7 @@ def align_order_robust(key: list[Tok], hyp: list[Tok], hyp_spans: list[tuple[int
     reordered = [hyp[j] for j in new2old]
     pairs = [(ki, new2old[hj] if hj is not None else None)
              for ki, hj in align(key, reordered, ignore_case)]
-    return pairs if _badness(key, hyp, pairs, ignore_case) <= _badness(key, hyp, flat, ignore_case) else flat
+    return pairs if _badness(key, hyp, pairs, ignore_case) < _badness(key, hyp, flat, ignore_case) else flat
 
 
 def _gap_bbox(prev: Tok | None, nxt: Tok | None) -> list | None:
@@ -262,7 +272,7 @@ def grade_dictation(key_text: str, transcript: list[dict], *, ignore_case: bool 
     `error` (kept, counted), `review` (kept, drawn, flagged, not counted), `ok` (our misread → mark removed). E5.8 2026-08-19.
 
     `line_align` (default ON since 2026-08-23): match transcript lines to key lines by content before aligning
-    words, so a line delivered out of order cannot invent spelling mistakes. See `align_line_first` for the
+    words, so a line delivered out of order cannot invent spelling mistakes. See `align_order_robust` for the
     measurements — the old flat behaviour invented 27.2 errors per page on real page-level output and cost half
     the pages more than a whole grade. Pass `line_align=False` for the pre-2026-08-23 behaviour."""
     key = tokenize(key_text)

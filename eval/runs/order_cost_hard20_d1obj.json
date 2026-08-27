@@ -1,0 +1,295 @@
+{
+ "summary": {
+  "mode": "real-run-order",
+  "run": "eval/runs/qwen_hard20.json",
+  "pages": 20,
+  "words": 3917,
+  "errors_perfect_order_total": 12,
+  "extra_false_errors_from_order": 2.0,
+  "extra_false_errors_per_page": 0.1,
+  "extra_false_errors_per_100_words": 0.05,
+  "pages_hurt": 1,
+  "mean_score_perfect_order": 4.75,
+  "mean_score_after_reordering": 4.7,
+  "pages_whose_grade_dropped": 1,
+  "worst": [
+   {
+    "file": "2905.jpg",
+    "lines": 59,
+    "words": 190,
+    "errors_perfect_order": 0,
+    "errors_permuted_mean": 2.0,
+    "extra_errors": 2.0,
+    "score_perfect": 5,
+    "score_permuted_mean": 4.0,
+    "coverage_permuted_mean": 0.9
+   },
+   {
+    "file": "2044.jpg",
+    "lines": 53,
+    "words": 186,
+    "errors_perfect_order": 0,
+    "errors_permuted_mean": 0.0,
+    "extra_errors": 0.0,
+    "score_perfect": 5,
+    "score_permuted_mean": 5.0,
+    "coverage_permuted_mean": 1.0
+   },
+   {
+    "file": "2238.jpg",
+    "lines": 58,
+    "words": 215,
+    "errors_perfect_order": 0,
+    "errors_permuted_mean": 0.0,
+    "extra_errors": 0.0,
+    "score_perfect": 5,
+    "score_permuted_mean": 5.0,
+    "coverage_permuted_mean": 1.0
+   },
+   {
+    "file": "2239.jpg",
+    "lines": 51,
+    "words": 172,
+    "errors_perfect_order": 0,
+    "errors_permuted_mean": 0.0,
+    "extra_errors": 0.0,
+    "score_perfect": 5,
+    "score_permuted_mean": 5.0,
+    "coverage_permuted_mean": 1.0
+   },
+   {
+    "file": "2484.jpg",
+    "lines": 67,
+    "words": 238,
+    "errors_perfect_order": 2,
+    "errors_permuted_mean": 2.0,
+    "extra_errors": 0.0,
+    "score_perfect": 4,
+    "score_permuted_mean": 4.0,
+    "coverage_permuted_mean": 1.0
+   }
+  ]
+ },
+ "per_page": [
+  {
+   "file": "2044.jpg",
+   "lines": 53,
+   "words": 186,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2238.jpg",
+   "lines": 58,
+   "words": 215,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2239.jpg",
+   "lines": 51,
+   "words": 172,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2484.jpg",
+   "lines": 67,
+   "words": 238,
+   "errors_perfect_order": 2,
+   "errors_permuted_mean": 2.0,
+   "extra_errors": 0.0,
+   "score_perfect": 4,
+   "score_permuted_mean": 4.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2487.jpg",
+   "lines": 72,
+   "words": 146,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2490.jpg",
+   "lines": 53,
+   "words": 182,
+   "errors_perfect_order": 2,
+   "errors_permuted_mean": 2.0,
+   "extra_errors": 0.0,
+   "score_perfect": 4,
+   "score_permuted_mean": 4.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2806.jpg",
+   "lines": 64,
+   "words": 257,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2826.jpg",
+   "lines": 29,
+   "words": 126,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2831.jpg",
+   "lines": 79,
+   "words": 260,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2832.jpg",
+   "lines": 29,
+   "words": 96,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2834.jpg",
+   "lines": 38,
+   "words": 197,
+   "errors_perfect_order": 1,
+   "errors_permuted_mean": 1.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2835.jpg",
+   "lines": 46,
+   "words": 176,
+   "errors_perfect_order": 1,
+   "errors_permuted_mean": 1.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2839.jpg",
+   "lines": 104,
+   "words": 247,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2869.jpg",
+   "lines": 38,
+   "words": 120,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2897.jpg",
+   "lines": 78,
+   "words": 170,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2901.jpg",
+   "lines": 51,
+   "words": 193,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 0.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2902.jpg",
+   "lines": 65,
+   "words": 185,
+   "errors_perfect_order": 2,
+   "errors_permuted_mean": 2.0,
+   "extra_errors": 0.0,
+   "score_perfect": 4,
+   "score_permuted_mean": 4.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2905.jpg",
+   "lines": 59,
+   "words": 190,
+   "errors_perfect_order": 0,
+   "errors_permuted_mean": 2.0,
+   "extra_errors": 2.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 4.0,
+   "coverage_permuted_mean": 0.9
+  },
+  {
+   "file": "2912.jpg",
+   "lines": 44,
+   "words": 327,
+   "errors_perfect_order": 3,
+   "errors_permuted_mean": 3.0,
+   "extra_errors": 0.0,
+   "score_perfect": 3,
+   "score_permuted_mean": 3.0,
+   "coverage_permuted_mean": 1.0
+  },
+  {
+   "file": "2919.jpg",
+   "lines": 44,
+   "words": 234,
+   "errors_perfect_order": 1,
+   "errors_permuted_mean": 1.0,
+   "extra_errors": 0.0,
+   "score_perfect": 5,
+   "score_permuted_mean": 5.0,
+   "coverage_permuted_mean": 1.0
+  }
+ ]
+}
