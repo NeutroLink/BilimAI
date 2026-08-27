@@ -44,7 +44,7 @@ the honest product number today (RP finds 86 % of lines).
 | `round5c/` | R5c «splice» (2026-08-20): exam reads (4 prompts), retention_exam (45 %/40 % keyed), retention_splice_val (48 %), school_val (CER 0.0227 + val-362 retention 52.8 %), adapter (candidate default after judge re-fit), data_stats |
 | `round5b/` | R5b «verbatim» run A (2026-08-19): exam reads under 4 prompts (`glm_lora_lines*.json`), `retention_exam.json` (86: 45 % / keyed 37 % / key-copy 2.3 %), `school_val_score.json` (CER 0.0242 + retention on 362 val pairs 50 %), adapter (not promoted), data_stats/sample, train log |
 | `round5/` | R5 = v5: exam v2 predictions, school-val (0.024), held-out (median 0.0), trainer_state, adapter scope (246 vision tensors), baselines_v2 (v3/v4 on exam v2) |
-| `dictation/` | key-conditioned verification experiments (keyed_verify_*, tokfeat_*, pmi_* incl. `pmi_r5`), real_misspellings_v2.json (86 strict pairs) |
+| `dictation/` | key-conditioned verification experiments (keyed_verify_*, tokfeat_*, pmi_* incl. `pmi_r5`), real_misspellings_v2.json (86 strict pairs; strict = d==1, ≥ 6 letters, correction seen ≥ 3×, not an abbreviation — `gate.py` "LABEL FILTER") |
 | `round4/replay20/`, `round4/replay40/` | round 4 (HWR200 221 k + school replay 5.8 % / 10.9 % of mix, from v3): exam 0.263 / **0.240** (v4), HWR200 held-out 0.094 both; trainer_state, holdout preds, gate logs, box logs |
 | `qwen3vl_ru_hw/` | gbull25 Qwen3-VL-4B RU fine-tune, fp16, as-is: exam 0.451, held-out 0.283 (dropped) |
 | `e2e/e2e_<det>_<reader>.json`, `e2e/summary_2026-08-17.json` | **end-to-end** exam (detector boxes → reader): page CER median v3 0.204 oracle → 0.293 RP / 0.392 Surya; v4 0.225 → **0.299** / 0.401; Qwen 0.343 → 0.342 / 0.477; RP finds 86 % of lines, Surya 73 % |

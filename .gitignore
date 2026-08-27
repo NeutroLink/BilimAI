@@ -35,6 +35,8 @@ eval/testset_v3/ru_pages/images/
 # (score_ladder.json, gate.json, pooled_v4.json). Keep them on disk; use LFS if they must ship.
 eval/runs/dictation/ctc_full_v2.json
 eval/runs/dictation/ctc_full_v3.json
+eval/runs/dictation/ctc_full_v2_det.json
+eval/runs/dictation/ctc_full_v3_det.json
 
 # HiGAN RU bank + Kaggle package: multi-GB h5/code artifacts, rebuilt by tools/higan (stats.json is force-added — configs derive from it)
 data/derived/higan_ru_bank/
