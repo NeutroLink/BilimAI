@@ -138,6 +138,37 @@ and a vocabulary-free "does this ink match this string?" head (the Totev & Ward 
 arXiv:2309.10158, ~135k parameters). One set of vision weights; reading and doubting need different
 outputs on top. The silos come first so that work cannot disturb the shipping reader.
 
+## VERIFY-ALL — the ink checker reads every aligned word. Founder, 2026-08-27.
+
+**The checker becomes a PARALLEL READER of every aligned word on the page — not an appeals court
+for the words the reader already flagged.** Today `bilimai/dictation.py` builds the judging
+work-list only from reader–key mismatches, so a word the reader silently tidied to the key looks
+"correct" and is never judged. Under verify-all, every aligned word is scored on the ink against
+the key spelling; "reader agrees with the key, ink disagrees" becomes a caught autocorrection
+instead of an invisible one.
+
+**Recorded as architecture; switch-on is GATED.** Three prior measurements argue against flipping
+today, and they stay on the record: 2026-08-19 — judging only mismatch words beat judge-all on
+precision at every threshold (`ENGINEERING-LOG.md`, E5.8 entry); 2026-08-23 — judge-all, no gain,
+McNemar p = 1.00 (`plans/DICTATION-AUTOPSY-2026-08-23.md`); 2026-08-25 — the audit's 2×2: opening
+the gate alone LOST four errors at the shipped budget, the entire gain was calibration
+(`plans/AUDIT-2026-08-25-pipeline.md` §2a). What survives those results is the reason for this
+decision: only verify-all lifts the catch ceiling (the audit's exchange-rate table), the checker
+fine-tune now training (HiGAN-RU) is the lever the 2×2 did not have, and the 2026-08-27
+literature review converged on the same architecture independently (verification-not-transcription,
+Totev & Ward arXiv:2309.10158; the rewrite mechanism, FaithC4 arXiv:2607.21617; full report:
+https://claude.ai/code/artifact/fa8ab823-dc9d-4e77-83ec-2eebb313951e). So: implement behind a
+flag, OFF; refit the verifier thresholds on the all-words population (the shipped τ are fitted on
+mismatch-only rows); production flips only when the improved checker clears a re-measured catch
+bar at the shipped false-flag budget. Touchpoints, pre-flight and gates:
+`plans/exec/2026-08-27-verify-all-words.md`.
+
+**When there is no key — design of record, NOT scheduled work.** Without a key the trust chain
+changes, the scope does not: the checker verifies the READER'S OWN transcript word by word
+("does the ink really spell what the reader wrote?"), a disagreement replaces the reader's word
+with the checker's reading, and the existing non-word check judges the verified transcript.
+"Non-words only without a key" and NEVER INFER A TEACHER'S KEY stand unchanged.
+
 ## What we never do
 
 - Grade, score, rank, or assign marks.
@@ -179,6 +210,19 @@ Flag every one of the 174 and accept unlimited false alarms, and catch stops at 
 word instead lifts the ceiling to 84.7 %, and 70 % then costs **≈ 20 false flags per 100 words — 30×
 the stated budget.** This is a product decision about how much teacher time a page is worth, not an
 engineering gap; the measured exchange rate is in the audit.
+
+⚠ Note 2026-08-27: verify-all is now the SETTLED DESTINATION (see § VERIFY-ALL above) — gated
+switch-on, flag off until the refit checker clears the re-measured bar. The numbers in this
+section describe the shipped design and remain true until that flip.
+
+⚠ Note 2026-08-27 (later): two of the three biases below are addressed and the re-key is DONE.
+The gate headline is now measured on REAL detector boxes (76/275 = 27.6 %; the GT-box row stays
+as continuity — `eval/runs/dictation/gate.json`); the strict rule is restated at its four real
+conjuncts (`gate.py` "LABEL FILTER"); and the founder adjudicated all 20 label conflicts —
+teacher right — so those labels are re-keyed (position only, no key inferred). Ceiling
+63.3 % → 66.2 % (GT boxes) / 62.9 % (detector boxes); reachable-by-judging-all 84.7 % → 92.0 %
+(253/275 — the remaining 22 are 21 text-unmatchable orphans plus 1 unjoined keyed label).
+Threshold-chosen-on-the-scored-fold remains open. The table above is the 2026-08-25 record.
 
 **Retention is a bounded lever, not the programme.** ⚠ **RETRACTED 2026-08-25.** This section
 previously claimed 24 errors were caught that the reader had normalised away, and concluded
@@ -231,6 +275,8 @@ the yellow «на проверку» band raises catch to ≈ 71 % at ≈ 6.5 ma
 key never reach the judges — measured 2026-08-25 as **59/275 = 21.5 %**. ⚠ R5b has since run and moved retention
 44 % → 45 % against a ≥ 60 % target; retention is a **bounded lever** (≈ +12 points, 40.1 % ceiling, **49.5 % hard
 cap**), not the fix. See `plans/AUDIT-2026-08-25-pipeline.md` §2b and `plans/exec/ARM-PROGRAMME.md`.
+Decision 2026-08-27: the checker will read every aligned word (verify-all), behind a flag, off until
+the refit checker clears a re-measured bar — `plans/SCOPE.md` § VERIFY-ALL.
 Code: [`bilimai/verifier.py`](bilimai/verifier.py); measurement: `eval/runs/dictation/ctc_r5all_fused*.json`.
 
 ### Fresh demo grading (v5 + own detector + word judges)
