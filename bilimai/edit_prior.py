@@ -2,9 +2,11 @@
 """Scoring improvements measured 2026-08-24. On the SCORING STATISTIC (eval grouping, n=261):
 catch 29.9 % -> 44.1 % at the same false-flag budget.
 
-⚠ THAT IS NOT THE PRODUCT FIGURE. Production is 77/275 = 28.0 % (`gate.json` -> `production`,
-95 % CI [18.5, 36.4]). The eval grouping calibrates over ~86 rows/page, which production never has.
-Quote the production row. See plans/AUDIT-2026-08-25-pipeline.md.
+⚠ THAT IS NOT THE PRODUCT FIGURE. The PRODUCTION HEADLINE is `gate.json` -> `production` —
+since 2026-08-27 measured on REAL detector boxes (76/275 = 27.6 %); the GT-annotator-box row is
+`production_gt_boxes` (77/275 = 28.0 %, and the audit's 95 % CI [18.5, 36.4] belongs to THAT row).
+The eval grouping calibrates over ~86 rows/page, which production never has. Quote the production
+row. See plans/AUDIT-2026-08-25-pipeline.md and gate.py's docstring.
 
 Both are ZERO-TRAINING: no GPU, no new data, computed from scores already on disk. Held out both
 directions (fit on one sealed page set, scored on the other) at matched cost.
