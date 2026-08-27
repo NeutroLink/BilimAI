@@ -94,6 +94,47 @@ class GLMReader:
         t, c = self._r.read(crops, batch_size=batch_size); return list(zip(t, c))
 
 
+# ============================================================================ READ GUARDS (0f, 2026-08-27)
+# Per-line reader-output guards — FLAG-ONLY, DEFAULT OFF (Pipeline(..., read_guards=False)).
+# Turning them ON is a founder decision gated on a gate.py re-run (0.65 false-flags/100 budget
+# unchanged) plus a school-val CER comparison: clamping confidence changes needs_review counts,
+# which is production-visible. The checks live in bilimai/guards.py; this block only measures the
+# crop the READ stage actually hands the reader (same box, same pad=12) so the calibration
+# describes production geometry and nothing else.
+
+COL_INK_FRAC = 0.05   # a crop column is "ink-bearing" when >= 5 % of its pixels are mask-ink
+
+# FIT by eval/dictation/read_guard_probe.py on the 3,707 sealed det-geometry line reads
+# (2026-08-27): k = median chars per ink-aspect; ratio = genuine-ratio p99 (2.576) x 1.10;
+# density_tau = 0.5 x sealed text-line density p1 (0.0758). Re-run the probe and update these
+# whenever the detector or the crop geometry changes (check_page precedent) —
+# tests/test_guards_lineread.py fails if these drift from the probe's emitted constants.
+READ_GUARD_DEFAULTS = {"k": 4.416, "ratio": 2.834, "min_chars": 8, "density_tau": 0.0379}
+
+
+def page_ink_mask(img: Image.Image):
+    """Boolean pupil-ink mask of the whole page, computed ONCE per page (cheap: bilimai/ink.py
+    _darker_than_paper works on a downscaled copy). Local contrast, not Otsu — raw Otsu is
+    measured-invalid as a blankness signal (blank region 0.21 vs text lines 0.07-0.13)."""
+    import numpy as np
+    from .ink import _darker_than_paper
+    arr = np.ascontiguousarray(np.asarray(img.convert("RGB"))[:, :, ::-1])   # PIL RGB -> cv2 BGR
+    return _darker_than_paper(arr)
+
+
+def line_ink_measures(mask, box, pad: int = 12) -> tuple[int, int, float]:
+    """(ink_cols, crop_h, density) inside the PRODUCTION crop rect: `box` grown by the same
+    pad=12 the READ stage uses below. The probe fits its constants through this exact function,
+    so guard thresholds and production measurements can never disagree about geometry."""
+    H, W = mask.shape
+    x0 = max(0, int(box[0]) - pad); y0 = max(0, int(box[1]) - pad)
+    x1 = min(W, int(round(box[2])) + pad); y1 = min(H, int(round(box[3])) + pad)
+    if x1 <= x0 or y1 <= y0:
+        return 0, max(1, y1 - y0), 0.0
+    m = mask[y0:y1, x0:x1]
+    return int((m.mean(axis=0) >= COL_INK_FRAC).sum()), y1 - y0, float(m.mean())
+
+
 # ============================================================================ PIPELINE
 def _default_verifier(reader=None):
     """E5.8 (2026-08-19): word judges on spelling marks — CTC + PMI fused ("both must agree") when the reader is our production
@@ -111,9 +152,32 @@ def _default_verifier(reader=None):
 
 
 class Pipeline:
-    def __init__(self, reader, locator=None, verifier="auto"):
+    def __init__(self, reader, locator=None, verifier="auto", read_guards: bool = False, guard_params: dict | None = None):
         self.reader = reader; self.locator = locator
         self.verifier = _default_verifier(reader) if verifier == "auto" else verifier
+        # 0f: DEFAULT OFF. Flag-only reader-output guards on the READ stage; see READ GUARDS above.
+        self.read_guards = read_guards
+        self.guard_params = {**READ_GUARD_DEFAULTS, **(guard_params or {})}
+
+    def _guard_reads(self, img, boxes, reads):
+        """0f guards on every (box, read) of the page. On any non-OK verdict the line's
+        confidence is clamped to 0.0 so the EXISTING review flow fires (dictation.py
+        transcript_tokens propagates line confidence to words; grade_dictation marks
+        needs_review below review_threshold). Text is NEVER touched, and REJECT is treated as
+        REVIEW-strength this ship: no skip, no re-read — those need their own measured decision."""
+        from .guards import Verdict, check_ink_density, check_line_length, check_script
+        gp = self.guard_params
+        mask = page_ink_mask(img)
+        out, notes = list(reads), {}
+        for i, (b, (text, conf)) in enumerate(zip(boxes, out)):
+            ink_cols, crop_h, density = line_ink_measures(mask, b)
+            v = check_ink_density(density, gp["density_tau"])
+            v = v.merge(check_line_length(text, ink_cols, crop_h, gp["k"], gp["ratio"], gp["min_chars"]))
+            v = v.merge(check_script(text))
+            if v.level != Verdict.OK:
+                notes[i] = v
+                out[i] = (text, min(conf, 0.0))
+        return out, notes
 
     def grade(self, request: dict, out_dir: str | Path | None = None) -> dict[str, Any]:
         t0 = time.time(); timings = {}
@@ -131,7 +195,12 @@ class Pipeline:
             pad = 12; x0, y0, x1, y1 = b
             crops.append(img.crop((max(0, x0 - pad), max(0, y0 - pad), min(img.size[0], x1 + pad), min(img.size[1], y1 + pad))))
         reads = self.reader.read_lines(crops) if hasattr(self.reader, "read_lines") else [self.reader.read_line(c) for c in crops]
+        guard_notes = {}
+        if self.read_guards:                                   # 0f, default OFF: flags + confidence clamp only, text untouched
+            reads, guard_notes = self._guard_reads(img, boxes, reads)
         transcript = [{"id": f"L{i:02d}", "text": text, "bbox": [float(v) for v in b], "confidence": round(conf, 3)} for i, (b, (text, conf)) in enumerate(zip(boxes, reads))]
+        for i, v in guard_notes.items():
+            transcript[i]["guard"] = {"level": v.level, "reasons": v.reasons}
         # E4.3/E4.4 (2026-08-19): ink-tight word boxes per line → marks land on the word, not on the tall line box.
         # Sources: the RP detector (raw word boxes), or request.options.oracle_words (list per line) when boxes are human.
         wsrc = None
@@ -180,6 +249,8 @@ class Pipeline:
                 "provenance": {"pipeline_version": __version__, "reader_model": getattr(self.reader, "name", "?"),
                                "detector_model": getattr(loc, "name", "?"), "verifier": getattr(self.verifier, "name", None), "engine": engine, "timings_ms": timings}}
         if marked_uri: resp["marked_image_uri"] = marked_uri          # contract: string or absent, never null
+        if self.read_guards:                                          # absent entirely when OFF — default output stays byte-identical
+            resp["provenance"]["read_guards"] = {"enabled": True, "flagged": len(guard_notes), "params": dict(self.guard_params)}
         return resp
 
 

@@ -27,7 +27,8 @@ import hashlib
 import json
 import re
 
-__all__ = ["prompt_fingerprint", "check_prompt", "check_output", "check_runaway", "check_page", "Verdict"]
+__all__ = ["prompt_fingerprint", "check_prompt", "check_output", "check_runaway", "check_page",
+           "check_line_length", "check_ink_density", "check_script", "Verdict"]
 
 
 class Verdict:
@@ -206,3 +207,87 @@ def check_page(img_bgr, boxes, min_covered: float = 0.62, review_covered: float 
             reasons.append(f"median box height is {100*med:.1f} % of the page — implausible for a text line")
             level = Verdict.REJECT
     return Verdict(level, reasons, st)
+
+
+# ---------------------------------------------------------------- 4. per-line reader-output guards (0f, 2026-08-27)
+# Three pure checks on ONE line read: (text, ink measurements) in, Verdict out. No model, no image
+# here — the caller measures the crop (bilimai/pipeline.py page_ink_mask/line_ink_measures) and the
+# constants are FIT by eval/dictation/read_guard_probe.py on the sealed pages at PRODUCTION
+# geometry (rp-segm+grow-v1 det line boxes + the READ stage's pad=12). Re-fit whenever the detector
+# or the crop geometry changes — the check_page precedent: a guard tuned to a retired model is
+# worse than none, because it reads as passing.
+#
+# FLAG-ONLY, by standing rule (bilimai/dictation.py: "the transcript is never 'corrected'; a low
+# reader confidence on the word -> needs_review"). These verdicts clamp a line's confidence so the
+# EXISTING review flow fires; the text is NEVER mutated. Repetition-stripping in particular is
+# actively dangerous here: every triple-word repeat in the sealed line reads is GENUINE pupil
+# drill text, GT-confirmed («сирень сирень сирень» 2239, «бегать бегать бегать бегать» 2235,
+# «рябинки рябинки рябинки» 2238) — a stripper would delete pupil work and destroy real errors.
+
+
+def check_line_length(text: str, ink_cols: int, crop_h: int, k: float, ratio: float,
+                      min_chars: int = 8) -> Verdict:
+    """More text than the ink can warrant -> the tail of the read is invention, not reading.
+
+    warranted_chars = k * (ink_cols / crop_h); trips when len(text) > ratio * max(min_chars,
+    warranted_chars). `ink_cols` is the count of ink-bearing columns of the LOCAL-CONTRAST mask
+    (bilimai/ink.py _darker_than_paper) inside the production crop — box width lies, because
+    production boxes are padded and detectors over-grow.
+
+    k AND ratio ARE MEASURED, NOT INVENTED (read_guard_probe.py, 2026-08-27, 3,707 sealed line
+    reads at det geometry): the GENUINE ratio distribution runs p95 1.89 / p99 2.58 / max 3.79 —
+    school notebooks hold drill lines, dense essays and faint hands. Boros et al.'s fixed 1.5x
+    would false-trip 6.4 % of genuine lines here; `ratio` ships as the fitted p99 x 1.10 instead,
+    so only reads beyond anything genuine ever flag (~0.5 % of sealed reads, all of them heavy
+    misreads). REVIEW, never REJECT: at this bound a trip means "a human should look", and the
+    read may still be partly right."""
+    n = len((text or "").strip())
+    warranted = k * (ink_cols / max(1, crop_h))
+    limit = ratio * max(min_chars, warranted)
+    stats = {"chars": n, "ink_cols": int(ink_cols), "crop_h": int(crop_h),
+             "warranted_chars": round(warranted, 1), "length_limit": round(limit, 1)}
+    if n > limit:
+        return Verdict(Verdict.REVIEW,
+                       [f"{n} chars where the ink warrants ~{max(min_chars, warranted):.0f} — "
+                        f"beyond the calibrated x{ratio:g} bound, the tail is likely invented"], stats)
+    return Verdict(Verdict.OK, [], stats)
+
+
+def check_ink_density(density: float, tau: float) -> Verdict:
+    """A confident read of a (near-)blank crop is a hallucination by construction — flag the crop
+    from its own pixels, before or regardless of what the reader said (Careless Whisper's
+    silence-predictor, transposed to ink).
+
+    `density` is the mean of bilimai/ink.py `_darker_than_paper` over the production crop. That
+    mask is the point: raw Otsu is MEASURED-INVALID as a blankness signal (on 2013.jpg text-line
+    crops it reads 0.07-0.13 while a BLANK region reads 0.21 — Otsu splits paper-texture noise).
+    The local-contrast mask separates cleanly: sealed text lines 0.076+ (p1), blank regions 0.000.
+    `tau` ships at half the sealed p1 (read_guard_probe.py) so it cannot cry wolf on the faintest
+    genuine line we have seen. REJECT: there is nothing on the paper to read — though the first
+    ship treats REJECT as REVIEW-strength (flag-only, no skip)."""
+    stats = {"ink_density": round(float(density), 4)}
+    if density < tau:
+        return Verdict(Verdict.REJECT,
+                       [f"ink density {density:.4f} below blank threshold {tau:g} — "
+                        f"the crop is (near-)blank, any read of it is invented"], stats)
+    return Verdict(Verdict.OK, [], stats)
+
+
+_CJK_RE = re.compile("[⺀-⻿　-〿぀-ヿ㐀-䶿一-鿿"
+                     "가-힯豈-﫿\U00020000-\U0002ebef]")
+
+
+def check_script(text: str) -> Verdict:
+    """CJK inside a Russian/Uzbek read — the observed leak class, and ONLY that class.
+
+    Exactly one incident in 3,707 sealed line reads (2026-08-27): «ВесёX线» on 2817.jpg — a Han
+    ideograph inside a Russian line. Latin lookalikes are deliberately OUT of scope this ship
+    (the «X» above stays legal): pupils write Latin letters in maths and language drills, so a
+    Latin trigger would flag genuine work. Extend only from an observed failure, never ahead of
+    one."""
+    hits = _CJK_RE.findall(text or "")
+    if hits:
+        return Verdict(Verdict.REVIEW,
+                       [f"non-Cyrillic script leak: {''.join(hits[:5])!r} — "
+                        f"{len(hits)} CJK character(s) in the read"], {"cjk_chars": len(hits)})
+    return Verdict(Verdict.OK, [], {"cjk_chars": 0})
