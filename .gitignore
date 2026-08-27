@@ -41,3 +41,5 @@ eval/runs/dictation/ctc_full_v3_det.json
 # HiGAN RU bank + Kaggle package: multi-GB h5/code artifacts, rebuilt by tools/higan (stats.json is force-added — configs derive from it)
 data/derived/higan_ru_bank/
 data/derived/higan_kaggle_pkg/
+tools/convtext/out/
+tools/convtext/__pycache__/
