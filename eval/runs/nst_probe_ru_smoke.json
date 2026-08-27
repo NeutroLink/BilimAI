@@ -1,0 +1,64 @@
+{
+ "smoke": true,
+ "note": "SMOKE — tiny-N plumbing proof only, statistically meaningless",
+ "render": {
+  "lang": "ru",
+  "smoke": true,
+  "n_nst_words": 6,
+  "writers_per_word": 2,
+  "n_nst_pairs": 12,
+  "n_pope": 12,
+  "fonts": [
+   "GreatVibes",
+   "MarckScript",
+   "Pacifico"
+  ],
+  "writer_pool": 4000,
+  "dropped_twinless": 0,
+  "writer_swaps": 0,
+  "renderer": "eval/util/make_uz_font_strips.py + dark-ink patch, connected-cursive fonts only",
+  "nst_source": "data/derived/higan_ru_bank/lexicon_ru.txt (pymorphy3-known filter)",
+  "pope_source": "eval/runs/dictation/train_misspellings_v1.json (strict rows; TRAIN-mined, never sealed)",
+  "seed_scheme": "zlib.crc32 (never hash())",
+  "caveat": "Synthetic font-skeleton cursive, not children's ink: these numbers are an ITERATION/RANKING signal only. The sealed 60-page gate stays the deployment criterion."
+ },
+ "caveat": "Synthetic font-skeleton cursive, not children's ink: these numbers are an ITERATION/RANKING signal only. The sealed 60-page gate stays the deployment criterion.",
+ "nst": {
+  "readers": {
+   "ctc-crnn@readingpipeline": {
+    "reader": "ctc-crnn",
+    "model": "/Users/furb-x/Desktop/My Projects/BilimAI/models/readingpipeline/ocr",
+    "adapter": null,
+    "smoke": true,
+    "timestamp": "2026-08-27 16:08:35",
+    "n_pairs": 12,
+    "st_acc": 0.9166666666666666,
+    "nst_acc": 0.16666666666666666,
+    "gap": 0.75,
+    "seconds": 8.4
+   }
+  }
+ },
+ "pope": {
+  "readers": {
+   "ctc-crnn@readingpipeline": {
+    "reader": "ctc-crnn",
+    "model": "/Users/furb-x/Desktop/My Projects/BilimAI/models/readingpipeline/ocr",
+    "adapter": null,
+    "smoke": true,
+    "timestamp": "2026-08-27 16:08:35",
+    "n_pairs": 12,
+    "forced_choice_acc": 0.9166666666666666,
+    "n_probes": null,
+    "acc": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "yes_rate": null,
+    "non_answer_rate": null,
+    "yes_no_note": "n/a BY CONSTRUCTION — the CTC reader has no chat channel; it contributes NST + forced-choice rows only",
+    "seconds": 8.4
+   }
+  }
+ }
+}
