@@ -1,0 +1,40 @@
+{
+ "instrument": "nst_shuffled_word",
+ "lang": "ru",
+ "render": {
+  "lang": "ru",
+  "smoke": false,
+  "n_nst_words": 1000,
+  "writers_per_word": 1,
+  "n_nst_pairs": 1000,
+  "n_pope": 1000,
+  "fonts": [
+   "GreatVibes",
+   "MarckScript",
+   "Pacifico"
+  ],
+  "writer_pool": 4000,
+  "dropped_twinless": 0,
+  "writer_swaps": 0,
+  "renderer": "HiGAN ep018.pth (epoch 18), 1000 real pupil writer styles — replaces the font control arm; words, twins and POPE pairs verbatim from out/nst_pope_probe_1k",
+  "nst_source": "data/derived/higan_ru_bank/lexicon_ru.txt (pymorphy3-known filter)",
+  "pope_source": "eval/runs/dictation/train_misspellings_v1.json (strict rows; TRAIN-mined, never sealed)",
+  "seed_scheme": "zlib.crc32 (never hash())",
+  "caveat": "Synthetic font-skeleton cursive, not children's ink: these numbers are an ITERATION/RANKING signal only. The sealed 60-page gate stays the deployment criterion."
+ },
+ "caveat": "Synthetic font-skeleton cursive, not children's ink: these numbers are an ITERATION/RANKING signal only. The sealed 60-page gate stays the deployment criterion.",
+ "readers": {
+  "ctc-crnn@readingpipeline": {
+   "reader": "ctc-crnn",
+   "model": "models/readingpipeline/ocr",
+   "adapter": null,
+   "smoke": false,
+   "timestamp": "2026-08-28 16:28:12",
+   "n_pairs": 1000,
+   "st_acc": 0.984,
+   "nst_acc": 0.333,
+   "gap": 0.651,
+   "seconds": 237.2
+  }
+ }
+}

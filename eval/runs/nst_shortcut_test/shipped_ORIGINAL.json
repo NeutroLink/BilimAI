@@ -1,0 +1,29 @@
+{
+ "instrument": "nst_shuffled_word",
+ "lang": "ru",
+ "render": {
+  "n": 1000,
+  "renderer": "HiGAN ep018.pth (epoch 18)",
+  "arena": "sealed words ABSENT from the bank lexicon + each child's OWN hand from a sealed page; both ST and NST drawn by HiGAN so only letter order differs. The child's real crop is kept as real_file, outside the comparison.",
+  "words_source": [
+   "/Users/furb-x/Desktop/My Projects/BilimAI/eval/testset_v2/ru_pages/ground_truth.json",
+   "/Users/furb-x/Desktop/My Projects/BilimAI/eval/testset_v3/ru_pages/ground_truth.json"
+  ],
+  "excluded_lexicon": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/higan_ru_bank/lexicon_ru.txt"
+ },
+ "caveat": "Synthetic font-skeleton cursive, not children's ink: these numbers are an ITERATION/RANKING signal only. The sealed 60-page gate stays the deployment criterion.",
+ "readers": {
+  "ctc-crnn@readingpipeline": {
+   "reader": "ctc-crnn",
+   "model": "models/readingpipeline/ocr",
+   "adapter": null,
+   "smoke": false,
+   "timestamp": "2026-08-28 20:45:50",
+   "n_pairs": 1000,
+   "st_acc": 0.97,
+   "nst_acc": 0.309,
+   "gap": 0.661,
+   "seconds": 201.2
+  }
+ }
+}

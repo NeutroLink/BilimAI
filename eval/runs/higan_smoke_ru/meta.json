@@ -1,0 +1,21 @@
+{
+ "ckpt": "models/higan_official_ru/ckpts/ep018.pth",
+ "epoch": 18,
+ "n_words": 24,
+ "n_styles": 6,
+ "writers": [
+  52,
+  413,
+  1244,
+  1640,
+  1019,
+  117
+ ],
+ "seed": 1234,
+ "lang": "ru",
+ "char_width": 32,
+ "img_height": 64,
+ "bank": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/higan_ru_bank/trnvalset_words64_OrgSz.hdf5",
+ "config": "/Users/furb-x/Desktop/My Projects/BilimAI/tools/higan/configs/gan_ru.yml",
+ "polarity": "dark ink on light paper (uint8, same convention as real crops)"
+}
