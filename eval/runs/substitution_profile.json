@@ -1,0 +1,240 @@
+{
+ "source": "same triples; the edit SCRIPT, not just the distance",
+ "generator": "eval/dictation/error_buckets.py",
+ "question": "are off-by-2 and off-by-3 a DIFFERENT disease from off-by-1?",
+ "lexicon": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/higan_ru_bank/lexicon_ru.txt",
+ "models": {
+  "shipped": {
+   "buckets": {
+    "off_by_1": {
+     "words": 48,
+     "edits": 48,
+     "sub": 34,
+     "del": 9,
+     "ins": 5,
+     "vowel_vowel": 8,
+     "vowel_share_of_subs_pct": 23.5
+    },
+    "off_by_2": {
+     "words": 30,
+     "edits": 60,
+     "sub": 44,
+     "del": 9,
+     "ins": 7,
+     "vowel_vowel": 12,
+     "vowel_share_of_subs_pct": 27.3
+    },
+    "off_by_3plus": {
+     "words": 10,
+     "edits": 38,
+     "sub": 30,
+     "del": 2,
+     "ins": 6,
+     "vowel_vowel": 8,
+     "vowel_share_of_subs_pct": 26.7
+    }
+   },
+   "totals": {
+    "substitutions": 108,
+    "deletions": 20,
+    "insertions": 18,
+    "vowel_vowel": 28,
+    "vowel_share_pct": 25.9,
+    "substitution_share_of_edits_pct": 74.0
+   },
+   "pairs": {
+    "о->а": 6,
+    "о->е": 4,
+    "а->и": 3,
+    "л->м": 3,
+    "ь->ы": 3,
+    "а->о": 2,
+    "е->и": 2,
+    "е->о": 2,
+    "и->е": 2,
+    "к->К": 2,
+    "л->к": 2,
+    "м->л": 2,
+    "н->и": 2,
+    "с->х": 2,
+    "т->и": 2
+   },
+   "distinct_pairs": 82,
+   "most_common_single_pair_count": 6
+  },
+  "armC real-only": {
+   "buckets": {
+    "off_by_1": {
+     "words": 49,
+     "edits": 49,
+     "sub": 35,
+     "del": 6,
+     "ins": 8,
+     "vowel_vowel": 13,
+     "vowel_share_of_subs_pct": 37.1
+    },
+    "off_by_2": {
+     "words": 21,
+     "edits": 42,
+     "sub": 36,
+     "del": 3,
+     "ins": 3,
+     "vowel_vowel": 10,
+     "vowel_share_of_subs_pct": 27.8
+    },
+    "off_by_3plus": {
+     "words": 16,
+     "edits": 60,
+     "sub": 47,
+     "del": 10,
+     "ins": 3,
+     "vowel_vowel": 9,
+     "vowel_share_of_subs_pct": 19.1
+    }
+   },
+   "totals": {
+    "substitutions": 118,
+    "deletions": 19,
+    "insertions": 14,
+    "vowel_vowel": 32,
+    "vowel_share_pct": 27.1,
+    "substitution_share_of_edits_pct": 78.1
+   },
+   "pairs": {
+    "о->а": 6,
+    "а->о": 3,
+    "е->ё": 3,
+    "л->н": 3,
+    "п->н": 3,
+    "с->е": 3,
+    "я->е": 3,
+    "а->и": 2,
+    "а->у": 2,
+    "е->я": 2,
+    "з->д": 2,
+    "к->К": 2,
+    "к->н": 2,
+    "к->п": 2,
+    "л->а": 2
+   },
+   "distinct_pairs": 89,
+   "most_common_single_pair_count": 6
+  },
+  "armC v3 (3M)": {
+   "buckets": {
+    "off_by_1": {
+     "words": 50,
+     "edits": 50,
+     "sub": 43,
+     "del": 3,
+     "ins": 4,
+     "vowel_vowel": 15,
+     "vowel_share_of_subs_pct": 34.9
+    },
+    "off_by_2": {
+     "words": 29,
+     "edits": 58,
+     "sub": 48,
+     "del": 4,
+     "ins": 6,
+     "vowel_vowel": 15,
+     "vowel_share_of_subs_pct": 31.2
+    },
+    "off_by_3plus": {
+     "words": 19,
+     "edits": 66,
+     "sub": 51,
+     "del": 10,
+     "ins": 5,
+     "vowel_vowel": 14,
+     "vowel_share_of_subs_pct": 27.5
+    }
+   },
+   "totals": {
+    "substitutions": 142,
+    "deletions": 17,
+    "insertions": 15,
+    "vowel_vowel": 44,
+    "vowel_share_pct": 31.0,
+    "substitution_share_of_edits_pct": 81.6
+   },
+   "pairs": {
+    "о->а": 14,
+    "е->я": 4,
+    "н->т": 4,
+    "а->о": 3,
+    "п->к": 3,
+    "ш->м": 3,
+    "ь->ы": 3,
+    "а->и": 2,
+    "а->у": 2,
+    "е->о": 2,
+    "к->н": 2,
+    "л->а": 2,
+    "л->и": 2,
+    "л->к": 2,
+    "м->л": 2
+   },
+   "distinct_pairs": 100,
+   "most_common_single_pair_count": 14
+  },
+  "armC v3 (30M)": {
+   "buckets": {
+    "off_by_1": {
+     "words": 45,
+     "edits": 45,
+     "sub": 34,
+     "del": 5,
+     "ins": 6,
+     "vowel_vowel": 11,
+     "vowel_share_of_subs_pct": 32.4
+    },
+    "off_by_2": {
+     "words": 22,
+     "edits": 44,
+     "sub": 32,
+     "del": 9,
+     "ins": 3,
+     "vowel_vowel": 11,
+     "vowel_share_of_subs_pct": 34.4
+    },
+    "off_by_3plus": {
+     "words": 16,
+     "edits": 54,
+     "sub": 41,
+     "del": 10,
+     "ins": 3,
+     "vowel_vowel": 10,
+     "vowel_share_of_subs_pct": 24.4
+    }
+   },
+   "totals": {
+    "substitutions": 107,
+    "deletions": 24,
+    "insertions": 12,
+    "vowel_vowel": 32,
+    "vowel_share_pct": 29.9,
+    "substitution_share_of_edits_pct": 74.8
+   },
+   "pairs": {
+    "о->а": 9,
+    "а->о": 7,
+    "н->к": 5,
+    "м->л": 3,
+    "е->р": 2,
+    "и->н": 2,
+    "л->и": 2,
+    "п->р": 2,
+    "т->м": 2,
+    "я->е": 2,
+    "я->и": 2,
+    "Р->Л": 1,
+    "а->е": 1,
+    "а->и": 1,
+    "а->к": 1
+   },
+   "distinct_pairs": 80,
+   "most_common_single_pair_count": 9
+  }
+ }
+}

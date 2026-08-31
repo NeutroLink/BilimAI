@@ -1,0 +1,1815 @@
+{
+ "model": "/Users/furb-x/Desktop/My Projects/BilimAI/models/cctc_base",
+ "onnx": "ocr_model.onnx",
+ "gray": true,
+ "origin": "ALL (sealed_exam_v2 + unused_exam_test)",
+ "n_scored": 257,
+ "n_skipped": 5,
+ "kept_verbatim": 138,
+ "kept_pct": 53.7,
+ "corrected_to_key": 22,
+ "corrected_pct": 8.6,
+ "other": 97,
+ "note": "KEPT = the child's spelling survived. CORRECTED = the reader silently repaired it, which is the disease this product exists to catch.",
+ "rows": [
+  {
+   "file": "2480.jpg",
+   "ink": "росточек",
+   "key": "расточек",
+   "read": "раточек",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2014.jpg",
+   "ink": "отмотить",
+   "key": "отметить,",
+   "read": "отмотить,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2805.jpg",
+   "ink": "речёнки",
+   "key": "речонки.",
+   "read": "речёнки.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2805.jpg",
+   "ink": "вейзажист",
+   "key": "пейзажист",
+   "read": "вейзачнат",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2805.jpg",
+   "ink": "замерает",
+   "key": "замечает.",
+   "read": "замерает.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2900.jpg",
+   "ink": "оссобенно",
+   "key": "особенно",
+   "read": "оссобенно",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2047.jpg",
+   "ink": "скворченка",
+   "key": "скворчонка.",
+   "read": "скворченка.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2047.jpg",
+   "ink": "скворченка",
+   "key": "скворчонка.",
+   "read": "скворченка.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2238.jpg",
+   "ink": "февралья",
+   "key": "февраля",
+   "read": "февралья",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2238.jpg",
+   "ink": "кармушке",
+   "key": "кормушке,",
+   "read": "кармушке,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2238.jpg",
+   "ink": "кармушку",
+   "key": "кормушку.",
+   "read": "кармушку.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2718.jpg",
+   "ink": "спости",
+   "key": "спасти",
+   "read": "спости",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2718.jpg",
+   "ink": "отвправились",
+   "key": "отправились",
+   "read": "отвпровились",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2718.jpg",
+   "ink": "барьня",
+   "key": "барыня.",
+   "read": "барьне.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2718.jpg",
+   "ink": "барьня",
+   "key": "барыня",
+   "read": "барьке",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2718.jpg",
+   "ink": "говарит",
+   "key": "говорит",
+   "read": "говарит",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2718.jpg",
+   "ink": "застовил",
+   "key": "заставил",
+   "read": "зостовил",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2718.jpg",
+   "ink": "задуматся",
+   "key": "задуматься",
+   "read": "задуматся",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2718.jpg",
+   "ink": "россказ",
+   "key": "рассказ",
+   "read": "россказ",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2718.jpg",
+   "ink": "расказывает",
+   "key": "рассказывает",
+   "read": "расказыват",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2839.jpg",
+   "ink": "кроватею",
+   "key": "кроватью",
+   "read": "провашью",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2897.jpg",
+   "ink": "посадет",
+   "key": "попадет",
+   "read": "посадет",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2897.jpg",
+   "ink": "хозяйн",
+   "key": "хозяин",
+   "read": "хозайн",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2897.jpg",
+   "ink": "нибуть",
+   "key": "ничуть",
+   "read": "нибуть",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2817.jpg",
+   "ink": "довали",
+   "key": "давали",
+   "read": "довали",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2817.jpg",
+   "ink": "прозвица",
+   "key": "прозвища",
+   "read": "прозвица",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2817.jpg",
+   "ink": "извесным",
+   "key": "известным",
+   "read": "извеным",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2817.jpg",
+   "ink": "довали",
+   "key": "давали",
+   "read": "довили",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2854.jpg",
+   "ink": "хронятся",
+   "key": "хранятся",
+   "read": "хронятся",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2016.jpg",
+   "ink": "торжоства",
+   "key": "торжества,",
+   "read": "торжосква,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2921.jpg",
+   "ink": "проевить",
+   "key": "проявить",
+   "read": "проевить",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2015.jpg",
+   "ink": "венерцы",
+   "key": "венеры!",
+   "read": "веторуы!",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2015.jpg",
+   "ink": "теперы",
+   "key": "теперь",
+   "read": "текоры,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2819.jpg",
+   "ink": "ниходились",
+   "key": "находились",
+   "read": "ниходились",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2911.jpg",
+   "ink": "либимое",
+   "key": "любимое",
+   "read": "либимое",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2920.jpg",
+   "ink": "посвещает",
+   "key": "освещает",
+   "read": "посвещает",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2922.jpg",
+   "ink": "начились",
+   "key": "начались",
+   "read": "начились",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2844.jpg",
+   "ink": "судьбь",
+   "key": "судьбы",
+   "read": "судьбы",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2917.jpg",
+   "ink": "вертный",
+   "key": "верный",
+   "read": "вертный",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2843.jpg",
+   "ink": "безделия",
+   "key": "безделья,",
+   "read": "безделия,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2843.jpg",
+   "ink": "возращается",
+   "key": "возвращается",
+   "read": "возращается",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2806.jpg",
+   "ink": "толпьтся",
+   "key": "толпятся,",
+   "read": "толфатся,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2806.jpg",
+   "ink": "блдднея",
+   "key": "бледнея",
+   "read": "блуднел",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2806.jpg",
+   "ink": "замераем",
+   "key": "замечаем",
+   "read": "замераел",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2806.jpg",
+   "ink": "стеклянноую",
+   "key": "стеклянную",
+   "read": "стоиляннаую",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2902.jpg",
+   "ink": "видити",
+   "key": "видит",
+   "read": "видныи",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2902.jpg",
+   "ink": "поделе",
+   "key": "подоле",
+   "read": "поделе",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2818.jpg",
+   "ink": "презда",
+   "key": "поезда",
+   "read": "презда",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2818.jpg",
+   "ink": "помрил",
+   "key": "помнил",
+   "read": "получил",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2044.jpg",
+   "ink": "трепитало",
+   "key": "трепетало",
+   "read": "трепитало",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2044.jpg",
+   "ink": "соловъи",
+   "key": "соловьи,",
+   "read": "соловьи,",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2044.jpg",
+   "ink": "пробиваютса",
+   "key": "пробиваются",
+   "read": "пробиваются",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2044.jpg",
+   "ink": "начился",
+   "key": "научился",
+   "read": "начился",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2484.jpg",
+   "ink": "белезна",
+   "key": "белизна.",
+   "read": "белезка.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2484.jpg",
+   "ink": "белезна",
+   "key": "белизна.",
+   "read": "белезна.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2484.jpg",
+   "ink": "радоватся",
+   "key": "радоваться(",
+   "read": "радоватся",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2832.jpg",
+   "ink": "стелмются",
+   "key": "стелются",
+   "read": "стелются",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2815.jpg",
+   "ink": "месных",
+   "key": "местных",
+   "read": "месных",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2815.jpg",
+   "ink": "теребуют",
+   "key": "требуют",
+   "read": "теребуют",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2815.jpg",
+   "ink": "мужсчины",
+   "key": "мужчины.",
+   "read": "мужечины.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2815.jpg",
+   "ink": "постые",
+   "key": "простые",
+   "read": "постые",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2815.jpg",
+   "ink": "готове",
+   "key": "готовые",
+   "read": "готове",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2490.jpg",
+   "ink": "бездеья",
+   "key": "безделья.",
+   "read": "бездеья.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2490.jpg",
+   "ink": "весеннйх",
+   "key": "весенних",
+   "read": "весенних",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2490.jpg",
+   "ink": "перелееки",
+   "key": "перелески.",
+   "read": "перелееки.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2831.jpg",
+   "ink": "вфашистам",
+   "key": "фашистам",
+   "read": "вфрашистам",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2856.jpg",
+   "ink": "некошенный",
+   "key": "нескошенный",
+   "read": "некошенрый",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2856.jpg",
+   "ink": "некошенный",
+   "key": "нескошенный",
+   "read": "некошеный",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2239.jpg",
+   "ink": "серени",
+   "key": "сирени",
+   "read": "серени",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2239.jpg",
+   "ink": "палчики",
+   "key": "пальчики.",
+   "read": "налчики.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2239.jpg",
+   "ink": "дрожжат",
+   "key": "дрожат",
+   "read": "дрожжкат",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2121.jpg",
+   "ink": "зделала",
+   "key": "сделала?",
+   "read": "зделала?",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2121.jpg",
+   "ink": "зацвема",
+   "key": "зацвела,",
+   "read": "зацвема,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2121.jpg",
+   "ink": "зделала",
+   "key": "сделала",
+   "read": "нета,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2121.jpg",
+   "ink": "тыльцу",
+   "key": "пыльцу.",
+   "read": "пыльцу",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2121.jpg",
+   "ink": "встаишь",
+   "key": "встаешь,",
+   "read": "осталёшь,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2121.jpg",
+   "ink": "постишь",
+   "key": "поспишь(",
+   "read": "постишь",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2487.jpg",
+   "ink": "камыом",
+   "key": "камышом",
+   "read": "памыаи",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2901.jpg",
+   "ink": "увидеш",
+   "key": "увидел,",
+   "read": "увидеш,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2901.jpg",
+   "ink": "пепросил",
+   "key": "попросил,",
+   "read": "пепросил",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2901.jpg",
+   "ink": "выгулить",
+   "key": "выгулять",
+   "read": "выгулить",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2488.jpg",
+   "ink": "кого",
+   "key": "кого?)",
+   "read": "(кок)",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2047.jpg",
+   "ink": "того",
+   "key": "Много",
+   "read": "того",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2854.jpg",
+   "ink": "нем",
+   "key": "ним",
+   "read": "нём",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2818.jpg",
+   "ink": "прекрасный",
+   "key": "преступный!",
+   "read": "прекрасный",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2039.jpg",
+   "ink": "хвотают",
+   "key": "хватают",
+   "read": "хватают",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2039.jpg",
+   "ink": "кочает",
+   "key": "кончает",
+   "read": "кочает",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2040.jpg",
+   "ink": "ширрокий",
+   "key": "широкий,.",
+   "read": "широкий,",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2040.jpg",
+   "ink": "скритят",
+   "key": "скрипят.",
+   "read": "скритят.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2040.jpg",
+   "ink": "осение",
+   "key": "осенние",
+   "read": "осение)",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2040.jpg",
+   "ink": "пострым",
+   "key": "пестрым",
+   "read": "пострым",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2041.jpg",
+   "ink": "восдухом",
+   "key": "воздухом.",
+   "read": "воедухом.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2041.jpg",
+   "ink": "тролейбус",
+   "key": "троллейбус",
+   "read": "тролейбус.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2041.jpg",
+   "ink": "варона",
+   "key": "вагона.",
+   "read": "варона.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2042.jpg",
+   "ink": "лопатд",
+   "key": "лопату.",
+   "read": "лопату.",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2042.jpg",
+   "ink": "пасика",
+   "key": "пасека.",
+   "read": "пасика.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2043.jpg",
+   "ink": "програма",
+   "key": "программ,",
+   "read": "програма.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2043.jpg",
+   "ink": "наситил",
+   "key": "насытил",
+   "read": "наситил",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2045.jpg",
+   "ink": "черёмухо",
+   "key": "черемухе",
+   "read": "черёмуха",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2045.jpg",
+   "ink": "серени",
+   "key": "сирени",
+   "read": "серени",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2045.jpg",
+   "ink": "котают",
+   "key": "катают",
+   "read": "котают",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2045.jpg",
+   "ink": "листоиках",
+   "key": "листочках.",
+   "read": "листойках.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2046.jpg",
+   "ink": "карасивым",
+   "key": "красивым.",
+   "read": "карасивым.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2046.jpg",
+   "ink": "просыпатся",
+   "key": "просыпается",
+   "read": "просыпатся",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2046.jpg",
+   "ink": "сожать",
+   "key": "совать",
+   "read": "сожать",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2048.jpg",
+   "ink": "паложу",
+   "key": "положу",
+   "read": "положу",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2114.jpg",
+   "ink": "вьехал",
+   "key": "въехал",
+   "read": "въехал",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2114.jpg",
+   "ink": "слышила",
+   "key": "слышала",
+   "read": "слышила",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2114.jpg",
+   "ink": "бробежка",
+   "key": "пробежка.",
+   "read": "просётска.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2115.jpg",
+   "ink": "полезать",
+   "key": "ползать",
+   "read": "рабзать",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2115.jpg",
+   "ink": "раскажу",
+   "key": "расскажу",
+   "read": "распажу",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2115.jpg",
+   "ink": "расказ",
+   "key": "рассказ.",
+   "read": "расказ.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2115.jpg",
+   "ink": "сматрю",
+   "key": "смотрю",
+   "read": "сматрю",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2116.jpg",
+   "ink": "пшелница",
+   "key": "пшеница,.",
+   "read": "пшелница,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2116.jpg",
+   "ink": "тролейбус",
+   "key": "троллейбус,",
+   "read": "тролейбус,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2116.jpg",
+   "ink": "насытел",
+   "key": "насытил",
+   "read": "насытел",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2116.jpg",
+   "ink": "ороматом",
+   "key": "ароматом",
+   "read": "сероматом",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2117.jpg",
+   "ink": "салома",
+   "key": "солома,",
+   "read": "склама,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2118.jpg",
+   "ink": "лихосте",
+   "key": "лихости.",
+   "read": "лихосте.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2119.jpg",
+   "ink": "отраха",
+   "key": "страха",
+   "read": "отрахов",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2119.jpg",
+   "ink": "страхоу",
+   "key": "страхом",
+   "read": "строхау",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2119.jpg",
+   "ink": "радоватся",
+   "key": "радоваться.",
+   "read": "радоватся.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2119.jpg",
+   "ink": "вттерок",
+   "key": "ветерок",
+   "read": "аавтерок",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2119.jpg",
+   "ink": "кадают",
+   "key": "падают",
+   "read": "Кадают",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2119.jpg",
+   "ink": "скорем",
+   "key": "скорее",
+   "read": "скорем",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2119.jpg",
+   "ink": "заглядавает",
+   "key": "заглядывает",
+   "read": "заглядавлет",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2120.jpg",
+   "ink": "тлатья",
+   "key": "платья.",
+   "read": "платыв.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2120.jpg",
+   "ink": "вехело",
+   "key": "весело",
+   "read": "весело",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2120.jpg",
+   "ink": "осматревать",
+   "key": "осматривать",
+   "read": "осматревать",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2120.jpg",
+   "ink": "чырными",
+   "key": "черными",
+   "read": "чырными",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2120.jpg",
+   "ink": "прошол",
+   "key": "прошел",
+   "read": "прошол",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2120.jpg",
+   "ink": "расстаял",
+   "key": "растаял",
+   "read": "расстили",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2232.jpg",
+   "ink": "разварачивается",
+   "key": "разворачивается.",
+   "read": "разварачивается.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2233.jpg",
+   "ink": "всёлые",
+   "key": "веселые",
+   "read": "всёлые",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2233.jpg",
+   "ink": "хвотают",
+   "key": "хватают",
+   "read": "хвотают",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2234.jpg",
+   "ink": "узинький",
+   "key": "узенький,",
+   "read": "узинький,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2234.jpg",
+   "ink": "васельки",
+   "key": "васильки.",
+   "read": "васяльки.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2234.jpg",
+   "ink": "увидить",
+   "key": "увидишь",
+   "read": "увидить",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2234.jpg",
+   "ink": "кросивый",
+   "key": "красивый",
+   "read": "кросивый",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2234.jpg",
+   "ink": "птичъи",
+   "key": "птичьи",
+   "read": "птичъи",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2234.jpg",
+   "ink": "ручъях",
+   "key": "ручьях",
+   "read": "ручьях",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2235.jpg",
+   "ink": "обяснил",
+   "key": "объяснил,",
+   "read": "оояснил,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2235.jpg",
+   "ink": "подезд",
+   "key": "подъезд,",
+   "read": "подезд,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2235.jpg",
+   "ink": "ричным",
+   "key": "личным.",
+   "read": "рачным.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2235.jpg",
+   "ink": "нозвали",
+   "key": "назвали",
+   "read": "назвали",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2235.jpg",
+   "ink": "беготь",
+   "key": "бегать",
+   "read": "бегать",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2235.jpg",
+   "ink": "летучия",
+   "key": "летучих",
+   "read": "летучия",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2236.jpg",
+   "ink": "позней",
+   "key": "поздней",
+   "read": "разней",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2236.jpg",
+   "ink": "леству",
+   "key": "листву.",
+   "read": "леству.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2236.jpg",
+   "ink": "челвеку",
+   "key": "человеку.",
+   "read": "челвеку",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2236.jpg",
+   "ink": "стнежный",
+   "key": "снежный",
+   "read": "стнежный",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2236.jpg",
+   "ink": "рябуны",
+   "key": "рябины.",
+   "read": "рябуны.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2236.jpg",
+   "ink": "прикрипили",
+   "key": "прикрепили",
+   "read": "прикрипили",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2237.jpg",
+   "ink": "веъехал",
+   "key": "въехал",
+   "read": "веъехал",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2237.jpg",
+   "ink": "зомёрз",
+   "key": "замерз",
+   "read": "замёрз",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2237.jpg",
+   "ink": "зоплакал",
+   "key": "заплакал.",
+   "read": "зоплакал.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2237.jpg",
+   "ink": "берлоки",
+   "key": "берлоги.",
+   "read": "берлоки.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2240.jpg",
+   "ink": "поволились",
+   "key": "повалились",
+   "read": "поволились",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2240.jpg",
+   "ink": "катется",
+   "key": "кажется,",
+   "read": "катятся,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2481.jpg",
+   "ink": "росточек",
+   "key": "расточек",
+   "read": "росточек",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2481.jpg",
+   "ink": "вырости",
+   "key": "выросли",
+   "read": "вырости",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2481.jpg",
+   "ink": "жёлуть",
+   "key": "желудь,",
+   "read": "жёлуть,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2481.jpg",
+   "ink": "опотный",
+   "key": "опытный",
+   "read": "оюотный",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2481.jpg",
+   "ink": "точныи",
+   "key": "точный",
+   "read": "точтви",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2481.jpg",
+   "ink": "росчёт",
+   "key": "расчет,",
+   "read": "носчёт,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2482.jpg",
+   "ink": "дедские",
+   "key": "детские",
+   "read": "дедекие",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2482.jpg",
+   "ink": "плочет",
+   "key": "плачет",
+   "read": "плочет",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2482.jpg",
+   "ink": "плачеш",
+   "key": "плачем?.",
+   "read": "плачега?.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2482.jpg",
+   "ink": "жслово",
+   "key": "слово",
+   "read": "жлово",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2483.jpg",
+   "ink": "гороская",
+   "key": "городская",
+   "read": "горная",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2483.jpg",
+   "ink": "железнодорожлый",
+   "key": "железнодорожный",
+   "read": "железнофцтлей",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2483.jpg",
+   "ink": "невидемые",
+   "key": "невидимые.",
+   "read": "невиденые.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2483.jpg",
+   "ink": "видишьь",
+   "key": "видишь.",
+   "read": "видишь.",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2483.jpg",
+   "ink": "првести",
+   "key": "привести",
+   "read": "провести",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2483.jpg",
+   "ink": "доганялки",
+   "key": "догонялки.",
+   "read": "доганялки.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2485.jpg",
+   "ink": "повеств",
+   "key": "повести;",
+   "read": "(повеств;",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2485.jpg",
+   "ink": "абилее",
+   "key": "юбилее(",
+   "read": "пбилое",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2489.jpg",
+   "ink": "странох",
+   "key": "странах",
+   "read": "страхох",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2489.jpg",
+   "ink": "оотела",
+   "key": "хотела",
+   "read": "хожела",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2489.jpg",
+   "ink": "защищатся",
+   "key": "защищаться.",
+   "read": "замищатся.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2631.jpg",
+   "ink": "рабости",
+   "key": "радости.",
+   "read": "рабости.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2632.jpg",
+   "ink": "дрругих",
+   "key": "других.",
+   "read": "дрругих.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2654.jpg",
+   "ink": "увидить",
+   "key": "увидишь",
+   "read": "увидить",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2654.jpg",
+   "ink": "поднелось",
+   "key": "поднялось,",
+   "read": "поднелось,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2655.jpg",
+   "ink": "возврасту",
+   "key": "возрасту",
+   "read": "возврасту",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2656.jpg",
+   "ink": "линолиум",
+   "key": "линолеум,",
+   "read": "линылрум,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2657.jpg",
+   "ink": "немножку",
+   "key": "немножко,",
+   "read": "немножку,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2657.jpg",
+   "ink": "некошенный",
+   "key": "нескошенный",
+   "read": "некашенный",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2657.jpg",
+   "ink": "некошенный",
+   "key": "нескошенный",
+   "read": "некошенный",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2657.jpg",
+   "ink": "некошенный",
+   "key": "нескошенный",
+   "read": "некашенный",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2717.jpg",
+   "ink": "представлитель",
+   "key": "представитель",
+   "read": "представитель",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2717.jpg",
+   "ink": "довбрый",
+   "key": "добрый",
+   "read": "довбрый",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2717.jpg",
+   "ink": "россказа",
+   "key": "рассказа",
+   "read": "роскяда",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2719.jpg",
+   "ink": "россказе",
+   "key": "рассказе",
+   "read": "рассказе",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2719.jpg",
+   "ink": "окозался",
+   "key": "оказался",
+   "read": "огподался",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2804.jpg",
+   "ink": "речёнки",
+   "key": "речонки,",
+   "read": "речёнии,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2807.jpg",
+   "ink": "малонькие",
+   "key": "маленькие",
+   "read": "малоаньше",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2807.jpg",
+   "ink": "мочему",
+   "key": "почему",
+   "read": "мочему",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2807.jpg",
+   "ink": "лищным",
+   "key": "личным",
+   "read": "мащным",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2816.jpg",
+   "ink": "площяди",
+   "key": "площади.",
+   "read": "площяди.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2816.jpg",
+   "ink": "кпримеру",
+   "key": "примеру",
+   "read": "кпримеру",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2820.jpg",
+   "ink": "возроста",
+   "key": "возраста",
+   "read": "возроста",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2821.jpg",
+   "ink": "справедливасти",
+   "key": "справедливости",
+   "read": "справедливасти",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2821.jpg",
+   "ink": "некоменый",
+   "key": "некошеный",
+   "read": "некоменый",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2821.jpg",
+   "ink": "воспитаник",
+   "key": "воспитание",
+   "read": "воспитаник",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2821.jpg",
+   "ink": "некоменый",
+   "key": "некошеный",
+   "read": "некоменый",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2821.jpg",
+   "ink": "малодого",
+   "key": "молодого",
+   "read": "малодого",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2822.jpg",
+   "ink": "обрашен",
+   "key": "обращен",
+   "read": "обращен",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2822.jpg",
+   "ink": "некоменый",
+   "key": "некошеный",
+   "read": "некоменый",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2827.jpg",
+   "ink": "подлеж",
+   "key": "подле.",
+   "read": "подлеж.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2827.jpg",
+   "ink": "морковкую",
+   "key": "морковку",
+   "read": "морковную",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2828.jpg",
+   "ink": "завежу",
+   "key": "завожу",
+   "read": "завежу",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2829.jpg",
+   "ink": "выберитье",
+   "key": "выберите",
+   "read": "выберить",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2830.jpg",
+   "ink": "домашны",
+   "key": "домашня",
+   "read": "домашные",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2830.jpg",
+   "ink": "указат",
+   "key": "указал.;",
+   "read": "указат.;",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2837.jpg",
+   "ink": "смеятся",
+   "key": "смеяться",
+   "read": "сментя",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2855.jpg",
+   "ink": "конечноо",
+   "key": "конечно",
+   "read": "конечно",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2860.jpg",
+   "ink": "вылетила",
+   "key": "вылетела",
+   "read": "вылетила",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2861.jpg",
+   "ink": "гайчик",
+   "key": "зайчик,",
+   "read": "гайчик,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2861.jpg",
+   "ink": "посколько",
+   "key": "поскольку",
+   "read": "посколько",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2861.jpg",
+   "ink": "комноты",
+   "key": "комнаты.",
+   "read": "комнаты.",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2862.jpg",
+   "ink": "насытел",
+   "key": "насытил",
+   "read": "насытел",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2862.jpg",
+   "ink": "павсюду",
+   "key": "повсюду.",
+   "read": "павсюду.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2862.jpg",
+   "ink": "осенею",
+   "key": "осенью",
+   "read": "осенею",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2864.jpg",
+   "ink": "радоватся",
+   "key": "радоваться",
+   "read": "радоватся",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2872.jpg",
+   "ink": "полатки",
+   "key": "палатки,",
+   "read": "полашки,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2875.jpg",
+   "ink": "выбирете",
+   "key": "выберете",
+   "read": "выбирение",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2898.jpg",
+   "ink": "госледнего",
+   "key": "последнего",
+   "read": "последнего",
+   "verdict": "CORRECTED"
+  },
+  {
+   "file": "2898.jpg",
+   "ink": "ораган",
+   "key": "ураган.",
+   "read": "врагам.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2899.jpg",
+   "ink": "подошол",
+   "key": "подошел",
+   "read": "подомок",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2903.jpg",
+   "ink": "комнах",
+   "key": "комнат,",
+   "read": "комнах,",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2906.jpg",
+   "ink": "довать",
+   "key": "давать,",
+   "read": "довость,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2906.jpg",
+   "ink": "дывать",
+   "key": "дышать.",
+   "read": "дывать.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2907.jpg",
+   "ink": "истиный",
+   "key": "истинный",
+   "read": "истиный",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2913.jpg",
+   "ink": "достоен",
+   "key": "достоин.",
+   "read": "достарн.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2040.jpg",
+   "ink": "тины",
+   "key": "тине\"",
+   "read": "тиняы",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2114.jpg",
+   "ink": "Старик",
+   "key": "стр",
+   "read": "старики",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2115.jpg",
+   "ink": "кот",
+   "key": "Вот",
+   "read": "кот",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2115.jpg",
+   "ink": "кого",
+   "key": "никого",
+   "read": "кого",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2115.jpg",
+   "ink": "Ринго",
+   "key": "Ринго.",
+   "read": "Гинго.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2115.jpg",
+   "ink": "работа",
+   "key": "Дата",
+   "read": "руботь",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2115.jpg",
+   "ink": "когда",
+   "key": "куда?",
+   "read": "когда",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2118.jpg",
+   "ink": "зеленые",
+   "key": "земные.",
+   "read": "зеленыие.",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2119.jpg",
+   "ink": "Весело",
+   "key": "все",
+   "read": "Веъело",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2119.jpg",
+   "ink": "капля",
+   "key": "капель,",
+   "read": "кании,",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2120.jpg",
+   "ink": "затянулась",
+   "key": "зацепилась",
+   "read": "затянулась",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2120.jpg",
+   "ink": "кот",
+   "key": "кот.",
+   "read": "кот.",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2120.jpg",
+   "ink": "лезет",
+   "key": "полез",
+   "read": "лезея",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2235.jpg",
+   "ink": "бегать",
+   "key": "багать",
+   "read": "бегать",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2236.jpg",
+   "ink": "лист",
+   "key": "листву",
+   "read": "лист",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2241.jpg",
+   "ink": "петлю",
+   "key": "пет",
+   "read": "петлю",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2654.jpg",
+   "ink": "было",
+   "key": "был",
+   "read": "было",
+   "verdict": "KEPT"
+  },
+  {
+   "file": "2656.jpg",
+   "ink": "нём",
+   "key": "ним",
+   "read": "нем",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2656.jpg",
+   "ink": "увеличивается",
+   "key": "улучшается.",
+   "read": "увличиваетется",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2820.jpg",
+   "ink": "сказки",
+   "key": "сказки-",
+   "read": "Сказки-",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2861.jpg",
+   "ink": "пришли",
+   "key": "пошли?",
+   "read": "пришили",
+   "verdict": "OTHER"
+  },
+  {
+   "file": "2862.jpg",
+   "ink": "работа",
+   "key": "Дата",
+   "read": "работа",
+   "verdict": "KEPT"
+  }
+ ]
+}
