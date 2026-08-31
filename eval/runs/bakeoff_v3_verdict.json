@@ -1,0 +1,58 @@
+{
+ "exam": "sealed 11,866 words | 257 sealed misspellings | 1,000 NST pairs",
+ "note": "NST fair = width shortcut removed from the arena (naturalise.py); NST raw = untouched HiGAN ink. Readers selected by model dir — these files hold several reader blocks since write_result stopped clobbering.",
+ "rows": [
+  {
+   "model": "shipped (incumbent)",
+   "model_dir": "models/readingpipeline/ocr",
+   "word_acc": 0.8052,
+   "cer": 0.0535,
+   "kept": 146,
+   "kept_pct": 56.8,
+   "corrected": 23,
+   "nst_raw": 0.309,
+   "nst_fair": 0.295,
+   "gap_fair": 0.6719999999999999,
+   "st_fair": 0.967
+  },
+  {
+   "model": "armC run1 (2:1 broken)",
+   "model_dir": "models/armc_run1",
+   "word_acc": 0.686,
+   "cer": 0.0918,
+   "kept": 126,
+   "kept_pct": 49.0,
+   "corrected": 24,
+   "nst_raw": 0.891,
+   "nst_fair": 0.562,
+   "gap_fair": 0.4119999999999999,
+   "st_fair": 0.974
+  },
+  {
+   "model": "armC real-only",
+   "model_dir": "models/armc_realonly",
+   "word_acc": 0.7254,
+   "cer": 0.0754,
+   "kept": 147,
+   "kept_pct": 57.2,
+   "corrected": 24,
+   "nst_raw": 0.319,
+   "nst_fair": 0.298,
+   "gap_fair": 0.663,
+   "st_fair": 0.961
+  },
+  {
+   "model": "armC v3 (FIXED)",
+   "model_dir": "models/armc_v3",
+   "word_acc": 0.7305,
+   "cer": 0.076,
+   "kept": 134,
+   "kept_pct": 52.1,
+   "corrected": 25,
+   "nst_raw": 0.725,
+   "nst_fair": 0.754,
+   "gap_fair": 0.242,
+   "st_fair": 0.996
+  }
+ ]
+}

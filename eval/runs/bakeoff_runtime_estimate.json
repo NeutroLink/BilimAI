@@ -1,0 +1,36 @@
+{
+ "corpus": "tools/convtext/out/bakeoff_corpus_v2",
+ "n_train": 593943,
+ "n_synthetic_in_train": 395962,
+ "measured_on": "rented RTX 5090 32GB, 2026-08-28, full train steps (SAM's two passes included for arms A/B)",
+ "arms": {
+  "armc": {
+   "samples": 3000000,
+   "schedule": "30 epochs x epoch_size 100000 (= 5.1 passes over 593,943 train crops)",
+   "world": 4,
+   "samples_s": 1537.0,
+   "samples_s_1gpu": 774.0,
+   "hours": 0.54
+  },
+  "armb": {
+   "samples": 6400064,
+   "schedule": "total_iter 100,001 x batch 64 (= 10.8 passes over 593,943 train crops)",
+   "world": 4,
+   "samples_s": 399.0,
+   "samples_s_1gpu": 138.0,
+   "hours": 4.46
+  },
+  "arma": {
+   "samples": 6400064,
+   "schedule": "total_iter 100,001 x batch 64 (= 10.8 passes over 593,943 train crops)",
+   "world": 4,
+   "samples_s": 399.0,
+   "samples_s_1gpu": 138.0,
+   "hours": 4.46
+  }
+ },
+ "wall_clock": {
+  "sequential_C_then_B_then_A_hours": 9.45,
+  "note": "with the DDP packages every arm uses every GPU, so the arms run one after another and the C-first order keeps its early stop. Scaling is sub-linear because same-recipe DDP shrinks the per-rank batch."
+ }
+}

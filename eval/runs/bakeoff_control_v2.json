@@ -1,0 +1,10 @@
+{
+ "model": "/Users/furb-x/Desktop/My Projects/BilimAI/models/readingpipeline/ocr",
+ "source": "eval/testset_v2/ru_pages/ground_truth.json (60 sealed pages)",
+ "gray": false,
+ "n": 11866,
+ "word_accuracy": 0.8052,
+ "cer": 0.0535,
+ "note": "SEALED control: pages excluded from every training set \u2014 the honest number all three arms must beat",
+ "alphabet_size": 146
+}

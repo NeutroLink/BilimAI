@@ -1,0 +1,139 @@
+{
+ "source": "per-word ink/key/read triples from verbatim_retention.py --out",
+ "generator": "eval/dictation/error_buckets.py",
+ "buckets": "KEPT = read matches the ink. FIXED = read matches the key (the disease). off_by_N = neither, N edits from the ink. drifted_to_dict is an overlay.",
+ "models": {
+  "shipped": {
+   "n": 257,
+   "kept": {
+    "n": 146,
+    "pct": 56.8
+   },
+   "silently_fixed": {
+    "n": 23,
+    "pct": 8.9
+   },
+   "misread_total": {
+    "n": 88,
+    "pct": 34.2
+   },
+   "off_by_1": {
+    "n": 48,
+    "pct": 18.7
+   },
+   "off_by_2": {
+    "n": 30,
+    "pct": 11.7
+   },
+   "off_by_3plus": {
+    "n": 10,
+    "pct": 3.9
+   },
+   "drifted_to_dict": {
+    "n": 11,
+    "pct": 4.3,
+    "note": "OVERLAY, already counted inside off_by_N — a misread that happens to be another real word is still a misread. Never subtract it."
+   },
+   "source": "eval/runs/bakeoff_shipped_verbatim.json"
+  },
+  "armC real-only": {
+   "n": 257,
+   "kept": {
+    "n": 147,
+    "pct": 57.2
+   },
+   "silently_fixed": {
+    "n": 24,
+    "pct": 9.3
+   },
+   "misread_total": {
+    "n": 86,
+    "pct": 33.5
+   },
+   "off_by_1": {
+    "n": 49,
+    "pct": 19.1
+   },
+   "off_by_2": {
+    "n": 21,
+    "pct": 8.2
+   },
+   "off_by_3plus": {
+    "n": 16,
+    "pct": 6.2
+   },
+   "drifted_to_dict": {
+    "n": 10,
+    "pct": 3.9,
+    "note": "OVERLAY, already counted inside off_by_N — a misread that happens to be another real word is still a misread. Never subtract it."
+   },
+   "source": "eval/runs/bakeoff_armc_realonly_verbatim.json"
+  },
+  "armC v3 (3M)": {
+   "n": 257,
+   "kept": {
+    "n": 134,
+    "pct": 52.1
+   },
+   "silently_fixed": {
+    "n": 25,
+    "pct": 9.7
+   },
+   "misread_total": {
+    "n": 98,
+    "pct": 38.1
+   },
+   "off_by_1": {
+    "n": 50,
+    "pct": 19.5
+   },
+   "off_by_2": {
+    "n": 29,
+    "pct": 11.3
+   },
+   "off_by_3plus": {
+    "n": 19,
+    "pct": 7.4
+   },
+   "drifted_to_dict": {
+    "n": 10,
+    "pct": 3.9,
+    "note": "OVERLAY, already counted inside off_by_N — a misread that happens to be another real word is still a misread. Never subtract it."
+   },
+   "source": "eval/runs/bakeoff_armc_v3_verbatim.json"
+  },
+  "armC v3 (30M)": {
+   "n": 257,
+   "kept": {
+    "n": 135,
+    "pct": 52.5
+   },
+   "silently_fixed": {
+    "n": 39,
+    "pct": 15.2
+   },
+   "misread_total": {
+    "n": 83,
+    "pct": 32.3
+   },
+   "off_by_1": {
+    "n": 45,
+    "pct": 17.5
+   },
+   "off_by_2": {
+    "n": 22,
+    "pct": 8.6
+   },
+   "off_by_3plus": {
+    "n": 16,
+    "pct": 6.2
+   },
+   "drifted_to_dict": {
+    "n": 12,
+    "pct": 4.7,
+    "note": "OVERLAY, already counted inside off_by_N — a misread that happens to be another real word is still a misread. Never subtract it."
+   },
+   "source": "eval/runs/bakeoff_armc_v3_30m_verbatim.json"
+  }
+ }
+}
