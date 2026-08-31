@@ -43,3 +43,5 @@ data/derived/higan_ru_bank/
 data/derived/higan_kaggle_pkg/
 tools/convtext/out/
 tools/convtext/__pycache__/
+# HiGAN synthetic ink: ~400k generated crops, rebuilt by tools/higan/synth_higan.py bulk
+data/derived/higan_synth_ru*/

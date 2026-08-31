@@ -260,6 +260,50 @@ def collate(batch):
     xs, ms, ws = zip(*batch)
     return torch.from_numpy(np.stack(xs)), torch.from_numpy(np.stack(ms)), torch.from_numpy(np.stack(ws))
 
+def save_ckpt(path, net, opt=None, sched=None, epoch=0, best=None):
+    """Atomic, self-verifying checkpoint write (2026-08-27 post-mortem).
+
+    The HiGAN GAN stage lost ~24 h of GPU because a checkpoint that passed every surface
+    check (exists, right size, matching sha256) held one network instead of seven. Nothing
+    had ever OPENED it. So: write to a temp file, reload it, assert the weights are actually
+    in there, and only then rename into place. os.replace is atomic on POSIX, so a crash
+    mid-write can never leave a truncated file where a good one used to be.
+
+    Also saves optimizer + scheduler state, which the previous version dropped — `--resume`
+    silently restarted with a fresh optimizer and lost all accumulated momentum.
+    """
+    import torch
+    path = Path(path)
+    ckpt = {"net": net.state_dict(), "epoch": epoch}
+    if opt is not None:
+        ckpt["opt"] = opt.state_dict()
+    if sched is not None:
+        ckpt["sched"] = sched.state_dict()
+    if best is not None:
+        ckpt["best"] = best
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    torch.save(ckpt, tmp)
+    back = torch.load(tmp, map_location="cpu", weights_only=False)
+    if "net" not in back or len(back["net"]) != len(ckpt["net"]):
+        raise RuntimeError(f"checkpoint self-check failed for {path}: "
+                           f"{len(back.get('net', {}))}/{len(ckpt['net'])} tensors")
+    os.replace(tmp, path)
+    return path
+
+
+def load_ckpt(path, net, opt=None, sched=None, dev="cpu"):
+    """Load either the new dict format or a bare state_dict (pre-2026-08-27 files)."""
+    import torch
+    d = torch.load(path, map_location=dev, weights_only=False)
+    sd = d.get("net", d) if isinstance(d, dict) else d
+    net.load_state_dict(sd)
+    if opt is not None and isinstance(d, dict) and "opt" in d:
+        opt.load_state_dict(d["opt"])
+    if sched is not None and isinstance(d, dict) and "sched" in d:
+        sched.load_state_dict(d["sched"])
+    return (d.get("epoch", 0), d.get("best", -1)) if isinstance(d, dict) else (0, -1)
+
+
 def main():
     import torch, cv2
     ap = argparse.ArgumentParser()
@@ -274,8 +318,6 @@ def main():
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     try: net = smp.Linknet("resnet34", encoder_weights="imagenet", classes=3, activation=None).to(dev)
     except Exception as e: P("imagenet weights unavailable, training from random init:", str(e)[:100]); net = smp.Linknet("resnet34", encoder_weights=None, classes=3, activation=None).to(dev)
-    if a.resume:
-        net.load_state_dict(torch.load(a.resume, map_location=dev)); P(f"resumed weights from {a.resume}")
     tr = Ds(build_pages(a.src, "train"), True); va = Ds(build_pages(a.src, "val"), False)
     P(f"pages: train {len(tr.pages)} val {len(va.pages)} | frag-lines/page median {np.median([len(p['frags']) for p in tr.pages])} | device {dev}")
     opt = torch.optim.AdamW(net.parameters(), lr=a.lr); sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, a.epochs)
@@ -284,8 +326,20 @@ def main():
     def dice(logit, m):
         p = torch.sigmoid(logit); num = 2 * (p * m).sum((2, 3)); den = p.sum((2, 3)) + m.sum((2, 3)) + 1e-6
         return 1 - (num / den).mean()
-    rng = random.Random(a.seed); best = -1
-    for ep in range(a.epochs):
+    rng = random.Random(a.seed); best = -1; start_ep = 0
+    if a.resume:
+        # AFTER opt/sched exist, so a resume restores them too. The previous version loaded
+        # weights before the optimizer was built, so every resume silently began with fresh
+        # Adam moments — documented as "(fresh optimizer)" but a real loss of progress.
+        if not Path(a.resume).exists():
+            raise SystemExit(f"--resume {a.resume} does not exist — refusing to silently "
+                             f"restart from scratch and overwrite good checkpoints")
+        done_ep, prev_best = load_ckpt(a.resume, net, opt, sched, dev)
+        start_ep = done_ep + 1 if done_ep else 0
+        if prev_best is not None and prev_best > best:
+            best = prev_best
+        P(f"resumed from {a.resume}: epoch {done_ep} -> starting {start_ep}, best {best:.3f}")
+    for ep in range(start_ep, a.epochs):
         net.train(); idx = list(range(len(tr))); rng.shuffle(idx); t0 = time.time(); losses = []
         for s in range(0, len(idx), a.batch):
             batch = [b for b in (tr.sample(i, rng) for i in idx[s:s + a.batch]) if b]
@@ -313,9 +367,12 @@ def main():
         box_f1 = box_line_f1(net, va, dev, n=a.val_pages)
         P(f"ep{ep}: loss {np.mean(losses):.4f} | val pixel F1 word/teacher/line {f1.round(3).tolist()} | box line F1@0.5 {box_f1:.3f} | {(time.time()-t0)/60:.1f} min")
         score = box_f1
-        torch.save(net.state_dict(), out / "last.pt")
+        save_ckpt(out / "last.pt", net, opt, sched, ep, best)
+        save_ckpt(out / f"ep{ep:03d}.pt", net, opt, sched, ep, best)   # retention: no later
+        # epoch can destroy an earlier one (2026-08-27 post-mortem: one overwritten file was
+        # the whole crash exposure, and a mid-write crash corrupted the only copy)
         if score > best:
-            best = score; torch.save(net.state_dict(), out / "best.pt")
+            best = score; save_ckpt(out / "best.pt", net, opt, sched, ep, best)
             export_onnx(net, out / "segm_ft.onnx", dev); P(f"  saved best (box F1 {best:.3f})")
         json.dump({"epoch": ep, "pixel_f1": f1.tolist(), "box_line_f1": box_f1, "best": best}, open(out / "val_metrics.json", "w"), indent=1)
     P("DONE best box line F1", best)
