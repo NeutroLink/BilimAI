@@ -325,12 +325,16 @@ def main():
         score = float(f1[0] + f1[2])                       # word + line channels are what detector.py reads
         if score > best:
             best = score
-            torch.save(core.state_dict(), out / "best.pt")
+            TS.save_ckpt(out / "best.pt", core, opt, sched, ep, best)
             P(f"  new best ({score:.4f}) -> {out/'best.pt'}")
-        torch.save(core.state_dict(), out / "last.pt")
+        # atomic + self-verifying, with optimizer/scheduler state and per-epoch retention
+        # (2026-08-27 post-mortem; matches the PyTorch checkpointing best-practice note:
+        # save everything needed to resume, keep a few recent, verify they load)
+        TS.save_ckpt(out / "last.pt", core, opt, sched, ep, best)
+        TS.save_ckpt(out / f"ep{ep:03d}.pt", core, opt, sched, ep, best)
 
     # export with the sigmoid RE-ATTACHED so it is a drop-in for bilimai/detector.py (thresholds probabilities at 0.8)
-    core.load_state_dict(torch.load(out / "best.pt", map_location="cpu"))
+    TS.load_ckpt(out / "best.pt", core, dev="cpu")   # handles new dict AND bare-state formats
     core.return_logits = False
     core.eval().to("cpu")
     onnx_path = out / "segm_ft.onnx"
