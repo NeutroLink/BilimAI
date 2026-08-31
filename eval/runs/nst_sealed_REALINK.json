@@ -1,0 +1,25 @@
+{
+ "arena": "the child's OWN crop from a sealed page (real_file), same words/children as the NST arena \u2014 isolates REAL ink from HiGAN ink",
+ "readers": {
+  "shipped": {
+   "model": "models/readingpipeline/ocr",
+   "n": 1000,
+   "real_ink_acc": 0.665
+  },
+  "run1": {
+   "model": "models/armc_run1",
+   "n": 1000,
+   "real_ink_acc": 0.596
+  },
+  "real-only": {
+   "model": "models/armc_realonly",
+   "n": 1000,
+   "real_ink_acc": 0.64
+  },
+  "v3": {
+   "model": "models/armc_v3",
+   "n": 1000,
+   "real_ink_acc": 0.621
+  }
+ }
+}

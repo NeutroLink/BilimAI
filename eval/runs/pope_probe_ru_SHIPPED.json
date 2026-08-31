@@ -1,0 +1,46 @@
+{
+ "instrument": "pope_yes_no",
+ "lang": "ru",
+ "render": {
+  "lang": "ru",
+  "smoke": false,
+  "n_nst_words": 500,
+  "writers_per_word": 2,
+  "n_nst_pairs": 1000,
+  "n_pope": 500,
+  "fonts": [
+   "GreatVibes",
+   "MarckScript",
+   "Pacifico"
+  ],
+  "writer_pool": 4000,
+  "dropped_twinless": 0,
+  "writer_swaps": 0,
+  "renderer": "eval/util/make_uz_font_strips.py + dark-ink patch, connected-cursive fonts only",
+  "nst_source": "data/derived/higan_ru_bank/lexicon_ru.txt (pymorphy3-known filter)",
+  "pope_source": "eval/runs/dictation/train_misspellings_v1.json (strict rows; TRAIN-mined, never sealed)",
+  "seed_scheme": "zlib.crc32 (never hash())",
+  "caveat": "Synthetic font-skeleton cursive, not children's ink: these numbers are an ITERATION/RANKING signal only. The sealed 60-page gate stays the deployment criterion."
+ },
+ "caveat": "Synthetic font-skeleton cursive, not children's ink: these numbers are an ITERATION/RANKING signal only. The sealed 60-page gate stays the deployment criterion.",
+ "readers": {
+  "ctc-crnn@readingpipeline": {
+   "reader": "ctc-crnn",
+   "model": "models/readingpipeline/ocr",
+   "adapter": null,
+   "smoke": false,
+   "timestamp": "2026-08-28 16:11:49",
+   "n_pairs": 500,
+   "forced_choice_acc": 0.928,
+   "n_probes": null,
+   "acc": null,
+   "precision": null,
+   "recall": null,
+   "f1": null,
+   "yes_rate": null,
+   "non_answer_rate": null,
+   "yes_no_note": "n/a BY CONSTRUCTION — the CTC reader has no chat channel; it contributes NST + forced-choice rows only",
+   "seconds": 220.9
+  }
+ }
+}

@@ -1,0 +1,55 @@
+{
+ "instrument": "nst_shuffled_word — width-shortcut ablation",
+ "question": "how much of a reader NST score is reading letters, and how much is reading the crop width? ORIGINAL = HiGAN ink at a constant 32 px/char. NATURALISED = the same images rescaled so px-per-char follows the real distribution (tools/higan/naturalise.py). Same words, same hands, same letter order — only the geometry differs.",
+ "arena": "out/nst_sealed_higan (+ _nat): sealed words absent from the bank lexicon, sealed writers, 1000 pairs",
+ "runs": [
+  {
+   "run": "armcREALONLY_NATURALISED",
+   "model": "models/armc_realonly",
+   "st": 0.961,
+   "nst": 0.298,
+   "gap": 0.663,
+   "n": 1000
+  },
+  {
+   "run": "armcREALONLY_ORIGINAL",
+   "model": "models/armc_realonly",
+   "st": 0.969,
+   "nst": 0.319,
+   "gap": 0.65,
+   "n": 1000
+  },
+  {
+   "run": "armc_NATURALISED",
+   "model": "models/armc_run1",
+   "st": 0.974,
+   "nst": 0.562,
+   "gap": 0.412,
+   "n": 1000
+  },
+  {
+   "run": "armc_ORIGINAL",
+   "model": "models/armc_run1",
+   "st": 0.999,
+   "nst": 0.891,
+   "gap": 0.108,
+   "n": 1000
+  },
+  {
+   "run": "shipped_NATURALISED",
+   "model": "models/readingpipeline/ocr",
+   "st": 0.967,
+   "nst": 0.295,
+   "gap": 0.672,
+   "n": 1000
+  },
+  {
+   "run": "shipped_ORIGINAL",
+   "model": "models/readingpipeline/ocr",
+   "st": 0.97,
+   "nst": 0.309,
+   "gap": 0.661,
+   "n": 1000
+  }
+ ]
+}

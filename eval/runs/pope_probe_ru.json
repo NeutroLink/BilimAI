@@ -1,0 +1,72 @@
+{
+ "instrument": "pope_yes_no",
+ "lang": "ru",
+ "render": {
+  "n": 1000,
+  "renderer": "HiGAN ep018.pth (epoch 18)",
+  "arena": "sealed words ABSENT from the bank lexicon + each child's OWN hand from a sealed page; both ST and NST drawn by HiGAN so only letter order differs. The child's real crop is kept as real_file, outside the comparison.  ⚠ GEOMETRY NATURALISED 2026-08-28: every rendered image rescaled so px-per-char follows the real distribution instead of HiGAN's constant 32 (tools/higan/naturalise.py). Removes the width->length shortcut that arm C, trained on 396k HiGAN crops, had seen and the shipped model had not.",
+  "words_source": [
+   "/Users/furb-x/Desktop/My Projects/BilimAI/eval/testset_v2/ru_pages/ground_truth.json",
+   "/Users/furb-x/Desktop/My Projects/BilimAI/eval/testset_v3/ru_pages/ground_truth.json"
+  ],
+  "excluded_lexicon": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/higan_ru_bank/lexicon_ru.txt",
+  "naturalised": true
+ },
+ "caveat": "Synthetic font-skeleton cursive, not children's ink: these numbers are an ITERATION/RANKING signal only. The sealed 60-page gate stays the deployment criterion.",
+ "readers": {
+  "ctc-crnn@readingpipeline": {
+   "reader": "ctc-crnn",
+   "model": "models/armc_run1",
+   "adapter": null,
+   "smoke": false,
+   "timestamp": "2026-08-28 16:51:47",
+   "n_pairs": 0,
+   "forced_choice_acc": 0.0,
+   "n_probes": null,
+   "acc": null,
+   "precision": null,
+   "recall": null,
+   "f1": null,
+   "yes_rate": null,
+   "non_answer_rate": null,
+   "yes_no_note": "n/a BY CONSTRUCTION — the CTC reader has no chat channel; it contributes NST + forced-choice rows only",
+   "seconds": 201.2
+  },
+  "ctc-crnn@armc_v3": {
+   "reader": "ctc-crnn",
+   "model": "models/armc_v3",
+   "adapter": null,
+   "smoke": false,
+   "timestamp": "2026-08-29 11:34:36",
+   "n_pairs": 0,
+   "forced_choice_acc": 0.0,
+   "n_probes": null,
+   "acc": null,
+   "precision": null,
+   "recall": null,
+   "f1": null,
+   "yes_rate": null,
+   "non_answer_rate": null,
+   "yes_no_note": "n/a BY CONSTRUCTION — the CTC reader has no chat channel; it contributes NST + forced-choice rows only",
+   "seconds": 196.9
+  },
+  "ctc-crnn@armc_v3_30m": {
+   "reader": "ctc-crnn",
+   "model": "models/armc_v3_30m",
+   "adapter": null,
+   "smoke": false,
+   "timestamp": "2026-08-29 20:36:16",
+   "n_pairs": 0,
+   "forced_choice_acc": 0.0,
+   "n_probes": null,
+   "acc": null,
+   "precision": null,
+   "recall": null,
+   "f1": null,
+   "yes_rate": null,
+   "non_answer_rate": null,
+   "yes_no_note": "n/a BY CONSTRUCTION — the CTC reader has no chat channel; it contributes NST + forced-choice rows only",
+   "seconds": 195.8
+  }
+ }
+}

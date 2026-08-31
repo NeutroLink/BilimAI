@@ -1,0 +1,64 @@
+{
+ "REAL pupil ink": {
+  "n": 1500,
+  "transition_px": [
+   1.64,
+   0.24
+  ],
+  "edge_slope": [
+   67.82,
+   20.77
+  ],
+  "contrast": [
+   108.92,
+   29.15
+  ],
+  "paper_grain": [
+   11.12,
+   3.83
+  ],
+  "ink_grain": [
+   20.1,
+   5.39
+  ],
+  "paper_lvl": [
+   187.17,
+   21.06
+  ],
+  "ink_lvl": [
+   78.25,
+   31.48
+  ]
+ },
+ "HiGAN synthetic": {
+  "n": 1498,
+  "transition_px": [
+   1.67,
+   0.25
+  ],
+  "edge_slope": [
+   63.28,
+   20.16
+  ],
+  "contrast": [
+   103.14,
+   28.92
+  ],
+  "paper_grain": [
+   9.4,
+   3.39
+  ],
+  "ink_grain": [
+   18.83,
+   4.79
+  ],
+  "paper_lvl": [
+   186.65,
+   19.71
+  ],
+  "ink_lvl": [
+   83.51,
+   31.52
+  ]
+ }
+}

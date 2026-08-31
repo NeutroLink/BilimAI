@@ -1,0 +1,48 @@
+{
+ "REAL pupil crops": {
+  "n": 1500,
+  "components": [
+   8.271,
+   7.017
+  ],
+  "frag_frac": [
+   0.188,
+   0.206
+  ],
+  "ink_outside_body": [
+   0.084,
+   0.011
+  ],
+  "ruled_rows": [
+   0.391,
+   1.115
+  ],
+  "body_rows": [
+   39.163,
+   8.547
+  ]
+ },
+ "HiGAN crops": {
+  "n": 1498,
+  "components": [
+   6.19,
+   5.973
+  ],
+  "frag_frac": [
+   0.14,
+   0.184
+  ],
+  "ink_outside_body": [
+   0.081,
+   0.015
+  ],
+  "ruled_rows": [
+   0.539,
+   1.408
+  ],
+  "body_rows": [
+   30.682,
+   8.719
+  ]
+ }
+}
