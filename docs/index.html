@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BilimAI — проверка тетрадей за минуты</title>
-<meta name="description" content="BilimAI читает рукописные работы учеников, находит ошибки и предлагает оценку. Учитель проверяет и утверждает. Русский и узбекский.">
+<meta name="description" content="BilimAI читает русские рукописные диктанты, находит возможные ошибки и показывает их учителю для проверки.">
+<meta name="bilimai-api-url" content="">
 <style>
   :root {
     --bg: #fbfbfa; --bg-2: #f2f1ee; --ink: #1c1c1a; --muted: #5f5e59; --line: #e4e2dc;
@@ -185,6 +186,8 @@
     .mk .stroke { stroke-dashoffset: 0; }
   }
 </style>
+<link rel="stylesheet" href="submit.css">
+<script type="module" src="submit.js"></script>
 </head>
 <body>
 
@@ -192,7 +195,7 @@
   <div class="wrap grid">
     <div>
       <h1>Проверка тетрадей за минуты, а не за вечера</h1>
-      <p class="lede">BilimAI читает рукописные работы учеников, находит ошибки и предлагает оценку. Учитель смотрит и утверждает.</p>
+      <p class="lede">BilimAI читает рукописные работы учеников и показывает возможные ошибки. Учитель проверяет каждую пометку.</p>
       <div class="ctas">
         <a class="btn primary" href="#demo">Смотреть демо</a>
         <a class="btn ghost" href="https://github.com/NeutroLink/BilimAI">Код и данные открыты</a>
@@ -307,6 +310,108 @@
       а не средние; каждая цифра генерируется измерительным скриптом из файлов прогонов и не вписывается вручную.
       Значения относятся к русскому письму; для узбекского реальные детские страницы ещё собираются, и цифры по нему
       мы пока не публикуем.</p>
+  </div>
+</section>
+
+<section class="submission-section" id="submit-work">
+  <div class="wrap">
+    <div class="submission-intro">
+      <div>
+        <h2>Проверьте свою работу</h2>
+        <p class="muted submission-copy">Загрузите одну страницу рукописной работы. BilimAI вернёт ту же страницу
+          с пометками и отдельный отчёт для проверки учителем.</p>
+      </div>
+      <fieldset class="language-fieldset" form="submission-form">
+        <legend>Язык работы</legend>
+        <div class="language-switch" role="group" aria-label="Выберите язык модели">
+          <button class="language-button" type="button" data-language="uz" data-unavailable="true" aria-pressed="false" aria-disabled="true" disabled>
+            Oʻzbekcha <span class="model-unavailable">Недоступно в пилоте</span>
+          </button>
+          <button class="language-button" type="button" data-language="ru" aria-pressed="false">Русский</button>
+        </div>
+        <span class="language-model-note">Выбор языка направляет запрос в соответствующую модель распознавания.</span>
+      </fieldset>
+    </div>
+
+    <form class="submission-card" id="submission-form" novalidate>
+      <div class="submission-grid">
+        <aside class="assignment-rail" aria-labelledby="assignment-rail-title">
+          <h3 class="assignment-rail-title" id="assignment-rail-title">Тип работы</h3>
+          <div class="assignment-list">
+            <button class="assignment-choice" type="button" data-assignment="dictation" aria-pressed="false">
+              <span class="assignment-glyph" aria-hidden="true">Д</span>
+              <span><span class="assignment-name">Диктант</span></span>
+            </button>
+            <button class="assignment-choice" type="button" data-assignment="vocabulary_dictation" data-unavailable="true" disabled>
+              <span class="assignment-glyph" aria-hidden="true">Аа</span>
+              <span><span class="assignment-name">Словарный диктант</span><span class="coming-soon">Coming soon...</span></span>
+            </button>
+            <button class="assignment-choice" type="button" data-assignment="retelling" data-unavailable="true" disabled>
+              <span class="assignment-glyph" aria-hidden="true">≡</span>
+              <span><span class="assignment-name">Изложение / bayon</span><span class="coming-soon">Coming soon...</span></span>
+            </button>
+            <button class="assignment-choice" type="button" data-assignment="multiple_choice" data-unavailable="true" disabled>
+              <span class="assignment-glyph" aria-hidden="true">✓</span>
+              <span><span class="assignment-name">Тест</span><span class="coming-soon">Coming soon...</span></span>
+            </button>
+            <button class="assignment-choice" type="button" data-assignment="open_question" data-unavailable="true" disabled>
+              <span class="assignment-glyph" aria-hidden="true">?</span>
+              <span><span class="assignment-name">Открытый вопрос</span><span class="coming-soon">Coming soon...</span></span>
+            </button>
+            <div class="assignment-divider" aria-hidden="true">Отдельный модуль</div>
+            <button class="assignment-choice math-choice" type="button" data-assignment="math" data-unavailable="true" disabled>
+              <span class="assignment-glyph" aria-hidden="true">∑</span>
+              <span><span class="assignment-name">Математика</span><span class="coming-soon">Coming soon...</span></span>
+            </button>
+          </div>
+        </aside>
+
+        <div class="upload-workspace" id="upload-workspace" aria-busy="false">
+          <label class="source-text-field" for="source-text">
+            <span><strong>Текст учителя</strong><small>Обязателен: система сравнивает работу только с этим текстом.</small></span>
+            <textarea id="source-text" name="source_text" rows="7" maxlength="12000" placeholder="Вставьте полный текст диктанта на русском языке…" required></textarea>
+          </label>
+          <input id="assignment-file" name="document" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+          <label class="upload-dropzone" id="upload-dropzone" for="assignment-file" role="button" tabindex="0" aria-label="Загрузить фотографию тетради">
+            <span class="upload-placeholder">
+              <span class="upload-icon" aria-hidden="true"></span>
+              <strong>Перетащите фотографию тетради</strong>
+              <span>или нажмите, чтобы выбрать JPG, PNG или WEBP до 20 МБ</span>
+            </span>
+            <img class="upload-preview" id="upload-preview" alt="">
+            <span class="preview-badge" id="preview-badge"></span>
+          </label>
+          <div class="upload-controls">
+            <div class="upload-file-meta">
+              <strong id="upload-file-name">Файл не выбран</strong>
+              <span id="upload-file-detail">Одна хорошо освещённая страница без обрезанных краёв</span>
+            </div>
+            <button class="evaluate-button" id="evaluate-assignment" type="submit" disabled>Проверить работу</button>
+          </div>
+          <div class="submission-feedback" id="submission-feedback" role="status" aria-live="polite">Выберите русский язык, диктант, вставьте текст и загрузите фотографию.</div>
+          <div class="evaluation-progress" aria-hidden="true">
+            <div class="progress-card">
+              <span class="progress-orbit" aria-hidden="true"></span>
+              <strong>BilimAI проверяет работу</strong>
+              <span id="evaluation-phase">Загружаем страницу в защищённый контур…</span>
+              <span class="progress-track" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="assessment-panel" id="assessment-result" aria-label="Результат проверки" tabindex="-1" hidden>
+            <span class="assessment-kicker">Результат BilimAI</span>
+            <h3 id="assessment-headline">Проверка завершена</h3>
+            <p class="assessment-summary" id="assessment-summary"></p>
+            <ul class="assessment-findings" id="assessment-findings"></ul>
+            <p class="result-expiry" id="result-expiry"></p>
+            <div class="result-actions">
+              <a class="download-report" id="download-report" download="bilimai-report.pdf">Скачать полный отчёт PDF</a>
+              <a class="public-result-link" id="public-result-link" target="_blank" rel="noopener" hidden>Открыть публичную ссылку</a>
+              <button class="reset-evaluation" id="reset-evaluation" type="button">Новая проверка</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </section>
 
