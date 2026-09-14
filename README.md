@@ -245,9 +245,10 @@ available gain in the project and needs no GPU.
 
 <!-- SCOPE:END -->
 
-- [AGENTS.md](AGENTS.md) — start here (any agent or human): where things are, rules, environments.
-- [ENGINEERING-LOG.md](ENGINEERING-LOG.md) — obstacles, fixes, decisions, results — append as you work.
-- [plans/PLAN.md](plans/PLAN.md) — full tech stack, architecture, phased roadmap, risk register.
+- [Landing page](https://neutrolink.github.io/BilimAI/) — what BilimAI does, in Russian.
+- [contracts/](contracts/) — JSON contracts per assignment type.
+- [bilimai/](bilimai/) — grading engines, renderer, pipeline.
+- [eval/](eval/) — sealed exam + scorer + public bake-off results.
 - [mvp/](mvp/) — single-file demo of the grading stage (typed text only).
 
 ## Where the reader stands (2026-08-19)
@@ -314,3 +315,6 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 Open http://localhost:8000 — "Load sample" cycles a Russian and an Uzbek essay.
 
 Model is configurable: `BILIMAI_MODEL=qwen3:4b .venv/bin/uvicorn app:app --port 8000`.
+
+
+Training data pipeline, model recipes and the engineering log live in a private repository.
