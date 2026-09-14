@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BilimAI — проверка тетрадей за минуты</title>
-<meta name="description" content="BilimAI читает русские рукописные диктанты, находит возможные ошибки и показывает их учителю для проверки.">
+<title>BilimAI — notebooks checked in minutes</title>
+<meta name="description" content="BilimAI reads Russian handwritten dictations, finds possible mistakes and shows them to the teacher for review.">
 <meta name="bilimai-api-url" content="">
 <link rel="canonical" href="index.html">
-<link rel="alternate" hreflang="ru" href="index.html">
-<link rel="alternate" hreflang="en" href="en/index.html">
-<link rel="alternate" hreflang="x-default" href="index.html">
+<link rel="alternate" hreflang="ru" href="../index.html">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="alternate" hreflang="x-default" href="../index.html">
 <style>
   :root {
     --bg: #fbfbfa; --bg-2: #f2f1ee; --ink: #1c1c1a; --muted: #5f5e59; --line: #e4e2dc;
@@ -252,47 +252,47 @@
     .mk .stroke { stroke-dashoffset: 0; }
   }
 </style>
-<link rel="stylesheet" href="submit.css">
+<link rel="stylesheet" href="../submit.css">
 <script type="module" src="submit.js"></script>
 </head>
 <body>
-<nav class="lang-switch" aria-label="Language">
-  <span aria-current="true">RU</span>
-  <a href="en/index.html" hreflang="en" lang="en">EN</a>
-</nav>
 
+<nav class="lang-switch" aria-label="Язык">
+  <a href="../index.html" hreflang="ru" lang="ru">RU</a>
+  <span aria-current="true">EN</span>
+</nav>
 
 <section class="hero">
   <div class="wrap grid">
     <div>
-      <h1>Проверка тетрадей за минуты, а не за вечера</h1>
+      <h1>Notebooks checked in minutes, not evenings</h1>
       <div class="ctas">
-        <a class="btn primary" href="#submit-work">Проверьте свою работу</a>
-        <a class="btn ghost" href="https://github.com/NeutroLink/BilimAI">Код и данные открыты</a>
+        <a class="btn primary" href="#submit-work">Check your work</a>
+        <a class="btn ghost" href="https://github.com/NeutroLink/BilimAI">Code and data are open</a>
       </div>
     </div>
-    <figure class="hero-fig" aria-label="Страница школьной тетради с пометкой" style="margin:0">
+    <figure class="hero-fig" aria-label="A school notebook page with a mark" style="margin:0">
       <div class="frame">
-      <img src="hero-v5.jpg" alt="Разворот школьной тетради, проверенный ИИ-агентом: ошибка подчёркнута красным, сомнительные слова — жёлтым" width="1400" height="641">
+      <img src="../hero-v5.jpg" alt="A school notebook spread checked by an AI agent: the mistake underlined in red, doubtful words in yellow" width="1400" height="641">
       </div>
-      <figcaption>Реальная страница с пометками ИИ-агента: ошибка подчёркнута красным, сомнительные слова — жёлтым «на проверку», слово за учителем.</figcaption>
+      <figcaption>A real page with the AI agent’s marks: the mistake is underlined in red, doubtful words are highlighted in yellow “for review” — the final word stays with the teacher.</figcaption>
     </figure>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>Как это работает</h2>
-    <p class="muted">Учитель делает то же, что и раньше, только не тратит вечер на проверку.</p>
+    <h2>How it works</h2>
+    <p class="muted">The teacher does exactly the same as before — minus the evening spent checking.</p>
     <div class="flow">
-      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,40V80a8,8,0,0,1-16,0V48H176a8,8,0,0,1,0-16h40A8,8,0,0,1,224,40ZM80,208H48V176a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H80a8,8,0,0,0,0-16Zm136-40a8,8,0,0,0-8,8v32H176a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V176A8,8,0,0,0,216,168ZM40,88a8,8,0,0,0,8-8V48H80a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8V80A8,8,0,0,0,40,88ZM80,72h96a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H80a8,8,0,0,1-8-8V80A8,8,0,0,1,80,72Zm8,96h80V88H88Z"/></svg></div><b>Вы сканируете тетради</b><span>Стопка страниц на школьном сканере или МФУ.</span></div>
-      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M208,56V88a8,8,0,0,1-16,0V64H136V192h24a8,8,0,0,1,0,16H96a8,8,0,0,1,0-16h24V64H64V88a8,8,0,0,1-16,0V56a8,8,0,0,1,8-8H200A8,8,0,0,1,208,56Z"/></svg></div><b>Программа читает почерк</b><span>Разбирает рукописный текст и превращает страницу в текст.</span></div>
-      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M248,92.68a15.86,15.86,0,0,0-4.69-11.31L174.63,12.68a16,16,0,0,0-22.63,0L123.57,41.11l-58,21.77A16.06,16.06,0,0,0,55.35,75.23L32.11,214.68A8,8,0,0,0,40,224a8.4,8.4,0,0,0,1.32-.11l139.44-23.24a16,16,0,0,0,12.35-10.17l21.77-58L243.31,104A15.87,15.87,0,0,0,248,92.68Zm-69.87,92.19L63.32,204l47.37-47.37a28,28,0,1,0-11.32-11.32L52,192.7,71.13,77.86,126,57.29,198.7,130ZM112,132a12,12,0,1,1,12,12A12,12,0,0,1,112,132Zm96-15.32L139.31,48l24-24L232,92.68Z"/></svg></div><b>Находит возможные ошибки</b><span>Сверяет с текстом или ключом учителя и отмечает прямо на скане.</span></div>
-      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H53.39a8,8,0,0,0,7.23-4.57,48,48,0,0,1,86.76,0,8,8,0,0,0,7.23,4.57H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM80,144a24,24,0,1,1,24,24A24,24,0,0,1,80,144Zm136,56H159.43a64.39,64.39,0,0,0-28.83-26.16,40,40,0,1,0-53.2,0A64.39,64.39,0,0,0,48.57,200H40V56H216ZM56,96V80a8,8,0,0,1,8-8H192a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H176a8,8,0,0,1,0-16h8V88H72v8a8,8,0,0,1-16,0Z"/></svg></div><b>Вы подтверждаете пометки</b><span>Просматриваете, соглашаетесь или снимаете — решение всегда за вами.</span></div>
+      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,40V80a8,8,0,0,1-16,0V48H176a8,8,0,0,1,0-16h40A8,8,0,0,1,224,40ZM80,208H48V176a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H80a8,8,0,0,0,0-16Zm136-40a8,8,0,0,0-8,8v32H176a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V176A8,8,0,0,0,216,168ZM40,88a8,8,0,0,0,8-8V48H80a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8V80A8,8,0,0,0,40,88ZM80,72h96a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H80a8,8,0,0,1-8-8V80A8,8,0,0,1,80,72Zm8,96h80V88H88Z"/></svg></div><b>You scan the notebooks</b><span>A stack of pages on the school scanner or MFP.</span></div>
+      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M208,56V88a8,8,0,0,1-16,0V64H136V192h24a8,8,0,0,1,0,16H96a8,8,0,0,1,0-16h24V64H64V88a8,8,0,0,1-16,0V56a8,8,0,0,1,8-8H200A8,8,0,0,1,208,56Z"/></svg></div><b>The program reads the handwriting</b><span>It parses the handwritten text and turns the page into typed text.</span></div>
+      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M248,92.68a15.86,15.86,0,0,0-4.69-11.31L174.63,12.68a16,16,0,0,0-22.63,0L123.57,41.11l-58,21.77A16.06,16.06,0,0,0,55.35,75.23L32.11,214.68A8,8,0,0,0,40,224a8.4,8.4,0,0,0,1.32-.11l139.44-23.24a16,16,0,0,0,12.35-10.17l21.77-58L243.31,104A15.87,15.87,0,0,0,248,92.68Zm-69.87,92.19L63.32,204l47.37-47.37a28,28,0,1,0-11.32-11.32L52,192.7,71.13,77.86,126,57.29,198.7,130ZM112,132a12,12,0,1,1,12,12A12,12,0,0,1,112,132Zm96-15.32L139.31,48l24-24L232,92.68Z"/></svg></div><b>It finds possible mistakes</b><span>It cross-checks against the teacher’s text or answer key and marks them right on the scan.</span></div>
+      <div class="step"><div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H53.39a8,8,0,0,0,7.23-4.57,48,48,0,0,1,86.76,0,8,8,0,0,0,7.23,4.57H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM80,144a24,24,0,1,1,24,24A24,24,0,0,1,80,144Zm136,56H159.43a64.39,64.39,0,0,0-28.83-26.16,40,40,0,1,0-53.2,0A64.39,64.39,0,0,0,48.57,200H40V56H216ZM56,96V80a8,8,0,0,1,8-8H192a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H176a8,8,0,0,1,0-16h8V88H72v8a8,8,0,0,1-16,0Z"/></svg></div><b>You confirm the marks</b><span>Review them, agree or dismiss — the decision is always yours.</span></div>
     </div>
     <div class="loop">
       <div class="ico"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z"/></svg></div>
-      <div><b>Каждое исправление учителя делает программу умнее</b><span>Правка на экране становится примером для обучения. Чем больше проверок, тем точнее следующая.</span></div>
+      <div><b>Every teacher correction makes the program smarter</b><span>An edit on screen becomes a training example. The more checks, the more accurate the next one.</span></div>
     </div>
   </div>
 </section>
@@ -300,95 +300,95 @@
   <div class="wrap">
     <div class="submission-intro">
       <div>
-        <h2>Проверьте свою работу</h2>
-        <p class="muted submission-copy">Загрузите страницу работы — BilimAI покажет возможные ошибки и отчёт для учителя.</p>
+        <h2>Check your work</h2>
+        <p class="muted submission-copy">Upload a page of work — BilimAI will show possible mistakes and a report for the teacher.</p>
       </div>
       <fieldset class="language-fieldset" form="submission-form">
-        <legend>Язык работы</legend>
-        <div class="language-switch" role="group" aria-label="Выберите язык модели">
+        <legend>Work language</legend>
+        <div class="language-switch" role="group" aria-label="Choose the model language">
           <button class="language-button" type="button" data-language="uz" data-unavailable="true" aria-pressed="false" aria-disabled="true" disabled>
-            Oʻzbekcha <span class="model-unavailable">Недоступно в пилоте</span>
+            Oʻzbekcha <span class="model-unavailable">Unavailable in the pilot</span>
           </button>
           <button class="language-button" type="button" data-language="ru" aria-pressed="false">Русский</button>
         </div>
-        <span class="language-model-note">Выбор языка направляет запрос в соответствующую модель распознавания.</span>
+        <span class="language-model-note">The language choice routes the request to the matching recognition model.</span>
       </fieldset>
     </div>
 
     <form class="submission-card" id="submission-form" novalidate>
       <div class="submission-grid">
         <aside class="assignment-rail" aria-labelledby="assignment-rail-title">
-          <h3 class="assignment-rail-title" id="assignment-rail-title">Тип работы</h3>
+          <h3 class="assignment-rail-title" id="assignment-rail-title">Work type</h3>
           <div class="assignment-list">
             <button class="assignment-choice" type="button" data-assignment="dictation" aria-pressed="false">
-              <span class="assignment-glyph" aria-hidden="true">Д</span>
-              <span><span class="assignment-name">Диктант</span></span>
+              <span class="assignment-glyph" aria-hidden="true">D</span>
+              <span><span class="assignment-name">Dictation</span></span>
             </button>
             <button class="assignment-choice" type="button" data-assignment="vocabulary_dictation" data-unavailable="true" disabled>
-              <span class="assignment-glyph" aria-hidden="true">Аа</span>
-              <span><span class="assignment-name">Словарный диктант</span><span class="coming-soon">Coming soon...</span></span>
+              <span class="assignment-glyph" aria-hidden="true">Aa</span>
+              <span><span class="assignment-name">Vocabulary dictation</span><span class="coming-soon">Coming soon...</span></span>
             </button>
             <button class="assignment-choice" type="button" data-assignment="retelling" data-unavailable="true" disabled>
               <span class="assignment-glyph" aria-hidden="true">≡</span>
-              <span><span class="assignment-name">Изложение / bayon</span><span class="coming-soon">Coming soon...</span></span>
+              <span><span class="assignment-name">Retelling / bayon</span><span class="coming-soon">Coming soon...</span></span>
             </button>
             <button class="assignment-choice" type="button" data-assignment="multiple_choice" data-unavailable="true" disabled>
               <span class="assignment-glyph" aria-hidden="true">✓</span>
-              <span><span class="assignment-name">Тест</span><span class="coming-soon">Coming soon...</span></span>
+              <span><span class="assignment-name">Test</span><span class="coming-soon">Coming soon...</span></span>
             </button>
             <button class="assignment-choice" type="button" data-assignment="open_question" data-unavailable="true" disabled>
               <span class="assignment-glyph" aria-hidden="true">?</span>
-              <span><span class="assignment-name">Открытый вопрос</span><span class="coming-soon">Coming soon...</span></span>
+              <span><span class="assignment-name">Open question</span><span class="coming-soon">Coming soon...</span></span>
             </button>
-            <div class="assignment-divider" aria-hidden="true">Отдельный модуль</div>
+            <div class="assignment-divider" aria-hidden="true">Separate module</div>
             <button class="assignment-choice math-choice" type="button" data-assignment="math" data-unavailable="true" disabled>
               <span class="assignment-glyph" aria-hidden="true">∑</span>
-              <span><span class="assignment-name">Математика</span><span class="coming-soon">Coming soon...</span></span>
+              <span><span class="assignment-name">Math</span><span class="coming-soon">Coming soon...</span></span>
             </button>
           </div>
         </aside>
 
         <div class="upload-workspace" id="upload-workspace" aria-busy="false">
           <label class="source-text-field" for="source-text">
-            <span><strong>Текст учителя</strong><small>Обязателен: система сравнивает работу только с этим текстом.</small></span>
-            <textarea id="source-text" name="source_text" rows="7" maxlength="12000" placeholder="Вставьте полный текст диктанта на русском языке…" required></textarea>
+            <span><strong>Teacher’s text</strong><small>Required: the system compares the work against this text only.</small></span>
+            <textarea id="source-text" name="source_text" rows="7" maxlength="12000" placeholder="Paste the full text of the dictation in Russian…" required></textarea>
           </label>
           <input id="assignment-file" name="document" type="file" accept="image/jpeg,image/png,image/webp" hidden>
-          <label class="upload-dropzone" id="upload-dropzone" for="assignment-file" role="button" tabindex="0" aria-label="Загрузить фотографию тетради">
+          <label class="upload-dropzone" id="upload-dropzone" for="assignment-file" role="button" tabindex="0" aria-label="Upload a photo of the notebook">
             <span class="upload-placeholder">
               <span class="upload-icon" aria-hidden="true"></span>
-              <strong>Перетащите фотографию тетради</strong>
-              <span>или нажмите, чтобы выбрать JPG, PNG или WEBP до 20 МБ</span>
+              <strong>Drag a photo of the notebook here</strong>
+              <span>or click to choose a JPG, PNG or WEBP up to 20 MB</span>
             </span>
             <img class="upload-preview" id="upload-preview" alt="">
             <span class="preview-badge" id="preview-badge"></span>
           </label>
           <div class="upload-controls">
             <div class="upload-file-meta">
-              <strong id="upload-file-name">Файл не выбран</strong>
+              <strong id="upload-file-name">No file selected</strong>
               <span id="upload-file-detail"></span>
             </div>
-            <button class="evaluate-button" id="evaluate-assignment" type="submit" disabled>Проверить работу</button>
+            <button class="evaluate-button" id="evaluate-assignment" type="submit" disabled>Check the work</button>
           </div>
-          <div class="submission-feedback" id="submission-feedback" role="status" aria-live="polite">Выберите русский язык, диктант, вставьте текст и загрузите фотографию.</div>
+          <div class="submission-feedback" id="submission-feedback" role="status" aria-live="polite">Select Russian, choose dictation, paste the text and upload a photo.</div>
           <div class="evaluation-progress" aria-hidden="true">
             <div class="progress-card">
               <span class="progress-orbit" aria-hidden="true"></span>
-              <strong>BilimAI проверяет работу</strong>
-              <span id="evaluation-phase">Загружаем страницу в защищённый контур…</span>
+              <strong>BilimAI is checking the work</strong>
+              <span id="evaluation-phase">Uploading the page to the secure environment…</span>
               <span class="progress-track" aria-hidden="true"></span>
             </div>
           </div>
-          <div class="assessment-panel" id="assessment-result" aria-label="Результат проверки" tabindex="-1" hidden>
-            <span class="assessment-kicker">Результат BilimAI</span>
-            <h3 id="assessment-headline">Проверка завершена</h3>
+          <div class="assessment-panel" id="assessment-result" aria-label="Check result" tabindex="-1" hidden>
+            <span class="assessment-kicker">BilimAI result</span>
+            <h3 id="assessment-headline">Check complete</h3>
             <p class="assessment-summary" id="assessment-summary"></p>
             <ul class="assessment-findings" id="assessment-findings"></ul>
             <p class="result-expiry" id="result-expiry"></p>
             <div class="result-actions">
-              <a class="download-report" id="download-report" download="bilimai-report.pdf">Скачать полный отчёт PDF</a>
-              <a class="public-result-link" id="public-result-link" target="_blank" rel="noopener" hidden>Открыть публичную ссылку</a>
-              <button class="reset-evaluation" id="reset-evaluation" type="button">Новая проверка</button>
+              <a class="download-report" id="download-report" download="bilimai-report.pdf">Download the full PDF report</a>
+              <a class="public-result-link" id="public-result-link" target="_blank" rel="noopener" hidden>Open the public link</a>
+              <button class="reset-evaluation" id="reset-evaluation" type="button">New check</button>
             </div>
           </div>
         </div>
@@ -400,52 +400,52 @@
 
 <section class="cost">
   <div class="wrap">
-    <h2>Экономика, которая масштабируется</h2>
-    <p class="muted">Платформа построена на собственном, специально обученном движке — компактном, быстром и рассчитанном
-      на поток. Чем больше страниц проходит через систему, тем заметнее выигрыш.</p>
+    <h2>Economics that scale</h2>
+    <p class="muted">The platform is built on our own purpose-trained engine — compact, fast and designed for throughput.
+      The more pages pass through the system, the bigger the gain.</p>
 
     <div class="tiers tiers-3">
       <div class="tier">
-        <span class="load">1 страница в день</span>
-        <span class="pages">≈ 180 страниц за учебный год</span>
+        <span class="load">1 page a day</span>
+        <span class="pages">≈ 180 pages per school year</span>
         <div class="who">
-          <span class="price">BilimAI ≈ <b>$0,2</b></span>
+          <span class="price">BilimAI ≈ <b>$0.2</b></span>
           <span class="alt">GPT-5.6 Terra ≈ <b>$36</b></span>
         </div>
         <div class="how">
-          <span class="how-line">BilimAI: ≈ $0,001 за страницу × 180 страниц</span>
-          <span class="how-line">GPT: ≈ $0,20 за страницу × 180 страниц</span>
+          <span class="how-line">BilimAI: ≈ $0.001 per page × 180 pages</span>
+          <span class="how-line">GPT: ≈ $0.20 per page × 180 pages</span>
         </div>
       </div>
       <div class="tier">
-        <span class="load">4 страницы в день</span>
-        <span class="pages">≈ 720 страниц за учебный год</span>
+        <span class="load">4 pages a day</span>
+        <span class="pages">≈ 720 pages per school year</span>
         <div class="who">
-          <span class="price">BilimAI ≈ <b>$0,8</b></span>
+          <span class="price">BilimAI ≈ <b>$0.8</b></span>
           <span class="alt">GPT-5.6 Terra ≈ <b>$144</b></span>
         </div>
         <div class="how">
-          <span class="how-line">BilimAI: ≈ $0,001 за страницу × 720 страниц</span>
-          <span class="how-line">GPT: ≈ $0,20 за страницу × 720 страниц</span>
+          <span class="how-line">BilimAI: ≈ $0.001 per page × 720 pages</span>
+          <span class="how-line">GPT: ≈ $0.20 per page × 720 pages</span>
         </div>
       </div>
       <div class="tier">
-        <span class="load">8 страниц в день</span>
-        <span class="pages">≈ 1 440 страниц за учебный год</span>
+        <span class="load">8 pages a day</span>
+        <span class="pages">≈ 1,440 pages per school year</span>
         <div class="who">
-          <span class="price">BilimAI ≈ <b>$1,6</b></span>
+          <span class="price">BilimAI ≈ <b>$1.6</b></span>
           <span class="alt">GPT-5.6 Terra ≈ <b>$288</b></span>
         </div>
         <div class="how">
-          <span class="how-line">BilimAI: ≈ $0,001 за страницу × 1 440 страниц</span>
-          <span class="how-line">GPT: ≈ $0,20 за страницу × 1 440 страниц</span>
+          <span class="how-line">BilimAI: ≈ $0.001 per page × 1,440 pages</span>
+          <span class="how-line">GPT: ≈ $0.20 per page × 1,440 pages</span>
         </div>
       </div>
     </div>
 
     <div class="costline">
-      <p><b>Школа на 1 000 учеников по 8 страниц в день — это около 1 500 долларов обработки за учебный год.</b>
-        Почти полтора миллиона проверенных страниц за год.</p>
+      <p><b>A school of 1,000 students at 8 pages a day is about $1,500 of processing per school year.</b>
+        Nearly one and a half million checked pages a year.</p>
     </div>
   </div>
 </section>
@@ -454,9 +454,9 @@
 
 <section class="tech">
   <div class="wrap">
-    <h2>Точность в цифрах</h2>
-    <p class="muted">Все метрики измерены на запечатанной контрольной выборке: 112 реальных страниц школьных
-      тетрадей, 516 ошибок, размеченных учителем. Модель никогда не обучается на этих страницах.</p>
+    <h2>Accuracy in numbers</h2>
+    <p class="muted">Every metric is measured on a sealed held-out set: 112 real school notebook pages,
+      516 teacher-annotated mistakes. The model never trains on these pages.</p>
 
     <div class="metrics">
       <div class="metric">
@@ -467,20 +467,20 @@
             </filter>
           </defs>
           <g transform="rotate(-2 140 25)" filter="url(#cutsh-a)">
-            <image href="assets/ink/raspolozheno-w1.png" x="33" y="2" width="210" height="47" preserveAspectRatio="xMidYMid meet"/>
+            <image href="../assets/ink/raspolozheno-w1.png" x="33" y="2" width="210" height="47" preserveAspectRatio="xMidYMid meet"/>
           </g>
           <g transform="translate(0,144) scale(1,-1)">
             <path class="s s-ok" d="M33 74 Q33 62 46 62 Q100 62 106 52 Q112 62 166 62 Q224 62 224 74"/>
           </g>
-          <text class="t-ok" x="128" y="100" text-anchor="middle">96 %</text>
+          <text class="t-ok" x="128" y="100" text-anchor="middle">96%</text>
           <g transform="translate(0,144) scale(1,-1)">
             <path class="s s-bad" d="M228 74 Q228 62 233 62 Q238 62 240.5 52 Q243 62 248 62 Q254 62 254 74"/>
           </g>
-          <text class="t-bad" x="241" y="100" text-anchor="middle">4 %</text>
+          <text class="t-bad" x="241" y="100" text-anchor="middle">4%</text>
         </svg>
-        <span class="num">CER 0,038</span>
-        <span class="lbl">посимвольная ошибка чтения</span>
-        <span class="det">Из 100 написанных букв около 96 читаем правильно.</span>
+        <span class="num">CER 0.038</span>
+        <span class="lbl">per-character reading error</span>
+        <span class="det">Of 100 written letters, we read about 96 correctly.</span>
       </div>
       <div class="metric">
                                 <svg viewBox="0 0 280 108" aria-hidden="true">
@@ -489,18 +489,18 @@
               <feDropShadow dx="0" dy="1.5" stdDeviation="1.8" flood-color="rgba(0,0,0,.28)"/>
             </filter>
           </defs>
-          <g transform="rotate(-0.6 140 12)" filter="url(#cutsh-b)"><image href="assets/ink/relief.png" x="40" y="2" width="200" height="17.5" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(-0.6 140 12)" filter="url(#cutsh-b)"><image href="../assets/ink/relief.png" x="40" y="2" width="200" height="17.5" preserveAspectRatio="xMidYMid meet"/></g>
           <path class="s s-ok thin" d="M33 8 L33 2 L43 2 M237 2 L247 2 L247 8 M247 14 L247 20 L237 20 M43 20 L33 20 L33 14"/>
-          <g transform="rotate(0.5 140 34)" filter="url(#cutsh-b)"><image href="assets/ink/sever.png" x="40" y="27" width="200" height="12.6" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(0.5 140 34)" filter="url(#cutsh-b)"><image href="../assets/ink/sever.png" x="40" y="27" width="200" height="12.6" preserveAspectRatio="xMidYMid meet"/></g>
           <path class="s s-ok thin" d="M33 32 L33 27 L43 27 M237 27 L247 27 L247 32 M247 35 L247 40 L237 40 M43 40 L33 40 L33 32"/>
-          <g transform="rotate(-0.4 140 61)" filter="url(#cutsh-b)"><image href="assets/ink/severo.png" x="40" y="52" width="200" height="18.7" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(-0.4 140 61)" filter="url(#cutsh-b)"><image href="../assets/ink/severo.png" x="40" y="52" width="200" height="18.7" preserveAspectRatio="xMidYMid meet"/></g>
           <path class="s s-ok thin" d="M33 57 L33 52 L43 52 M237 52 L247 52 L247 57 M247 65 L247 71 L237 71 M43 71 L33 71 L33 65"/>
-          <g transform="rotate(0.7 140 84)" filter="url(#cutsh-b)"><image href="assets/ink/rayony.png" x="40" y="77" width="200" height="16" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(0.7 140 84)" filter="url(#cutsh-b)"><image href="../assets/ink/rayony.png" x="40" y="77" width="200" height="16" preserveAspectRatio="xMidYMid meet"/></g>
           <rect class="s s-bad dash" x="31" y="73" width="221" height="23" rx="7"/>
         </svg>
-        <span class="num">95,1&nbsp;%</span>
-        <span class="lbl">полнота обнаружения строк</span>
-        <span class="det">Из 100 написанных строк находим 95 — почти ничего не теряем.</span>
+        <span class="num">95.1&nbsp;%</span>
+        <span class="lbl">line detection recall</span>
+        <span class="det">Of 100 written lines, we find 95 — almost nothing is lost.</span>
       </div>
       <div class="metric">
                                         <svg viewBox="0 0 280 108" aria-hidden="true">
@@ -510,27 +510,27 @@
             </filter>
           </defs>
           <g transform="rotate(-1.5 70 16)" filter="url(#cutsh-c)">
-            <image href="assets/ink/migratsiya-w0.png" x="14" y="0" width="112" height="32" preserveAspectRatio="xMidYMid meet"/>
+            <image href="../assets/ink/migratsiya-w0.png" x="14" y="0" width="112" height="32" preserveAspectRatio="xMidYMid meet"/>
             <path class="s s-bad thin" d="M18 34 Q21 30.5 24 34 T30 34 T36 34 T42 34 T48 34 T54 34 T60 34 T66 34 T72 34 T78 34 T84 34 T90 34 T96 34 T102 34 T108 34 T112 34"/>
           </g>
           <path class="s s-ok thin" d="M148 7 L148 0 L155 0 M211 0 L218 0 L218 7 M218 25 L218 32 L211 32 M155 32 L148 32 L148 25"/>
-          <text class="t-ok" x="183" y="20" text-anchor="middle">найдено</text>
+          <text class="t-ok" x="183" y="20" text-anchor="middle">found</text>
           <g transform="rotate(1.2 55 52)" filter="url(#cutsh-c)">
-            <image href="assets/ink/vneschnyaya-w0.png" x="14" y="36" width="82" height="32" preserveAspectRatio="xMidYMid meet"/>
+            <image href="../assets/ink/vneschnyaya-w0.png" x="14" y="36" width="82" height="32" preserveAspectRatio="xMidYMid meet"/>
             <path class="s s-bad thin" d="M18 69 Q21 65.5 24 69 T30 69 T36 69 T42 69 T48 69 T54 69 T60 69 T66 69 T72 69 T78 69 T82 69"/>
           </g>
           <path class="s s-ok thin" d="M148 43 L148 36 L155 36 M211 36 L218 36 L218 43 M218 61 L218 68 L211 68 M155 68 L148 68 L148 43"/>
-          <text class="t-ok" x="183" y="56" text-anchor="middle">найдено</text>
+          <text class="t-ok" x="183" y="56" text-anchor="middle">found</text>
           <g transform="rotate(-1 62 88)" filter="url(#cutsh-c)">
-            <image href="assets/ink/relief-w3.png" x="14" y="72" width="96" height="32" preserveAspectRatio="xMidYMid meet"/>
+            <image href="../assets/ink/relief-w3.png" x="14" y="72" width="96" height="32" preserveAspectRatio="xMidYMid meet"/>
           </g>
           <rect class="s s-bad dash" x="10" y="71" width="106" height="37" rx="8"/>
           <path class="s s-bad thin" d="M148 79 L148 72 L155 72 M226 72 L233 72 L233 79 M233 100 L233 107 L226 107 M155 107 L148 107 L148 79"/>
-          <text class="t-bad" x="190" y="93" text-anchor="middle">пропущено</text>
+          <text class="t-bad" x="190" y="93" text-anchor="middle">missed</text>
         </svg>
         <span class="num">48&nbsp;%</span>
-        <span class="lbl">сквозное обнаружение ошибок</span>
-        <span class="det">Из 100 ошибок находим 48 и показываем учителю. Лишние пометки убирает учитель.</span>
+        <span class="lbl">end-to-end mistake detection</span>
+        <span class="det">Of 100 mistakes, we find 48 and show them to the teacher. Extra marks are removed by the teacher.</span>
       </div>
       <div class="metric">
                                 <svg viewBox="0 0 280 108" aria-hidden="true">
@@ -539,20 +539,20 @@
               <feDropShadow dx="0" dy="1.5" stdDeviation="1.8" flood-color="rgba(0,0,0,.28)"/>
             </filter>
           </defs>
-          <g transform="rotate(-2 26 21)"><rect class="cut cut-ok" x="0" y="3" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="assets/ink/evropy-w2.png" x="3" y="9.1" width="46" height="23.8" preserveAspectRatio="xMidYMid meet"/></g>
-          <g transform="rotate(1.5 81 21)"><rect class="cut cut-ok" x="55" y="3" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="assets/ink/rayony-w0.png" x="58" y="9.7" width="46" height="22.6" preserveAspectRatio="xMidYMid meet"/></g>
-          <g transform="rotate(-1 136 21)"><rect class="cut cut-ok" x="110" y="3" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="assets/ink/rayony-w1.png" x="113" y="10.0" width="46" height="22.0" preserveAspectRatio="xMidYMid meet"/></g>
-          <g transform="rotate(2 191 21)"><rect class="cut cut-ok" x="165" y="3" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="assets/ink/rayony-w3.png" x="168" y="8.6" width="46" height="24.9" preserveAspectRatio="xMidYMid meet"/></g>
-          <g transform="rotate(-1.5 246 21)"><rect class="cut cut-bad" x="220" y="3" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="assets/ink/relief-w1.png" x="223" y="14.1" width="46" height="13.8" preserveAspectRatio="xMidYMid meet"/></g>
-          <g transform="rotate(1.5 26 63)"><rect class="cut cut-ok" x="0" y="45" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="assets/ink/sever-w5.png" x="3" y="55.0" width="46" height="15.9" preserveAspectRatio="xMidYMid meet"/></g>
-          <g transform="rotate(-2 81 63)"><rect class="cut cut-ok" x="55" y="45" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="assets/ink/severo-w1.png" x="58" y="54.9" width="46" height="16.2" preserveAspectRatio="xMidYMid meet"/></g>
-          <g transform="rotate(1 136 63)"><rect class="cut cut-bad" x="110" y="45" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="assets/ink/sever-w6.png" x="113" y="56.6" width="46" height="12.8" preserveAspectRatio="xMidYMid meet"/></g>
-          <g transform="rotate(-1.5 191 63)"><rect class="cut cut-ok" x="165" y="45" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="assets/ink/severo-w2.png" x="168" y="55.6" width="46" height="14.7" preserveAspectRatio="xMidYMid meet"/></g>
-          <g transform="rotate(2 246 63)"><rect class="cut cut-ok" x="220" y="45" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="assets/ink/relief-w2.png" x="223" y="53.6" width="46" height="18.7" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(-2 26 21)"><rect class="cut cut-ok" x="0" y="3" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="../assets/ink/evropy-w2.png" x="3" y="9.1" width="46" height="23.8" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(1.5 81 21)"><rect class="cut cut-ok" x="55" y="3" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="../assets/ink/rayony-w0.png" x="58" y="9.7" width="46" height="22.6" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(-1 136 21)"><rect class="cut cut-ok" x="110" y="3" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="../assets/ink/rayony-w1.png" x="113" y="10.0" width="46" height="22.0" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(2 191 21)"><rect class="cut cut-ok" x="165" y="3" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="../assets/ink/rayony-w3.png" x="168" y="8.6" width="46" height="24.9" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(-1.5 246 21)"><rect class="cut cut-bad" x="220" y="3" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="../assets/ink/relief-w1.png" x="223" y="14.1" width="46" height="13.8" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(1.5 26 63)"><rect class="cut cut-ok" x="0" y="45" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="../assets/ink/sever-w5.png" x="3" y="55.0" width="46" height="15.9" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(-2 81 63)"><rect class="cut cut-ok" x="55" y="45" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="../assets/ink/severo-w1.png" x="58" y="54.9" width="46" height="16.2" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(1 136 63)"><rect class="cut cut-bad" x="110" y="45" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="../assets/ink/sever-w6.png" x="113" y="56.6" width="46" height="12.8" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(-1.5 191 63)"><rect class="cut cut-ok" x="165" y="45" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="../assets/ink/severo-w2.png" x="168" y="55.6" width="46" height="14.7" preserveAspectRatio="xMidYMid meet"/></g>
+          <g transform="rotate(2 246 63)"><rect class="cut cut-ok" x="220" y="45" width="52" height="36" rx="7" filter="url(#cutsh-d)"/><image href="../assets/ink/relief-w2.png" x="223" y="53.6" width="46" height="18.7" preserveAspectRatio="xMidYMid meet"/></g>
         </svg>
-        <span class="num">83 из 100</span>
-        <span class="lbl">слов читаются точно</span>
-        <span class="det">83 слова из 100 читаем точно, как написано.</span>
+        <span class="num">83 out of 100</span>
+        <span class="lbl">words read exactly</span>
+        <span class="det">We read 83 of every 100 words exactly as written.</span>
       </div>
     </div>
 
@@ -561,40 +561,40 @@
 
 <section id="demo">
   <div class="wrap">
-    <h2>Демонстрация: от скана до пометок для учителя</h2>
-    <p class="muted">Так проходит проверка одной страницы. Нажмите «Проверить» или просто досмотрите.</p>
+    <h2>Demo: from scan to marks for the teacher</h2>
+    <p class="muted">This is how a single page gets checked. Click “Check again” or just watch it to the end.</p>
     <div class="demo">
       <div class="stage">
         <div class="page">
-          <img id="pg" src="demo-v5-page.jpg" alt="Страница диктанта из школьной тетради" width="1400" height="548">
+          <img id="pg" src="../demo-v5-page.jpg" alt="A dictation page from a school notebook" width="1400" height="548">
           <div class="scanbar" id="scanbar"></div>
-          <img id="marksimg" class="marksimg" src="demo-v5-marks.png" alt="" width="1400" height="548" aria-hidden="true">
+          <img id="marksimg" class="marksimg" src="../demo-v5-marks.png" alt="" width="1400" height="548" aria-hidden="true">
         </div>
         <div class="side">
           <div class="phase" id="phase"></div>
           <div class="typed" id="typed"></div>
           <ul class="checks" id="checks">
-            <li><span class="tick">✓</span>Сверка с текстом диктанта</li>
-            <li><span class="tick">✓</span>Орфография</li>
-            <li><span class="tick">✓</span>Пунктуация</li>
-            <li><span class="tick">✓</span>Каждая пометка — на подтверждение учителю</li>
+            <li><span class="tick">✓</span>Cross-check against the dictation text</li>
+            <li><span class="tick">✓</span>Spelling</li>
+            <li><span class="tick">✓</span>Punctuation</li>
+            <li><span class="tick">✓</span>Every mark goes to the teacher for confirmation</li>
           </ul>
           <div class="result" id="result">
-            <div class="rep-head">Отчёт для учителя <span class="tag">возможные ошибки, не оценка</span></div>
+            <div class="rep-head">Teacher report <span class="tag">possible mistakes, not a grade</span></div>
             <div class="crit">
-              <span class="k">Текст учителя</span><span class="v">сверка выполнена</span>
-              <span class="k">«слушат» — не так, как в тексте</span><span class="v warn">подчёркнута</span>
-              <span class="k">Исправление над буквой</span><span class="v">предложено</span>
-              <span class="k">Решение по пометке</span><span class="v">за учителем</span>
+              <span class="k">Teacher’s text</span><span class="v">cross-check complete</span>
+              <span class="k">“слушат” differs from the text</span><span class="v warn">underlined</span>
+              <span class="k">Correction above the letter</span><span class="v">suggested</span>
+              <span class="k">Decision on the mark</span><span class="v">teacher’s call</span>
             </div>
             <div class="times">
-              <div class="time ai"><div class="n">≈ 9 с</div><small>программа: полное чтение, сверка и отчёт на одной RTX 5090</small></div>
+              <div class="time ai"><div class="n">≈ 9 s</div><small>the program: full read, cross-check and report on a single RTX 5090</small></div>
             </div>
           </div>
         </div>
       </div>
       <div class="foot">
-        <button class="replay" id="run">Проверить ещё раз</button>
+        <button class="replay" id="run">Check again</button>
       </div>
     </div>
   </div>
@@ -602,16 +602,16 @@
 
 <section>
   <div class="wrap">
-    <h2>Что проверяет</h2>
-    <p class="muted">Пять самых частых видов работ в школах Узбекистана.</p>
+    <h2>What it checks</h2>
+    <p class="muted">The five most common assignment types in Uzbekistan’s schools.</p>
     <div class="types">
-      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M208,56V88a8,8,0,0,1-16,0V64H136V192h24a8,8,0,0,1,0,16H96a8,8,0,0,1,0-16h24V64H64V88a8,8,0,0,1-16,0V56a8,8,0,0,1,8-8H200A8,8,0,0,1,208,56Z"/></svg><b>Диктанты</b><span>Диктант и словарный диктант. Текст известен заранее, каждое расхождение подчёркнуто.</span></div>
-      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M112,72a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16h64A8,8,0,0,1,112,72Zm-8,104H80V152a8,8,0,0,0-16,0v24H40a8,8,0,0,0,0,16H64v24a8,8,0,0,0,16,0V192h24a8,8,0,0,0,0-16Zm48,0h64a8,8,0,0,0,0-16H152a8,8,0,0,0,0,16Zm64,16H152a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm-61.66-90.34a8,8,0,0,0,11.32,0L184,83.31l18.34,18.35a8,8,0,0,0,11.32-11.32L195.31,72l18.35-18.34a8,8,0,0,0-11.32-11.32L184,60.69,165.66,42.34a8,8,0,0,0-11.32,11.32L172.69,72,154.34,90.34A8,8,0,0,0,154.34,101.66Z"/></svg><b>Математика</b><span>Примеры, уравнения, задачи. Ответ сверяется точно, отмечается строка, где началась ошибка.</span></div>
-      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128ZM128,72h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/></svg><b>Тесты</b><span>Обведённые буквы сравниваются с ключом: галочка или крестик у каждого вопроса.</span></div>
-      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M232,48H160a40,40,0,0,0-32,16A40,40,0,0,0,96,48H24a8,8,0,0,0-8,8V200a8,8,0,0,0,8,8H96a24,24,0,0,1,24,24,8,8,0,0,0,16,0,24,24,0,0,1,24-24h72a8,8,0,0,0,8-8V56A8,8,0,0,0,232,48ZM96,192H32V64H96a24,24,0,0,1,24,24V200A39.81,39.81,0,0,0,96,192Zm128,0H160a39.81,39.81,0,0,0-24,8V88a24,24,0,0,1,24-24h64ZM160,88h40a8,8,0,0,1,0,16H160a8,8,0,0,1,0-16Zm48,40a8,8,0,0,1-8,8H160a8,8,0,0,1,0-16h40A8,8,0,0,1,208,128Zm0,32a8,8,0,0,1-8,8H160a8,8,0,0,1,0-16h40A8,8,0,0,1,208,160Z"/></svg><b>Изложение, bayon</b><span>Исходный текст даёт учитель: подчёркиваются орфография и пунктуация, содержание остаётся на решение учителя.</span></div>
-      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><b>Открытые вопросы</b><span>Ответы по учебнику сверяются с эталоном учителя: какие факты названы, где возможная ошибка.</span></div>
+      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M208,56V88a8,8,0,0,1-16,0V64H136V192h24a8,8,0,0,1,0,16H96a8,8,0,0,1,0-16h24V64H64V88a8,8,0,0,1-16,0V56a8,8,0,0,1,8-8H200A8,8,0,0,1,208,56Z"/></svg><b>Dictations</b><span>Dictation and vocabulary dictation. The text is known in advance; every deviation is underlined.</span></div>
+      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M112,72a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16h64A8,8,0,0,1,112,72Zm-8,104H80V152a8,8,0,0,0-16,0v24H40a8,8,0,0,0,0,16H64v24a8,8,0,0,0,16,0V192h24a8,8,0,0,0,0-16Zm48,0h64a8,8,0,0,0,0-16H152a8,8,0,0,0,0,16Zm64,16H152a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm-61.66-90.34a8,8,0,0,0,11.32,0L184,83.31l18.34,18.35a8,8,0,0,0,11.32-11.32L195.31,72l18.35-18.34a8,8,0,0,0-11.32-11.32L184,60.69,165.66,42.34a8,8,0,0,0-11.32,11.32L172.69,72,154.34,90.34A8,8,0,0,0,154.34,101.66Z"/></svg><b>Math</b><span>Sums, equations, word problems. The answer is checked exactly; the line where the mistake begins is marked.</span></div>
+      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128ZM128,72h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/></svg><b>Tests</b><span>Circled letters are compared against the answer key: a tick or a cross next to every question.</span></div>
+      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M232,48H160a40,40,0,0,0-32,16A40,40,0,0,0,96,48H24a8,8,0,0,0-8,8V200a8,8,0,0,0,8,8H96a24,24,0,0,1,24,24,8,8,0,0,0,16,0,24,24,0,0,1,24-24h72a8,8,0,0,0,8-8V56A8,8,0,0,0,232,48ZM96,192H32V64H96a24,24,0,0,1,24,24V200A39.81,39.81,0,0,0,96,192Zm128,0H160a39.81,39.81,0,0,0-24,8V88a24,24,0,0,1,24-24h64ZM160,88h40a8,8,0,0,1,0,16H160a8,8,0,0,1,0-16Zm48,40a8,8,0,0,1-8,8H160a8,8,0,0,1,0-16h40A8,8,0,0,1,208,128Zm0,32a8,8,0,0,1-8,8H160a8,8,0,0,1,0-16h40A8,8,0,0,1,208,160Z"/></svg><b>Retelling, bayon</b><span>The teacher provides the source text: spelling and punctuation are underlined; the content stays the teacher’s call.</span></div>
+      <div class="type"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><b>Open questions</b><span>Textbook answers are compared against the teacher’s reference: which facts are named, where a possible mistake lies.</span></div>
     </div>
-    <p class="oos">Не проверяем: рисунки, контурные карты, чертежи и схемы. Это отдельная задача, и мы говорим об этом честно.</p>
+    <p class="oos">What we don’t check: drawings, outline maps, technical drawings and diagrams. That is a separate task, and we say so honestly.</p>
   </div>
 </section>
 
@@ -623,45 +623,45 @@
     <div class="rm-board">
       <div class="rm-head">
         <h3 class="rm-col-title">Russian:</h3>
-        <span class="rm-corner" aria-hidden="true">сроки</span>
+        <span class="rm-corner" aria-hidden="true">dates</span>
         <h3 class="rm-col-title">Uzbek:</h3>
       </div>
       <div class="rm-group rm-pair">
         <div class="rm-rail"><span class="rm-date">≈ 15 Nov, 2026</span></div>
-        <div class="rm-zone">Диктант</div>
-        <div class="rm-zone uz"><span>Диктант</span><span class="soon">Coming soon…</span></div>
-        <div class="rm-zone">Тест</div>
-        <div class="rm-zone uz"><span>Тест</span><span class="soon">Coming soon…</span></div>
+        <div class="rm-zone">Dictation</div>
+        <div class="rm-zone uz"><span>Dictation</span><span class="soon">Coming soon…</span></div>
+        <div class="rm-zone">Test</div>
+        <div class="rm-zone uz"><span>Test</span><span class="soon">Coming soon…</span></div>
       </div>
       <div class="rm-group rm-pair">
         <div class="rm-rail"><span class="rm-date">≈ 15 Dec, 2026</span></div>
-        <div class="rm-zone">Изложение</div>
-        <div class="rm-zone uz"><span>Изложение</span><span class="soon">Coming soon…</span></div>
-        <div class="rm-zone">Открытые вопросы</div>
-        <div class="rm-zone uz"><span>Открытые вопросы</span><span class="soon">Coming soon…</span></div>
+        <div class="rm-zone">Retelling</div>
+        <div class="rm-zone uz"><span>Retelling</span><span class="soon">Coming soon…</span></div>
+        <div class="rm-zone">Open questions</div>
+        <div class="rm-zone uz"><span>Open questions</span><span class="soon">Coming soon…</span></div>
       </div>
       <div class="rm-group">
         <div class="rm-rail rm-rail-math"><span class="rm-date">≈ 15 Jan, 2027</span></div>
-        <div class="rm-zone rm-math">Математика</div>
-        <div class="rm-zone rm-math uz"><span>Математика</span><span class="soon">Coming soon…</span></div>
+        <div class="rm-zone rm-math">Math</div>
+        <div class="rm-zone rm-math uz"><span>Math</span><span class="soon">Coming soon…</span></div>
       </div>
     </div>
-    <p class="honest">BilimAI не выставляет оценки и не решает за учителя — он показывает возможные ошибки, а окончательное решение остаётся за учителем.</p>
+    <p class="honest">BilimAI does not assign grades and does not decide for the teacher — it shows possible mistakes, and the final decision always stays with the teacher.</p>
   </div>
 </section>
 
 <section class="princ">
   <div class="wrap">
-    <h2>Три принципа</h2>
+    <h2>Three principles</h2>
     <div class="rows">
-      <div class="row"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H53.39a8,8,0,0,0,7.23-4.57,48,48,0,0,1,86.76,0,8,8,0,0,0,7.23,4.57H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM80,144a24,24,0,1,1,24,24A24,24,0,0,1,80,144Zm136,56H159.43a64.39,64.39,0,0,0-28.83-26.16,40,40,0,1,0-53.2,0A64.39,64.39,0,0,0,48.57,200H40V56H216ZM56,96V80a8,8,0,0,1,8-8H192a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H176a8,8,0,0,1,0-16h8V88H72v8a8,8,0,0,1-16,0Z"/></svg><b>Учитель всегда главный</b><span>Программа предлагает, учитель решает. Ученик результата не видит — что показать ребёнку, выбирает учитель.</span></div>
-      <div class="row"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></svg><b>Данные остаются в стране</b><span>Работы учеников обрабатываются и хранятся на серверах в Узбекистане и не передаются третьим сторонам.</span></div>
-      <div class="row"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M128,40a96,96,0,1,0,96,96A96.11,96.11,0,0,0,128,40Zm0,176a80,80,0,1,1,80-80A80.09,80.09,0,0,1,128,216ZM173.66,90.34a8,8,0,0,1,0,11.32l-40,40a8,8,0,0,1-11.32-11.32l40-40A8,8,0,0,1,173.66,90.34ZM96,16a8,8,0,0,1,8-8h48a8,8,0,0,1,0,16H104A8,8,0,0,1,96,16Z"/></svg><b>Проверяемо</b><span>У каждой пометки видно, из чего она возникла. Новые версии выпускаются только после проверки на контрольном наборе работ.</span></div>
+      <div class="row"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H53.39a8,8,0,0,0,7.23-4.57,48,48,0,0,1,86.76,0,8,8,0,0,0,7.23,4.57H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM80,144a24,24,0,1,1,24,24A24,24,0,0,1,80,144Zm136,56H159.43a64.39,64.39,0,0,0-28.83-26.16,40,40,0,1,0-53.2,0A64.39,64.39,0,0,0,48.57,200H40V56H216ZM56,96V80a8,8,0,0,1,8-8H192a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H176a8,8,0,0,1,0-16h8V88H72v8a8,8,0,0,1-16,0Z"/></svg><b>The teacher is always in charge</b><span>The program suggests, the teacher decides. The pupil never sees the result — the teacher chooses what to show the child.</span></div>
+      <div class="row"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></svg><b>Data stays in the country</b><span>Pupils’ work is processed and stored on servers in Uzbekistan and is never passed to third parties.</span></div>
+      <div class="row"><svg class="ic" viewBox="0 0 256 256" aria-hidden="true"><path d="M128,40a96,96,0,1,0,96,96A96.11,96.11,0,0,0,128,40Zm0,176a80,80,0,1,1,80-80A80.09,80.09,0,0,1,128,216ZM173.66,90.34a8,8,0,0,1,0,11.32l-40,40a8,8,0,0,1-11.32-11.32l40-40A8,8,0,0,1,173.66,90.34ZM96,16a8,8,0,0,1,8-8h48a8,8,0,0,1,0,16H104A8,8,0,0,1,96,16Z"/></svg><b>Verifiable</b><span>Every mark shows what it came from. New versions ship only after being checked on a held-out set of works.</span></div>
     </div>
   </div>
 </section>
 
-<footer><div class="wrap">BilimAI · Ташкент · <a href="https://github.com/NeutroLink/BilimAI">github.com/NeutroLink/BilimAI</a></div></footer>
+<footer><div class="wrap">BilimAI · Tashkent · <a href="https://github.com/NeutroLink/BilimAI">github.com/NeutroLink/BilimAI</a></div></footer>
 
 <script>
 const $ = id => document.getElementById(id);
@@ -694,14 +694,14 @@ async function typeLines() {
 }
 async function run() {
   if (running) return; running = true; reset();
-  $('phase').innerHTML = '<span class="dot"></span>Читаю почерк';
+  $('phase').innerHTML = '<span class="dot"></span>Reading the handwriting';
   await Promise.all([scan(), typeLines()]);
-  $('phase').innerHTML = '<span class="dot"></span>Проверяю';
+  $('phase').innerHTML = '<span class="dot"></span>Checking';
   const lis = [...$('checks').children];
   for (const li of lis) { await sleep(reduce ? 0 : 520); li.classList.add('on'); }
-  $('phase').textContent = 'Ставлю пометки';
+  $('phase').textContent = 'Placing the marks';
   $('marksimg').classList.add('show'); await sleep(reduce ? 0 : 900);
-  $('phase').textContent = 'Готово. Пометка для проверки учителем:';
+  $('phase').textContent = 'Done. A mark for the teacher to review:';
   $('typed').style.display = 'none'; $('checks').style.display = 'none'; $('result').classList.add('show');
   running = false;
 }
