@@ -45,3 +45,19 @@ tools/convtext/out/
 tools/convtext/__pycache__/
 # HiGAN synthetic ink: ~400k generated crops, rebuilt by tools/higan/synth_higan.py bulk
 data/derived/higan_synth_ru*/
+
+# Pilot submissions contain pupil pages and teacher source text; never stage them.
+/pilot-data/
+
+# 2026-09-16: the rules above name ctc_full_v2.json and the _det variants, but not the
+# per-model/per-colour dumps written beside them — 28 files of ~160 MB each (4.4 GiB) sat
+# un-ignored in the working tree, every one above GitHub's 100 MB hard limit, so any
+# `git add -A` would have produced a push that GitHub refuses. Match the whole family.
+# (*_roc.json stays tracked: those are the small derived metrics, not the dumps.)
+eval/runs/dictation/ctc_full_v2_*.json
+eval/runs/dictation/ctc_full_v3_*.json
+
+# 2026-09-16: the investor walkthrough is a 107 MB mp4 — over the same hard limit.
+# Keep it on disk; ship it as a release asset or via LFS, never as a plain commit.
+docs/pitch/motion/*.mp4
+.codex-motion/build/
