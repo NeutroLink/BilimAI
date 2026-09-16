@@ -1,0 +1,2624 @@
+{
+  "schema": "bilimai/luna_optimized_detector.v1",
+  "created": "2026-09-13",
+  "model": "openai-codex/gpt-5.6-luna",
+  "prompt_selection": {
+    "development_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "sealed_page": 34,
+    "candidate_count": 3,
+    "selected": "c3",
+    "primary_metric": "canonical line-count absolute-error sum",
+    "tie_break": "ReadingPipeline line-box Dice agreement at IoU >= 0.25",
+    "candidate_results": {
+      "c1": {
+        "pages_completed": 6,
+        "line_count_absolute_error_sum": 29,
+        "rp_dice": 0.8329,
+        "pages": [
+          {
+            "page": 1,
+            "canonical_lines": 19,
+            "detected_lines": 19,
+            "absolute_error": 0,
+            "rp_agreement": {
+              "a_boxes": 19,
+              "b_boxes": 19,
+              "matches": 19,
+              "dice": 1.0,
+              "median_iou": 0.6704
+            },
+            "pupil_notes": 0,
+            "teacher_marks": 0
+          },
+          {
+            "page": 2,
+            "canonical_lines": 37,
+            "detected_lines": 34,
+            "absolute_error": 3,
+            "rp_agreement": {
+              "a_boxes": 37,
+              "b_boxes": 34,
+              "matches": 29,
+              "dice": 0.8169,
+              "median_iou": 0.5452
+            },
+            "pupil_notes": 2,
+            "teacher_marks": 0
+          },
+          {
+            "page": 3,
+            "canonical_lines": 36,
+            "detected_lines": 32,
+            "absolute_error": 4,
+            "rp_agreement": {
+              "a_boxes": 31,
+              "b_boxes": 32,
+              "matches": 27,
+              "dice": 0.8571,
+              "median_iou": 0.7204
+            },
+            "pupil_notes": 0,
+            "teacher_marks": 2
+          },
+          {
+            "page": 4,
+            "canonical_lines": 36,
+            "detected_lines": 23,
+            "absolute_error": 13,
+            "rp_agreement": {
+              "a_boxes": 36,
+              "b_boxes": 23,
+              "matches": 22,
+              "dice": 0.7458,
+              "median_iou": 0.6985
+            },
+            "pupil_notes": 0,
+            "teacher_marks": 14
+          },
+          {
+            "page": 5,
+            "canonical_lines": 34,
+            "detected_lines": 33,
+            "absolute_error": 1,
+            "rp_agreement": {
+              "a_boxes": 29,
+              "b_boxes": 33,
+              "matches": 26,
+              "dice": 0.8387,
+              "median_iou": 0.709
+            },
+            "pupil_notes": 1,
+            "teacher_marks": 0
+          },
+          {
+            "page": 6,
+            "canonical_lines": 39,
+            "detected_lines": 31,
+            "absolute_error": 8,
+            "rp_agreement": {
+              "a_boxes": 41,
+              "b_boxes": 31,
+              "matches": 29,
+              "dice": 0.8056,
+              "median_iou": 0.5902
+            },
+            "pupil_notes": 1,
+            "teacher_marks": 6
+          }
+        ]
+      },
+      "c2": {
+        "pages_completed": 6,
+        "line_count_absolute_error_sum": 22,
+        "rp_dice": 0.871,
+        "pages": [
+          {
+            "page": 1,
+            "canonical_lines": 19,
+            "detected_lines": 19,
+            "absolute_error": 0,
+            "rp_agreement": {
+              "a_boxes": 19,
+              "b_boxes": 19,
+              "matches": 19,
+              "dice": 1.0,
+              "median_iou": 0.772
+            },
+            "pupil_notes": 0,
+            "teacher_marks": 0
+          },
+          {
+            "page": 2,
+            "canonical_lines": 37,
+            "detected_lines": 33,
+            "absolute_error": 4,
+            "rp_agreement": {
+              "a_boxes": 37,
+              "b_boxes": 33,
+              "matches": 33,
+              "dice": 0.9429,
+              "median_iou": 0.6439
+            },
+            "pupil_notes": 2,
+            "teacher_marks": 0
+          },
+          {
+            "page": 3,
+            "canonical_lines": 36,
+            "detected_lines": 31,
+            "absolute_error": 5,
+            "rp_agreement": {
+              "a_boxes": 31,
+              "b_boxes": 31,
+              "matches": 23,
+              "dice": 0.7419,
+              "median_iou": 0.5403
+            },
+            "pupil_notes": 2,
+            "teacher_marks": 2
+          },
+          {
+            "page": 4,
+            "canonical_lines": 36,
+            "detected_lines": 27,
+            "absolute_error": 9,
+            "rp_agreement": {
+              "a_boxes": 36,
+              "b_boxes": 27,
+              "matches": 26,
+              "dice": 0.8254,
+              "median_iou": 0.6091
+            },
+            "pupil_notes": 0,
+            "teacher_marks": 14
+          },
+          {
+            "page": 5,
+            "canonical_lines": 34,
+            "detected_lines": 33,
+            "absolute_error": 1,
+            "rp_agreement": {
+              "a_boxes": 29,
+              "b_boxes": 33,
+              "matches": 25,
+              "dice": 0.8065,
+              "median_iou": 0.5201
+            },
+            "pupil_notes": 2,
+            "teacher_marks": 0
+          },
+          {
+            "page": 6,
+            "canonical_lines": 39,
+            "detected_lines": 36,
+            "absolute_error": 3,
+            "rp_agreement": {
+              "a_boxes": 41,
+              "b_boxes": 36,
+              "matches": 36,
+              "dice": 0.9351,
+              "median_iou": 0.5512
+            },
+            "pupil_notes": 2,
+            "teacher_marks": 0
+          }
+        ]
+      },
+      "c3": {
+        "pages_completed": 6,
+        "line_count_absolute_error_sum": 19,
+        "rp_dice": 0.8865,
+        "pages": [
+          {
+            "page": 1,
+            "canonical_lines": 19,
+            "detected_lines": 19,
+            "absolute_error": 0,
+            "rp_agreement": {
+              "a_boxes": 19,
+              "b_boxes": 19,
+              "matches": 19,
+              "dice": 1.0,
+              "median_iou": 0.7808
+            },
+            "pupil_notes": 0,
+            "teacher_marks": 0
+          },
+          {
+            "page": 2,
+            "canonical_lines": 37,
+            "detected_lines": 35,
+            "absolute_error": 2,
+            "rp_agreement": {
+              "a_boxes": 37,
+              "b_boxes": 35,
+              "matches": 34,
+              "dice": 0.9444,
+              "median_iou": 0.6488
+            },
+            "pupil_notes": 1,
+            "teacher_marks": 6
+          },
+          {
+            "page": 3,
+            "canonical_lines": 36,
+            "detected_lines": 28,
+            "absolute_error": 8,
+            "rp_agreement": {
+              "a_boxes": 31,
+              "b_boxes": 28,
+              "matches": 22,
+              "dice": 0.7458,
+              "median_iou": 0.4849
+            },
+            "pupil_notes": 2,
+            "teacher_marks": 2
+          },
+          {
+            "page": 4,
+            "canonical_lines": 36,
+            "detected_lines": 37,
+            "absolute_error": 1,
+            "rp_agreement": {
+              "a_boxes": 36,
+              "b_boxes": 37,
+              "matches": 36,
+              "dice": 0.9863,
+              "median_iou": 0.705
+            },
+            "pupil_notes": 0,
+            "teacher_marks": 1
+          },
+          {
+            "page": 5,
+            "canonical_lines": 34,
+            "detected_lines": 35,
+            "absolute_error": 1,
+            "rp_agreement": {
+              "a_boxes": 29,
+              "b_boxes": 35,
+              "matches": 28,
+              "dice": 0.875,
+              "median_iou": 0.621
+            },
+            "pupil_notes": 0,
+            "teacher_marks": 0
+          },
+          {
+            "page": 6,
+            "canonical_lines": 39,
+            "detected_lines": 32,
+            "absolute_error": 7,
+            "rp_agreement": {
+              "a_boxes": 41,
+              "b_boxes": 32,
+              "matches": 29,
+              "dice": 0.7945,
+              "median_iou": 0.4928
+            },
+            "pupil_notes": 0,
+            "teacher_marks": 6
+          }
+        ]
+      }
+    },
+    "prompt": "This is a photograph of a page from a school exercise book.\nFind EVERY separate piece of handwriting and say WHAT KIND it is. Do not transcribe anything.\nReturn ONLY a JSON array, ordered top to bottom, left column before right.\nEach element: {\"bbox_2d\": [x1, y1, x2, y2], \"type\": \"...\"}\nThe three kinds are:\n  - \"pupil_line\"   a line of the pupil's own work\n  - \"pupil_note\"   something the pupil squeezed above, between or beside the lines: a short note,\n                   a grammar mark, a single letter or digit in the margin\n  - \"teacher_mark\" anything written by the teacher — corrections, ticks, crosses, a grade\nMiss nothing, however short or however faint. Do not stop early. Continue to the bottom of the page.\nNo text, no transcription, no commentary — boxes and kinds only.\n- The page is ruled. A rule line or a crease is NOT a line of writing; never box it.\n- Each entry is ONE physical line of ink. A line that ends at a column is one entry; the red vertical rule is never inside a box. Never one box over two lines.\n- Never return a box covering most of the page.\n- Colour is never a reason to leave writing out: black, blue and pencil ink are all the pupil's.\n- \"teacher_mark\" means one visibly teacher-written mark — a correction, tick, cross, grade or one letter over the pupil's line. It never means the whole page; if the ink is written across the ruled lines as running work, it is pupil_line.\n- Go line by line from the top ruled line to the last ink mark; a short line, a single word, a digit or a date is still one entry.\n- A page of running school work usually holds 15-45 lines; if you have fewer than 10, you stopped early — continue to the bottom.\n- Return every entry you can justify; if unsure between pupil_line and pupil_note, choose pupil_line rather than dropping it.",
+    "prompt_sha256": "a364285409feeae43bebebd60b096f26d00f83643061a4e3107adcae3ae3a13c",
+    "candidates": {
+      "c1": {
+        "prompt": "This is a photograph of a page from a school exercise book.\nFind EVERY separate piece of handwriting and say WHAT KIND it is. Do not transcribe anything.\nReturn ONLY a JSON array, ordered top to bottom, left column before right.\nEach element: {\"bbox_2d\": [x1, y1, x2, y2], \"type\": \"...\"}\nThe three kinds are:\n  - \"pupil_line\"   a line of the pupil's own work\n  - \"pupil_note\"   something the pupil squeezed above, between or beside the lines: a short note,\n                   a grammar mark, a single letter or digit in the margin\n  - \"teacher_mark\" anything written by the teacher — corrections, ticks, crosses, a grade\nMiss nothing, however short or however faint. Do not stop early. Continue to the bottom of the page.\nNo text, no transcription, no commentary — boxes and kinds only.\n- The page is ruled. A rule line or a crease is NOT a line of writing; never box it.\n- Each entry is ONE physical line of ink. A line that ends at a column is one entry; the red vertical rule is never inside a box. Never one box over two lines.\n- Never return a box covering most of the page.",
+        "prompt_sha256": "ec80b301537926e4d48667445d6e331f5680e2a9784a7f8b81189cb7e69f3e1e"
+      },
+      "c2": {
+        "prompt": "This is a photograph of a page from a school exercise book.\nFind EVERY separate piece of handwriting and say WHAT KIND it is. Do not transcribe anything.\nReturn ONLY a JSON array, ordered top to bottom, left column before right.\nEach element: {\"bbox_2d\": [x1, y1, x2, y2], \"type\": \"...\"}\nThe three kinds are:\n  - \"pupil_line\"   a line of the pupil's own work\n  - \"pupil_note\"   something the pupil squeezed above, between or beside the lines: a short note,\n                   a grammar mark, a single letter or digit in the margin\n  - \"teacher_mark\" anything written by the teacher — corrections, ticks, crosses, a grade\nMiss nothing, however short or however faint. Do not stop early. Continue to the bottom of the page.\nNo text, no transcription, no commentary — boxes and kinds only.\n- The page is ruled. A rule line or a crease is NOT a line of writing; never box it.\n- Each entry is ONE physical line of ink. A line that ends at a column is one entry; the red vertical rule is never inside a box. Never one box over two lines.\n- Never return a box covering most of the page.\n- Colour is never a reason to leave writing out: black, blue and pencil ink are all the pupil's.\n- \"teacher_mark\" means one visibly teacher-written mark — a correction, tick, cross, grade or one letter over the pupil's line. It never means the whole page; if the ink is written across the ruled lines as running work, it is pupil_line.",
+        "prompt_sha256": "c76656472d59328aabc00a84bda2bfe6210134b98f219792773f6bf2352cf7f4"
+      },
+      "c3": {
+        "prompt": "This is a photograph of a page from a school exercise book.\nFind EVERY separate piece of handwriting and say WHAT KIND it is. Do not transcribe anything.\nReturn ONLY a JSON array, ordered top to bottom, left column before right.\nEach element: {\"bbox_2d\": [x1, y1, x2, y2], \"type\": \"...\"}\nThe three kinds are:\n  - \"pupil_line\"   a line of the pupil's own work\n  - \"pupil_note\"   something the pupil squeezed above, between or beside the lines: a short note,\n                   a grammar mark, a single letter or digit in the margin\n  - \"teacher_mark\" anything written by the teacher — corrections, ticks, crosses, a grade\nMiss nothing, however short or however faint. Do not stop early. Continue to the bottom of the page.\nNo text, no transcription, no commentary — boxes and kinds only.\n- The page is ruled. A rule line or a crease is NOT a line of writing; never box it.\n- Each entry is ONE physical line of ink. A line that ends at a column is one entry; the red vertical rule is never inside a box. Never one box over two lines.\n- Never return a box covering most of the page.\n- Colour is never a reason to leave writing out: black, blue and pencil ink are all the pupil's.\n- \"teacher_mark\" means one visibly teacher-written mark — a correction, tick, cross, grade or one letter over the pupil's line. It never means the whole page; if the ink is written across the ruled lines as running work, it is pupil_line.\n- Go line by line from the top ruled line to the last ink mark; a short line, a single word, a digit or a date is still one entry.\n- A page of running school work usually holds 15-45 lines; if you have fewer than 10, you stopped early — continue to the bottom.\n- Return every entry you can justify; if unsure between pupil_line and pupil_note, choose pupil_line rather than dropping it.",
+        "prompt_sha256": "a364285409feeae43bebebd60b096f26d00f83643061a4e3107adcae3ae3a13c"
+      }
+    },
+    "invocation": [
+      "omp",
+      "--model",
+      "openai-codex/gpt-5.6-luna",
+      "--thinking",
+      "high",
+      "--no-tools",
+      "--no-session",
+      "--no-extensions",
+      "--no-skills",
+      "--no-rules",
+      "--print",
+      "@<image_path>",
+      "<candidate_prompt>"
+    ]
+  },
+  "coordinate_space": {
+    "normalized": 1000,
+    "origin": "top-left"
+  },
+  "matching": "greedy one-to-one IoU >= 0.25 against ReadingPipeline line boxes",
+  "summary": {
+    "development": {
+      "pages": 6,
+      "canonical_lines": 201,
+      "luna_pupil_lines": 186,
+      "line_count_absolute_error_sum": 19,
+      "rp_luna_matches": 168,
+      "rp_luna_dice": 0.8865,
+      "rp_luna_median_iou": 0.6488,
+      "page_bound_violations": 0,
+      "runtime_seconds": 1525.605,
+      "output_tokens": null
+    },
+    "sealed": {
+      "pages": 1,
+      "canonical_lines": 22,
+      "luna_pupil_lines": 25,
+      "line_count_absolute_error_sum": 3,
+      "rp_luna_matches": 22,
+      "rp_luna_dice": 0.9362,
+      "rp_luna_median_iou": 0.5956,
+      "page_bound_violations": 0,
+      "runtime_seconds": 279.162,
+      "output_tokens": null
+    },
+    "all_pages_diagnostic": {
+      "pages": 7,
+      "canonical_lines": 223,
+      "luna_pupil_lines": 211,
+      "line_count_absolute_error_sum": 22,
+      "rp_luna_matches": 190,
+      "rp_luna_dice": 0.892,
+      "rp_luna_median_iou": 0.6338,
+      "page_bound_violations": 0,
+      "runtime_seconds": 1804.767,
+      "output_tokens": null
+    }
+  },
+  "limits": [
+    "Canonical transcript supplies line counts, not human-drawn geometry boxes.",
+    "RP agreement measures detector consistency, not independent box accuracy.",
+    "The selected Luna prompt emits regions only; it does not emit word boxes.",
+    "Prompt selection used pages 1-6 only; page 34 was held sealed until selection."
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "split": "development",
+      "image": "data/derived/my_notebook_v1/masked/page-01.jpg",
+      "image_sha256": "9572cf7b38b09957b1a43d2c898982b72117e9dfd9f02d6cf332a3dc855bc459",
+      "canonical_lines": 19,
+      "rp_lines": 19,
+      "luna_pupil_lines": 19,
+      "luna_pupil_notes": 0,
+      "luna_teacher_marks": 0,
+      "absolute_error": 0,
+      "page_bound_violations": 0,
+      "rp_agreement": {
+        "a_boxes": 19,
+        "b_boxes": 19,
+        "matches": 19,
+        "dice": 1.0,
+        "median_iou": 0.7808
+      },
+      "runtime_seconds": 112.999,
+      "output_tokens": null,
+      "regions": [
+        {
+          "type": "pupil_line",
+          "bbox": [
+            478.1865,
+            70.1613,
+            643.2849,
+            100.0
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            413.1737,
+            110.0806,
+            876.5326,
+            154.0323
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            413.7439,
+            159.6774,
+            713.7154,
+            200.4032
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            424.0091,
+            208.4677,
+            872.2555,
+            250.8065
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            413.1737,
+            259.6774,
+            876.5326,
+            303.2258
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            413.1737,
+            311.2903,
+            879.6692,
+            353.629
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            411.1776,
+            359.2742,
+            830.0542,
+            406.0484
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            413.1737,
+            407.6613,
+            725.1212,
+            450.0
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            413.1737,
+            452.8226,
+            870.2595,
+            495.1613
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            413.1737,
+            499.1935,
+            865.6972,
+            541.9355
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            412.6034,
+            550.0,
+            668.9478,
+            593.5484
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            413.1737,
+            608.871,
+            869.1189,
+            656.0484
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            417.736,
+            656.4516,
+            869.6892,
+            700.8065
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            413.1737,
+            703.2258,
+            865.412,
+            748.7903
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            412.6034,
+            750.4032,
+            828.3433,
+            793.5484
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            414.5994,
+            800.8065,
+            869.1189,
+            844.3548
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            413.7439,
+            847.5806,
+            869.6892,
+            894.7581
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            413.1737,
+            897.5806,
+            783.8608,
+            944.7581
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            412.6034,
+            945.5645,
+            820.0741,
+            999.5968
+          ]
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "split": "development",
+      "image": "data/derived/my_notebook_v1/masked/page-02.jpg",
+      "image_sha256": "e15494ebbe4bda7b99d33730242d1d3d120fb638dc3c7fd37b5bbf5cf6d080fb",
+      "canonical_lines": 37,
+      "rp_lines": 37,
+      "luna_pupil_lines": 35,
+      "luna_pupil_notes": 1,
+      "luna_teacher_marks": 6,
+      "absolute_error": 2,
+      "page_bound_violations": 0,
+      "rp_agreement": {
+        "a_boxes": 37,
+        "b_boxes": 35,
+        "matches": 34,
+        "dice": 0.9444,
+        "median_iou": 0.6488
+      },
+      "runtime_seconds": 286.071,
+      "output_tokens": null,
+      "regions": [
+        {
+          "type": "pupil_line",
+          "bbox": [
+            11.4058,
+            52.4194,
+            100.0855,
+            96.7742
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            3.7069,
+            123.7903,
+            486.1705,
+            171.7742
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            10.8355,
+            179.0323,
+            484.7448,
+            220.5645
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            10.2652,
+            222.9839,
+            486.1705,
+            265.7258
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            10.2652,
+            270.1613,
+            487.5962,
+            310.8871
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            15.9681,
+            316.129,
+            487.8814,
+            360.4839
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            383.871,
+            494.4397,
+            431.8548
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            433.4677,
+            495.01,
+            475.8065
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            478.629,
+            494.4397,
+            522.9839
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            7.6989,
+            525.8065,
+            493.2991,
+            566.129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            17.1086,
+            570.9677,
+            494.4397,
+            614.1129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            13.9721,
+            617.7419,
+            223.5529,
+            663.7097
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            82.9769,
+            692.7419,
+            424.5794,
+            740.7258
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            87.5392,
+            745.1613,
+            367.2655,
+            786.6935
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            17.9641,
+            813.7097,
+            486.7408,
+            856.4516
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            18.5344,
+            860.8871,
+            490.4477,
+            902.4194
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            19.6749,
+            904.8387,
+            492.4437,
+            947.1774
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            19.1046,
+            945.5645,
+            489.8774,
+            1000.0
+          ]
+        },
+        {
+          "type": "pupil_note",
+          "bbox": [
+            587.6818,
+            51.6129,
+            740.2338,
+            87.5
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            504.7049,
+            94.7581,
+            979.7548,
+            136.2903
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            604.7904,
+            139.9194,
+            788.7083,
+            182.2581
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            510.4078,
+            189.5161,
+            984.3171,
+            197.9839
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            508.982,
+            189.5161,
+            515.5403,
+            291.129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            514.6849,
+            216.129,
+            980.3251,
+            259.2742
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            514.6849,
+            259.2742,
+            947.2484,
+            298.7903
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            510.4078,
+            286.2903,
+            984.3171,
+            294.7581
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            510.4078,
+            311.6935,
+            984.3171,
+            320.5645
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            508.982,
+            311.6935,
+            515.5403,
+            557.2581
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            514.6849,
+            310.8871,
+            960.6501,
+            352.4194
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            514.6849,
+            355.2419,
+            977.1885,
+            393.9516
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            514.6849,
+            394.7581,
+            972.9113,
+            435.0806
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            514.6849,
+            435.0806,
+            970.345,
+            477.0161
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            514.6849,
+            479.4355,
+            964.357,
+            520.1613
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            510.4078,
+            551.6129,
+            984.3171,
+            560.4839
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            599.6578,
+            585.4839,
+            926.718,
+            628.629
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            622.1842,
+            631.4516,
+            790.134,
+            676.6129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            544.9102,
+            686.2903,
+            976.6182,
+            729.8387
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            543.4845,
+            737.0968,
+            970.345,
+            777.8226
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            542.3439,
+            781.4516,
+            980.3251,
+            820.9677
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            531.5084,
+            821.7742,
+            973.4816,
+            862.5
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            522.3838,
+            883.4677,
+            968.9193,
+            925.0
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            523.2392,
+            926.6129,
+            965.7827,
+            967.3387
+          ]
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "split": "development",
+      "image": "data/derived/my_notebook_v1/masked/page-03.jpg",
+      "image_sha256": "6972c74137dc69c5d509a073e49c1bf754cfe93cf80f17eed27e62eb2ef1d881",
+      "canonical_lines": 36,
+      "rp_lines": 31,
+      "luna_pupil_lines": 28,
+      "luna_pupil_notes": 2,
+      "luna_teacher_marks": 2,
+      "absolute_error": 8,
+      "page_bound_violations": 0,
+      "rp_agreement": {
+        "a_boxes": 31,
+        "b_boxes": 28,
+        "matches": 22,
+        "dice": 0.7458,
+        "median_iou": 0.4849
+      },
+      "runtime_seconds": 268.034,
+      "output_tokens": null,
+      "regions": [
+        {
+          "type": "pupil_line",
+          "bbox": [
+            6.2732,
+            62.5,
+            440.8326,
+            97.5806
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            12.8315,
+            102.0161,
+            478.4716,
+            139.9194
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            142.7419,
+            475.335,
+            179.8387
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            182.6613,
+            466.7807,
+            218.5484
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            221.371,
+            476.4756,
+            260.8871
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            264.9194,
+            473.9093,
+            303.2258
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            307.2581,
+            478.4716,
+            345.9677
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            350.4032,
+            477.0459,
+            388.3065
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            391.129,
+            477.0459,
+            431.8548
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            435.4839,
+            470.7727,
+            474.1935
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            479.8387,
+            478.4716,
+            520.1613
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            524.5968,
+            477.9013,
+            561.6935
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            568.5484,
+            476.4756,
+            606.8548
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            612.9032,
+            474.4796,
+            649.5968
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            11.4058,
+            656.4516,
+            475.9053,
+            694.7581
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            700.0,
+            475.9053,
+            739.9194
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            741.9355,
+            475.335,
+            780.2419
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            783.871,
+            475.335,
+            823.7903
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            829.0323,
+            477.9013,
+            866.9355
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            12.2612,
+            873.3871,
+            475.335,
+            952.0161
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            502.1386,
+            48.7903,
+            982.8914,
+            97.5806
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            503.2792,
+            98.3871,
+            988.8794,
+            139.1129
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            781.0094,
+            147.9839,
+            832.3353,
+            214.1129
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            876.2475,
+            225.0,
+            953.5215,
+            265.7258
+          ]
+        },
+        {
+          "type": "pupil_note",
+          "bbox": [
+            597.0915,
+            304.4355,
+            766.4671,
+            345.9677
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            507.2712,
+            351.2097,
+            931.2803,
+            390.3226
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            545.4805,
+            395.5645,
+            929.8546,
+            437.9032
+          ]
+        },
+        {
+          "type": "pupil_note",
+          "bbox": [
+            618.1922,
+            678.2258,
+            771.5997,
+            710.0806
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            519.8175,
+            719.7581,
+            938.9792,
+            761.2903
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            510.1226,
+            766.9355,
+            933.8466,
+            809.2742
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            521.2432,
+            820.1613,
+            992.016,
+            864.5161
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            516.6809,
+            871.7742,
+            918.1637,
+            908.4677
+          ]
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "split": "development",
+      "image": "data/derived/my_notebook_v1/masked/page-04.jpg",
+      "image_sha256": "badc12eff84d84f8e4803191a91b871594a8dd1b3221e497ccd881d48c5f18a0",
+      "canonical_lines": 36,
+      "rp_lines": 36,
+      "luna_pupil_lines": 37,
+      "luna_pupil_notes": 0,
+      "luna_teacher_marks": 1,
+      "absolute_error": 1,
+      "page_bound_violations": 0,
+      "rp_agreement": {
+        "a_boxes": 36,
+        "b_boxes": 37,
+        "matches": 36,
+        "dice": 0.9863,
+        "median_iou": 0.705
+      },
+      "runtime_seconds": 270.303,
+      "output_tokens": null,
+      "regions": [
+        {
+          "type": "pupil_line",
+          "bbox": [
+            12.8315,
+            53.2258,
+            127.1742,
+            86.6935
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            17.9641,
+            113.7097,
+            482.7488,
+            156.4516
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            17.1086,
+            166.129,
+            477.9013,
+            214.9194
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            15.9681,
+            214.9194,
+            447.1058,
+            258.4677
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            15.9681,
+            311.6935,
+            484.1745,
+            358.4677
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            15.3978,
+            359.6774,
+            285.4291,
+            401.2097
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            17.1086,
+            410.8871,
+            484.1745,
+            458.0645
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            15.9681,
+            454.4355,
+            88.1095,
+            493.1452
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            17.9641,
+            501.2097,
+            479.6122,
+            547.1774
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            18.5344,
+            546.371,
+            481.0379,
+            591.5323
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            14.8275,
+            586.2903,
+            484.1745,
+            639.5161
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            16.5384,
+            662.0968,
+            481.6082,
+            715.3226
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            13.9721,
+            706.4516,
+            483.6042,
+            761.2903
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            12.8315,
+            758.871,
+            484.1745,
+            817.3387
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            12.8315,
+            812.0968,
+            482.7488,
+            866.9355
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            12.8315,
+            864.5161,
+            481.6082,
+            919.3548
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            10.8355,
+            917.7419,
+            481.0379,
+            970.1613
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            11.4058,
+            966.5323,
+            481.0379,
+            999.1935
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            509.8375,
+            38.7097,
+            988.8794,
+            85.0806
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            523.2392,
+            93.9516,
+            941.5455,
+            141.5323
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            529.5124,
+            140.7258,
+            942.1158,
+            187.0968
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            512.1186,
+            190.7258,
+            692.8999,
+            233.871
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            527.5164,
+            220.5645,
+            961.2204,
+            275.4032
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            532.0787,
+            270.9677,
+            956.0878,
+            321.371
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            532.0787,
+            318.1452,
+            947.2484,
+            370.1613
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            535.7856,
+            367.7419,
+            769.0334,
+            421.7742
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            527.5164,
+            424.5968,
+            720.5589,
+            469.7581
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            530.653,
+            471.7742,
+            737.6675,
+            514.9194
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            530.653,
+            512.9032,
+            969.4896,
+            563.7097
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            532.0787,
+            559.2742,
+            728.2578,
+            606.0484
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            533.2193,
+            604.8387,
+            803.5358,
+            651.2097
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            533.2193,
+            647.5806,
+            760.1939,
+            701.6129
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            840.6045,
+            643.9516,
+            893.9264,
+            723.7903
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            638.7226,
+            764.9194,
+            768.4631,
+            799.1935
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            530.653,
+            798.3871,
+            982.3211,
+            853.629
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            618.1922,
+            849.1935,
+            952.381,
+            901.6129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            530.0827,
+            898.7903,
+            982.8914,
+            949.1935
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            641.8591,
+            946.7742,
+            981.7508,
+            996.371
+          ]
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "split": "development",
+      "image": "data/derived/my_notebook_v1/masked/page-05.jpg",
+      "image_sha256": "9a50e744eff2d79439493e84e33609b3ca92782609221209124891cb589fed47",
+      "canonical_lines": 34,
+      "rp_lines": 29,
+      "luna_pupil_lines": 35,
+      "luna_pupil_notes": 0,
+      "luna_teacher_marks": 0,
+      "absolute_error": 1,
+      "page_bound_violations": 0,
+      "rp_agreement": {
+        "a_boxes": 29,
+        "b_boxes": 35,
+        "matches": 28,
+        "dice": 0.875,
+        "median_iou": 0.621
+      },
+      "runtime_seconds": 250.431,
+      "output_tokens": null,
+      "regions": [
+        {
+          "type": "pupil_line",
+          "bbox": [
+            12.2612,
+            67.7419,
+            497.006,
+            109.2742
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            13.4018,
+            113.7097,
+            496.1506,
+            152.8226
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            13.9721,
+            157.2581,
+            497.006,
+            197.9839
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            12.8315,
+            203.2258,
+            497.5763,
+            245.5645
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            15.9681,
+            251.2097,
+            496.1506,
+            295.1613
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            15.3978,
+            300.8065,
+            497.5763,
+            343.1452
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            17.1086,
+            348.7903,
+            496.1506,
+            390.3226
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            14.8275,
+            395.5645,
+            497.006,
+            441.5323
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            15.9681,
+            444.3548,
+            496.1506,
+            488.7097
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            15.9681,
+            492.3387,
+            496.1506,
+            535.4839
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            11.4058,
+            539.1129,
+            497.006,
+            587.0968
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            11.4058,
+            587.0968,
+            106.6439,
+            631.4516
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            7.1286,
+            639.5161,
+            495.5803,
+            685.4839
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            7.6989,
+            685.4839,
+            495.01,
+            729.8387
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            0.0,
+            733.4677,
+            233.8181,
+            779.4355
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            124.0376,
+            832.6613,
+            236.3844,
+            870.5645
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            18.5344,
+            877.0161,
+            496.1506,
+            922.9839
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            69.5751,
+            926.6129,
+            495.01,
+            968.1452
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            95.2381,
+            970.9677,
+            496.1506,
+            1000.0
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            514.6849,
+            53.2258,
+            969.4896,
+            102.0161
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            512.9741,
+            101.2097,
+            703.7354,
+            150.0
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            512.9741,
+            150.8065,
+            970.9153,
+            199.5968
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            517.2512,
+            198.7903,
+            963.2164,
+            249.1935
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            515.5403,
+            247.5806,
+            705.7314,
+            297.1774
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            520.6729,
+            296.371,
+            969.4896,
+            346.7742
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            515.5403,
+            345.1613,
+            969.4896,
+            396.371
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            512.1186,
+            439.1129,
+            968.9193,
+            488.7097
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            511.5483,
+            484.2742,
+            827.2027,
+            533.871
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            512.1186,
+            531.0484,
+            958.0838,
+            579.0323
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            510.4078,
+            576.2097,
+            952.9512,
+            625.0
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            517.2512,
+            619.7581,
+            954.9472,
+            670.1613
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            511.5483,
+            664.9194,
+            964.357,
+            713.7097
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            519.8175,
+            703.629,
+            639.8631,
+            737.0968
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            517.2512,
+            729.4355,
+            648.4175,
+            773.7903
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            516.1106,
+            778.629,
+            539.2073,
+            819.3548
+          ]
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "split": "development",
+      "image": "data/derived/my_notebook_v1/masked/page-06.jpg",
+      "image_sha256": "2d99432e8f87a3bb9f646a2e26cf5a1b58030d5c2e39557ff2843726c13f9955",
+      "canonical_lines": 39,
+      "rp_lines": 41,
+      "luna_pupil_lines": 32,
+      "luna_pupil_notes": 0,
+      "luna_teacher_marks": 6,
+      "absolute_error": 7,
+      "page_bound_violations": 0,
+      "rp_agreement": {
+        "a_boxes": 41,
+        "b_boxes": 32,
+        "matches": 29,
+        "dice": 0.7945,
+        "median_iou": 0.4928
+      },
+      "runtime_seconds": 337.767,
+      "output_tokens": null,
+      "regions": [
+        {
+          "type": "pupil_line",
+          "bbox": [
+            45.623,
+            82.6613,
+            491.8734,
+            133.0645
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            50.4705,
+            132.6613,
+            134.0177,
+            189.5161
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            45.623,
+            207.2581,
+            492.7288,
+            258.0645
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            54.1774,
+            256.0484,
+            165.3835,
+            303.2258
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            45.623,
+            302.4194,
+            493.2991,
+            368.5484
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            52.7516,
+            366.9355,
+            199.6008,
+            423.3871
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            51.3259,
+            427.4194,
+            499.002,
+            485.8871
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            52.1814,
+            487.9032,
+            352.1528,
+            548.3871
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            179.6407,
+            544.3548,
+            290.8469,
+            598.7903
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            45.623,
+            597.5806,
+            353.5786,
+            661.2903
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            53.6071,
+            657.2581,
+            205.3037,
+            719.7581
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            51.3259,
+            713.7097,
+            473.339,
+            776.2097
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            54.1774,
+            772.1774,
+            142.572,
+            834.6774
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            44.1973,
+            826.6129,
+            276.5897,
+            895.1613
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            52.7516,
+            891.129,
+            290.8469,
+            951.6129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            513.2592,
+            80.6452,
+            704.3057,
+            133.0645
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            513.2592,
+            133.0645,
+            601.6538,
+            189.5161
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            513.2592,
+            205.6452,
+            670.0884,
+            256.0484
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            513.2592,
+            256.0484,
+            561.7337,
+            302.4194
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            510.4078,
+            302.4194,
+            664.3855,
+            368.9516
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            514.6849,
+            364.9194,
+            593.0995,
+            421.371
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            514.6849,
+            421.371,
+            721.4143,
+            483.871
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            670.0884,
+            491.9355,
+            970.9153,
+            540.3226
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            675.7913,
+            540.3226,
+            781.2946,
+            598.7903
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            538.9222,
+            600.8065,
+            692.8999,
+            661.2903
+          ]
+        },
+        {
+          "type": "teacher_mark",
+          "bbox": [
+            809.809,
+            600.8065,
+            970.9153,
+            661.2903
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            533.2193,
+            657.2581,
+            597.3767,
+            715.7258
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            798.4032,
+            657.2581,
+            909.6094,
+            715.7258
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            533.2193,
+            713.7097,
+            650.1283,
+            776.2097
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            767.0374,
+            713.7097,
+            889.6493,
+            776.2097
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            530.3678,
+            770.1613,
+            613.0596,
+            834.6774
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            767.0374,
+            770.1613,
+            866.8378,
+            834.6774
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            531.7936,
+            826.6129,
+            603.0796,
+            891.129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            761.3345,
+            826.6129,
+            846.8777,
+            891.129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            530.3678,
+            887.0968,
+            615.911,
+            951.6129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            752.7802,
+            887.0968,
+            863.9863,
+            951.6129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            530.3678,
+            939.5161,
+            601.6538,
+            1000.0
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            764.1859,
+            939.5161,
+            868.2635,
+            1000.0
+          ]
+        }
+      ]
+    },
+    {
+      "page": 34,
+      "split": "sealed",
+      "image": "data/derived/my_notebook_v1/masked/page-34.jpg",
+      "image_sha256": "84fecca9bbada4748849504b19b6ab81138c5e664b468d57e848328f55e4fcd5",
+      "canonical_lines": 22,
+      "rp_lines": 22,
+      "luna_pupil_lines": 25,
+      "luna_pupil_notes": 0,
+      "luna_teacher_marks": 0,
+      "absolute_error": 3,
+      "page_bound_violations": 0,
+      "rp_agreement": {
+        "a_boxes": 22,
+        "b_boxes": 25,
+        "matches": 22,
+        "dice": 0.9362,
+        "median_iou": 0.5956
+      },
+      "runtime_seconds": 279.162,
+      "output_tokens": null,
+      "regions": [
+        {
+          "type": "pupil_line",
+          "bbox": [
+            416.3102,
+            97.5806,
+            854.0063,
+            136.2903
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            399.2016,
+            133.871,
+            865.412,
+            172.5806
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            397.7759,
+            168.9516,
+            872.5406,
+            208.4677
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            397.7759,
+            204.8387,
+            749.9287,
+            243.9516
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            397.7759,
+            240.3226,
+            874.8218,
+            279.8387
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            396.3502,
+            275.4032,
+            876.8178,
+            316.9355
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            396.3502,
+            310.8871,
+            875.3921,
+            351.6129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            396.3502,
+            345.9677,
+            871.1149,
+            386.6935
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            394.9244,
+            381.0484,
+            879.6692,
+            423.3871
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            396.3502,
+            416.5323,
+            878.2435,
+            458.0645
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            396.3502,
+            451.6129,
+            875.9624,
+            493.9516
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            394.9244,
+            486.6935,
+            875.3921,
+            529.4355
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            396.3502,
+            522.1774,
+            873.9664,
+            564.5161
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            394.9244,
+            557.2581,
+            876.8178,
+            600.8065
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            399.2016,
+            592.3387,
+            881.095,
+            635.0806
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            396.3502,
+            627.8226,
+            875.3921,
+            670.1613
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            396.3502,
+            662.0968,
+            876.8178,
+            704.8387
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            394.9244,
+            697.5806,
+            881.095,
+            741.129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            394.9244,
+            733.0645,
+            881.095,
+            776.2097
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            394.9244,
+            768.1452,
+            881.095,
+            812.5
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            393.4987,
+            803.2258,
+            879.6692,
+            846.7742
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            393.4987,
+            837.9032,
+            882.5207,
+            881.0484
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            393.4987,
+            872.9839,
+            883.9464,
+            916.129
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            393.4987,
+            908.0645,
+            883.9464,
+            950.8065
+          ]
+        },
+        {
+          "type": "pupil_line",
+          "bbox": [
+            393.4987,
+            942.7419,
+            883.9464,
+            983.871
+          ]
+        }
+      ]
+    }
+  ]
+}
