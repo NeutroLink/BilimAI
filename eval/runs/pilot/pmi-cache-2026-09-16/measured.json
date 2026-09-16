@@ -1,0 +1,14 @@
+{
+ "box": "vast 51238599, RTX 5090, EPYC 9334, Spain, $1.004/h",
+ "image": "ghcr.io/neutrolink/bilimai-worker@sha256:f0327a8d9cecb5c27fbaf92acb3afc46e77db813fc130b5c2f51c2a154001e4a",
+ "gate": {"accelerator": "ok", "kernel_compile": "ok 1.01 s", "ink_checker_on_gpu": "CUDAExecutionProvider", "evaluate_page": "ok 12 findings"},
+ "retired_theory": "the ink checker was NOT silently on CPU; session providers are CUDA and it costs 9.9 ms/word at batch 20, same as the Mac's Neural Engine",
+ "grade_profile_before": {"grade_ms": 3107, "verifier_judge_ms": 3106, "pmi_ms": 2768, "words": 16, "ms_per_word": 173, "glm_forwards": 78},
+ "page_ms_before": {"detect": 580, "read": 780, "grade": 2300, "render": 31},
+ "page_ms_after_prompt_cache": {"detect": 594, "read": 835, "grade": 2085, "render": 27},
+ "equality": {"worst_pmi_score_difference": 0.0, "words": 4, "candidates_each": 8},
+ "null_branch_batch_curve_ms": {"8": 25, "16": 26, "32": 29, "64": 35, "128": 47},
+ "remaining_win_ms": 353,
+ "render_before_after_ms": [1037, 31],
+ "cost_usd": 0.46
+}

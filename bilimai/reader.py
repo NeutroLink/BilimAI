@@ -16,6 +16,7 @@ from __future__ import annotations
 from pathlib import Path
 from PIL import Image
 
+import hashlib
 import re as _re
 
 _THINK = _re.compile(r"^\s*<think>.*?</think>\s*", _re.S)
@@ -196,16 +197,45 @@ class VLMLineReader:
             self._rope = next((m for m in self._m.modules() if hasattr(m, "rope_deltas")), None)
         return self._rope
 
-    def forced_logprobs(self, inputs, seqs, has_image=True):
+    def _prompt_pass(self, inputs, has_image, cache_key=None):
+        """Run the prompt once and keep its KV cache, because the PMI judge asks for the same prompt again and again.
+
+        Measured 2026-09-16 on a rented 5090 (cProfile over one real page, `eval/runs/pilot/`): `grade` cost 3107 ms of
+        a 3700 ms page, of which `PMIWordVerifier.pmi` was 2768 ms over 16 words — 173 ms each, against the 30 ms this
+        class's docstring claimed. The profile showed 78 GLM forward passes for those 16 words: each word paid for a
+        picture prompt AND a no-picture prompt before its candidates were scored, and BOTH are identical work. The
+        no-image prompt is one fixed sentence, the same for every word on every page; the image prompt is the LINE crop,
+        shared by every judged word on that line. So they are computed once and reused.
+
+        The returned cache is never handed out for mutation — `forced_logprobs` deep-copies it before expanding it to
+        the candidate batch, which it already did. `rope_deltas` is part of the prompt's result, not a global, so it is
+        stored beside the cache and restored on a hit; getting that wrong would shift every candidate's positions.
+        """
+        memo = getattr(self, "_prompt_memo", None)
+        if memo is None: memo = self._prompt_memo = {}
+        rope = self._rope_holder()
+        if cache_key is not None and cache_key in memo:
+            pkv, last, delta = memo[cache_key]
+            if rope is not None: rope.rope_deltas = delta
+            return pkv, last
+        if not has_image and rope is not None: rope.rope_deltas = None
+        pre = self._m(**inputs, use_cache=True)
+        pkv, last = pre.past_key_values, self._torch.log_softmax(pre.logits[0, -1].float(), dim=-1)
+        if cache_key is not None:
+            # one picture prompt plus the fixed no-picture one: a line's KV cache is tens of MB, and holding every
+            # line of a page would grow VRAM for no gain, since the judge works through the page line by line
+            for key in [k for k in memo if k != "null" and k != cache_key]: memo.pop(key)
+            memo[cache_key] = (pkv, last, rope.rope_deltas if rope is not None else None)
+        return pkv, last
+
+    def forced_logprobs(self, inputs, seqs, has_image=True, cache_key=None):
         """Teacher-force several word sequences after the same (cached) prompt. Returns per seq (token logprobs, word spans).
         The prompt runs once; only the candidate tokens are scored against the expanded KV cache."""
         import copy; torch = self._torch; dev = self._dev; tok = self.proc.tokenizer
         PAD = tok.pad_token_id if tok.pad_token_id is not None else 0
         rope = self._rope_holder()
         with torch.no_grad():
-            if not has_image and rope is not None: rope.rope_deltas = None
-            pre = self._m(**inputs, use_cache=True)
-            pkv = pre.past_key_values; last = torch.log_softmax(pre.logits[0, -1].float(), dim=-1)
+            pkv, last = self._prompt_pass(inputs, has_image, cache_key)
             packs = [self._word_tokens(ws) for ws in seqs]; L = max(len(p[0]) for p in packs); B = len(seqs); P = inputs["input_ids"].shape[1]
             tgt = torch.full((B, L), PAD, dtype=torch.long, device=dev); attn = torch.zeros((B, P + L), dtype=torch.long, device=dev)
             for i, (ids, _) in enumerate(packs): tgt[i, :len(ids)] = torch.tensor(ids, device=dev); attn[i, :P + len(ids)] = 1
@@ -228,11 +258,15 @@ class VLMLineReader:
 
     def pmi_word_scores(self, crop, line_words, wi, strings, lam=0.5):
         """For the word at index `wi` of `line_words` (the read line), score each spelling in `strings` in that line context:
-        s = log p(word | image, context) − lam · log p(word | no image, context). Returns a list aligned with `strings`."""
+        s = log p(word | image, context) − lam · log p(word | no image, context). Returns a list aligned with `strings`.
+
+        Both prompts are cached (see `_prompt_pass`): the line crop's own bytes key the picture prompt, so consecutive
+        words on one line reuse it, and the no-picture prompt is keyed once for the life of the reader."""
         if self._m is None: self._load()
         seqs = [line_words[:wi] + [s_] + line_words[wi + 1:] for s_ in strings]
-        R_img = self.forced_logprobs(self._prefix_inputs(crop), seqs, True)
-        R_null = self.forced_logprobs(self._null_inputs(), seqs, False)
+        line_key = hashlib.blake2b(crop.tobytes(), digest_size=16).hexdigest()
+        R_img = self.forced_logprobs(self._prefix_inputs(crop), seqs, True, cache_key=line_key)
+        R_null = self.forced_logprobs(self._null_inputs(), seqs, False, cache_key="null")
         out = []
         for (li, sp), (ln, _) in zip(R_img, R_null):
             a, b = sp[wi]; out.append(sum(li[a:b]) - lam * sum(ln[a:b]))
