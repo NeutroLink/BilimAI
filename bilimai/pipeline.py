@@ -77,6 +77,12 @@ def _default_locator():
 
 
 # ============================================================================ READ
+# Line crops per reader call. 2026-09-16: 16 → 32 on the rented RTX 5090 moved the READ stage of the
+# 3507x2480 real pupil page from 661 ms to 526 ms with VRAM to spare (4.4 GB of 33.7 GB used). The
+# pipeline passes it explicitly so an alternate reader's own default cannot silently hold 16.
+READ_BATCH = 32
+
+
 class GLMReader:
     """VLM line reader (+ optional LoRA adapter). Thin wrapper over bilimai.reader (batched, 2026-08-18).
     2026-08-22: picks the reader family from the checkpoint's own config.json via make_reader, so an alternate base
@@ -90,7 +96,7 @@ class GLMReader:
     def read_line(self, crop: Image.Image) -> tuple[str, float]:
         return self._r.read_line(crop)
 
-    def read_lines(self, crops: list, batch_size: int = 16) -> list[tuple[str, float]]:
+    def read_lines(self, crops: list, batch_size: int = READ_BATCH) -> list[tuple[str, float]]:
         t, c = self._r.read(crops, batch_size=batch_size); return list(zip(t, c))
 
 
@@ -194,7 +200,7 @@ class Pipeline:
         for b in boxes:
             pad = 12; x0, y0, x1, y1 = b
             crops.append(img.crop((max(0, x0 - pad), max(0, y0 - pad), min(img.size[0], x1 + pad), min(img.size[1], y1 + pad))))
-        reads = self.reader.read_lines(crops) if hasattr(self.reader, "read_lines") else [self.reader.read_line(c) for c in crops]
+        reads = self.reader.read_lines(crops, batch_size=READ_BATCH) if hasattr(self.reader, "read_lines") else [self.reader.read_line(c) for c in crops]
         guard_notes = {}
         if self.read_guards:                                   # 0f, default OFF: flags + confidence clamp only, text untouched
             reads, guard_notes = self._guard_reads(img, boxes, reads)
@@ -236,10 +242,14 @@ class Pipeline:
         timings["grade"] = round((time.time() - t) * 1000)
 
         # RENDER
+        # 2026-09-16: JPEG, not PNG. Drawing all 33 marks of a real page is 8 ms; saving that page as
+        # PNG was 423 ms of the 1037 ms RENDER stage and produced 7.78 MB, while JPEG quality=88 is
+        # 20 ms and 1.42 MB. The page arrived as a JPEG photograph, so PNG preserved nothing real.
         marked_uri = None
         if out_dir is not None and res["marks"]:
             t = time.time(); out_dir = Path(out_dir); out_dir.mkdir(parents=True, exist_ok=True)
-            marked = render(img, res["marks"]); marked_uri = str(out_dir / f"{job}.marked.png"); marked.save(marked_uri)
+            marked = render(img, res["marks"]); marked_uri = str(out_dir / f"{job}.marked.jpg")
+            marked.save(marked_uri, "JPEG", quality=88)
             timings["render"] = round((time.time() - t) * 1000)
         timings["total"] = round((time.time() - t0) * 1000)
 
