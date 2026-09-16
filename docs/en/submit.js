@@ -1,8 +1,12 @@
+import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "../pilot-client.js";
+
 (() => {
   "use strict";
 
   // Pilot gateway contract:
-  // Submission authorization is enforced by the gateway's machine certificate, never by a browser-visible secret.
+  // The session identity this page carries, the header it travels in and the shape of the gateway's
+  // refusals all live in ../pilot-client.js, which the Russian page imports too — the two locales
+  // differ in their wording, never in the protocol (local://public-pilot-contracts.md).
   // Result URLs are public, opaque and expire after one hour.
   const form = document.getElementById("submission-form");
   if (!form) return;
@@ -56,6 +60,32 @@
   }
 
   const apiBase = endpoint();
+
+  function ordinal(place) {
+    const teens = place % 100;
+    if (teens >= 11 && teens <= 13) return `${place}th`;
+    return `${place}${["th", "st", "nd", "rd"][place % 10] || "th"}`;
+  }
+
+  // "You are 3rd in line" — the gateway reports a place only while a page is actually waiting, and
+  // the phase says what the line is waiting for.
+  function phaseText(payload) {
+    const phase = statusLabels[payload.status] || "Check in progress…";
+    const place = queuePlace(payload);
+    return place > 0 ? `You are ${ordinal(place)} in line · ${phase}` : phase;
+  }
+
+  // The gateway answers in Russian only, so this page says the same thing in English from the same
+  // numbers: how many minutes `retry_after` is, and which allowance ran out
+  // (local://public-pilot-contracts.md §HTTP surface).
+  function refusalMessage(refusal) {
+    if (refusal.scope === "queue") return "The queue is full. Try again in a few minutes.";
+    if (refusal.retryAfter <= 0) {
+      return "The gateway refused the submission. Try again a little later.";
+    }
+    const minutes = Math.max(1, Math.ceil(refusal.retryAfter / 60));
+    return `Too many checks from this device. Try again in ${minutes} minute${minutes === 1 ? "" : "s"}.`;
+  }
 
   function setFeedback(message, isError = false) {
     feedback.textContent = message;
@@ -238,14 +268,22 @@
   }
 
   async function fetchJson(path, options = {}) {
-    const response = await fetch(`${apiBase}${path}`, {...options, credentials: "include"});
+    const response = await fetch(`${apiBase}${path}`, {
+      ...options,
+      headers: sessionHeaders(options.headers),
+      credentials: "include",
+    });
+    const payload = await response.json().catch(() => null);
+    // An identity is minted on a refusal as well as on an accepted job, so every response is read
+    // for one before anything is decided about it.
+    adoptSession(response, payload);
     if (!response.ok) {
-      const failure = await response.json().catch(() => null);
-      const message = failure?.error || failure?.detail || `The server rejected the request (${response.status}).`;
+      const refusal = refusalFrom(response, payload);
+      if (refusal) throw new Error(refusalMessage(refusal));
+      const message = payload?.error || payload?.detail || `The server rejected the request (${response.status}).`;
       throw new Error(String(message));
     }
     if (response.status === 204) return null;  // Reset confirms with an empty body: DELETE /v1/submissions/{id}.
-    const payload = await response.json().catch(() => null);
     if (!payload) throw new Error("The server returned a response that could not be read.");
     return payload;
   }
@@ -262,7 +300,7 @@
       if (payload.status === "failed" || payload.status === "cancelled") {
         throw new Error(payload.error || "The check could not be completed.");
       }
-      progressPhase.textContent = statusLabels[payload.status] || "Check in progress…";
+      progressPhase.textContent = phaseText(payload);
       await new Promise((resolve) => window.setTimeout(resolve, 1500));
     }
   }
