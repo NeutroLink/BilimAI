@@ -67,4 +67,40 @@ docs/pitch/motion/*.mp4
 # labels by hand; data/derived/my_notebook_v1/boxes/ is word geometry measured on real
 # pupil pages, which is pupil data and does not leave this machine.
 .lavish/
-data/derived/my_notebook_v1/boxes/
+data/derived/my_notebook_v1/
+
+# 2026-09-16: artifacts and scratch — on disk, never in git.
+# Media, logs, temp trees and checksums produced by verification runs. The receipts that
+# matter are the small JSON/MD lives beside them, and 584 are already tracked here; ignore
+# rules do not untrack them, so reading this tree still works.
+.omp/execution/**/*.png
+.omp/execution/**/*.jpg
+.omp/execution/**/*.jpeg
+.omp/execution/**/*.err
+.omp/execution/**/*.sha256
+.omp/execution/**/tmp/
+# Pinned-file manifests and baseline dumps from verification runs: ~20-30 MB each,
+# evidence but regenerable and heavy.
+.omp/execution/verification/**/manifest_*.json
+.omp/execution/verification/**/baseline_*.json
+.omp/execution/**/*.pre
+.omp/execution/**/*.pre-trace
+.omp/execution/**/*.out
+# eval/runs keeps its result JSONs tracked (1,269 of them); these are the run's by-products.
+eval/runs/**/*.png
+eval/runs/**/*.pdf
+eval/runs/**/*.jpg
+eval/runs/dictation/ctc_PROVCHK_*.json
+# Investor-deck build outputs and the motion source, kept local alongside the mp4.
+docs/pitch/*.pptx
+docs/pitch/motion/*.html
+docs/pitch/motion/*.png
+.codex-investor-deck/
+# Scratch trees written by agents while auditing; nothing here is a deliverable.
+geometry_audit/
+# Frozen-root trees are absolute local symlinks (bilimai -> this checkout, models -> this
+# checkout); committing them would pin another machine's paths.
+eval/runs/**/frozen_root/
+.hfmigrate/*.out
+# codebase-memory's index and client state churn on every query; they are not source.
+.codebase-memory/
