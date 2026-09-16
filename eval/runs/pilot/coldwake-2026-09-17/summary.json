@@ -1,0 +1,142 @@
+{
+  "run": "coldwake-2026-09-17",
+  "created_at": "2026-09-16T19:44:25Z",
+  "gateway": "https://bilimai.waib.net",
+  "live_gateway": true,
+  "origin": "https://neutrolink.github.io",
+  "dataset": {
+    "root": "data/derived/my_notebook_v1",
+    "fold": "dev",
+    "pages_permitted": [
+      6,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "image": "the canonical record's evaluation_image (the masked page, never oriented/)"
+  },
+  "patched_pages": [
+    47
+  ],
+  "session": {
+    "header": "X-Bilimai-Session",
+    "fresh_per_page": true,
+    "identities_used": 1,
+    "identity_fingerprints": [
+      "d13608f3e9ba"
+    ]
+  },
+  "pages": [
+    {
+      "page": 47,
+      "canonical": "data/derived/my_notebook_v1/canonical/page-47.json",
+      "key_sha256": "827429c41113c8e5bf6298d6b31e50faabc1891f18cf7471e9f246461df2fa23",
+      "key_characters": 765,
+      "scored_lines": 31,
+      "resolved_line_joins": [],
+      "errors_patched": true,
+      "declared_errors": 2,
+      "errors_applied": 2,
+      "errors_applied_ids": [
+        "P47-E01",
+        "P47-E03"
+      ],
+      "errors_unapplied_ids": [],
+      "role": "detection",
+      "image": "data/derived/my_notebook_v1/masked/page-47.jpg",
+      "image_sha256": "c6cf4593bdac3322f79f3f566732474a2b424f7a912d0f0642c9f2509bf60ec7",
+      "image_bytes": 3098903,
+      "job_id": "Faabg4sURCyg3HTh",
+      "status": "complete",
+      "delivered": true,
+      "error": null,
+      "findings": 35,
+      "artifacts": {
+        "assessment": "page-47/assessment.json",
+        "document": "page-47/document.jpg",
+        "report": "page-47/report.pdf"
+      },
+      "key_basis": "the transcription with the declared mistakes corrected, so the key holds the correct text and the mistakes known to be in the ink are what a finding count is measured against",
+      "expected": "findings anchored to the 2 corrected mistake(s) in the ink",
+      "submitted_at": "2026-09-16T19:44:07Z",
+      "artifact_bytes": {
+        "document": 2009805,
+        "report": 1535127
+      },
+      "seconds": 18.004,
+      "finished_at": "2026-09-16T19:44:25Z",
+      "requests": [
+        {
+          "method": "POST",
+          "url": "https://bilimai.waib.net/v1/submissions",
+          "status": 202,
+          "seconds": 4.187,
+          "response_bytes": 211
+        },
+        {
+          "method": "GET",
+          "url": "https://bilimai.waib.net/v1/submissions/Faabg4sURCyg3HTh",
+          "status": 200,
+          "seconds": 0.336,
+          "response_bytes": 70
+        },
+        {
+          "method": "GET",
+          "url": "https://bilimai.waib.net/v1/submissions/Faabg4sURCyg3HTh",
+          "status": 200,
+          "seconds": 0.332,
+          "response_bytes": 70
+        },
+        {
+          "method": "GET",
+          "url": "https://bilimai.waib.net/v1/submissions/Faabg4sURCyg3HTh",
+          "status": 200,
+          "seconds": 0.34,
+          "response_bytes": 70
+        },
+        {
+          "method": "GET",
+          "url": "https://bilimai.waib.net/v1/submissions/Faabg4sURCyg3HTh",
+          "status": 200,
+          "seconds": 0.342,
+          "response_bytes": 70
+        },
+        {
+          "method": "GET",
+          "url": "https://bilimai.waib.net/v1/submissions/Faabg4sURCyg3HTh",
+          "status": 200,
+          "seconds": 0.32,
+          "response_bytes": 70
+        },
+        {
+          "method": "GET",
+          "url": "https://bilimai.waib.net/v1/submissions/Faabg4sURCyg3HTh",
+          "status": 200,
+          "seconds": 0.337,
+          "response_bytes": 3694
+        },
+        {
+          "method": "GET",
+          "url": "https://bilimai.waib.net/v1/public/matl5eNxCCWedRXVnlcTm8zGJXYnGesSRwj2XQr_mgE/document.jpg",
+          "status": 200,
+          "seconds": 0.901,
+          "response_bytes": 2009805
+        },
+        {
+          "method": "GET",
+          "url": "https://bilimai.waib.net/v1/public/matl5eNxCCWedRXVnlcTm8zGJXYnGesSRwj2XQr_mgE/report.pdf",
+          "status": 200,
+          "seconds": 0.892,
+          "response_bytes": 1535127
+        }
+      ]
+    }
+  ],
+  "complete": 1,
+  "failed": 0
+}
