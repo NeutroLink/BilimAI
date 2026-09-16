@@ -1,0 +1,557 @@
+{
+ "timestamp": "2026-09-12T13:06:28+0500",
+ "git_head": "6ad912094f545bb6ccc30f2ee5d4e4359183fbdb",
+ "onnx_path": "models/readingpipeline/segm/segm_model.onnx",
+ "onnx_sha256": "511b05e81ff544d236b7635b8a4367096cb679991c5d922d04c8fa7524f36127",
+ "provider_requested": "coreml",
+ "providers_requested": [
+  "CoreMLExecutionProvider",
+  "CPUExecutionProvider"
+ ],
+ "providers_session_reports": [
+  "CoreMLExecutionProvider",
+  "CPUExecutionProvider"
+ ],
+ "coreml_ep_options": {
+  "MLComputeUnits": "ALL",
+  "ModelFormat": "MLProgram"
+ },
+ "superseded_config": {
+  "date": "2026-09-12",
+  "superseded_artifact": "detector_v1_boxes.json first pass (deleted, not kept as a second artifact)",
+  "superseded_provider_config": "plain providers=['CoreMLExecutionProvider','CPUExecutionProvider'] with no EP options, built by hand in the driver",
+  "why_discarded": "plain-EP CoreML disagreed with CPU on 46/57 pages, max coordinate delta 2054.374 px, page 29 also gained one word (137 -> 138); a regenerable prediction dump that disagrees with the shipped configuration is a trap, not evidence",
+  "accepted_provider_config": "RPDetector class default: explicit {'MLComputeUnits':'ALL','ModelFormat':'MLProgram'} - matches CPU bit-for-bit",
+  "evidence": "eval/runs/notebook_v1/detector_provider_ab.json"
+ },
+ "provider_used": "CoreMLExecutionProvider",
+ "coreml_available": true,
+ "available_providers": [
+  "CoreMLExecutionProvider",
+  "AzureExecutionProvider",
+  "CPUExecutionProvider"
+ ],
+ "provider_fallback_reason": null,
+ "threads": 4,
+ "thresholds": {
+  "thr_word": 0.8,
+  "thr_line": 0.5,
+  "dilate": 3,
+  "min_area": 10,
+  "unclip": 0.0
+ },
+ "growth": {
+  "line_grow": [
+   0.25,
+   0.365,
+   0.02
+  ],
+  "word_grow": [
+   0.344,
+   0.416,
+   0.105
+  ]
+ },
+ "sizing_probe": {
+  "page": 1,
+  "wall_clock_s": 0.4154,
+  "peak_rss_mb": 1266.7,
+  "note": "run FIRST, alone, before the remaining pages"
+ },
+ "per_page_wall_clock_s": {
+  "01": 0.3526,
+  "02": 0.2764,
+  "03": 0.2755,
+  "04": 0.2724,
+  "05": 0.2582,
+  "06": 0.2627,
+  "07": 0.2533,
+  "08": 0.2492,
+  "09": 0.2437,
+  "10": 0.2809,
+  "11": 0.2726,
+  "12": 0.2796,
+  "13": 0.2859,
+  "14": 0.2677,
+  "15": 0.2734,
+  "16": 0.2771,
+  "17": 0.2709,
+  "18": 0.2858,
+  "19": 0.2748,
+  "20": 0.275,
+  "21": 0.2683,
+  "22": 0.281,
+  "23": 0.278,
+  "24": 0.2688,
+  "25": 0.271,
+  "26": 0.2601,
+  "27": 0.2615,
+  "28": 0.2723,
+  "29": 0.2731,
+  "30": 0.2821,
+  "31": 0.2658,
+  "32": 0.2719,
+  "33": 0.2477,
+  "34": 0.2503,
+  "35": 0.2696,
+  "36": 0.2795,
+  "37": 0.2704,
+  "38": 0.2538,
+  "39": 0.2671,
+  "40": 0.2752,
+  "41": 0.2656,
+  "42": 0.2424,
+  "43": 0.2493,
+  "44": 0.2574,
+  "45": 0.2527,
+  "46": 0.2519,
+  "47": 0.2595,
+  "48": 0.2629,
+  "49": 0.263,
+  "50": 0.2683,
+  "51": 0.2544,
+  "52": 0.2376,
+  "53": 0.2604,
+  "54": 0.2623,
+  "55": 0.261,
+  "56": 0.268,
+  "57": 0.276
+ },
+ "full_run": {
+  "pages": 57,
+  "wall_clock_s": 17.2571,
+  "pages_per_second": 3.303,
+  "peak_rss_mb": 1531.9
+ },
+ "counts": {
+  "per_page": [
+   {
+    "page": 1,
+    "fold": "sealed",
+    "detected_lines": 19,
+    "transcript_scored_lines": 20,
+    "signed_diff": -1
+   },
+   {
+    "page": 2,
+    "fold": "sealed",
+    "detected_lines": 37,
+    "transcript_scored_lines": 38,
+    "signed_diff": -1
+   },
+   {
+    "page": 3,
+    "fold": "sealed",
+    "detected_lines": 31,
+    "transcript_scored_lines": 37,
+    "signed_diff": -6
+   },
+   {
+    "page": 4,
+    "fold": "sealed",
+    "detected_lines": 36,
+    "transcript_scored_lines": 38,
+    "signed_diff": -2
+   },
+   {
+    "page": 5,
+    "fold": "sealed",
+    "detected_lines": 29,
+    "transcript_scored_lines": 36,
+    "signed_diff": -7
+   },
+   {
+    "page": 6,
+    "fold": "dev",
+    "detected_lines": 41,
+    "transcript_scored_lines": 39,
+    "signed_diff": 2
+   },
+   {
+    "page": 7,
+    "fold": "sealed",
+    "detected_lines": 27,
+    "transcript_scored_lines": 25,
+    "signed_diff": 2
+   },
+   {
+    "page": 8,
+    "fold": "sealed",
+    "detected_lines": 20,
+    "transcript_scored_lines": 18,
+    "signed_diff": 2
+   },
+   {
+    "page": 9,
+    "fold": "sealed",
+    "detected_lines": 15,
+    "transcript_scored_lines": 15,
+    "signed_diff": 0
+   },
+   {
+    "page": 10,
+    "fold": "sealed",
+    "detected_lines": 47,
+    "transcript_scored_lines": 45,
+    "signed_diff": 2
+   },
+   {
+    "page": 11,
+    "fold": "sealed",
+    "detected_lines": 47,
+    "transcript_scored_lines": 38,
+    "signed_diff": 9
+   },
+   {
+    "page": 12,
+    "fold": "sealed",
+    "detected_lines": 50,
+    "transcript_scored_lines": 45,
+    "signed_diff": 5
+   },
+   {
+    "page": 13,
+    "fold": "sealed",
+    "detected_lines": 45,
+    "transcript_scored_lines": 45,
+    "signed_diff": 0
+   },
+   {
+    "page": 14,
+    "fold": "sealed",
+    "detected_lines": 47,
+    "transcript_scored_lines": 46,
+    "signed_diff": 1
+   },
+   {
+    "page": 15,
+    "fold": "sealed",
+    "detected_lines": 45,
+    "transcript_scored_lines": 45,
+    "signed_diff": 0
+   },
+   {
+    "page": 16,
+    "fold": "sealed",
+    "detected_lines": 41,
+    "transcript_scored_lines": 40,
+    "signed_diff": 1
+   },
+   {
+    "page": 17,
+    "fold": "sealed",
+    "detected_lines": 40,
+    "transcript_scored_lines": 35,
+    "signed_diff": 5
+   },
+   {
+    "page": 18,
+    "fold": "sealed",
+    "detected_lines": 60,
+    "transcript_scored_lines": 45,
+    "signed_diff": 15
+   },
+   {
+    "page": 19,
+    "fold": "sealed",
+    "detected_lines": 53,
+    "transcript_scored_lines": 42,
+    "signed_diff": 11
+   },
+   {
+    "page": 20,
+    "fold": "sealed",
+    "detected_lines": 48,
+    "transcript_scored_lines": 43,
+    "signed_diff": 5
+   },
+   {
+    "page": 21,
+    "fold": "sealed",
+    "detected_lines": 44,
+    "transcript_scored_lines": 35,
+    "signed_diff": 9
+   },
+   {
+    "page": 22,
+    "fold": "sealed",
+    "detected_lines": 47,
+    "transcript_scored_lines": 39,
+    "signed_diff": 8
+   },
+   {
+    "page": 23,
+    "fold": "sealed",
+    "detected_lines": 45,
+    "transcript_scored_lines": 36,
+    "signed_diff": 9
+   },
+   {
+    "page": 24,
+    "fold": "sealed",
+    "detected_lines": 42,
+    "transcript_scored_lines": 40,
+    "signed_diff": 2
+   },
+   {
+    "page": 25,
+    "fold": "sealed",
+    "detected_lines": 50,
+    "transcript_scored_lines": 33,
+    "signed_diff": 17
+   },
+   {
+    "page": 26,
+    "fold": "sealed",
+    "detected_lines": 28,
+    "transcript_scored_lines": 11,
+    "signed_diff": 17
+   },
+   {
+    "page": 27,
+    "fold": "sealed",
+    "detected_lines": 19,
+    "transcript_scored_lines": 19,
+    "signed_diff": 0
+   },
+   {
+    "page": 28,
+    "fold": "sealed",
+    "detected_lines": 53,
+    "transcript_scored_lines": 25,
+    "signed_diff": 28
+   },
+   {
+    "page": 29,
+    "fold": "sealed",
+    "detected_lines": 73,
+    "transcript_scored_lines": 33,
+    "signed_diff": 40
+   },
+   {
+    "page": 30,
+    "fold": "sealed",
+    "detected_lines": 49,
+    "transcript_scored_lines": 37,
+    "signed_diff": 12
+   },
+   {
+    "page": 31,
+    "fold": "sealed",
+    "detected_lines": 49,
+    "transcript_scored_lines": 37,
+    "signed_diff": 12
+   },
+   {
+    "page": 32,
+    "fold": "sealed",
+    "detected_lines": 43,
+    "transcript_scored_lines": 37,
+    "signed_diff": 6
+   },
+   {
+    "page": 33,
+    "fold": "sealed",
+    "detected_lines": 19,
+    "transcript_scored_lines": 16,
+    "signed_diff": 3
+   },
+   {
+    "page": 34,
+    "fold": "sealed",
+    "detected_lines": 22,
+    "transcript_scored_lines": 22,
+    "signed_diff": 0
+   },
+   {
+    "page": 35,
+    "fold": "sealed",
+    "detected_lines": 50,
+    "transcript_scored_lines": 44,
+    "signed_diff": 6
+   },
+   {
+    "page": 36,
+    "fold": "sealed",
+    "detected_lines": 51,
+    "transcript_scored_lines": 46,
+    "signed_diff": 5
+   },
+   {
+    "page": 37,
+    "fold": "sealed",
+    "detected_lines": 46,
+    "transcript_scored_lines": 41,
+    "signed_diff": 5
+   },
+   {
+    "page": 38,
+    "fold": "sealed",
+    "detected_lines": 40,
+    "transcript_scored_lines": 45,
+    "signed_diff": -5
+   },
+   {
+    "page": 39,
+    "fold": "sealed",
+    "detected_lines": 58,
+    "transcript_scored_lines": 43,
+    "signed_diff": 15
+   },
+   {
+    "page": 40,
+    "fold": "sealed",
+    "detected_lines": 54,
+    "transcript_scored_lines": 45,
+    "signed_diff": 9
+   },
+   {
+    "page": 41,
+    "fold": "sealed",
+    "detected_lines": 49,
+    "transcript_scored_lines": 46,
+    "signed_diff": 3
+   },
+   {
+    "page": 42,
+    "fold": "dev",
+    "detected_lines": 21,
+    "transcript_scored_lines": 19,
+    "signed_diff": 2
+   },
+   {
+    "page": 43,
+    "fold": "dev",
+    "detected_lines": 39,
+    "transcript_scored_lines": 39,
+    "signed_diff": 0
+   },
+   {
+    "page": 44,
+    "fold": "dev",
+    "detected_lines": 51,
+    "transcript_scored_lines": 29,
+    "signed_diff": 22
+   },
+   {
+    "page": 45,
+    "fold": "dev",
+    "detected_lines": 40,
+    "transcript_scored_lines": 38,
+    "signed_diff": 2
+   },
+   {
+    "page": 46,
+    "fold": "dev",
+    "detected_lines": 42,
+    "transcript_scored_lines": 39,
+    "signed_diff": 3
+   },
+   {
+    "page": 47,
+    "fold": "dev",
+    "detected_lines": 35,
+    "transcript_scored_lines": 34,
+    "signed_diff": 1
+   },
+   {
+    "page": 48,
+    "fold": "dev",
+    "detected_lines": 44,
+    "transcript_scored_lines": 25,
+    "signed_diff": 19
+   },
+   {
+    "page": 49,
+    "fold": "dev",
+    "detected_lines": 40,
+    "transcript_scored_lines": 38,
+    "signed_diff": 2
+   },
+   {
+    "page": 50,
+    "fold": "sealed",
+    "detected_lines": 44,
+    "transcript_scored_lines": 37,
+    "signed_diff": 7
+   },
+   {
+    "page": 51,
+    "fold": "sealed",
+    "detected_lines": 41,
+    "transcript_scored_lines": 38,
+    "signed_diff": 3
+   },
+   {
+    "page": 52,
+    "fold": "sealed",
+    "detected_lines": 29,
+    "transcript_scored_lines": 19,
+    "signed_diff": 10
+   },
+   {
+    "page": 53,
+    "fold": "sealed",
+    "detected_lines": 41,
+    "transcript_scored_lines": 37,
+    "signed_diff": 4
+   },
+   {
+    "page": 54,
+    "fold": "sealed",
+    "detected_lines": 52,
+    "transcript_scored_lines": 37,
+    "signed_diff": 15
+   },
+   {
+    "page": 55,
+    "fold": "sealed",
+    "detected_lines": 43,
+    "transcript_scored_lines": 39,
+    "signed_diff": 4
+   },
+   {
+    "page": 56,
+    "fold": "sealed",
+    "detected_lines": 47,
+    "transcript_scored_lines": 37,
+    "signed_diff": 10
+   },
+   {
+    "page": 57,
+    "fold": "sealed",
+    "detected_lines": 51,
+    "transcript_scored_lines": 37,
+    "signed_diff": 14
+   }
+  ],
+  "aggregate": {
+   "detected_lines": 2369,
+   "transcript_scored_lines": 2007,
+   "signed_diff": 362
+  },
+  "by_fold": {
+   "sealed": {
+    "pages": 48,
+    "detected_lines": 2016,
+    "transcript_scored_lines": 1707,
+    "signed_diff": 309
+   },
+   "dev": {
+    "pages": 9,
+    "detected_lines": 353,
+    "transcript_scored_lines": 300,
+    "signed_diff": 53
+   }
+  }
+ },
+ "counts_note": "Crude line-count sanity only: no recall/precision/F1/IoU is computed - there is no box ground truth, and inventing one is the defect this artifact avoids.",
+ "validation_violations": [],
+ "scripts": [
+  {
+   "path": "eval/detectors/detect_notebook_v1.py",
+   "sha256": "7934d44e46acffa24c15970befefe1899d09bbe89772f06fc6884b31346abbdb"
+  }
+ ],
+ "disclaimer": "PREDICTIONS, NOT GROUND TRUTH - these boxes are the production detector's output on evaluation-only pages and must never be used as label geometry."
+}

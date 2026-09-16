@@ -1,0 +1,57 @@
+{
+ "artifact": "error_analysis_v1",
+ "date": "2026-09-12",
+ "method": "Open coding over every label site this corpus now holds, then axial collapse into buckets, per the eval-harness-first practice (>= 100 items, 4-8 buckets, one grader per bucket). Coded by Astra from the label records themselves plus the 20-item by-eye adjudication in sample3_adjudication.json.",
+ "population": {
+  "label_sites": 160,
+  "adjudicated": 41,
+  "provisional": 119,
+  "note": "PROVISIONAL sites are lexicon-proposed and unverified against the ink (verified_from_pixels: false), measured precision 0.60, 95% CI [0.39, 0.81], n=20. They are counted here to size the buckets, never as confirmed errors."
+ },
+ "buckets": [
+  {"id": "B1", "name": "non-word, single edit", "n": 36, "adjudicated": 12, "provisional": 24,
+   "grader": "deterministic - lexicon membership plus edit distance 1 to a single nearest form",
+   "in_scope_without_key": true,
+   "note": "The product's core checkable class. This is what the shipped gate's strict filter already selects, and the only bucket where the ink alone settles the question."},
+  {"id": "B2", "name": "non-word, multi-edit", "n": 8, "adjudicated": 8, "provisional": 0,
+   "grader": "deterministic - lexicon membership, no distance ceiling",
+   "in_scope_without_key": true,
+   "note": "Excluded entirely by the shipped strict label filter (d == 1), so every catch rate in the repository is blind to this bucket. Eight sites here are eight more than the sealed exam set has."},
+  {"id": "B3", "name": "valid word for valid word", "n": 2, "adjudicated": 2, "provisional": 0,
+   "grader": "comparison against a supplied source only",
+   "in_scope_without_key": false,
+   "note": "NEVER INFER A TEACHER'S KEY. Unreachable without the dictated text, by design."},
+  {"id": "B4", "name": "punctuation", "n": 1, "adjudicated": 1, "provisional": 0,
+   "grader": "comparison against a supplied source only",
+   "in_scope_without_key": false},
+  {"id": "B5", "name": "capitalisation", "n": 1, "adjudicated": 1, "provisional": 0,
+   "grader": "deterministic case comparison, but only against a source",
+   "in_scope_without_key": false},
+  {"id": "B6", "name": "word the pupil split or joined", "n": 15, "adjudicated": 15, "provisional": 0,
+   "grader": "deterministic - lexicon over the joined and the split forms",
+   "in_scope_without_key": true,
+   "note": "The class page 36's `степ пени` belongs to. Invisible to a per-token scorer, and the reason the carry fields exist in the corpus. Fifteen sites is the second largest checkable bucket and nothing in the pipeline addresses it today."},
+  {"id": "B8", "name": "no correction proposed", "n": 97, "adjudicated": 2, "provisional": 95,
+   "grader": "none - these need a human or a source before any grader applies",
+   "in_scope_without_key": null,
+   "note": "A site the lexicon flags but cannot correct: no single form sits at distance 1, so nothing can be asserted. 95 of the 97 are provisional. This is the queue a human works through, not a bucket a grader scores."}
+ ],
+ "what_this_says": [
+  "Only B1, B2 and B6 are checkable without the teacher's source - 59 of 160 sites.",
+  "B6 (15 sites, all adjudicated) is the largest checkable bucket the pipeline does not touch at all.",
+  "B2 (8 sites) is structurally excluded by the shipped strict filter, so it cannot appear in any current catch figure.",
+  "B8's 97 sites are the honest size of the human adjudication queue, not a measurement.",
+  "B3/B4/B5 total 4 sites here. This corpus is class notes, not dictation, so it is a poor instrument for key-based marking - that needs pages whose dictated source is known."
+ ],
+ "limits": [
+  "Buckets were coded from label records and one 20-item by-eye pass, not from a second independent coder.",
+  "160 sites over 45 of 57 pages; 12 pages carry no label at all.",
+  "Bucket sizes inherit the provisional set's 0.60 precision wherever provisional counts appear (B1 and B8).",
+  "Edit distance was computed case-insensitively on the stored strings, so a capitalisation-only difference lands in B5 by construction."
+ ],
+ "sources": [
+  "data/derived/my_notebook_v1/canonical/page-*.json (errors)",
+  "eval/runs/notebook_v1/labels_provisional.json",
+  "eval/runs/notebook_v1/sample3_adjudication.json"
+ ]
+}

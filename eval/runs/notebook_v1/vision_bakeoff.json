@@ -1,0 +1,5554 @@
+{
+ "packet": "VisionClient packet 2 — image-capable model census and handwriting bake-off",
+ "created_utc": "2026-09-12T08:07:23+00:00 (ceiling batch appended 2026-09-12T08:08:29+00:00)",
+ "client_file": "tools/openrouter.py",
+ "client_sha256": "ac9c81458a0542593510391a4f259dd679bb0fe3eeaa4f953580f130591d40c8",
+ "prompt": "Transcribe exactly what is written in this image, verbatim, in Russian. This is a pupil's handwriting: preserve the pupil's own spelling, including any mistakes or missing letters — do NOT correct the spelling, do NOT translate, do NOT explain, do NOT add letters that are not written. Output only the transcription, nothing else.",
+ "call_params": {
+  "reasoning": "low",
+  "max_tokens": 4000,
+  "stream": true,
+  "timeout": 300
+ },
+ "crops": [
+  {
+   "id": "Z34a",
+   "path": "/tmp/Z34a.jpg",
+   "ground_truth": "Взаимствование",
+   "pupil_error": "Взаимствование",
+   "correct_form": "Заимствование"
+  },
+  {
+   "id": "W56",
+   "path": "/tmp/W56.jpg",
+   "ground_truth": "самая высокая точка",
+   "pupil_error": null,
+   "correct_form": null
+  },
+  {
+   "id": "W36b",
+   "path": "/tmp/W36b.jpg",
+   "ground_truth": "степ пени",
+   "pupil_error": "степ пени",
+   "correct_form": "степени"
+  }
+ ],
+ "scoring_rule": {
+  "normalisation": "casefold, ё->е, й->и, non-letters dropped, whitespace collapsed; CER over letters only",
+  "EXACT": "normalised return equals the pupil's ground-truth string",
+  "CORRECTED": "returns the correct Russian word instead of the pupil's (crop Z34a must lack the leading В; crop W36b must merge степ пени into степени)",
+  "PARTIAL": "not EXACT/CORRECTED and CER < 0.5",
+  "HALLUCINATED": "CER >= 0.5 (unrelated text)",
+  "usable": "EXACT on >= 2 of 3 crops, with no HALLUCINATED and no ERROR crop",
+  "caveat": "3 crops, one call each: a ranking with wide uncertainty, not a stable per-model estimate"
+ },
+ "panel": [
+  "z-ai/glm-5.3-flash",
+  "z-ai/glm-4.6v",
+  "z-ai/glm-4.5v",
+  "deepseek/deepseek-v4.1-flash",
+  "qwen/qwen3-vl-32b-instruct",
+  "qwen/qwen3-vl-8b-instruct",
+  "google/gemini-3.1-flash-lite",
+  "google/gemini-2.5-flash",
+  "google/gemini-2.5-pro",
+  "openai/gpt-4o-mini",
+  "openai/gpt-5.4-nano",
+  "anthropic/claude-haiku-4.5",
+  "amazon/nova-lite-v1",
+  "mistralai/mistral-small-3.2-24b-instruct"
+ ],
+ "excluded_with_reason": {
+  "z-ai/glm-5.2": "not image-capable (input_modalities has no image)",
+  "deepseek/deepseek-v4-pro": "not image-capable",
+  "openrouter/auto, openrouter/auto-beta, openrouter/free": "router aliases with an undeclared price (sentinel -$1000000/M)",
+  "*:batch": "batch-only endpoints, not the interactive path this client uses",
+  "gemini-*-image*, openai/gpt-5-image*": "image-generation endpoints (image output), not annotators",
+  "other ~260 capable models": "bake-off bounded to Main's named candidates + cheapest capable model per vendor family + one strong reference; full census in model_census_image_capable"
+ },
+ "model_census_image_capable": [
+  {
+   "id": "openrouter/auto",
+   "ctx": 2000000,
+   "in_per_m": -1000000.0,
+   "out_per_m": -1000000.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "audio",
+    "file",
+    "video"
+   ]
+  },
+  {
+   "id": "openrouter/auto-beta",
+   "ctx": 2000000,
+   "in_per_m": -1000000.0,
+   "out_per_m": -1000000.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "audio",
+    "file",
+    "video"
+   ]
+  },
+  {
+   "id": "dots-studio/dots-3-note-preview:free",
+   "ctx": 512000,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "google/gemma-4-26b-a4b-it:free",
+   "ctx": 262144,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemma-4-31b-it:free",
+   "ctx": 262144,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "google/lyria-3-clip-preview",
+   "ctx": 1048576,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "google/lyria-3-pro-preview",
+   "ctx": 1048576,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "inclusionai/ling-3.0-flash-vl:free",
+   "ctx": 262144,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "nex-agi/nex-n2.5-mini:free",
+   "ctx": 262144,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "nex-agi/nex-n2.5-pro:free",
+   "ctx": 262144,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+   "ctx": 256000,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "text",
+    "audio",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "nvidia/nemotron-3.5-content-safety:free",
+   "ctx": 128000,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "openrouter/free",
+   "ctx": 200000,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "thinkingmachines/inkling-small:free",
+   "ctx": 1048576,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "audio"
+   ]
+  },
+  {
+   "id": "thinkingmachines/inkling:free",
+   "ctx": 1048576,
+   "in_per_m": 0.0,
+   "out_per_m": 0.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "audio"
+   ]
+  },
+  {
+   "id": "openai/gpt-5-nano:batch",
+   "ctx": 400000,
+   "in_per_m": 0.025,
+   "out_per_m": 0.2,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.7-flash",
+   "ctx": 1000000,
+   "in_per_m": 0.03,
+   "out_per_m": 0.13,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemma-4-26b-a4b-it",
+   "ctx": 262144,
+   "in_per_m": 0.042,
+   "out_per_m": 0.22,
+   "input_modalities": [
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-flash-lite:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.05,
+   "out_per_m": 0.2,
+   "input_modalities": [
+    "text",
+    "image",
+    "file",
+    "audio",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemma-3-12b-it",
+   "ctx": 131072,
+   "in_per_m": 0.05,
+   "out_per_m": 0.15,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "google/gemma-3-4b-it",
+   "ctx": 131072,
+   "in_per_m": 0.05,
+   "out_per_m": 0.1,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "openai/gpt-4.1-nano:batch",
+   "ctx": 1047576,
+   "in_per_m": 0.05,
+   "out_per_m": 0.2,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5-nano",
+   "ctx": 400000,
+   "in_per_m": 0.05,
+   "out_per_m": 0.4,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "amazon/nova-lite-v1",
+   "ctx": 300000,
+   "in_per_m": 0.06,
+   "out_per_m": 0.24,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "inclusionai/ling-3.0-flash-vl",
+   "ctx": 131072,
+   "in_per_m": 0.06,
+   "out_per_m": 0.18,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.5-flash-02-23",
+   "ctx": 1000000,
+   "in_per_m": 0.065,
+   "out_per_m": 0.26,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "bytedance-seed/seed-1.6-flash",
+   "ctx": 262144,
+   "in_per_m": 0.075,
+   "out_per_m": 0.3,
+   "input_modalities": [
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "mistralai/ministral-8b-2512:batch",
+   "ctx": 262144,
+   "in_per_m": 0.075,
+   "out_per_m": 0.075,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "mistralai/mistral-small-2603:batch",
+   "ctx": 262144,
+   "in_per_m": 0.075,
+   "out_per_m": 0.3,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "mistralai/mistral-small-3.2-24b-instruct",
+   "ctx": 256000,
+   "in_per_m": 0.075,
+   "out_per_m": 0.2,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-4o-mini:batch",
+   "ctx": 128000,
+   "in_per_m": 0.075,
+   "out_per_m": 0.3,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "z-ai/glm-5.3-flash:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.075,
+   "out_per_m": 0.25,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "~z-ai/glm-flash-latest",
+   "ctx": 1310720,
+   "in_per_m": 0.075,
+   "out_per_m": 0.25,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemma-3-27b-it",
+   "ctx": 131072,
+   "in_per_m": 0.08,
+   "out_per_m": 0.45,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "google/gemma-4-31b-it",
+   "ctx": 262144,
+   "in_per_m": 0.09,
+   "out_per_m": 0.34,
+   "input_modalities": [
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "bytedance-seed/seed-2.0-mini",
+   "ctx": 262144,
+   "in_per_m": 0.1,
+   "out_per_m": 0.4,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "bytedance/ui-tars-1.5-7b",
+   "ctx": 128000,
+   "in_per_m": 0.1,
+   "out_per_m": 0.2,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-flash-lite",
+   "ctx": 1048576,
+   "in_per_m": 0.1,
+   "out_per_m": 0.4,
+   "input_modalities": [
+    "text",
+    "image",
+    "file",
+    "audio",
+    "video"
+   ]
+  },
+  {
+   "id": "meta-llama/llama-4-scout",
+   "ctx": 1310720,
+   "in_per_m": 0.1,
+   "out_per_m": 0.3,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "meta/muse-spark-1.2-contributor",
+   "ctx": 1048576,
+   "in_per_m": 0.1,
+   "out_per_m": 0.2,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "meta/muse-spark-1.3-contributor",
+   "ctx": 1048576,
+   "in_per_m": 0.1,
+   "out_per_m": 0.2,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "mistralai/ministral-3b-2512",
+   "ctx": 131072,
+   "in_per_m": 0.1,
+   "out_per_m": 0.1,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "openai/gpt-4.1-nano",
+   "ctx": 1047576,
+   "in_per_m": 0.1,
+   "out_per_m": 0.4,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4-nano:batch",
+   "ctx": 400000,
+   "in_per_m": 0.1,
+   "out_per_m": 0.625,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-luna-pro:batch",
+   "ctx": 1050000,
+   "in_per_m": 0.1,
+   "out_per_m": 0.6,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-luna:batch",
+   "ctx": 1050000,
+   "in_per_m": 0.1,
+   "out_per_m": 0.6,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.5-9b",
+   "ctx": 262144,
+   "in_per_m": 0.1,
+   "out_per_m": 0.15,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.6-35b-a3b",
+   "ctx": 262144,
+   "in_per_m": 0.1,
+   "out_per_m": 0.9,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "rekaai/reka-edge",
+   "ctx": 16384,
+   "in_per_m": 0.1,
+   "out_per_m": 0.1,
+   "input_modalities": [
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "qwen/qwen3-vl-32b-instruct",
+   "ctx": 131072,
+   "in_per_m": 0.104,
+   "out_per_m": 0.416,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "deepseek/deepseek-v4-flash-vision-exp:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.11,
+   "out_per_m": 0.33,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "qwen/qwen3-vl-8b-instruct",
+   "ctx": 262144,
+   "in_per_m": 0.117,
+   "out_per_m": 0.455,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-3.1-flash-lite:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.125,
+   "out_per_m": 0.75,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "openai/gpt-5-mini:batch",
+   "ctx": 400000,
+   "in_per_m": 0.125,
+   "out_per_m": 1.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "xiaomi/mimo-v2.5",
+   "ctx": 1050000,
+   "in_per_m": 0.14,
+   "out_per_m": 0.28,
+   "input_modalities": [
+    "text",
+    "audio",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "deepseek/deepseek-v4.1-flash",
+   "ctx": 1048576,
+   "in_per_m": 0.15,
+   "out_per_m": 0.6,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-flash:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.15,
+   "out_per_m": 1.25,
+   "input_modalities": [
+    "file",
+    "image",
+    "text",
+    "audio",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemini-3.5-flash-lite:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.15,
+   "out_per_m": 1.25,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "mistralai/ministral-8b-2512",
+   "ctx": 262144,
+   "in_per_m": 0.15,
+   "out_per_m": 0.15,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "mistralai/mistral-small-2603",
+   "ctx": 262144,
+   "in_per_m": 0.15,
+   "out_per_m": 0.6,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "openai/gpt-4o-mini",
+   "ctx": 128000,
+   "in_per_m": 0.15,
+   "out_per_m": 0.6,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-4o-mini-2024-07-18",
+   "ctx": 128000,
+   "in_per_m": 0.15,
+   "out_per_m": 0.6,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "perceptron/perceptron-mk1",
+   "ctx": 32768,
+   "in_per_m": 0.15,
+   "out_per_m": 1.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "qwen/qwen3-vl-30b-a3b-instruct",
+   "ctx": 262144,
+   "in_per_m": 0.15,
+   "out_per_m": 0.6,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.8-flash",
+   "ctx": 1000000,
+   "in_per_m": 0.15,
+   "out_per_m": 0.47,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "z-ai/glm-5.3-flash",
+   "ctx": 1310720,
+   "in_per_m": 0.15,
+   "out_per_m": 0.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.5-9b:batch",
+   "ctx": 262144,
+   "in_per_m": 0.17,
+   "out_per_m": 0.25,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "meta/muse-glimmer-30b:batch",
+   "ctx": 131072,
+   "in_per_m": 0.175,
+   "out_per_m": 0.75,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "meta-llama/llama-guard-4-12b",
+   "ctx": 163840,
+   "in_per_m": 0.18,
+   "out_per_m": 0.18,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3-vl-8b-thinking",
+   "ctx": 131072,
+   "in_per_m": 0.18,
+   "out_per_m": 2.1,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.6-flash",
+   "ctx": 1000000,
+   "in_per_m": 0.1875,
+   "out_per_m": 1.125,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.5-27b",
+   "ctx": 262144,
+   "in_per_m": 0.195,
+   "out_per_m": 1.56,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "meta-llama/llama-4-maverick",
+   "ctx": 1048576,
+   "in_per_m": 0.2,
+   "out_per_m": 0.696,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "minimax/minimax-01",
+   "ctx": 1000192,
+   "in_per_m": 0.2,
+   "out_per_m": 1.1,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "mistralai/ministral-14b-2512",
+   "ctx": 262144,
+   "in_per_m": 0.2,
+   "out_per_m": 0.2,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "mistralai/mistral-medium-3.1:batch",
+   "ctx": 131072,
+   "in_per_m": 0.2,
+   "out_per_m": 1.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "nvidia/nemotron-3.5-content-safety",
+   "ctx": 131072,
+   "in_per_m": 0.2,
+   "out_per_m": 0.2,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "openai/gpt-4.1-mini:batch",
+   "ctx": 1047576,
+   "in_per_m": 0.2,
+   "out_per_m": 0.8,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4-nano",
+   "ctx": 400000,
+   "in_per_m": 0.2,
+   "out_per_m": 1.25,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-luna",
+   "ctx": 1050000,
+   "in_per_m": 0.2,
+   "out_per_m": 1.2,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-luna-pro",
+   "ctx": 1050000,
+   "in_per_m": 0.2,
+   "out_per_m": 1.2,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3-vl-30b-a3b-thinking",
+   "ctx": 262144,
+   "in_per_m": 0.2,
+   "out_per_m": 2.4,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "stepfun/step-3.7-flash",
+   "ctx": 262144,
+   "in_per_m": 0.2,
+   "out_per_m": 1.15,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "~openai/gpt-luna-latest",
+   "ctx": 1050000,
+   "in_per_m": 0.2,
+   "out_per_m": 1.2,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3-vl-235b-a22b-instruct",
+   "ctx": 262144,
+   "in_per_m": 0.21,
+   "out_per_m": 1.9,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.8-27b",
+   "ctx": 1000000,
+   "in_per_m": 0.214,
+   "out_per_m": 2.55,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "deepseek/deepseek-v4-flash-vision-exp",
+   "ctx": 1048576,
+   "in_per_m": 0.22,
+   "out_per_m": 0.66,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "anthropic/claude-3-haiku",
+   "ctx": 200000,
+   "in_per_m": 0.25,
+   "out_per_m": 1.25,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "bytedance-seed/seed-1.6",
+   "ctx": 262144,
+   "in_per_m": 0.25,
+   "out_per_m": 2.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "bytedance-seed/seed-2.0-lite",
+   "ctx": 262144,
+   "in_per_m": 0.25,
+   "out_per_m": 2.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemini-3-flash-preview:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.25,
+   "out_per_m": 1.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file",
+    "audio",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemini-3.1-flash-lite",
+   "ctx": 1048576,
+   "in_per_m": 0.25,
+   "out_per_m": 1.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "google/gemini-3.1-flash-lite-image",
+   "ctx": 65536,
+   "in_per_m": 0.25,
+   "out_per_m": 1.5,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-3.1-flash-lite-preview",
+   "ctx": 1048576,
+   "in_per_m": 0.25,
+   "out_per_m": 1.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "mistralai/mistral-large-2512:batch",
+   "ctx": 262144,
+   "in_per_m": 0.25,
+   "out_per_m": 0.75,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5-mini",
+   "ctx": 400000,
+   "in_per_m": 0.25,
+   "out_per_m": 2.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.1-codex-mini",
+   "ctx": 400000,
+   "in_per_m": 0.25,
+   "out_per_m": 2.0,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.5-122b-a10b",
+   "ctx": 262144,
+   "in_per_m": 0.26,
+   "out_per_m": 2.08,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.5-plus-02-15",
+   "ctx": 1000000,
+   "in_per_m": 0.26,
+   "out_per_m": 1.56,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "amazon/nova-2-lite-v1",
+   "ctx": 1000000,
+   "in_per_m": 0.3,
+   "out_per_m": 2.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-flash",
+   "ctx": 1048576,
+   "in_per_m": 0.3,
+   "out_per_m": 2.5,
+   "input_modalities": [
+    "file",
+    "image",
+    "text",
+    "audio",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-flash-image",
+   "ctx": 32768,
+   "in_per_m": 0.3,
+   "out_per_m": 2.5,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-3.5-flash-lite",
+   "ctx": 1048576,
+   "in_per_m": 0.3,
+   "out_per_m": 2.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "meta/muse-glimmer-30b",
+   "ctx": 131072,
+   "in_per_m": 0.3,
+   "out_per_m": 1.1,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "minimax/minimax-m3",
+   "ctx": 1048576,
+   "in_per_m": 0.3,
+   "out_per_m": 1.2,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "minimax/minimax-m3:batch",
+   "ctx": 524288,
+   "in_per_m": 0.3,
+   "out_per_m": 1.2,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.5-plus-20260420",
+   "ctx": 1000000,
+   "in_per_m": 0.3,
+   "out_per_m": 1.8,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.6-27b",
+   "ctx": 262144,
+   "in_per_m": 0.3,
+   "out_per_m": 2.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "z-ai/glm-4.6v",
+   "ctx": 131072,
+   "in_per_m": 0.3,
+   "out_per_m": 0.9,
+   "input_modalities": [
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.5-35b-a3b",
+   "ctx": 262144,
+   "in_per_m": 0.3125,
+   "out_per_m": 1.25,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.7-plus",
+   "ctx": 1000000,
+   "in_per_m": 0.32,
+   "out_per_m": 1.28,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.6-plus",
+   "ctx": 1000000,
+   "in_per_m": 0.325,
+   "out_per_m": 1.95,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "mistralai/mistral-small-3.1-24b-instruct",
+   "ctx": 128000,
+   "in_per_m": 0.351,
+   "out_per_m": 0.555,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "google/gemini-3.6-flash:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.375,
+   "out_per_m": 1.875,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "google/gemini-3.7-flash:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.375,
+   "out_per_m": 1.875,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "google/gemini-3.8-flash:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.375,
+   "out_per_m": 1.875,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4-mini:batch",
+   "ctx": 400000,
+   "in_per_m": 0.375,
+   "out_per_m": 2.25,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemma-4-31b-it:batch",
+   "ctx": 262144,
+   "in_per_m": 0.39,
+   "out_per_m": 0.97,
+   "input_modalities": [
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "mistralai/mistral-medium-3",
+   "ctx": 131072,
+   "in_per_m": 0.4,
+   "out_per_m": 2.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "mistralai/mistral-medium-3.1",
+   "ctx": 131072,
+   "in_per_m": 0.4,
+   "out_per_m": 2.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-4.1-mini",
+   "ctx": 1047576,
+   "in_per_m": 0.4,
+   "out_per_m": 1.6,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "qwen/qwen3-vl-235b-a22b-thinking",
+   "ctx": 131072,
+   "in_per_m": 0.4,
+   "out_per_m": 4.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "baidu/ernie-4.5-vl-424b-a47b",
+   "ctx": 123000,
+   "in_per_m": 0.42,
+   "out_per_m": 1.25,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "moonshotai/kimi-k2.5",
+   "ctx": 262144,
+   "in_per_m": 0.45,
+   "out_per_m": 2.25,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "thinkingmachines/inkling-small",
+   "ctx": 1048576,
+   "in_per_m": 0.45,
+   "out_per_m": 1.2,
+   "input_modalities": [
+    "text",
+    "image",
+    "audio"
+   ]
+  },
+  {
+   "id": "anthropic/claude-haiku-4.5:batch",
+   "ctx": 200000,
+   "in_per_m": 0.5,
+   "out_per_m": 2.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "bytedance-seed/seed-2-1-turbo",
+   "ctx": 262144,
+   "in_per_m": 0.5,
+   "out_per_m": 2.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "bytedance-seed/seed-2.0-code",
+   "ctx": 262144,
+   "in_per_m": 0.5,
+   "out_per_m": 3.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemini-3-flash-preview",
+   "ctx": 1048576,
+   "in_per_m": 0.5,
+   "out_per_m": 3.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file",
+    "audio",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemini-3.1-flash-image",
+   "ctx": 131072,
+   "in_per_m": 0.5,
+   "out_per_m": 3.0,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-3.1-flash-image-preview",
+   "ctx": 65536,
+   "in_per_m": 0.5,
+   "out_per_m": 3.0,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "mistralai/mistral-large-2512",
+   "ctx": 262144,
+   "in_per_m": 0.5,
+   "out_per_m": 1.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "thinkingmachines/inkling-small:batch",
+   "ctx": 524288,
+   "in_per_m": 0.5,
+   "out_per_m": 1.2,
+   "input_modalities": [
+    "text",
+    "image",
+    "audio"
+   ]
+  },
+  {
+   "id": "openai/o4-mini:batch",
+   "ctx": 200000,
+   "in_per_m": 0.55,
+   "out_per_m": 2.2,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.5-397b-a17b",
+   "ctx": 262144,
+   "in_per_m": 0.55,
+   "out_per_m": 3.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "z-ai/glm-4.5v",
+   "ctx": 65536,
+   "in_per_m": 0.6,
+   "out_per_m": 1.8,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-pro:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.625,
+   "out_per_m": 5.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file",
+    "audio",
+    "video"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.1:batch",
+   "ctx": 400000,
+   "in_per_m": 0.625,
+   "out_per_m": 5.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5:batch",
+   "ctx": 400000,
+   "in_per_m": 0.625,
+   "out_per_m": 5.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "moonshotai/kimi-k2.7-code",
+   "ctx": 262144,
+   "in_per_m": 0.71,
+   "out_per_m": 3.5,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "google/gemini-3.5-flash:batch",
+   "ctx": 1048576,
+   "in_per_m": 0.75,
+   "out_per_m": 4.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "google/gemini-3.6-flash",
+   "ctx": 1048576,
+   "in_per_m": 0.75,
+   "out_per_m": 3.75,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "google/gemini-3.7-flash",
+   "ctx": 1048576,
+   "in_per_m": 0.75,
+   "out_per_m": 3.75,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "google/gemini-3.8-flash",
+   "ctx": 1048576,
+   "in_per_m": 0.75,
+   "out_per_m": 3.75,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "mistralai/mistral-medium-3-5:batch",
+   "ctx": 262144,
+   "in_per_m": 0.75,
+   "out_per_m": 3.75,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4-mini",
+   "ctx": 400000,
+   "in_per_m": 0.75,
+   "out_per_m": 4.5,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "~google/gemini-flash-latest",
+   "ctx": 1048576,
+   "in_per_m": 0.75,
+   "out_per_m": 3.75,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "~openai/gpt-mini-latest",
+   "ctx": 400000,
+   "in_per_m": 0.75,
+   "out_per_m": 4.5,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "amazon/nova-pro-v1",
+   "ctx": 300000,
+   "in_per_m": 0.8,
+   "out_per_m": 3.2,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "qwen/qwen2.5-vl-72b-instruct",
+   "ctx": 128000,
+   "in_per_m": 0.8,
+   "out_per_m": 1.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.2:batch",
+   "ctx": 400000,
+   "in_per_m": 0.875,
+   "out_per_m": 7.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "moonshotai/kimi-k2.6",
+   "ctx": 262144,
+   "in_per_m": 0.95,
+   "out_per_m": 4.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "sakana/sakana-namazu",
+   "ctx": 262144,
+   "in_per_m": 0.95,
+   "out_per_m": 4.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-haiku-4.5",
+   "ctx": 200000,
+   "in_per_m": 1.0,
+   "out_per_m": 5.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-sonnet-5:batch",
+   "ctx": 1000000,
+   "in_per_m": 1.0,
+   "out_per_m": 5.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "google/gemini-3.1-pro-preview:batch",
+   "ctx": 1048576,
+   "in_per_m": 1.0,
+   "out_per_m": 6.0,
+   "input_modalities": [
+    "audio",
+    "file",
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "openai/gpt-4.1:batch",
+   "ctx": 1047576,
+   "in_per_m": 1.0,
+   "out_per_m": 4.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-sol-pro:batch",
+   "ctx": 1050000,
+   "in_per_m": 1.0,
+   "out_per_m": 5.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-sol:batch",
+   "ctx": 1050000,
+   "in_per_m": 1.0,
+   "out_per_m": 5.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-terra-pro:batch",
+   "ctx": 1050000,
+   "in_per_m": 1.0,
+   "out_per_m": 6.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-terra:batch",
+   "ctx": 1050000,
+   "in_per_m": 1.0,
+   "out_per_m": 6.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/o3:batch",
+   "ctx": 200000,
+   "in_per_m": 1.0,
+   "out_per_m": 4.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "perplexity/sonar",
+   "ctx": 127072,
+   "in_per_m": 1.0,
+   "out_per_m": 1.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "thinkingmachines/inkling",
+   "ctx": 1048576,
+   "in_per_m": 1.0,
+   "out_per_m": 4.05,
+   "input_modalities": [
+    "text",
+    "image",
+    "audio"
+   ]
+  },
+  {
+   "id": "thinkingmachines/inkling:batch",
+   "ctx": 524288,
+   "in_per_m": 1.0,
+   "out_per_m": 4.05,
+   "input_modalities": [
+    "text",
+    "image",
+    "audio"
+   ]
+  },
+  {
+   "id": "x-ai/grok-4.3:batch",
+   "ctx": 1000000,
+   "in_per_m": 1.0,
+   "out_per_m": 2.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "x-ai/grok-build-0.1",
+   "ctx": 256000,
+   "in_per_m": 1.0,
+   "out_per_m": 2.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "~anthropic/claude-haiku-latest",
+   "ctx": 200000,
+   "in_per_m": 1.0,
+   "out_per_m": 5.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/o4-mini",
+   "ctx": 200000,
+   "in_per_m": 1.1,
+   "out_per_m": 4.4,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/o4-mini-high",
+   "ctx": 200000,
+   "in_per_m": 1.1,
+   "out_per_m": 4.4,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "z-ai/glm-5v-turbo",
+   "ctx": 202752,
+   "in_per_m": 1.2,
+   "out_per_m": 4.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-pro",
+   "ctx": 1048576,
+   "in_per_m": 1.25,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file",
+    "audio",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-pro-preview",
+   "ctx": 1048576,
+   "in_per_m": 1.25,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text",
+    "audio"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-pro-preview-05-06",
+   "ctx": 1048576,
+   "in_per_m": 1.25,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file",
+    "audio",
+    "video"
+   ]
+  },
+  {
+   "id": "meta/muse-spark-1.1",
+   "ctx": 1048576,
+   "in_per_m": 1.25,
+   "out_per_m": 4.25,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "meta/muse-spark-1.2",
+   "ctx": 1048576,
+   "in_per_m": 1.25,
+   "out_per_m": 4.25,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "meta/muse-spark-1.3",
+   "ctx": 1048576,
+   "in_per_m": 1.25,
+   "out_per_m": 4.25,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "openai/gpt-4o:batch",
+   "ctx": 128000,
+   "in_per_m": 1.25,
+   "out_per_m": 5.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5",
+   "ctx": 400000,
+   "in_per_m": 1.25,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.1",
+   "ctx": 400000,
+   "in_per_m": 1.25,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.1-codex",
+   "ctx": 400000,
+   "in_per_m": 1.25,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.1-codex-max",
+   "ctx": 400000,
+   "in_per_m": 1.25,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4:batch",
+   "ctx": 1050000,
+   "in_per_m": 1.25,
+   "out_per_m": 7.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "x-ai/grok-4.20",
+   "ctx": 2000000,
+   "in_per_m": 1.25,
+   "out_per_m": 2.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "x-ai/grok-4.20-multi-agent",
+   "ctx": 2000000,
+   "in_per_m": 1.25,
+   "out_per_m": 2.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "x-ai/grok-4.3",
+   "ctx": 1000000,
+   "in_per_m": 1.25,
+   "out_per_m": 2.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-sonnet-4.5:batch",
+   "ctx": 1000000,
+   "in_per_m": 1.5,
+   "out_per_m": 7.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-sonnet-4.6:batch",
+   "ctx": 1000000,
+   "in_per_m": 1.5,
+   "out_per_m": 7.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "google/gemini-3.5-flash",
+   "ctx": 1048576,
+   "in_per_m": 1.5,
+   "out_per_m": 9.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "video",
+    "file",
+    "audio"
+   ]
+  },
+  {
+   "id": "mistralai/mistral-medium-3-5",
+   "ctx": 262144,
+   "in_per_m": 1.5,
+   "out_per_m": 7.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.2",
+   "ctx": 400000,
+   "in_per_m": 1.75,
+   "out_per_m": 14.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.2-chat",
+   "ctx": 128000,
+   "in_per_m": 1.75,
+   "out_per_m": 14.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.2-codex",
+   "ctx": 400000,
+   "in_per_m": 1.75,
+   "out_per_m": 14.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.3-codex",
+   "ctx": 400000,
+   "in_per_m": 1.75,
+   "out_per_m": 14.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-sonnet-5",
+   "ctx": 1000000,
+   "in_per_m": 2.0,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "google/gemini-3-pro-image",
+   "ctx": 131072,
+   "in_per_m": 2.0,
+   "out_per_m": 12.0,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-3-pro-image-preview",
+   "ctx": 65536,
+   "in_per_m": 2.0,
+   "out_per_m": 12.0,
+   "input_modalities": [
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-3.1-pro-preview",
+   "ctx": 1048576,
+   "in_per_m": 2.0,
+   "out_per_m": 12.0,
+   "input_modalities": [
+    "audio",
+    "file",
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "google/gemini-3.1-pro-preview-customtools",
+   "ctx": 1048576,
+   "in_per_m": 2.0,
+   "out_per_m": 12.0,
+   "input_modalities": [
+    "text",
+    "audio",
+    "image",
+    "video",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-4.1",
+   "ctx": 1047576,
+   "in_per_m": 2.0,
+   "out_per_m": 8.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-sol",
+   "ctx": 1050000,
+   "in_per_m": 2.0,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-sol-pro",
+   "ctx": 1050000,
+   "in_per_m": 2.0,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-terra",
+   "ctx": 1050000,
+   "in_per_m": 2.0,
+   "out_per_m": 12.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.6-terra-pro",
+   "ctx": 1050000,
+   "in_per_m": 2.0,
+   "out_per_m": 12.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/o3",
+   "ctx": 200000,
+   "in_per_m": 2.0,
+   "out_per_m": 8.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "perplexity/sonar-reasoning-pro",
+   "ctx": 128000,
+   "in_per_m": 2.0,
+   "out_per_m": 8.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.8-max-0902",
+   "ctx": 1000000,
+   "in_per_m": 2.0,
+   "out_per_m": 6.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "sakana/fugu-max",
+   "ctx": 1000000,
+   "in_per_m": 2.0,
+   "out_per_m": 6.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "x-ai/grok-4.5",
+   "ctx": 500000,
+   "in_per_m": 2.0,
+   "out_per_m": 6.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "x-ai/grok-4.6",
+   "ctx": 500000,
+   "in_per_m": 2.0,
+   "out_per_m": 6.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "~anthropic/claude-sonnet-latest",
+   "ctx": 1000000,
+   "in_per_m": 2.0,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "~google/gemini-pro-latest",
+   "ctx": 1048576,
+   "in_per_m": 2.0,
+   "out_per_m": 12.0,
+   "input_modalities": [
+    "audio",
+    "file",
+    "image",
+    "text",
+    "video"
+   ]
+  },
+  {
+   "id": "~openai/gpt-sol-latest",
+   "ctx": 1050000,
+   "in_per_m": 2.0,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "~openai/gpt-terra-latest",
+   "ctx": 1050000,
+   "in_per_m": 2.0,
+   "out_per_m": 12.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "~x-ai/grok-latest",
+   "ctx": 500000,
+   "in_per_m": 2.0,
+   "out_per_m": 6.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "moonshotai/kimi-k3",
+   "ctx": 1048576,
+   "in_per_m": 2.3027,
+   "out_per_m": 11.5502,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "~moonshotai/kimi-latest",
+   "ctx": 1048576,
+   "in_per_m": 2.3027,
+   "out_per_m": 11.5502,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "amazon/nova-premier-v1",
+   "ctx": 1000000,
+   "in_per_m": 2.5,
+   "out_per_m": 12.5,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.5:batch",
+   "ctx": 200000,
+   "in_per_m": 2.5,
+   "out_per_m": 12.5,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.6:batch",
+   "ctx": 1000000,
+   "in_per_m": 2.5,
+   "out_per_m": 12.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.7:batch",
+   "ctx": 1000000,
+   "in_per_m": 2.5,
+   "out_per_m": 12.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.8:batch",
+   "ctx": 1000000,
+   "in_per_m": 2.5,
+   "out_per_m": 12.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-5:batch",
+   "ctx": 1000000,
+   "in_per_m": 2.5,
+   "out_per_m": 12.5,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-4o",
+   "ctx": 128000,
+   "in_per_m": 2.5,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-4o-2024-08-06",
+   "ctx": 128000,
+   "in_per_m": 2.5,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-4o-2024-11-20",
+   "ctx": 128000,
+   "in_per_m": 2.5,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5-image-mini",
+   "ctx": 400000,
+   "in_per_m": 2.5,
+   "out_per_m": 2.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4",
+   "ctx": 1050000,
+   "in_per_m": 2.5,
+   "out_per_m": 15.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.5:batch",
+   "ctx": 1050000,
+   "in_per_m": 2.5,
+   "out_per_m": 15.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-sonnet-4",
+   "ctx": 1000000,
+   "in_per_m": 3.0,
+   "out_per_m": 15.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-sonnet-4.5",
+   "ctx": 1000000,
+   "in_per_m": 3.0,
+   "out_per_m": 15.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-sonnet-4.6",
+   "ctx": 1000000,
+   "in_per_m": 3.0,
+   "out_per_m": 15.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "moonshotai/kimi-k3:batch",
+   "ctx": 1048576,
+   "in_per_m": 3.0,
+   "out_per_m": 15.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "perplexity/sonar-pro",
+   "ctx": 200000,
+   "in_per_m": 3.0,
+   "out_per_m": 15.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "perplexity/sonar-pro-search",
+   "ctx": 200000,
+   "in_per_m": 3.0,
+   "out_per_m": 15.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "anthropic/claude-fable-5.1:batch",
+   "ctx": 1000000,
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-fable-5:batch",
+   "ctx": 1000000,
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.5",
+   "ctx": 200000,
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.6",
+   "ctx": 1000000,
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.7",
+   "ctx": 1000000,
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.8",
+   "ctx": 1000000,
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-5",
+   "ctx": 1000000,
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-4-turbo:batch",
+   "ctx": 128000,
+   "in_per_m": 5.0,
+   "out_per_m": 15.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "openai/gpt-4o-2024-05-13",
+   "ctx": 128000,
+   "in_per_m": 5.0,
+   "out_per_m": 15.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.5",
+   "ctx": 1050000,
+   "in_per_m": 5.0,
+   "out_per_m": 30.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-6-astra-pro:batch",
+   "ctx": 1050000,
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-6-astra:batch",
+   "ctx": 1050000,
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-chat-latest",
+   "ctx": 400000,
+   "in_per_m": 5.0,
+   "out_per_m": 30.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "sakana/fugu-ultra",
+   "ctx": 1000000,
+   "in_per_m": 5.0,
+   "out_per_m": 30.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "sakana/fugu-ultra-v2",
+   "ctx": 1000000,
+   "in_per_m": 5.0,
+   "out_per_m": 30.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "~anthropic/claude-opus-latest",
+   "ctx": 1000000,
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.1:batch",
+   "ctx": 200000,
+   "in_per_m": 7.5,
+   "out_per_m": 37.5,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5-pro:batch",
+   "ctx": 400000,
+   "in_per_m": 7.5,
+   "out_per_m": 60.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4-image-2",
+   "ctx": 272000,
+   "in_per_m": 8.0,
+   "out_per_m": 15.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-fable-5",
+   "ctx": 1000000,
+   "in_per_m": 10.0,
+   "out_per_m": 50.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-fable-5.1",
+   "ctx": 1000000,
+   "in_per_m": 10.0,
+   "out_per_m": 50.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-4-turbo",
+   "ctx": 128000,
+   "in_per_m": 10.0,
+   "out_per_m": 30.0,
+   "input_modalities": [
+    "text",
+    "image"
+   ]
+  },
+  {
+   "id": "openai/gpt-5-image",
+   "ctx": 400000,
+   "in_per_m": 10.0,
+   "out_per_m": 10.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-6-astra",
+   "ctx": 1050000,
+   "in_per_m": 10.0,
+   "out_per_m": 50.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-6-astra-pro",
+   "ctx": 1050000,
+   "in_per_m": 10.0,
+   "out_per_m": 50.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "~anthropic/claude-fable-latest",
+   "ctx": 1000000,
+   "in_per_m": 10.0,
+   "out_per_m": 50.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "~openai/gpt-astra-latest",
+   "ctx": 1050000,
+   "in_per_m": 10.0,
+   "out_per_m": 50.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.2-pro:batch",
+   "ctx": 400000,
+   "in_per_m": 10.5,
+   "out_per_m": 84.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4",
+   "ctx": 200000,
+   "in_per_m": 15.0,
+   "out_per_m": 75.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.1",
+   "ctx": 200000,
+   "in_per_m": 15.0,
+   "out_per_m": 75.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5-pro",
+   "ctx": 400000,
+   "in_per_m": 15.0,
+   "out_per_m": 120.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4-pro:batch",
+   "ctx": 1050000,
+   "in_per_m": 15.0,
+   "out_per_m": 90.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.5-pro:batch",
+   "ctx": 1050000,
+   "in_per_m": 15.0,
+   "out_per_m": 90.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/o1",
+   "ctx": 200000,
+   "in_per_m": 15.0,
+   "out_per_m": 60.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/o3-pro",
+   "ctx": 200000,
+   "in_per_m": 20.0,
+   "out_per_m": 80.0,
+   "input_modalities": [
+    "text",
+    "file",
+    "image"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.2-pro",
+   "ctx": 400000,
+   "in_per_m": 21.0,
+   "out_per_m": 168.0,
+   "input_modalities": [
+    "image",
+    "text",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4-pro",
+   "ctx": 1050000,
+   "in_per_m": 30.0,
+   "out_per_m": 180.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.5-pro",
+   "ctx": 1050000,
+   "in_per_m": 30.0,
+   "out_per_m": 180.0,
+   "input_modalities": [
+    "file",
+    "image",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/o1-pro",
+   "ctx": 200000,
+   "in_per_m": 150.0,
+   "out_per_m": 600.0,
+   "input_modalities": [
+    "text",
+    "image",
+    "file"
+   ]
+  }
+ ],
+ "calls": [
+  {
+   "model_asked": "z-ai/glm-5.3-flash",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "z-ai/glm-5.3-flash",
+   "text": "Василистьева",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 2142,
+    "completion_tokens": 117,
+    "total_tokens": 2259,
+    "cost": 0.0003798,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0003798,
+     "upstream_inference_prompt_cost": 0.0003213,
+     "upstream_inference_completions_cost": 5.85e-05
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 110,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 7.7
+  },
+  {
+   "model_asked": "z-ai/glm-5.3-flash",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "z-ai/glm-5.3-flash",
+   "text": "саша высокая мама",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1421,
+    "completion_tokens": 99,
+    "total_tokens": 1520,
+    "cost": 0.00026265,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00026265,
+     "upstream_inference_prompt_cost": 0.00021315,
+     "upstream_inference_completions_cost": 4.95e-05
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 93,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.7
+  },
+  {
+   "model_asked": "z-ai/glm-5.3-flash",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "z-ai/glm-5.3-flash",
+   "text": "пра…аи сте… во… ноу сло…\nсмерти некуда.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 2026,
+    "completion_tokens": 510,
+    "total_tokens": 2536,
+    "cost": 0.0005589,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0005589,
+     "upstream_inference_prompt_cost": 0.0003039,
+     "upstream_inference_completions_cost": 0.000255
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 487,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 9.5
+  },
+  {
+   "model_asked": "z-ai/glm-4.6v",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "z-ai/glm-4.6v",
+   "text": "Васильева",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 2136,
+    "completion_tokens": 408,
+    "total_tokens": 2544,
+    "cost": 0.001007,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 4,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.001007,
+     "upstream_inference_prompt_cost": 0.0006398,
+     "upstream_inference_completions_cost": 0.0003672
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 398,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 11.0
+  },
+  {
+   "model_asked": "z-ai/glm-4.6v",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "z-ai/glm-4.6v",
+   "text": "олар булос молка",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1415,
+    "completion_tokens": 387,
+    "total_tokens": 1802,
+    "cost": 0.00075455,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 73,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00075455,
+     "upstream_inference_prompt_cost": 0.00040625,
+     "upstream_inference_completions_cost": 0.0003483
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 374,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 12.2
+  },
+  {
+   "model_asked": "z-ai/glm-4.6v",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "z-ai/glm-4.6v",
+   "text": "степи нету.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1895,
+    "completion_tokens": 163,
+    "total_tokens": 2058,
+    "cost": 0.00069695,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 73,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00069695,
+     "upstream_inference_prompt_cost": 0.00055025,
+     "upstream_inference_completions_cost": 0.0001467
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 151,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 7.9
+  },
+  {
+   "model_asked": "z-ai/glm-4.5v",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "z-ai/glm-4.5v",
+   "text": "Василисанов",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 2155,
+    "completion_tokens": 303,
+    "total_tokens": 2458,
+    "cost": 0.0018384,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0018384,
+     "upstream_inference_prompt_cost": 0.001293,
+     "upstream_inference_completions_cost": 0.0005454
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 296,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 11.1
+  },
+  {
+   "model_asked": "z-ai/glm-4.5v",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "z-ai/glm-4.5v",
+   "text": "СОЛЦЕ БИСКВОЗ МОРОЗ",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1323,
+    "completion_tokens": 2701,
+    "total_tokens": 4024,
+    "cost": 0.0056556,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0056556,
+     "upstream_inference_prompt_cost": 0.0007938,
+     "upstream_inference_completions_cost": 0.0048618
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 2687,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 211.7
+  },
+  {
+   "model_asked": "z-ai/glm-4.5v",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "z-ai/glm-4.5v",
+   "text": "продают\nснегу.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1803,
+    "completion_tokens": 633,
+    "total_tokens": 2436,
+    "cost": 0.0022212,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0022212,
+     "upstream_inference_prompt_cost": 0.0010818,
+     "upstream_inference_completions_cost": 0.0011394
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 622,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 30.2
+  },
+  {
+   "model_asked": "deepseek/deepseek-v4.1-flash",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "deepseek/deepseek-v4.1-flash",
+   "text": "Воскресенье",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1081,
+    "completion_tokens": 136,
+    "total_tokens": 1217,
+    "cost": 0.0002978,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0002978,
+     "upstream_inference_prompt_cost": 0.0002162,
+     "upstream_inference_completions_cost": 8.16e-05
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 129,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 35.0
+  },
+  {
+   "model_asked": "deepseek/deepseek-v4.1-flash",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "deepseek/deepseek-v4.1-flash",
+   "text": "рамка класс том",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 730,
+    "completion_tokens": 125,
+    "total_tokens": 855,
+    "cost": 0.000369,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.000369,
+     "upstream_inference_prompt_cost": 0.000219,
+     "upstream_inference_completions_cost": 0.00015
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 120,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 5.5
+  },
+  {
+   "model_asked": "deepseek/deepseek-v4.1-flash",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "deepseek/deepseek-v4.1-flash",
+   "text": "смери нечу",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 977,
+    "completion_tokens": 151,
+    "total_tokens": 1128,
+    "cost": 0.000436356,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.000436356,
+     "upstream_inference_prompt_cost": 0.000269652,
+     "upstream_inference_completions_cost": 0.000166704
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 151,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 10.4
+  },
+  {
+   "model_asked": "qwen/qwen3-vl-32b-instruct",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "qwen/qwen3-vl-32b-instruct",
+   "text": "Коммунистическая",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1698,
+    "completion_tokens": 7,
+    "total_tokens": 1705,
+    "cost": 0.000179504,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.000179504,
+     "upstream_inference_prompt_cost": 0.000176592,
+     "upstream_inference_completions_cost": 2.912e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 1.5
+  },
+  {
+   "model_asked": "qwen/qwen3-vl-32b-instruct",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "qwen/qwen3-vl-32b-instruct",
+   "text": "соцвяж биология тонко",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1068,
+    "completion_tokens": 12,
+    "total_tokens": 1080,
+    "cost": 0.000116064,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.000116064,
+     "upstream_inference_prompt_cost": 0.000111072,
+     "upstream_inference_completions_cost": 4.992e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.1
+  },
+  {
+   "model_asked": "qwen/qwen3-vl-32b-instruct",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "qwen/qwen3-vl-32b-instruct",
+   "text": "смеги пему.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1488,
+    "completion_tokens": 9,
+    "total_tokens": 1497,
+    "cost": 0.000158496,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.000158496,
+     "upstream_inference_prompt_cost": 0.000154752,
+     "upstream_inference_completions_cost": 3.744e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 1.5
+  },
+  {
+   "model_asked": "qwen/qwen3-vl-8b-instruct",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "qwen/qwen3-vl-8b-instruct",
+   "text": "Баавшнмбога",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1698,
+    "completion_tokens": 10,
+    "total_tokens": 1708,
+    "cost": 0.000203216,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.000203216,
+     "upstream_inference_prompt_cost": 0.000198666,
+     "upstream_inference_completions_cost": 4.55e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 1.3
+  },
+  {
+   "model_asked": "qwen/qwen3-vl-8b-instruct",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "qwen/qwen3-vl-8b-instruct",
+   "text": "2600\n2600 2700 2800 2900 3000 3100 3200 3300 3400\n1700\nсочиня бывалая тонко",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1068,
+    "completion_tokens": 67,
+    "total_tokens": 1135,
+    "cost": 0.000155441,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.000155441,
+     "upstream_inference_prompt_cost": 0.000124956,
+     "upstream_inference_completions_cost": 3.0485e-05
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 1.6
+  },
+  {
+   "model_asked": "qwen/qwen3-vl-8b-instruct",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "qwen/qwen3-vl-8b-instruct",
+   "text": "квадратных метров пеньки.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1488,
+    "completion_tokens": 12,
+    "total_tokens": 1500,
+    "cost": 0.000179556,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.000179556,
+     "upstream_inference_prompt_cost": 0.000174096,
+     "upstream_inference_completions_cost": 5.46e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.3
+  },
+  {
+   "model_asked": "google/gemini-3.1-flash-lite",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "google/gemini-3.1-flash-lite",
+   "text": "Взаимоствова",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1119,
+    "completion_tokens": 103,
+    "total_tokens": 1222,
+    "cost": 0.00043425,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00043425,
+     "upstream_inference_prompt_cost": 0.00027975,
+     "upstream_inference_completions_cost": 0.0001545
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 98,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.4
+  },
+  {
+   "model_asked": "google/gemini-3.1-flash-lite",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "google/gemini-3.1-flash-lite",
+   "text": "самая высокая точка",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1103,
+    "completion_tokens": 115,
+    "total_tokens": 1218,
+    "cost": 0.00044825,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00044825,
+     "upstream_inference_prompt_cost": 0.00027575,
+     "upstream_inference_completions_cost": 0.0001725
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 111,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.1
+  },
+  {
+   "model_asked": "google/gemini-3.1-flash-lite",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "google/gemini-3.1-flash-lite",
+   "text": "прилагательной\nстерть пену.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1148,
+    "completion_tokens": 127,
+    "total_tokens": 1275,
+    "cost": 0.0004775,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0004775,
+     "upstream_inference_prompt_cost": 0.000287,
+     "upstream_inference_completions_cost": 0.0001905
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 118,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.3
+  },
+  {
+   "model_asked": "google/gemini-2.5-flash",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "google/gemini-2.5-flash",
+   "text": "Васиствова",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 3423,
+    "completion_tokens": 282,
+    "total_tokens": 3705,
+    "cost": 0.0017319,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0017319,
+     "upstream_inference_prompt_cost": 0.0010269,
+     "upstream_inference_completions_cost": 0.000705
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 278,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 3.8
+  },
+  {
+   "model_asked": "google/gemini-2.5-flash",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "google/gemini-2.5-flash",
+   "text": "олляся, Классая, тонька",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 3423,
+    "completion_tokens": 529,
+    "total_tokens": 3952,
+    "cost": 0.0023494,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0023494,
+     "upstream_inference_prompt_cost": 0.0010269,
+     "upstream_inference_completions_cost": 0.0013225
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 518,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 6.2
+  },
+  {
+   "model_asked": "google/gemini-2.5-flash",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "google/gemini-2.5-flash",
+   "text": "стартел ненул.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 3423,
+    "completion_tokens": 672,
+    "total_tokens": 4095,
+    "cost": 0.0027069,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0027069,
+     "upstream_inference_prompt_cost": 0.0010269,
+     "upstream_inference_completions_cost": 0.00168
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 667,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 5.7
+  },
+  {
+   "model_asked": "google/gemini-2.5-pro",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": null,
+   "text": null,
+   "error": "SystemExit: OpenRouter 402: {\"error\":{\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 4000 tokens, but can only afford 3527. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account\",\"code\":402,\"metadata\":{\"limit_source\":\"openrouter_credits\",\"remedy_hint\":\"Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\",\"provider_name\":null,\"previous_errors\":[{\"code\":402,\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 4000 tokens, but can only afford 3527. ",
+   "finish_reason": null,
+   "usage": null,
+   "seconds": 0.5
+  },
+  {
+   "model_asked": "google/gemini-2.5-pro",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": null,
+   "text": null,
+   "error": "SystemExit: OpenRouter 402: {\"error\":{\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 4000 tokens, but can only afford 3418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account\",\"code\":402,\"metadata\":{\"limit_source\":\"openrouter_credits\",\"remedy_hint\":\"Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\",\"provider_name\":null,\"previous_errors\":[{\"code\":402,\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 4000 tokens, but can only afford 3418. ",
+   "finish_reason": null,
+   "usage": null,
+   "seconds": 0.6
+  },
+  {
+   "model_asked": "google/gemini-2.5-pro",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": null,
+   "text": null,
+   "error": "SystemExit: OpenRouter 402: {\"error\":{\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 4000 tokens, but can only afford 3418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account\",\"code\":402,\"metadata\":{\"limit_source\":\"openrouter_credits\",\"remedy_hint\":\"Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\",\"provider_name\":null,\"previous_errors\":[{\"code\":402,\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 4000 tokens, but can only afford 3418. ",
+   "finish_reason": null,
+   "usage": null,
+   "seconds": 0.5
+  },
+  {
+   "model_asked": "openai/gpt-4o-mini",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "openai/gpt-4o-mini",
+   "text": "Васильевна",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 25576,
+    "completion_tokens": 6,
+    "total_tokens": 25582,
+    "cost": 0.00384,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00384,
+     "upstream_inference_prompt_cost": 0.0038364,
+     "upstream_inference_completions_cost": 3.6e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 3.7
+  },
+  {
+   "model_asked": "openai/gpt-4o-mini",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "openai/gpt-4o-mini",
+   "text": "ознА9 МАШКЕ",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 25576,
+    "completion_tokens": 10,
+    "total_tokens": 25586,
+    "cost": 0.0038424,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0038424,
+     "upstream_inference_prompt_cost": 0.0038364,
+     "upstream_inference_completions_cost": 6e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 3.0
+  },
+  {
+   "model_asked": "openai/gpt-4o-mini",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "openai/gpt-4o-mini",
+   "text": "сделали домашнюю.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 25576,
+    "completion_tokens": 6,
+    "total_tokens": 25582,
+    "cost": 0.00384,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00384,
+     "upstream_inference_prompt_cost": 0.0038364,
+     "upstream_inference_completions_cost": 3.6e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.6
+  },
+  {
+   "model_asked": "openai/gpt-5.4-nano",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "openai/gpt-5.4-nano",
+   "text": "Извини, но на этом фрагменте рукописный текст читается недостаточно чётко: разобрать буквы и точно воспроизвести их “верbatim” невозможно. Пожалуйста, пришлите более чёткое/крупное изображение (лучше без обрезки и с более высоким разрешением) — тогда я смогу сделать точную транскрипцию.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1073,
+    "completion_tokens": 294,
+    "total_tokens": 1367,
+    "cost": 0.0005821,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0005821,
+     "upstream_inference_prompt_cost": 0.0002146,
+     "upstream_inference_completions_cost": 0.0003675
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 203,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 3.7
+  },
+  {
+   "model_asked": "openai/gpt-5.4-nano",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "openai/gpt-5.4-nano",
+   "text": "двих\n\nквичс\n\nквух",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 689,
+    "completion_tokens": 603,
+    "total_tokens": 1292,
+    "cost": 0.00089155,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00089155,
+     "upstream_inference_prompt_cost": 0.0001378,
+     "upstream_inference_completions_cost": 0.00075375
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 586,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 5.7
+  },
+  {
+   "model_asked": "openai/gpt-5.4-nano",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "openai/gpt-5.4-nano",
+   "text": "емергии ветьйи,",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 919,
+    "completion_tokens": 408,
+    "total_tokens": 1327,
+    "cost": 0.0006938,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0006938,
+     "upstream_inference_prompt_cost": 0.0001838,
+     "upstream_inference_completions_cost": 0.00051
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 394,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 4.2
+  },
+  {
+   "model_asked": "anthropic/claude-haiku-4.5",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "anthropic/claude-haiku-4.5",
+   "text": "Вашингтона",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 729,
+    "completion_tokens": 262,
+    "total_tokens": 991,
+    "cost": 0.002039,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.002039,
+     "upstream_inference_prompt_cost": 0.000729,
+     "upstream_inference_completions_cost": 0.00131
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 250,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 5.4
+  },
+  {
+   "model_asked": "anthropic/claude-haiku-4.5",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "anthropic/claude-haiku-4.5",
+   "text": "БУМАБ БЫВЮХОЗ МИЛИЦ",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 505,
+    "completion_tokens": 334,
+    "total_tokens": 839,
+    "cost": 0.002175,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.002175,
+     "upstream_inference_prompt_cost": 0.000505,
+     "upstream_inference_completions_cost": 0.00167
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 312,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 4.9
+  },
+  {
+   "model_asked": "anthropic/claude-haiku-4.5",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "anthropic/claude-haiku-4.5",
+   "text": "слшнык поны,",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 617,
+    "completion_tokens": 407,
+    "total_tokens": 1024,
+    "cost": 0.002652,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.002652,
+     "upstream_inference_prompt_cost": 0.000617,
+     "upstream_inference_completions_cost": 0.002035
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 394,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 6.0
+  },
+  {
+   "model_asked": "amazon/nova-lite-v1",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "amazon/nova-lite-v1",
+   "text": "2000 1430 1530 1630 1730 1830 1930 203 300 Константинополь",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1624,
+    "completion_tokens": 49,
+    "total_tokens": 1673,
+    "cost": 0.0001092,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0001092,
+     "upstream_inference_prompt_cost": 9.744e-05,
+     "upstream_inference_completions_cost": 1.176e-05
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.2
+  },
+  {
+   "model_asked": "amazon/nova-lite-v1",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "amazon/nova-lite-v1",
+   "text": " - 2600 2700 2800 2900 3000 3100 3200 3300 3400 1700 ошиб 2800 3000 3200 3400",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 2392,
+    "completion_tokens": 76,
+    "total_tokens": 2468,
+    "cost": 0.00016176,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00016176,
+     "upstream_inference_prompt_cost": 0.00014352,
+     "upstream_inference_completions_cost": 1.824e-05
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.7
+  },
+  {
+   "model_asked": "amazon/nova-lite-v1",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "amazon/nova-lite-v1",
+   "text": "1660 200 300 400 500 600 700 800 900 1000 1760 через легку.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1783,
+    "completion_tokens": 55,
+    "total_tokens": 1838,
+    "cost": 0.00012018,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00012018,
+     "upstream_inference_prompt_cost": 0.00010698,
+     "upstream_inference_completions_cost": 1.32e-05
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 1.8
+  },
+  {
+   "model_asked": "mistralai/mistral-small-3.2-24b-instruct",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "mistralai/mistral-small-3.2-24b-instruct",
+   "text": "Разруха.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 688,
+    "completion_tokens": 6,
+    "total_tokens": 694,
+    "cost": 6.6e-05,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 6.6e-05,
+     "upstream_inference_prompt_cost": 6.45e-05,
+     "upstream_inference_completions_cost": 1.5e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.1
+  },
+  {
+   "model_asked": "mistralai/mistral-small-3.2-24b-instruct",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "mistralai/mistral-small-3.2-24b-instruct",
+   "text": "ДУМАР\nКУМАС\nМУКЕР",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 464,
+    "completion_tokens": 18,
+    "total_tokens": 482,
+    "cost": 4.8e-05,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 4.8e-05,
+     "upstream_inference_prompt_cost": 4.35e-05,
+     "upstream_inference_completions_cost": 4.5e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 3.3
+  },
+  {
+   "model_asked": "mistralai/mistral-small-3.2-24b-instruct",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "mistralai/mistral-small-3.2-24b-instruct",
+   "text": "непременн нержа.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 576,
+    "completion_tokens": 8,
+    "total_tokens": 584,
+    "cost": 5.6e-05,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 5.6e-05,
+     "upstream_inference_prompt_cost": 5.4e-05,
+     "upstream_inference_completions_cost": 2e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.1
+  }
+ ],
+ "prior_calls_from_smoke": [
+  {
+   "model_asked": "deepseek/deepseek-v4-flash-vision-exp",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "deepseek/deepseek-v4-flash-vision-exp",
+   "text": "Воскресенье",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1080,
+    "completion_tokens": 158,
+    "total_tokens": 1238,
+    "cost": 0.00068376,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00068376,
+     "upstream_inference_prompt_cost": 0.0004752,
+     "upstream_inference_completions_cost": 0.00020856
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 152,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 4.8,
+   "source": "vision_smoke.json"
+  },
+  {
+   "model_asked": "deepseek/deepseek-v4-flash-vision-exp",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "deepseek/deepseek-v4-flash-vision-exp",
+   "text": "август весело мы поехали",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 371,
+    "completion_tokens": 276,
+    "total_tokens": 647,
+    "cost": 0.00026378,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00026378,
+     "upstream_inference_prompt_cost": 8.162e-05,
+     "upstream_inference_completions_cost": 0.00018216
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 263,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 2.9,
+   "source": "vision_smoke.json"
+  },
+  {
+   "model_asked": "deepseek/deepseek-v4-flash-vision-exp",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "deepseek/deepseek-v4-flash-vision-exp",
+   "text": "смерти нечу.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 976,
+    "completion_tokens": 142,
+    "total_tokens": 1118,
+    "cost": 0.00061688,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00061688,
+     "upstream_inference_prompt_cost": 0.00042944,
+     "upstream_inference_completions_cost": 0.00018744
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 135,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 3.1,
+   "source": "vision_smoke.json"
+  },
+  {
+   "model_asked": "z-ai/glm-5.3",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": null,
+   "text": null,
+   "error": "SystemExit: OpenRouter 404: {\"error\":{\"message\":\"No endpoints found that support image input\",\"code\":404,\"metadata\":{\"routing_funnel\":[{\"step\":\"Initial Endpoints\",\"endpoint_count\":26}],\"failed_routing_step\":\"Filter by Image Support\"}}}",
+   "finish_reason": null,
+   "usage": null,
+   "seconds": 0.6,
+   "source": "vision_smoke.json"
+  },
+  {
+   "model_asked": "z-ai/glm-5.3",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": null,
+   "text": null,
+   "error": "SystemExit: OpenRouter 404: {\"error\":{\"message\":\"No endpoints found that support image input\",\"code\":404,\"metadata\":{\"routing_funnel\":[{\"step\":\"Initial Endpoints\",\"endpoint_count\":26}],\"failed_routing_step\":\"Filter by Image Support\"}}}",
+   "finish_reason": null,
+   "usage": null,
+   "seconds": 0.5,
+   "source": "vision_smoke.json"
+  },
+  {
+   "model_asked": "z-ai/glm-5.3",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": null,
+   "text": null,
+   "error": "SystemExit: OpenRouter 404: {\"error\":{\"message\":\"No endpoints found that support image input\",\"code\":404,\"metadata\":{\"routing_funnel\":[{\"step\":\"Initial Endpoints\",\"endpoint_count\":26}],\"failed_routing_step\":\"Filter by Image Support\"}}}",
+   "finish_reason": null,
+   "usage": null,
+   "seconds": 0.6,
+   "source": "vision_smoke.json"
+  }
+ ],
+ "panel_results": [
+  {
+   "model": "qwen/qwen3-vl-235b-a22b-instruct",
+   "in_per_m": 0.21,
+   "out_per_m": 1.9,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Возникновение",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.5
+    },
+    "W56": {
+     "returned": "самая высокая точка",
+     "error": null,
+     "category": "EXACT",
+     "cer": 0.0
+    },
+    "W36b": {
+     "returned": "после смерти пети.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 1.25
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "EXACT",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 0.583,
+   "exact": 1,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 2,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "z-ai/glm-4.6v",
+   "in_per_m": 0.3,
+   "out_per_m": 0.9,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Васильева",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.714
+    },
+    "W56": {
+     "returned": "олар булос молка",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.706
+    },
+    "W36b": {
+     "returned": "степи нету.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.5
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 0.64,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "google/gemini-2.5-flash",
+   "in_per_m": 0.3,
+   "out_per_m": 2.5,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Васиствова",
+     "error": null,
+     "category": "PARTIAL",
+     "cer": 0.429
+    },
+    "W56": {
+     "returned": "олляся, Классая, тонька",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.706
+    },
+    "W36b": {
+     "returned": "стартел ненул.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.875
+    }
+   },
+   "categories": [
+    "PARTIAL",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 0.67,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 1,
+   "hallucinated": 2,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "in_per_m": 1.25,
+   "out_per_m": 10.0,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Воалиитствова",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.5
+    },
+    "W56": {
+     "returned": "омов, клеека, тека",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.647
+    },
+    "W36b": {
+     "returned": "смерти нету.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.875
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 0.674,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false,
+   "attempt_note": "402 'requires more credits' on all 3 panel calls at max_tokens=4000; the scored results above come from the ceiling batch at max_tokens=1500"
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "in_per_m": 0.15,
+   "out_per_m": 0.6,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Воскресенье",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.714
+    },
+    "W56": {
+     "returned": "рамка класс том",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.706
+    },
+    "W36b": {
+     "returned": "смери нечу",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.75
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 0.723,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "qwen/qwen3-vl-32b-instruct",
+   "in_per_m": 0.104,
+   "out_per_m": 0.416,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Коммунистическая",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 1.0
+    },
+    "W56": {
+     "returned": "соцвяж биология тонко",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.706
+    },
+    "W36b": {
+     "returned": "смеги пему.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.625
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 0.777,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "in_per_m": 1.0,
+   "out_per_m": 5.0,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Вашингтона",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.643
+    },
+    "W56": {
+     "returned": "БУМАБ БЫВЮХОЗ МИЛИЦ",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.824
+    },
+    "W36b": {
+     "returned": "слшнык поны,",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.875
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 0.781,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite",
+   "in_per_m": 0.25,
+   "out_per_m": 1.5,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Взаимоствова",
+     "error": null,
+     "category": "PARTIAL",
+     "cer": 0.286
+    },
+    "W56": {
+     "returned": "самая высокая точка",
+     "error": null,
+     "category": "EXACT",
+     "cer": 0.0
+    },
+    "W36b": {
+     "returned": "прилагательной\nстерть пену.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 2.25
+    }
+   },
+   "categories": [
+    "PARTIAL",
+    "EXACT",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 0.845,
+   "exact": 1,
+   "corrected": 0,
+   "partial": 1,
+   "hallucinated": 1,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "in_per_m": 0.22,
+   "out_per_m": 0.66,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Воскресенье",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.714
+    },
+    "W56": {
+     "returned": "август весело мы поехали",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 1.0
+    },
+    "W36b": {
+     "returned": "смерти нечу.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.875
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 0.863,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "z-ai/glm-4.5v",
+   "in_per_m": 0.6,
+   "out_per_m": 1.8,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Василисанов",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.643
+    },
+    "W56": {
+     "returned": "СОЛЦЕ БИСКВОЗ МОРОЗ",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.824
+    },
+    "W36b": {
+     "returned": "продают\nснегу.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 1.375
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 0.947,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "amazon/nova-lite-v1",
+   "in_per_m": 0.06,
+   "out_per_m": 0.24,
+   "per_crop": {
+    "Z34a": {
+     "returned": "2000 1430 1530 1630 1730 1830 1930 203 300 Константинополь",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 1.0
+    },
+    "W56": {
+     "returned": " - 2600 2700 2800 2900 3000 3100 3200 3300 3400 1700 ошиб 2800 3000 3200 3400",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.941
+    },
+    "W36b": {
+     "returned": "1660 200 300 400 500 600 700 800 900 1000 1760 через легку.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 1.0
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 0.98,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "google/gemini-3-flash-preview",
+   "in_per_m": 0.5,
+   "out_per_m": 3.0,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Воаимствова",
+     "error": null,
+     "category": "PARTIAL",
+     "cer": 0.286
+    },
+    "W56": {
+     "returned": "самая высокая точка",
+     "error": null,
+     "category": "EXACT",
+     "cer": 0.0
+    },
+    "W36b": {
+     "returned": "прилагательный стаит\nстеть пену.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 2.75
+    }
+   },
+   "categories": [
+    "PARTIAL",
+    "EXACT",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 1.012,
+   "exact": 1,
+   "corrected": 0,
+   "partial": 1,
+   "hallucinated": 1,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "openai/gpt-4o-mini",
+   "in_per_m": 0.15,
+   "out_per_m": 0.6,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Васильевна",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.714
+    },
+    "W56": {
+     "returned": "ознА9 МАШКЕ",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.824
+    },
+    "W36b": {
+     "returned": "сделали домашнюю.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 1.5
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 1.013,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "mistralai/mistral-small-3.2-24b-instruct",
+   "in_per_m": 0.075,
+   "out_per_m": 0.2,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Разруха.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.857
+    },
+    "W56": {
+     "returned": "ДУМАР\nКУМАС\nМУКЕР",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.824
+    },
+    "W36b": {
+     "returned": "непременн нержа.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 1.375
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 1.019,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "qwen/qwen3-vl-8b-instruct",
+   "in_per_m": 0.117,
+   "out_per_m": 0.455,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Баавшнмбога",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.786
+    },
+    "W56": {
+     "returned": "2600\n2600 2700 2800 2900 3000 3100 3200 3300 3400\n1700\nсочиня бывалая тонко",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.588
+    },
+    "W36b": {
+     "returned": "квадратных метров пеньки.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 2.0
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 1.125,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "in_per_m": 0.15,
+   "out_per_m": 0.5,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Василистьева",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.643
+    },
+    "W56": {
+     "returned": "саша высокая мама",
+     "error": null,
+     "category": "PARTIAL",
+     "cer": 0.353
+    },
+    "W36b": {
+     "returned": "пра…аи сте… во… ноу сло…\nсмерти некуда.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 2.875
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "PARTIAL",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 1.29,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 1,
+   "hallucinated": 2,
+   "errors": 0,
+   "usable": false
+  },
+  {
+   "model": "openai/gpt-5.4-nano",
+   "in_per_m": 0.2,
+   "out_per_m": 1.25,
+   "per_crop": {
+    "Z34a": {
+     "returned": "Извини, но на этом фрагменте рукописный текст читается недостаточно чётко: разобрать буквы и точно воспроизвести их “верbatim” невозможно. Пожалуйста, пришлите более чёткое/крупное изображение (лучше без обрезки и с более высоким разрешением) — тогда я смогу сделать точную транскрипцию.",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 16.143
+    },
+    "W56": {
+     "returned": "двих\n\nквичс\n\nквух",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 0.882
+    },
+    "W36b": {
+     "returned": "емергии ветьйи,",
+     "error": null,
+     "category": "HALLUCINATED",
+     "cer": 1.25
+    }
+   },
+   "categories": [
+    "HALLUCINATED",
+    "HALLUCINATED",
+    "HALLUCINATED"
+   ],
+   "mean_cer": 6.092,
+   "exact": 0,
+   "corrected": 0,
+   "partial": 0,
+   "hallucinated": 3,
+   "errors": 0,
+   "usable": false
+  }
+ ],
+ "spend_usd_bakeoff": 0.071716,
+ "verdict": {
+  "headline": "No model on this account is usable as a second annotator on these three crops. Across 17 models and two parameter settings, nothing reproduced all three pupil strings, and no model silently corrected the pupil's spelling either (CORRECTED count is 0 everywhere) — the failure mode found was hallucination, not correction.",
+  "best_model": "qwen/qwen3-vl-235b-a22b-instruct",
+  "best_mean_cer": 0.583,
+  "usable_as_second_annotator": [],
+  "models_with_at_least_one_exact_crop": [
+   "qwen/qwen3-vl-235b-a22b-instruct",
+   "google/gemini-3.1-flash-lite",
+   "google/gemini-3-flash-preview"
+  ],
+  "corrected_anywhere": [],
+  "per_crop_readability": {
+   "Z34a": "Взаимствование is partially readable at best: best CER 0.286 (gemini-3.1-flash-lite 'Взаимоствова', gemini-3-flash-preview 'Воаимствова'); 14 of 17 models HALLUCINATED, the remaining 3 sat at CER 0.286 without reproducing the word.",
+   "W56": "самая высокая точка is readable: EXACT for qwen3-vl-235b, gemini-3.1-flash-lite and gemini-3-flash-preview; every other model hallucinated it.",
+   "W36b": "степ пени was read by no model. The closest outputs are степени-like fragments ('степи нету.', gemini-3-flash-preview 'стеть пену.', 'смери нечу'); nothing reproduced the pupil's two-word split."
+  },
+  "reading": "Readability is per-crop, not per-model: the clean short phrase is read exactly by three models, the single hard cursive word is half-read, and the split word defeats everything. Any Stage B design that needs a pixel-reading second annotator on arbitrary pupil words does not survive this measurement.",
+  "uncertainty": "3 crops, one call each, single run: per-model CER values carry wide uncertainty and the ordering below the top few is not stable. The headline — nothing reproduces all three — is consistent across 17 models, 8 vendor families (amazon, anthropic, deepseek, google, mistralai, openai, qwen, z-ai) and both parameter settings.",
+  "refusals": "openai/gpt-5.4-nano answered crop Z34a with an explicit refusal ('на этом фрагменте рукописный текст читается недостаточно чётко'). The scoring rule counts a refusal as HALLUCINATED because no transcription was produced; the raw text is in panel_results.",
+  "ceiling": "google/gemini-2.5-pro is the strongest reference available on the account and also failed all three crops (mean CER 0.674), so the failure is not just a cheap-model effect."
+ },
+ "ceiling_calls": [
+  {
+   "model_asked": "google/gemini-2.5-pro",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "google/gemini-2.5-pro",
+   "text": "Воалиитствова",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 3423,
+    "completion_tokens": 178,
+    "total_tokens": 3601,
+    "cost": 0.00605875,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00605875,
+     "upstream_inference_prompt_cost": 0.00427875,
+     "upstream_inference_completions_cost": 0.00178
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 172,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 4.3,
+   "why": "strong general reference — readability ceiling"
+  },
+  {
+   "model_asked": "google/gemini-2.5-pro",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "google/gemini-2.5-pro",
+   "text": "омов, клеека, тека",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 3423,
+    "completion_tokens": 182,
+    "total_tokens": 3605,
+    "cost": 0.00609875,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00609875,
+     "upstream_inference_prompt_cost": 0.00427875,
+     "upstream_inference_completions_cost": 0.00182
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 173,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 4.2,
+   "why": "strong general reference — readability ceiling"
+  },
+  {
+   "model_asked": "google/gemini-2.5-pro",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "google/gemini-2.5-pro",
+   "text": "смерти нету.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 3423,
+    "completion_tokens": 169,
+    "total_tokens": 3592,
+    "cost": 0.00596875,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00596875,
+     "upstream_inference_prompt_cost": 0.00427875,
+     "upstream_inference_completions_cost": 0.00169
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 163,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 4.1,
+   "why": "strong general reference — readability ceiling"
+  },
+  {
+   "model_asked": "qwen/qwen3-vl-235b-a22b-instruct",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "qwen/qwen3-vl-235b-a22b-instruct",
+   "text": "Возникновение",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1698,
+    "completion_tokens": 6,
+    "total_tokens": 1704,
+    "cost": 0.00044772,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00044772,
+     "upstream_inference_prompt_cost": 0.00044148,
+     "upstream_inference_completions_cost": 6.24e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 1.7,
+   "why": "largest Qwen-VL specialist on the account"
+  },
+  {
+   "model_asked": "qwen/qwen3-vl-235b-a22b-instruct",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "qwen/qwen3-vl-235b-a22b-instruct",
+   "text": "самая высокая точка",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1068,
+    "completion_tokens": 9,
+    "total_tokens": 1077,
+    "cost": 0.00028704,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00028704,
+     "upstream_inference_prompt_cost": 0.00027768,
+     "upstream_inference_completions_cost": 9.36e-06
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 1.7,
+   "why": "largest Qwen-VL specialist on the account"
+  },
+  {
+   "model_asked": "qwen/qwen3-vl-235b-a22b-instruct",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "qwen/qwen3-vl-235b-a22b-instruct",
+   "text": "после смерти пети.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1488,
+    "completion_tokens": 11,
+    "total_tokens": 1499,
+    "cost": 0.00039832,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.00039832,
+     "upstream_inference_prompt_cost": 0.00038688,
+     "upstream_inference_completions_cost": 1.144e-05
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 1.5,
+   "why": "largest Qwen-VL specialist on the account"
+  },
+  {
+   "model_asked": "google/gemini-3-flash-preview",
+   "crop": "Z34a",
+   "image_path": "/tmp/Z34a.jpg",
+   "model_answered": "google/gemini-3-flash-preview",
+   "text": "Воаимствова",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1119,
+    "completion_tokens": 5,
+    "total_tokens": 1124,
+    "cost": 0.0005745,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0005745,
+     "upstream_inference_prompt_cost": 0.0005595,
+     "upstream_inference_completions_cost": 1.5e-05
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 0,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 3.2,
+   "why": "stronger current Gemini Flash tier"
+  },
+  {
+   "model_asked": "google/gemini-3-flash-preview",
+   "crop": "W56",
+   "image_path": "/tmp/W56.jpg",
+   "model_answered": "google/gemini-3-flash-preview",
+   "text": "самая высокая точка",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1103,
+    "completion_tokens": 558,
+    "total_tokens": 1661,
+    "cost": 0.0022255,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.0022255,
+     "upstream_inference_prompt_cost": 0.0005515,
+     "upstream_inference_completions_cost": 0.001674
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 554,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 4.8,
+   "why": "stronger current Gemini Flash tier"
+  },
+  {
+   "model_asked": "google/gemini-3-flash-preview",
+   "crop": "W36b",
+   "image_path": "/tmp/W36b.jpg",
+   "model_answered": "google/gemini-3-flash-preview",
+   "text": "прилагательный стаит\nстеть пену.",
+   "error": null,
+   "finish_reason": "stop",
+   "usage": {
+    "prompt_tokens": 1148,
+    "completion_tokens": 1449,
+    "total_tokens": 2597,
+    "cost": 0.004921,
+    "is_byok": false,
+    "prompt_tokens_details": {
+     "cached_tokens": 0,
+     "cache_write_tokens": 0,
+     "audio_tokens": 0,
+     "video_tokens": 0
+    },
+    "cost_details": {
+     "upstream_inference_cost": 0.004921,
+     "upstream_inference_prompt_cost": 0.000574,
+     "upstream_inference_completions_cost": 0.004347
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 1438,
+     "image_tokens": 0,
+     "audio_tokens": 0
+    }
+   },
+   "seconds": 11.3,
+   "why": "stronger current Gemini Flash tier"
+  }
+ ],
+ "ceiling_max_tokens": 1500,
+ "ceiling_note": "gemini-2.5-pro returned 402 'requires more credits' at max_tokens=4000, so the ceiling batch uses max_tokens=1500 (one retry without the reasoning parameter if the answer came back empty).",
+ "default_model_decision": {
+  "old": "stealth/ox-alpha",
+  "old_failure": "404 on every call: 'Thank you for participating in the Stealth Ox Alpha testing period. This model was ZAI's GLM-5.3 Flash.'",
+  "chosen": "qwen/qwen3.7-flash",
+  "why": "cheapest capable model that answers a plain default call ($0.03/M in, $0.13/M out, 1M context, also image-capable), verified live in this packet",
+  "verified_command": "eval/.venv/bin/python tools/openrouter.py ask \"reply with the single word ok\" --reasoning low",
+  "verified_reply": "ok",
+  "verified_usage": "prompt 16 + completion 173 (reasoning 169), qwen/qwen3.7-flash, finish_reason stop",
+  "candidates_measured": {
+   "qwen/qwen3.7-flash": "ok, 158 tokens",
+   "inclusionai/ling-3.0-flash-vl": "ok, 46 tokens",
+   "bytedance-seed/seed-1.6-flash": "ok, 155 tokens",
+   "amazon/nova-lite-v1": "ok, 8 tokens",
+   "z-ai/glm-5.3-flash": "402 on the plain default path: OpenRouter reserves the provider's 131072 default output tokens, $0.066 at $0.50/M, above the account's balance"
+  },
+  "revisit": "z-ai/glm-5.3-flash is the retired alias's direct successor at $0.15/$0.50 and is the natural default once the balance covers its 131k default output reservation."
+ },
+ "account_balance": {
+  "observed_utc": "2026-09-12T08:11:20+00:00",
+  "credits_endpoint": {
+   "total_credits": 0,
+   "total_usage": 0.079980489
+  },
+  "reading": "total_credits 0 and total_usage ~$0.05: the account is effectively out of credit.",
+  "founder_actionable": "Any model whose provider default output reservation exceeds the balance now fails on a plain call with 402 \"requires more credits, or fewer max_tokens\". Measured: z-ai/glm-5.3-flash reserves 131072 default output tokens = $0.066 at $0.50/M against ~$0.027 available, so the default path 402s even though the model itself is live. Remedy: top up at openrouter.ai/settings/credits, or pass an explicit max_tokens so the reservation fits.",
+  "bounded_the_run": "cost ceiling $3.00 was never the binding constraint; the balance was. google/gemini-2.5-pro had to be re-run at max_tokens=1500 because max_tokens=4000 402d."
+ },
+ "limitations": {
+  "sample": "3 crops, one call per model, single run, no repeats: no variance estimate, and the per-model CER ordering below the top few is not stable.",
+  "crop_geometry": "All three crops are tight single-word or single-phrase crops cut at 4x (per the packet provenance). A reader gets no neighbouring word, no line and no page context. That is the most plausible driver of the hallucinations here and the easiest variable to change, so the honest claim is: no model read isolated handwritten Russian words on this sample — not that no model can read this notebook.",
+  "scope": "One language (Russian), cursive Cyrillic, one child's hand, one notebook's page family. Nothing here generalises to printed text, other hands or other languages.",
+  "ground_truth": "Ground truth is given by the packet (founder + Astra at 4x zoom), not independently re-verified in this run; every CER in this file inherits it.",
+  "scoring": "Rule is in scoring_rule. An explicit refusal counts as HALLUCINATED (no transcription produced); the raw text is kept in panel_results.",
+  "budget": "Account balance (~$0.027) bounded parameter choices; see account_balance."
+ }
+}

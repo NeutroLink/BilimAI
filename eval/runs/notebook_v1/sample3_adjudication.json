@@ -1,0 +1,113 @@
+{
+ "sample": "main_sample seed 20260913 n=20, drawn from 175 non_word candidates",
+ "adjudicated_by": "Astra by eye against the transcript and its context, 2026-09-12",
+ "counts": {
+  "artefact": 7,
+  "error": 12,
+  "ambiguous": 1
+ },
+ "precision_point_estimate": 0.6,
+ "note": "An 'artefact' is a proposal that is wrong by construction, not a judgement call. 'ambiguous' is neither credited nor charged.",
+ "verdicts": [
+  {
+   "key": "p05-l02|гласие",
+   "verdict": "artefact",
+   "reason": "head of a carry: the previous line ends «Со-», so the word is «Согласие»"
+  },
+  {
+   "key": "p05-l30|образовани",
+   "verdict": "artefact",
+   "reason": "word runs into the right edge; «образования» is cut by the photograph"
+  },
+  {
+   "key": "p08-l16|Ледянец",
+   "verdict": "error",
+   "reason": "«Леденец» - the pupil wrote я for е in a Лёд/леденец derivation exercise"
+  },
+  {
+   "key": "p12-l36|местоимен",
+   "verdict": "artefact",
+   "reason": "dotted abbreviation «местоимен.:» - the dot was stripped before the abbreviation test"
+  },
+  {
+   "key": "p13-l16|подставает",
+   "verdict": "error",
+   "reason": "not a Russian word; the sentence wants «передает»"
+  },
+  {
+   "key": "p15-l05|Вспомог",
+   "verdict": "artefact",
+   "reason": "dotted abbreviation «Вспомог. форма глаг.»"
+  },
+  {
+   "key": "p16-l36|односоставное",
+   "verdict": "artefact",
+   "reason": "real Russian word; pymorphy3 lexicon gap, nearest list empty"
+  },
+  {
+   "key": "p18-l11|охх",
+   "verdict": "ambiguous",
+   "reason": "interjection in a list of interjections; spelling of an interjection is not adjudicable without the source"
+  },
+  {
+   "key": "p19-l31|возрост",
+   "verdict": "error",
+   "reason": "«возраст»"
+  },
+  {
+   "key": "p24-l04|Паралельное",
+   "verdict": "error",
+   "reason": "«Параллельное» - one л for two"
+  },
+  {
+   "key": "p24-l26|невидимул",
+   "verdict": "error",
+   "reason": "«невидимую»"
+  },
+  {
+   "key": "p25-l21|художественой",
+   "verdict": "error",
+   "reason": "«художественной»"
+  },
+  {
+   "key": "p26-l03|урания",
+   "verdict": "error",
+   "reason": "«урана» - the ore, not the muse"
+  },
+  {
+   "key": "p34-l01|Взаимствование",
+   "verdict": "error",
+   "reason": "«Заимствование» - already hand-labelled P34-E1; the extractor rediscovered it"
+  },
+  {
+   "key": "p34-l10|турского",
+   "verdict": "error",
+   "reason": "«турецкого» - already hand-labelled P34-E7"
+  },
+  {
+   "key": "p35-l31|Спр",
+   "verdict": "artefact",
+   "reason": "dotted abbreviation «Спр. 2»"
+  },
+  {
+   "key": "p40-l12|суфиксы",
+   "verdict": "error",
+   "reason": "«суффиксы» - one ф for two"
+  },
+  {
+   "key": "p40-l19|невидатный",
+   "verdict": "error",
+   "reason": "«невиданный»"
+  },
+  {
+   "key": "p43-l25|Пляцковского",
+   "verdict": "artefact",
+   "reason": "proper noun - the composer М. Пляцковский, correctly spelled"
+  },
+  {
+   "key": "p52-l05|средизелмном",
+   "verdict": "error",
+   "reason": "«средиземном» - л and м transposed"
+  }
+ ]
+}

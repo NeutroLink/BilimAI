@@ -1,0 +1,2276 @@
+{
+ "artifact": "labels_provisional.json",
+ "schema": "my_notebook_v1/provisional_labels.v1",
+ "note": "PROVISIONAL LABELS - promoted from the lexicon candidate pass, NOT verified against the ink. Do not treat as adjudicated errors.",
+ "measurement": {
+  "precision_point_estimate": 0.6,
+  "precision_ci95": [
+   0.39,
+   0.81
+  ],
+  "sample_size": 20,
+  "sample_seed": 20260913,
+  "verdict_counts": {
+   "error": 12,
+   "artefact": 7,
+   "ambiguous": 1
+  },
+  "adjudicated_by": "Astra by eye against the transcript, 2026-09-12",
+  "adjudication_file": "eval/runs/notebook_v1/sample3_adjudication.json",
+  "projected_real_errors_among_175": 105,
+  "projected_note": "arithmetic: 0.60 x 175 candidates, not a measurement",
+  "statement": "PROVISIONAL labels whose precision is estimated from 20 adjudicated items, not verified individually.",
+  "statement_timing": "The 0.60 precision was measured BEFORE the last two repairs (morphological proper-noun and acronym scopes, unmarked carry/cut detection); those repairs removed artefacts only, so it is a FLOOR, not an estimate."
+ },
+ "provenance": {
+  "producer": "tools/extract_candidate_labels.py",
+  "proposed_by": "extractor v1 2026-09-12",
+  "date": "2026-09-12",
+  "git_head": "6ad912094f545bb6ccc30f2ee5d4e4359183fbdb",
+  "pymorphy3_version": "2.0.6",
+  "source": "eval/runs/notebook_v1/labels_astra_candidates.json",
+  "device": "none (no model, no GPU, no network)"
+ },
+ "totals": {
+  "records": 119,
+  "with_expected": 24,
+  "without_expected": 95,
+  "by_scope": {
+   "non_word": 119
+  }
+ },
+ "acceptance_against_adjudication": {
+  "available": true,
+  "path": "eval/runs/notebook_v1/sample3_adjudication.json",
+  "errors_all_promoted": true,
+  "errors_promoted": 12,
+  "errors_total": 12,
+  "errors": [
+   {
+    "key": "p08-l16|Ледянец",
+    "in_provisional": true
+   },
+   {
+    "key": "p13-l16|подставает",
+    "in_provisional": true
+   },
+   {
+    "key": "p19-l31|возрост",
+    "in_provisional": true
+   },
+   {
+    "key": "p24-l04|Паралельное",
+    "in_provisional": true
+   },
+   {
+    "key": "p24-l26|невидимул",
+    "in_provisional": true
+   },
+   {
+    "key": "p25-l21|художественой",
+    "in_provisional": true
+   },
+   {
+    "key": "p26-l03|урания",
+    "in_provisional": true
+   },
+   {
+    "key": "p34-l01|Взаимствование",
+    "in_provisional": true
+   },
+   {
+    "key": "p34-l10|турского",
+    "in_provisional": true
+   },
+   {
+    "key": "p40-l12|суфиксы",
+    "in_provisional": true
+   },
+   {
+    "key": "p40-l19|невидатный",
+    "in_provisional": true
+   },
+   {
+    "key": "p52-l05|средизелмном",
+    "in_provisional": true
+   }
+  ],
+  "artefacts_promoted": 0,
+  "artefacts_total": 7,
+  "artefacts": [
+   {
+    "key": "p05-l02|гласие",
+    "in_provisional": false
+   },
+   {
+    "key": "p05-l30|образовани",
+    "in_provisional": false
+   },
+   {
+    "key": "p12-l36|местоимен",
+    "in_provisional": false
+   },
+   {
+    "key": "p15-l05|Вспомог",
+    "in_provisional": false
+   },
+   {
+    "key": "p16-l36|односоставное",
+    "in_provisional": false
+   },
+   {
+    "key": "p35-l31|Спр",
+    "in_provisional": false
+   },
+   {
+    "key": "p43-l25|Пляцковского",
+    "in_provisional": false
+   }
+  ],
+  "pass": true
+ },
+ "records": [
+  {
+   "id": "prov-p03-l01-0",
+   "line": 1,
+   "line_id": "p03-l01",
+   "word_index": 0,
+   "written": "жей",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-03.jpg",
+    "line_id": "p03-l01"
+   }
+  },
+  {
+   "id": "prov-p03-l18-3",
+   "line": 18,
+   "line_id": "p03-l18",
+   "word_index": 3,
+   "written": "неприк",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-03.jpg",
+    "line_id": "p03-l18"
+   }
+  },
+  {
+   "id": "prov-p04-l26-3",
+   "line": 26,
+   "line_id": "p04-l26",
+   "word_index": 3,
+   "written": "приним",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-04.jpg",
+    "line_id": "p04-l26"
+   }
+  },
+  {
+   "id": "prov-p05-l34-0",
+   "line": 34,
+   "line_id": "p05-l34",
+   "word_index": 0,
+   "written": "ледж",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-05.jpg",
+    "line_id": "p05-l34"
+   }
+  },
+  {
+   "id": "prov-p07-l10-5",
+   "line": 10,
+   "line_id": "p07-l10",
+   "word_index": 5,
+   "written": "безударн",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-07.jpg",
+    "line_id": "p07-l10"
+   }
+  },
+  {
+   "id": "prov-p07-l12-5",
+   "line": 12,
+   "line_id": "p07-l12",
+   "word_index": 5,
+   "written": "непарн",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-07.jpg",
+    "line_id": "p07-l12"
+   }
+  },
+  {
+   "id": "prov-p08-l04-1",
+   "line": 4,
+   "line_id": "p08-l04",
+   "word_index": 1,
+   "written": "ветерёк",
+   "expected": "ветерок",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-08.jpg",
+    "line_id": "p08-l04"
+   }
+  },
+  {
+   "id": "prov-p08-l05-0",
+   "line": 5,
+   "line_id": "p08-l05",
+   "word_index": 0,
+   "written": "Восковый",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-08.jpg",
+    "line_id": "p08-l05"
+   }
+  },
+  {
+   "id": "prov-p08-l07-0",
+   "line": 7,
+   "line_id": "p08-l07",
+   "word_index": 0,
+   "written": "Охрипели",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-08.jpg",
+    "line_id": "p08-l07"
+   }
+  },
+  {
+   "id": "prov-p08-l16-1",
+   "line": 16,
+   "line_id": "p08-l16",
+   "word_index": 1,
+   "written": "Ледянец",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-08.jpg",
+    "line_id": "p08-l16"
+   }
+  },
+  {
+   "id": "prov-p09-l07-1",
+   "line": 7,
+   "line_id": "p09-l07",
+   "word_index": 1,
+   "written": "точта",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-09.jpg",
+    "line_id": "p09-l07"
+   }
+  },
+  {
+   "id": "prov-p10-l29-7",
+   "line": 29,
+   "line_id": "p10-l29",
+   "word_index": 7,
+   "written": "ых",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-10.jpg",
+    "line_id": "p10-l29"
+   }
+  },
+  {
+   "id": "prov-p10-l31-3",
+   "line": 31,
+   "line_id": "p10-l31",
+   "word_index": 3,
+   "written": "нибудь",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-10.jpg",
+    "line_id": "p10-l31"
+   }
+  },
+  {
+   "id": "prov-p10-l41-0",
+   "line": 41,
+   "line_id": "p10-l41",
+   "word_index": 0,
+   "written": "Изжелта",
+   "expected": "Изжелти",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-10.jpg",
+    "line_id": "p10-l41"
+   }
+  },
+  {
+   "id": "prov-p12-l07-0",
+   "line": 7,
+   "line_id": "p12-l07",
+   "word_index": 0,
+   "written": "Паралельное",
+   "expected": "Параллельное",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-12.jpg",
+    "line_id": "p12-l07"
+   }
+  },
+  {
+   "id": "prov-p12-l17-2",
+   "line": 17,
+   "line_id": "p12-l17",
+   "word_index": 2,
+   "written": "призн",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-12.jpg",
+    "line_id": "p12-l17"
+   }
+  },
+  {
+   "id": "prov-p12-l19-3",
+   "line": 19,
+   "line_id": "p12-l19",
+   "word_index": 3,
+   "written": "подчин",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-12.jpg",
+    "line_id": "p12-l19"
+   }
+  },
+  {
+   "id": "prov-p12-l27-5",
+   "line": 27,
+   "line_id": "p12-l27",
+   "word_index": 5,
+   "written": "тож",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-12.jpg",
+    "line_id": "p12-l27"
+   }
+  },
+  {
+   "id": "prov-p12-l36-4",
+   "line": 36,
+   "line_id": "p12-l36",
+   "word_index": 4,
+   "written": "нибудь",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-12.jpg",
+    "line_id": "p12-l36"
+   }
+  },
+  {
+   "id": "prov-p13-l16-1",
+   "line": 16,
+   "line_id": "p13-l16",
+   "word_index": 1,
+   "written": "подставает",
+   "expected": "подстывает",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-13.jpg",
+    "line_id": "p13-l16"
+   }
+  },
+  {
+   "id": "prov-p13-l29-7",
+   "line": 29,
+   "line_id": "p13-l29",
+   "word_index": 7,
+   "written": "тссс",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-13.jpg",
+    "line_id": "p13-l29"
+   }
+  },
+  {
+   "id": "prov-p13-l37-2",
+   "line": 37,
+   "line_id": "p13-l37",
+   "word_index": 2,
+   "written": "подрыжание",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-13.jpg",
+    "line_id": "p13-l37"
+   }
+  },
+  {
+   "id": "prov-p14-l14-4",
+   "line": 14,
+   "line_id": "p14-l14",
+   "word_index": 4,
+   "written": "звонк",
+   "expected": null,
+   "kind": "table",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-14.jpg",
+    "line_id": "p14-l14"
+   }
+  },
+  {
+   "id": "prov-p14-l31-1",
+   "line": 31,
+   "line_id": "p14-l31",
+   "word_index": 1,
+   "written": "составный",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-14.jpg",
+    "line_id": "p14-l31"
+   }
+  },
+  {
+   "id": "prov-p14-l39-2",
+   "line": 39,
+   "line_id": "p14-l39",
+   "word_index": 2,
+   "written": "домашку",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-14.jpg",
+    "line_id": "p14-l39"
+   }
+  },
+  {
+   "id": "prov-p16-l04-5",
+   "line": 4,
+   "line_id": "p16-l04",
+   "word_index": 5,
+   "written": "недлимым",
+   "expected": "неделимым",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-16.jpg",
+    "line_id": "p16-l04"
+   }
+  },
+  {
+   "id": "prov-p16-l06-6",
+   "line": 6,
+   "line_id": "p16-l06",
+   "word_index": 6,
+   "written": "Обычать",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-16.jpg",
+    "line_id": "p16-l06"
+   }
+  },
+  {
+   "id": "prov-p16-l07-5",
+   "line": 7,
+   "line_id": "p16-l07",
+   "word_index": 5,
+   "written": "выдумам",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-16.jpg",
+    "line_id": "p16-l07"
+   }
+  },
+  {
+   "id": "prov-p17-l22-4",
+   "line": 22,
+   "line_id": "p17-l22",
+   "word_index": 4,
+   "written": "запятих",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-17.jpg",
+    "line_id": "p17-l22"
+   }
+  },
+  {
+   "id": "prov-p17-l39-0",
+   "line": 39,
+   "line_id": "p17-l39",
+   "word_index": 0,
+   "written": "черов",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-17.jpg",
+    "line_id": "p17-l39"
+   }
+  },
+  {
+   "id": "prov-p18-l11-7",
+   "line": 11,
+   "line_id": "p18-l11",
+   "word_index": 7,
+   "written": "охх",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-18.jpg",
+    "line_id": "p18-l11"
+   }
+  },
+  {
+   "id": "prov-p18-l12-3",
+   "line": 12,
+   "line_id": "p18-l12",
+   "word_index": 3,
+   "written": "тссс",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-18.jpg",
+    "line_id": "p18-l12"
+   }
+  },
+  {
+   "id": "prov-p18-l16-6",
+   "line": 16,
+   "line_id": "p18-l16",
+   "word_index": 6,
+   "written": "ахх",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-18.jpg",
+    "line_id": "p18-l16"
+   }
+  },
+  {
+   "id": "prov-p19-l02-2",
+   "line": 2,
+   "line_id": "p19-l02",
+   "word_index": 2,
+   "written": "Ний",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-19.jpg",
+    "line_id": "p19-l02"
+   }
+  },
+  {
+   "id": "prov-p19-l14-6",
+   "line": 14,
+   "line_id": "p19-l14",
+   "word_index": 6,
+   "written": "нескема",
+   "expected": null,
+   "kind": "table",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-19.jpg",
+    "line_id": "p19-l14"
+   }
+  },
+  {
+   "id": "prov-p19-l29-3",
+   "line": 29,
+   "line_id": "p19-l29",
+   "word_index": 3,
+   "written": "всенкому",
+   "expected": "военкому",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-19.jpg",
+    "line_id": "p19-l29"
+   }
+  },
+  {
+   "id": "prov-p19-l31-3",
+   "line": 31,
+   "line_id": "p19-l31",
+   "word_index": 3,
+   "written": "возрост",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-19.jpg",
+    "line_id": "p19-l31"
+   }
+  },
+  {
+   "id": "prov-p20-l23-1",
+   "line": 23,
+   "line_id": "p20-l23",
+   "word_index": 1,
+   "written": "обятся",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-20.jpg",
+    "line_id": "p20-l23"
+   }
+  },
+  {
+   "id": "prov-p20-l29-2",
+   "line": 29,
+   "line_id": "p20-l29",
+   "word_index": 2,
+   "written": "подчиненые",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-20.jpg",
+    "line_id": "p20-l29"
+   }
+  },
+  {
+   "id": "prov-p20-l35-3",
+   "line": 35,
+   "line_id": "p20-l35",
+   "word_index": 3,
+   "written": "отвечат",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-20.jpg",
+    "line_id": "p20-l35"
+   }
+  },
+  {
+   "id": "prov-p21-l41-0",
+   "line": 41,
+   "line_id": "p21-l41",
+   "word_index": 0,
+   "written": "Прохожик",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-21.jpg",
+    "line_id": "p21-l41"
+   }
+  },
+  {
+   "id": "prov-p22-l43-5",
+   "line": 43,
+   "line_id": "p22-l43",
+   "word_index": 5,
+   "written": "последовам",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-22.jpg",
+    "line_id": "p22-l43"
+   }
+  },
+  {
+   "id": "prov-p23-l20-2",
+   "line": 20,
+   "line_id": "p23-l20",
+   "word_index": 2,
+   "written": "указавают",
+   "expected": "указывают",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-23.jpg",
+    "line_id": "p23-l20"
+   }
+  },
+  {
+   "id": "prov-p23-l25-2",
+   "line": 25,
+   "line_id": "p23-l25",
+   "word_index": 2,
+   "written": "указавают",
+   "expected": "указывают",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-23.jpg",
+    "line_id": "p23-l25"
+   }
+  },
+  {
+   "id": "prov-p23-l25-4",
+   "line": 25,
+   "line_id": "p23-l25",
+   "word_index": 4,
+   "written": "следствует",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-23.jpg",
+    "line_id": "p23-l25"
+   }
+  },
+  {
+   "id": "prov-p24-l04-1",
+   "line": 4,
+   "line_id": "p24-l04",
+   "word_index": 1,
+   "written": "Паралельное",
+   "expected": "Параллельное",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-24.jpg",
+    "line_id": "p24-l04"
+   }
+  },
+  {
+   "id": "prov-p24-l09-0",
+   "line": 9,
+   "line_id": "p24-l09",
+   "word_index": 0,
+   "written": "Паралельное",
+   "expected": "Параллельное",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-24.jpg",
+    "line_id": "p24-l09"
+   }
+  },
+  {
+   "id": "prov-p24-l23-0",
+   "line": 23,
+   "line_id": "p24-l23",
+   "word_index": 0,
+   "written": "сложнены",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-24.jpg",
+    "line_id": "p24-l23"
+   }
+  },
+  {
+   "id": "prov-p24-l25-4",
+   "line": 25,
+   "line_id": "p24-l25",
+   "word_index": 4,
+   "written": "корможй",
+   "expected": "кормой",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-24.jpg",
+    "line_id": "p24-l25"
+   }
+  },
+  {
+   "id": "prov-p24-l26-0",
+   "line": 26,
+   "line_id": "p24-l26",
+   "word_index": 0,
+   "written": "посадась",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-24.jpg",
+    "line_id": "p24-l26"
+   }
+  },
+  {
+   "id": "prov-p24-l26-2",
+   "line": 26,
+   "line_id": "p24-l26",
+   "word_index": 2,
+   "written": "невидимул",
+   "expected": "невидимую",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-24.jpg",
+    "line_id": "p24-l26"
+   }
+  },
+  {
+   "id": "prov-p25-l21-4",
+   "line": 21,
+   "line_id": "p25-l21",
+   "word_index": 4,
+   "written": "художественой",
+   "expected": "художественной",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-25.jpg",
+    "line_id": "p25-l21"
+   }
+  },
+  {
+   "id": "prov-p26-l03-2",
+   "line": 3,
+   "line_id": "p26-l03",
+   "word_index": 2,
+   "written": "урания",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-26.jpg",
+    "line_id": "p26-l03"
+   }
+  },
+  {
+   "id": "prov-p27-l09-4",
+   "line": 9,
+   "line_id": "p27-l09",
+   "word_index": 4,
+   "written": "архиплаге",
+   "expected": "архипелаге",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-27.jpg",
+    "line_id": "p27-l09"
+   }
+  },
+  {
+   "id": "prov-p28-l03-0",
+   "line": 3,
+   "line_id": "p28-l03",
+   "word_index": 0,
+   "written": "умеранного",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-28.jpg",
+    "line_id": "p28-l03"
+   }
+  },
+  {
+   "id": "prov-p31-l13-0",
+   "line": 13,
+   "line_id": "p31-l13",
+   "word_index": 0,
+   "written": "ся",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-31.jpg",
+    "line_id": "p31-l13"
+   }
+  },
+  {
+   "id": "prov-p34-l01-0",
+   "line": 1,
+   "line_id": "p34-l01",
+   "word_index": 0,
+   "written": "Взаимствование",
+   "expected": "заимствование",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-34.jpg",
+    "line_id": "p34-l01"
+   }
+  },
+  {
+   "id": "prov-p34-l02-5",
+   "line": 2,
+   "line_id": "p34-l02",
+   "word_index": 5,
+   "written": "языко",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-34.jpg",
+    "line_id": "p34-l02"
+   }
+  },
+  {
+   "id": "prov-p34-l10-2",
+   "line": 10,
+   "line_id": "p34-l10",
+   "word_index": 2,
+   "written": "турского",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-34.jpg",
+    "line_id": "p34-l10"
+   }
+  },
+  {
+   "id": "prov-p34-l12-0",
+   "line": 12,
+   "line_id": "p34-l12",
+   "word_index": 0,
+   "written": "вакум",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-34.jpg",
+    "line_id": "p34-l12"
+   }
+  },
+  {
+   "id": "prov-p34-l18-4",
+   "line": 18,
+   "line_id": "p34-l18",
+   "word_index": 4,
+   "written": "иллюпка",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-34.jpg",
+    "line_id": "p34-l18"
+   }
+  },
+  {
+   "id": "prov-p34-l21-4",
+   "line": 21,
+   "line_id": "p34-l21",
+   "word_index": 4,
+   "written": "пьесса",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-34.jpg",
+    "line_id": "p34-l21"
+   }
+  },
+  {
+   "id": "prov-p35-l27-1",
+   "line": 27,
+   "line_id": "p35-l27",
+   "word_index": 1,
+   "written": "ить",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-35.jpg",
+    "line_id": "p35-l27"
+   }
+  },
+  {
+   "id": "prov-p35-l31-5",
+   "line": 31,
+   "line_id": "p35-l31",
+   "word_index": 5,
+   "written": "ить",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-35.jpg",
+    "line_id": "p35-l31"
+   }
+  },
+  {
+   "id": "prov-p36-l10-4",
+   "line": 10,
+   "line_id": "p36-l10",
+   "word_index": 4,
+   "written": "отв",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-36.jpg",
+    "line_id": "p36-l10"
+   }
+  },
+  {
+   "id": "prov-p36-l13-4",
+   "line": 13,
+   "line_id": "p36-l13",
+   "word_index": 4,
+   "written": "внеш",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-36.jpg",
+    "line_id": "p36-l13"
+   }
+  },
+  {
+   "id": "prov-p36-l14-1",
+   "line": 14,
+   "line_id": "p36-l14",
+   "word_index": 1,
+   "written": "возврасту",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-36.jpg",
+    "line_id": "p36-l14"
+   }
+  },
+  {
+   "id": "prov-p36-l28-1",
+   "line": 28,
+   "line_id": "p36-l28",
+   "word_index": 1,
+   "written": "обозначачает",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-36.jpg",
+    "line_id": "p36-l28"
+   }
+  },
+  {
+   "id": "prov-p36-l39-2",
+   "line": 39,
+   "line_id": "p36-l39",
+   "word_index": 2,
+   "written": "пятьдесять",
+   "expected": "пятьдесят",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-36.jpg",
+    "line_id": "p36-l39"
+   }
+  },
+  {
+   "id": "prov-p37-l02-4",
+   "line": 2,
+   "line_id": "p37-l02",
+   "word_index": 4,
+   "written": "определениеми",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-37.jpg",
+    "line_id": "p37-l02"
+   }
+  },
+  {
+   "id": "prov-p37-l10-4",
+   "line": 10,
+   "line_id": "p37-l10",
+   "word_index": 4,
+   "written": "рохматая",
+   "expected": "лохматая",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-37.jpg",
+    "line_id": "p37-l10"
+   }
+  },
+  {
+   "id": "prov-p38-l36-2",
+   "line": 36,
+   "line_id": "p38-l36",
+   "word_index": 2,
+   "written": "совершанного",
+   "expected": "совершенного",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-38.jpg",
+    "line_id": "p38-l36"
+   }
+  },
+  {
+   "id": "prov-p39-l09-3",
+   "line": 9,
+   "line_id": "p39-l09",
+   "word_index": 3,
+   "written": "спр",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-39.jpg",
+    "line_id": "p39-l09"
+   }
+  },
+  {
+   "id": "prov-p39-l10-2",
+   "line": 10,
+   "line_id": "p39-l10",
+   "word_index": 2,
+   "written": "спр",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-39.jpg",
+    "line_id": "p39-l10"
+   }
+  },
+  {
+   "id": "prov-p39-l26-1",
+   "line": 26,
+   "line_id": "p39-l26",
+   "word_index": 1,
+   "written": "завешанно",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-39.jpg",
+    "line_id": "p39-l26"
+   }
+  },
+  {
+   "id": "prov-p39-l36-5",
+   "line": 36,
+   "line_id": "p39-l36",
+   "word_index": 5,
+   "written": "страдат",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-39.jpg",
+    "line_id": "p39-l36"
+   }
+  },
+  {
+   "id": "prov-p39-l38-2",
+   "line": 38,
+   "line_id": "p39-l38",
+   "word_index": 2,
+   "written": "несов",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-39.jpg",
+    "line_id": "p39-l38"
+   }
+  },
+  {
+   "id": "prov-p40-l02-5",
+   "line": 2,
+   "line_id": "p40-l02",
+   "word_index": 5,
+   "written": "прилаг",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-40.jpg",
+    "line_id": "p40-l02"
+   }
+  },
+  {
+   "id": "prov-p40-l08-3",
+   "line": 8,
+   "line_id": "p40-l08",
+   "word_index": 3,
+   "written": "смышленный",
+   "expected": null,
+   "kind": "table",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-40.jpg",
+    "line_id": "p40-l08"
+   }
+  },
+  {
+   "id": "prov-p40-l12-3",
+   "line": 12,
+   "line_id": "p40-l12",
+   "word_index": 3,
+   "written": "суфиксы",
+   "expected": "суффиксы",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-40.jpg",
+    "line_id": "p40-l12"
+   }
+  },
+  {
+   "id": "prov-p40-l19-1",
+   "line": 19,
+   "line_id": "p40-l19",
+   "word_index": 1,
+   "written": "невидатный",
+   "expected": "невиданный",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-40.jpg",
+    "line_id": "p40-l19"
+   }
+  },
+  {
+   "id": "prov-p40-l22-2",
+   "line": 22,
+   "line_id": "p40-l22",
+   "word_index": 2,
+   "written": "нн",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-40.jpg",
+    "line_id": "p40-l22"
+   }
+  },
+  {
+   "id": "prov-p40-l29-1",
+   "line": 29,
+   "line_id": "p40-l29",
+   "word_index": 1,
+   "written": "взволнованна",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-40.jpg",
+    "line_id": "p40-l29"
+   }
+  },
+  {
+   "id": "prov-p41-l03-0",
+   "line": 3,
+   "line_id": "p41-l03",
+   "word_index": 0,
+   "written": "Прилагат",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-41.jpg",
+    "line_id": "p41-l03"
+   }
+  },
+  {
+   "id": "prov-p41-l44-3",
+   "line": 44,
+   "line_id": "p41-l44",
+   "word_index": 3,
+   "written": "несов",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-41.jpg",
+    "line_id": "p41-l44"
+   }
+  },
+  {
+   "id": "prov-p42-l16-4",
+   "line": 16,
+   "line_id": "p42-l16",
+   "word_index": 4,
+   "written": "сделть",
+   "expected": "сделать",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-42.jpg",
+    "line_id": "p42-l16"
+   }
+  },
+  {
+   "id": "prov-p43-l13-1",
+   "line": 13,
+   "line_id": "p43-l13",
+   "word_index": 1,
+   "written": "тралаляя",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-43.jpg",
+    "line_id": "p43-l13"
+   }
+  },
+  {
+   "id": "prov-p43-l13-2",
+   "line": 13,
+   "line_id": "p43-l13",
+   "word_index": 2,
+   "written": "тралаляя",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-43.jpg",
+    "line_id": "p43-l13"
+   }
+  },
+  {
+   "id": "prov-p43-l16-1",
+   "line": 16,
+   "line_id": "p43-l16",
+   "word_index": 1,
+   "written": "Гайдн",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-43.jpg",
+    "line_id": "p43-l16"
+   }
+  },
+  {
+   "id": "prov-p43-l24-2",
+   "line": 24,
+   "line_id": "p43-l24",
+   "word_index": 2,
+   "written": "Чичкова",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-43.jpg",
+    "line_id": "p43-l24"
+   }
+  },
+  {
+   "id": "prov-p45-l01-0",
+   "line": 1,
+   "line_id": "p45-l01",
+   "word_index": 0,
+   "written": "енки",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-45.jpg",
+    "line_id": "p45-l01"
+   }
+  },
+  {
+   "id": "prov-p45-l04-2",
+   "line": 4,
+   "line_id": "p45-l04",
+   "word_index": 2,
+   "written": "медвежёнок",
+   "expected": "медвежонок",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-45.jpg",
+    "line_id": "p45-l04"
+   }
+  },
+  {
+   "id": "prov-p45-l19-0",
+   "line": 19,
+   "line_id": "p45-l19",
+   "word_index": 0,
+   "written": "Завьюженой",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-45.jpg",
+    "line_id": "p45-l19"
+   }
+  },
+  {
+   "id": "prov-p48-l28-2",
+   "line": 28,
+   "line_id": "p48-l28",
+   "word_index": 2,
+   "written": "поверчлам",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-48.jpg",
+    "line_id": "p48-l28"
+   }
+  },
+  {
+   "id": "prov-p48-l34-2",
+   "line": 34,
+   "line_id": "p48-l34",
+   "word_index": 2,
+   "written": "неискими",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-48.jpg",
+    "line_id": "p48-l34"
+   }
+  },
+  {
+   "id": "prov-p49-l01-3",
+   "line": 1,
+   "line_id": "p49-l01",
+   "word_index": 3,
+   "written": "Немогу",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-49.jpg",
+    "line_id": "p49-l01"
+   }
+  },
+  {
+   "id": "prov-p49-l06-2",
+   "line": 6,
+   "line_id": "p49-l06",
+   "word_index": 2,
+   "written": "учиж",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-49.jpg",
+    "line_id": "p49-l06"
+   }
+  },
+  {
+   "id": "prov-p49-l20-1",
+   "line": 20,
+   "line_id": "p49-l20",
+   "word_index": 1,
+   "written": "весение",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-49.jpg",
+    "line_id": "p49-l20"
+   }
+  },
+  {
+   "id": "prov-p49-l36-2",
+   "line": 36,
+   "line_id": "p49-l36",
+   "word_index": 2,
+   "written": "весней",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-49.jpg",
+    "line_id": "p49-l36"
+   }
+  },
+  {
+   "id": "prov-p49-l36-3",
+   "line": 36,
+   "line_id": "p49-l36",
+   "word_index": 3,
+   "written": "куругами",
+   "expected": "кругами",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-49.jpg",
+    "line_id": "p49-l36"
+   }
+  },
+  {
+   "id": "prov-p50-l02-0",
+   "line": 2,
+   "line_id": "p50-l02",
+   "word_index": 0,
+   "written": "Юго",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-50.jpg",
+    "line_id": "p50-l02"
+   }
+  },
+  {
+   "id": "prov-p50-l04-2",
+   "line": 4,
+   "line_id": "p50-l04",
+   "word_index": 2,
+   "written": "среднегорья",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-50.jpg",
+    "line_id": "p50-l04"
+   }
+  },
+  {
+   "id": "prov-p50-l18-2",
+   "line": 18,
+   "line_id": "p50-l18",
+   "word_index": 2,
+   "written": "юго",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-50.jpg",
+    "line_id": "p50-l18"
+   }
+  },
+  {
+   "id": "prov-p50-l30-4",
+   "line": 30,
+   "line_id": "p50-l30",
+   "word_index": 4,
+   "written": "манычской",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-50.jpg",
+    "line_id": "p50-l30"
+   }
+  },
+  {
+   "id": "prov-p51-l15-0",
+   "line": 15,
+   "line_id": "p51-l15",
+   "word_index": 0,
+   "written": "Северо",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-51.jpg",
+    "line_id": "p51-l15"
+   }
+  },
+  {
+   "id": "prov-p51-l31-5",
+   "line": 31,
+   "line_id": "p51-l31",
+   "word_index": 5,
+   "written": "замурских",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-51.jpg",
+    "line_id": "p51-l31"
+   }
+  },
+  {
+   "id": "prov-p52-l05-2",
+   "line": 5,
+   "line_id": "p52-l05",
+   "word_index": 2,
+   "written": "средизелмном",
+   "expected": "средиземном",
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-52.jpg",
+    "line_id": "p52-l05"
+   }
+  },
+  {
+   "id": "prov-p53-l21-2",
+   "line": 21,
+   "line_id": "p53-l21",
+   "word_index": 2,
+   "written": "политико",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-53.jpg",
+    "line_id": "p53-l21"
+   }
+  },
+  {
+   "id": "prov-p54-l01-1",
+   "line": 1,
+   "line_id": "p54-l01",
+   "word_index": 1,
+   "written": "валевому",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-54.jpg",
+    "line_id": "p54-l01"
+   }
+  },
+  {
+   "id": "prov-p55-l16-3",
+   "line": 16,
+   "line_id": "p55-l16",
+   "word_index": 3,
+   "written": "ког",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-55.jpg",
+    "line_id": "p55-l16"
+   }
+  },
+  {
+   "id": "prov-p55-l29-4",
+   "line": 29,
+   "line_id": "p55-l29",
+   "word_index": 4,
+   "written": "Естевенный",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-55.jpg",
+    "line_id": "p55-l29"
+   }
+  },
+  {
+   "id": "prov-p56-l07-5",
+   "line": 7,
+   "line_id": "p56-l07",
+   "word_index": 5,
+   "written": "предлах",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-56.jpg",
+    "line_id": "p56-l07"
+   }
+  },
+  {
+   "id": "prov-p56-l13-1",
+   "line": 13,
+   "line_id": "p56-l13",
+   "word_index": 1,
+   "written": "Экономико",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-56.jpg",
+    "line_id": "p56-l13"
+   }
+  },
+  {
+   "id": "prov-p56-l32-0",
+   "line": 32,
+   "line_id": "p56-l32",
+   "word_index": 0,
+   "written": "Тянь",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-56.jpg",
+    "line_id": "p56-l32"
+   }
+  },
+  {
+   "id": "prov-p57-l04-0",
+   "line": 4,
+   "line_id": "p57-l04",
+   "word_index": 0,
+   "written": "Экономико",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-57.jpg",
+    "line_id": "p57-l04"
+   }
+  },
+  {
+   "id": "prov-p57-l11-0",
+   "line": 11,
+   "line_id": "p57-l11",
+   "word_index": 0,
+   "written": "политико",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-57.jpg",
+    "line_id": "p57-l11"
+   }
+  },
+  {
+   "id": "prov-p57-l25-0",
+   "line": 25,
+   "line_id": "p57-l25",
+   "word_index": 0,
+   "written": "юго",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-57.jpg",
+    "line_id": "p57-l25"
+   }
+  },
+  {
+   "id": "prov-p57-l27-4",
+   "line": 27,
+   "line_id": "p57-l27",
+   "word_index": 4,
+   "written": "северо",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-57.jpg",
+    "line_id": "p57-l27"
+   }
+  },
+  {
+   "id": "prov-p57-l36-5",
+   "line": 36,
+   "line_id": "p57-l36",
+   "word_index": 5,
+   "written": "юго",
+   "expected": null,
+   "kind": "handwritten",
+   "scope": "non_word",
+   "counts_as_error": null,
+   "resolved": false,
+   "labelled_by": "extractor v1 + Astra sample adjudication 2026-09-12",
+   "verified_from_pixels": false,
+   "evidence": {
+    "page_image": "data/derived/my_notebook_v1/oriented/page-57.jpg",
+    "line_id": "p57-l36"
+   }
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 """BilimAI — line & word detector (E4.2, 2026-08-19): ai-forever ReadingPipeline-notebooks segmenter + our post-processing.
 
-    det = RPDetector()                       # models/readingpipeline/segm/segm_model.onnx (MIT), CPU ONNX, ~0.7 s/page
+    det = RPDetector()                       # models/readingpipeline/segm/segm_model.onnx (MIT), CoreML by default, ~0.4 s/page
     r = det.detect(img)                      # PIL image or numpy BGR
     r["lines"]  -> [[x0,y0,x1,y1], ...]      reading order (column, then top-to-bottom)
     r["words"]  -> [[x0,y0,x1,y1], ...]      all word boxes (grown), original pixels
@@ -24,16 +24,32 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ONNX = ROOT / "models/readingpipeline/segm/segm_model.onnx"
 LINE_GROW = (0.25, 0.365, 0.02)          # top, bottom, each side — fractions of the box's own height / width
 WORD_GROW = (0.344, 0.416, 0.105)
+# CoreML EP options shared with CTCWordVerifier (bilimai/verifier.py): the explicit MLProgram/ALL pair is what makes
+# CoreML agree with CPU bit-for-bit; the plain-EP config differs from CPU (see eval/runs/notebook_v1/detector_provider_ab.json).
+COREML_EP = ("CoreMLExecutionProvider", {"MLComputeUnits": "ALL", "ModelFormat": "MLProgram"})
 
 
 class RPDetector:
     name = "rp-segm+grow-v1"
 
     def __init__(self, onnx: str | Path = DEFAULT_ONNX, thr_word: float = 0.8, thr_line: float = 0.5, dilate: int = 3,
-                 min_area: int = 10, line_grow=LINE_GROW, word_grow=WORD_GROW, threads: int = 8, unclip: float = 0.0):
+                 min_area: int = 10, line_grow=LINE_GROW, word_grow=WORD_GROW, threads: int = 8, unclip: float = 0.0,
+                 coreml: bool | None = None):
+        """ACCELERATOR BY DEFAULT (founder, 2026-09-11: "never run such tasks on cpu ... ml/ai inferences, trainings are
+        always meant to be run on gpus"). Same convention as CTCWordVerifier: coreml=None auto-selects Apple's GPU/Neural
+        Engine when onnxruntime offers the CoreML provider; pass coreml=False only to force the CPU fallback deliberately
+        and say why. The session's ACTUAL providers are exposed as `self.providers` (and `self.provider_reason` records a
+        requested-but-unavailable fallback) so a caller can STAMP what ran - a provider change reads as a model change.
+        ⚠ NEVER MIX PROVIDERS INSIDE ONE COMPARISON; repeatability means bit-identity WITHIN a provider."""
         import onnxruntime as ort
-        so = ort.SessionOptions(); so.intra_op_num_threads = threads; so.inter_op_num_threads = threads
-        self.sess = ort.InferenceSession(str(onnx), so, providers=["CPUExecutionProvider"]); self.inp = self.sess.get_inputs()[0].name
+        so = ort.SessionOptions(); so.intra_op_num_threads = threads; so.inter_op_num_threads = threads; so.log_severity_level = 3
+        has_coreml = "CoreMLExecutionProvider" in ort.get_available_providers()
+        use_coreml = has_coreml if coreml is None else (coreml and has_coreml)
+        providers = ([COREML_EP, "CPUExecutionProvider"] if use_coreml else ["CPUExecutionProvider"])
+        self.sess = ort.InferenceSession(str(onnx), so, providers=providers); self.inp = self.sess.get_inputs()[0].name
+        self.providers = list(self.sess.get_providers())
+        self.provider_reason = (None if use_coreml or not coreml else
+                                "CoreMLExecutionProvider not offered by onnxruntime; CPU fallback")
         self.thr_word, self.thr_line, self.dilate, self.min_area = thr_word, thr_line, dilate, min_area
         self.line_grow, self.word_grow = line_grow, word_grow
         self.unclip = unclip                 # DBNet-style outward offset d = A·ratio/L per word contour; for models trained

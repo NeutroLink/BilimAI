@@ -1,0 +1,1229 @@
+{
+ "packet": "RPDetector provider A/B: CPU vs CoreML on the same 8 evaluation pages",
+ "timestamp": "2026-09-12T13:02:08+0500",
+ "git_head": "6ad912094f545bb6ccc30f2ee5d4e4359183fbdb",
+ "onnx_path": "models/readingpipeline/segm/segm_model.onnx",
+ "onnx_sha256": "511b05e81ff544d236b7635b8a4367096cb679991c5d922d04c8fa7524f36127",
+ "threads": 4,
+ "pages": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57
+ ],
+ "cpu_providers": [
+  "CPUExecutionProvider"
+ ],
+ "coreml_providers": [
+  "CoreMLExecutionProvider",
+  "CPUExecutionProvider"
+ ],
+ "note": "Provider IS the variable here; per provider the run is single-pass warm. The CPU leg is the deliberate control, not the default.",
+ "per_page": [
+  {
+   "page": 1,
+   "fold": "sealed",
+   "cpu_wall_s": 1.006,
+   "coreml_wall_s": 0.2761,
+   "n_lines": {
+    "cpu": 19,
+    "coreml": 19
+   },
+   "n_words": {
+    "cpu": 62,
+    "coreml": 62
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 2,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0359,
+   "coreml_wall_s": 0.263,
+   "n_lines": {
+    "cpu": 37,
+    "coreml": 37
+   },
+   "n_words": {
+    "cpu": 134,
+    "coreml": 134
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 3,
+   "fold": "sealed",
+   "cpu_wall_s": 1.1514,
+   "coreml_wall_s": 0.2562,
+   "n_lines": {
+    "cpu": 31,
+    "coreml": 31
+   },
+   "n_words": {
+    "cpu": 140,
+    "coreml": 140
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 4,
+   "fold": "sealed",
+   "cpu_wall_s": 1.1014,
+   "coreml_wall_s": 0.2582,
+   "n_lines": {
+    "cpu": 36,
+    "coreml": 36
+   },
+   "n_words": {
+    "cpu": 124,
+    "coreml": 124
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 5,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0595,
+   "coreml_wall_s": 0.2521,
+   "n_lines": {
+    "cpu": 29,
+    "coreml": 29
+   },
+   "n_words": {
+    "cpu": 131,
+    "coreml": 131
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 6,
+   "fold": "dev",
+   "cpu_wall_s": 1.0116,
+   "coreml_wall_s": 0.2514,
+   "n_lines": {
+    "cpu": 41,
+    "coreml": 41
+   },
+   "n_words": {
+    "cpu": 61,
+    "coreml": 61
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 7,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9579,
+   "coreml_wall_s": 0.2536,
+   "n_lines": {
+    "cpu": 27,
+    "coreml": 27
+   },
+   "n_words": {
+    "cpu": 67,
+    "coreml": 67
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 8,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9458,
+   "coreml_wall_s": 0.2451,
+   "n_lines": {
+    "cpu": 20,
+    "coreml": 20
+   },
+   "n_words": {
+    "cpu": 44,
+    "coreml": 44
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 9,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9905,
+   "coreml_wall_s": 0.2425,
+   "n_lines": {
+    "cpu": 15,
+    "coreml": 15
+   },
+   "n_words": {
+    "cpu": 45,
+    "coreml": 45
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 10,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9882,
+   "coreml_wall_s": 0.2817,
+   "n_lines": {
+    "cpu": 47,
+    "coreml": 47
+   },
+   "n_words": {
+    "cpu": 231,
+    "coreml": 231
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 11,
+   "fold": "sealed",
+   "cpu_wall_s": 0.979,
+   "coreml_wall_s": 0.2799,
+   "n_lines": {
+    "cpu": 47,
+    "coreml": 47
+   },
+   "n_words": {
+    "cpu": 171,
+    "coreml": 171
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 12,
+   "fold": "sealed",
+   "cpu_wall_s": 0.8946,
+   "coreml_wall_s": 0.2714,
+   "n_lines": {
+    "cpu": 50,
+    "coreml": 50
+   },
+   "n_words": {
+    "cpu": 241,
+    "coreml": 241
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 13,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9705,
+   "coreml_wall_s": 0.2699,
+   "n_lines": {
+    "cpu": 45,
+    "coreml": 45
+   },
+   "n_words": {
+    "cpu": 236,
+    "coreml": 236
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 14,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9227,
+   "coreml_wall_s": 0.2652,
+   "n_lines": {
+    "cpu": 47,
+    "coreml": 47
+   },
+   "n_words": {
+    "cpu": 211,
+    "coreml": 211
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 15,
+   "fold": "sealed",
+   "cpu_wall_s": 0.991,
+   "coreml_wall_s": 0.2675,
+   "n_lines": {
+    "cpu": 45,
+    "coreml": 45
+   },
+   "n_words": {
+    "cpu": 239,
+    "coreml": 239
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 16,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0567,
+   "coreml_wall_s": 0.2568,
+   "n_lines": {
+    "cpu": 41,
+    "coreml": 41
+   },
+   "n_words": {
+    "cpu": 224,
+    "coreml": 224
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 17,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9676,
+   "coreml_wall_s": 0.2707,
+   "n_lines": {
+    "cpu": 40,
+    "coreml": 40
+   },
+   "n_words": {
+    "cpu": 221,
+    "coreml": 221
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 18,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9725,
+   "coreml_wall_s": 0.2818,
+   "n_lines": {
+    "cpu": 60,
+    "coreml": 60
+   },
+   "n_words": {
+    "cpu": 238,
+    "coreml": 238
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 19,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9115,
+   "coreml_wall_s": 0.2717,
+   "n_lines": {
+    "cpu": 53,
+    "coreml": 53
+   },
+   "n_words": {
+    "cpu": 211,
+    "coreml": 211
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 20,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9732,
+   "coreml_wall_s": 0.2651,
+   "n_lines": {
+    "cpu": 48,
+    "coreml": 48
+   },
+   "n_words": {
+    "cpu": 220,
+    "coreml": 220
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 21,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0342,
+   "coreml_wall_s": 0.2684,
+   "n_lines": {
+    "cpu": 44,
+    "coreml": 44
+   },
+   "n_words": {
+    "cpu": 223,
+    "coreml": 223
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 22,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0844,
+   "coreml_wall_s": 0.2792,
+   "n_lines": {
+    "cpu": 47,
+    "coreml": 47
+   },
+   "n_words": {
+    "cpu": 242,
+    "coreml": 242
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 23,
+   "fold": "sealed",
+   "cpu_wall_s": 1.1236,
+   "coreml_wall_s": 0.2669,
+   "n_lines": {
+    "cpu": 45,
+    "coreml": 45
+   },
+   "n_words": {
+    "cpu": 222,
+    "coreml": 222
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 24,
+   "fold": "sealed",
+   "cpu_wall_s": 1.1899,
+   "coreml_wall_s": 0.2695,
+   "n_lines": {
+    "cpu": 42,
+    "coreml": 42
+   },
+   "n_words": {
+    "cpu": 216,
+    "coreml": 216
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 25,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0687,
+   "coreml_wall_s": 0.2687,
+   "n_lines": {
+    "cpu": 50,
+    "coreml": 50
+   },
+   "n_words": {
+    "cpu": 196,
+    "coreml": 196
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 26,
+   "fold": "sealed",
+   "cpu_wall_s": 1.1198,
+   "coreml_wall_s": 0.2487,
+   "n_lines": {
+    "cpu": 28,
+    "coreml": 28
+   },
+   "n_words": {
+    "cpu": 75,
+    "coreml": 75
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 27,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0664,
+   "coreml_wall_s": 0.2393,
+   "n_lines": {
+    "cpu": 19,
+    "coreml": 19
+   },
+   "n_words": {
+    "cpu": 108,
+    "coreml": 108
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 28,
+   "fold": "sealed",
+   "cpu_wall_s": 1.2121,
+   "coreml_wall_s": 0.2556,
+   "n_lines": {
+    "cpu": 53,
+    "coreml": 53
+   },
+   "n_words": {
+    "cpu": 165,
+    "coreml": 165
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 29,
+   "fold": "sealed",
+   "cpu_wall_s": 1.1991,
+   "coreml_wall_s": 0.2653,
+   "n_lines": {
+    "cpu": 73,
+    "coreml": 73
+   },
+   "n_words": {
+    "cpu": 138,
+    "coreml": 138
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 30,
+   "fold": "sealed",
+   "cpu_wall_s": 0.99,
+   "coreml_wall_s": 0.2744,
+   "n_lines": {
+    "cpu": 49,
+    "coreml": 49
+   },
+   "n_words": {
+    "cpu": 159,
+    "coreml": 159
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 31,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0526,
+   "coreml_wall_s": 0.2761,
+   "n_lines": {
+    "cpu": 49,
+    "coreml": 49
+   },
+   "n_words": {
+    "cpu": 171,
+    "coreml": 171
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 32,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0262,
+   "coreml_wall_s": 0.2725,
+   "n_lines": {
+    "cpu": 43,
+    "coreml": 43
+   },
+   "n_words": {
+    "cpu": 185,
+    "coreml": 185
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 33,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0173,
+   "coreml_wall_s": 0.2654,
+   "n_lines": {
+    "cpu": 19,
+    "coreml": 19
+   },
+   "n_words": {
+    "cpu": 74,
+    "coreml": 74
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 34,
+   "fold": "sealed",
+   "cpu_wall_s": 1.1074,
+   "coreml_wall_s": 0.3019,
+   "n_lines": {
+    "cpu": 22,
+    "coreml": 22
+   },
+   "n_words": {
+    "cpu": 115,
+    "coreml": 115
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 35,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0597,
+   "coreml_wall_s": 0.2976,
+   "n_lines": {
+    "cpu": 50,
+    "coreml": 50
+   },
+   "n_words": {
+    "cpu": 183,
+    "coreml": 183
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 36,
+   "fold": "sealed",
+   "cpu_wall_s": 1.1247,
+   "coreml_wall_s": 0.3048,
+   "n_lines": {
+    "cpu": 51,
+    "coreml": 51
+   },
+   "n_words": {
+    "cpu": 225,
+    "coreml": 225
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 37,
+   "fold": "sealed",
+   "cpu_wall_s": 1.1019,
+   "coreml_wall_s": 0.3062,
+   "n_lines": {
+    "cpu": 46,
+    "coreml": 46
+   },
+   "n_words": {
+    "cpu": 181,
+    "coreml": 181
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 38,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0857,
+   "coreml_wall_s": 0.3065,
+   "n_lines": {
+    "cpu": 40,
+    "coreml": 40
+   },
+   "n_words": {
+    "cpu": 183,
+    "coreml": 183
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 39,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9389,
+   "coreml_wall_s": 0.3099,
+   "n_lines": {
+    "cpu": 58,
+    "coreml": 58
+   },
+   "n_words": {
+    "cpu": 192,
+    "coreml": 192
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 40,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9187,
+   "coreml_wall_s": 0.3332,
+   "n_lines": {
+    "cpu": 54,
+    "coreml": 54
+   },
+   "n_words": {
+    "cpu": 219,
+    "coreml": 219
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 41,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0696,
+   "coreml_wall_s": 0.3262,
+   "n_lines": {
+    "cpu": 49,
+    "coreml": 49
+   },
+   "n_words": {
+    "cpu": 200,
+    "coreml": 200
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 42,
+   "fold": "dev",
+   "cpu_wall_s": 0.9753,
+   "coreml_wall_s": 0.2982,
+   "n_lines": {
+    "cpu": 21,
+    "coreml": 21
+   },
+   "n_words": {
+    "cpu": 86,
+    "coreml": 86
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 43,
+   "fold": "dev",
+   "cpu_wall_s": 0.9544,
+   "coreml_wall_s": 0.3056,
+   "n_lines": {
+    "cpu": 39,
+    "coreml": 39
+   },
+   "n_words": {
+    "cpu": 122,
+    "coreml": 122
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 44,
+   "fold": "dev",
+   "cpu_wall_s": 0.8747,
+   "coreml_wall_s": 0.2987,
+   "n_lines": {
+    "cpu": 51,
+    "coreml": 51
+   },
+   "n_words": {
+    "cpu": 118,
+    "coreml": 118
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 45,
+   "fold": "dev",
+   "cpu_wall_s": 0.9387,
+   "coreml_wall_s": 0.2881,
+   "n_lines": {
+    "cpu": 40,
+    "coreml": 40
+   },
+   "n_words": {
+    "cpu": 115,
+    "coreml": 115
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 46,
+   "fold": "dev",
+   "cpu_wall_s": 0.9361,
+   "coreml_wall_s": 0.2948,
+   "n_lines": {
+    "cpu": 42,
+    "coreml": 42
+   },
+   "n_words": {
+    "cpu": 139,
+    "coreml": 139
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 47,
+   "fold": "dev",
+   "cpu_wall_s": 0.9164,
+   "coreml_wall_s": 0.3512,
+   "n_lines": {
+    "cpu": 35,
+    "coreml": 35
+   },
+   "n_words": {
+    "cpu": 151,
+    "coreml": 151
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 48,
+   "fold": "dev",
+   "cpu_wall_s": 0.927,
+   "coreml_wall_s": 0.3285,
+   "n_lines": {
+    "cpu": 44,
+    "coreml": 44
+   },
+   "n_words": {
+    "cpu": 194,
+    "coreml": 194
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 49,
+   "fold": "dev",
+   "cpu_wall_s": 0.8747,
+   "coreml_wall_s": 0.3269,
+   "n_lines": {
+    "cpu": 40,
+    "coreml": 40
+   },
+   "n_words": {
+    "cpu": 184,
+    "coreml": 184
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 50,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9343,
+   "coreml_wall_s": 0.2988,
+   "n_lines": {
+    "cpu": 44,
+    "coreml": 44
+   },
+   "n_words": {
+    "cpu": 185,
+    "coreml": 185
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 51,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9709,
+   "coreml_wall_s": 0.3206,
+   "n_lines": {
+    "cpu": 41,
+    "coreml": 41
+   },
+   "n_words": {
+    "cpu": 180,
+    "coreml": 180
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 52,
+   "fold": "sealed",
+   "cpu_wall_s": 0.8956,
+   "coreml_wall_s": 0.2789,
+   "n_lines": {
+    "cpu": 29,
+    "coreml": 29
+   },
+   "n_words": {
+    "cpu": 101,
+    "coreml": 101
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 53,
+   "fold": "sealed",
+   "cpu_wall_s": 0.908,
+   "coreml_wall_s": 0.3063,
+   "n_lines": {
+    "cpu": 41,
+    "coreml": 41
+   },
+   "n_words": {
+    "cpu": 172,
+    "coreml": 172
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 54,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9254,
+   "coreml_wall_s": 0.295,
+   "n_lines": {
+    "cpu": 52,
+    "coreml": 52
+   },
+   "n_words": {
+    "cpu": 156,
+    "coreml": 156
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 55,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9455,
+   "coreml_wall_s": 0.2949,
+   "n_lines": {
+    "cpu": 43,
+    "coreml": 43
+   },
+   "n_words": {
+    "cpu": 183,
+    "coreml": 183
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 56,
+   "fold": "sealed",
+   "cpu_wall_s": 0.9944,
+   "coreml_wall_s": 0.2929,
+   "n_lines": {
+    "cpu": 47,
+    "coreml": 47
+   },
+   "n_words": {
+    "cpu": 177,
+    "coreml": 177
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  },
+  {
+   "page": 57,
+   "fold": "sealed",
+   "cpu_wall_s": 1.0731,
+   "coreml_wall_s": 0.3089,
+   "n_lines": {
+    "cpu": 51,
+    "coreml": 51
+   },
+   "n_words": {
+    "cpu": 198,
+    "coreml": 198
+   },
+   "lines_identical": true,
+   "words_identical": true,
+   "boxes_differing": 0,
+   "max_coord_delta_px": 0.0
+  }
+ ],
+ "totals": {
+  "cpu_wall_s": 57.523,
+  "coreml_wall_s": 16.105,
+  "speedup_cpu_over_coreml": 3.57,
+  "all_line_boxes_identical": true,
+  "all_word_boxes_identical": true,
+  "max_coord_delta_px_overall": 0.0,
+  "boxes_differing_total": 0
+ },
+ "verdict": "IDENTICAL",
+ "recommendation": "Default may safely become the accelerator (CoreML): over all 57 pages the line and word boxes are bit-identical between CPU and the class-default CoreML, at 3.57x speedup.",
+ "provider_used": {
+  "cpu": "CPUExecutionProvider",
+  "coreml_new": [
+   "CoreMLExecutionProvider",
+   "CPUExecutionProvider"
+  ]
+ },
+ "cross_check_vs_accepted_artifact": {
+  "artifact": "eval/runs/notebook_v1/detector_v1_boxes.json (A5, ACCEPTED - left untouched)",
+  "new_path_deterministic_run1_eq_run2": true,
+  "pages_differing": 46,
+  "pages_total": 57,
+  "max_coord_delta_px_overall": 2054.374,
+  "worst_pages": [
+   {
+    "page": 29,
+    "max_coord_delta_px": 2054.374,
+    "differing_boxes": 25,
+    "lines_a5": 73,
+    "lines_new": 73,
+    "words_a5": 137,
+    "words_new": 138
+   },
+   {
+    "page": 37,
+    "max_coord_delta_px": 1428.574,
+    "differing_boxes": 6,
+    "lines_a5": 46,
+    "lines_new": 46,
+    "words_a5": 181,
+    "words_new": 181
+   },
+   {
+    "page": 53,
+    "max_coord_delta_px": 1260.113,
+    "differing_boxes": 3,
+    "lines_a5": 41,
+    "lines_new": 41,
+    "words_a5": 172,
+    "words_new": 172
+   },
+   {
+    "page": 49,
+    "max_coord_delta_px": 1205.727,
+    "differing_boxes": 2,
+    "lines_a5": 40,
+    "lines_new": 40,
+    "words_a5": 184,
+    "words_new": 184
+   },
+   {
+    "page": 42,
+    "max_coord_delta_px": 925.343,
+    "differing_boxes": 4,
+    "lines_a5": 21,
+    "lines_new": 21,
+    "words_a5": 86,
+    "words_new": 86
+   },
+   {
+    "page": 15,
+    "max_coord_delta_px": 668.874,
+    "differing_boxes": 2,
+    "lines_a5": 45,
+    "lines_new": 45,
+    "words_a5": 239,
+    "words_new": 239
+   },
+   {
+    "page": 50,
+    "max_coord_delta_px": 638.188,
+    "differing_boxes": 7,
+    "lines_a5": 44,
+    "lines_new": 44,
+    "words_a5": 185,
+    "words_new": 185
+   },
+   {
+    "page": 46,
+    "max_coord_delta_px": 419.196,
+    "differing_boxes": 3,
+    "lines_a5": 42,
+    "lines_new": 42,
+    "words_a5": 139,
+    "words_new": 139
+   }
+  ],
+  "cause": "A5's driver rebuilt the session with plain providers=['CoreMLExecutionProvider','CPUExecutionProvider'] (no EP options). The class default now mirrors CTCWordVerifier and passes {'MLComputeUnits':'ALL','ModelFormat':'MLProgram'}. Three-way check on pages 1/29/37: cpu == new-CoreML (True), cpu == plain-CoreML (False), new == plain (False) - the explicit MLProgram/ALL options are what make CoreML agree with CPU; the plain A5 config was the outlier.",
+  "action": "detector_v1_boxes.json was NOT regenerated; the accepted artifact stands."
+ },
+ "three_way_pages": {
+  "1": {
+   "cpu_eq_new": true,
+   "cpu_eq_plain": false,
+   "new_eq_plain": false
+  },
+  "29": {
+   "cpu_eq_new": true,
+   "cpu_eq_plain": false,
+   "new_eq_plain": false
+  },
+  "37": {
+   "cpu_eq_new": true,
+   "cpu_eq_plain": false,
+   "new_eq_plain": false
+  }
+ },
+ "coverage": {
+  "pages": 57,
+  "folds": {
+   "sealed": 48,
+   "dev": 9
+  },
+  "note": "ALL 57 evaluation pages, CPU vs CoreML(class default with MLProgram/ALL)"
+ }
+}
