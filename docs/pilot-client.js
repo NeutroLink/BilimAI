@@ -1,11 +1,12 @@
 /**
- * What the two locale scripts must agree on about the public pilot, and nothing else.
+ * What the two locales' pages must agree on about the public pilot, and nothing else.
  *
- * docs/submit.js and docs/en/submit.js are separate files because every user-visible string differs
- * between them. What must not differ is the protocol: which header carries the session identity,
- * where the gateway hands a new one back, how a 429 is read, and where a waiting job's place in the
- * line lives. That is this module — no wording, no rendering, so a page cannot drift from the
- * contract in local://public-pilot-contracts.md §HTTP surface on its own.
+ * Both docs/index.html and docs/en/index.html load one submission client, docs/submit.js, which
+ * picks its wording from the page's own lang. What that client must not decide for itself is the
+ * protocol: which header carries the session identity, where the gateway hands a new one back, how
+ * a 429 is read, and where a waiting job's place in the line lives. That is this module — no
+ * wording, no rendering, so a page cannot drift from the contract in
+ * local://public-pilot-contracts.md §HTTP surface on its own.
  *
  * The identity is not a secret: it only spends the allowance of whoever holds it, so it travels in
  * localStorage rather than a cookie (a cookie set by bilimai.waib.net is a third-party cookie that

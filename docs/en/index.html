@@ -253,7 +253,7 @@
   }
 </style>
 <link rel="stylesheet" href="../submit.css">
-<script type="module" src="submit.js"></script>
+<script type="module" src="../submit.js"></script>
 </head>
 <body>
 
@@ -371,12 +371,13 @@
             <button class="evaluate-button" id="evaluate-assignment" type="submit" disabled>Check the work</button>
           </div>
           <div class="submission-feedback" id="submission-feedback" role="status" aria-live="polite">Select Russian, choose dictation, paste the text and upload a photo.</div>
-          <div class="evaluation-progress" aria-hidden="true">
+          <div class="evaluation-progress">
             <div class="progress-card">
               <span class="progress-orbit" aria-hidden="true"></span>
               <strong>BilimAI is checking the work</strong>
-              <span id="evaluation-phase">Uploading the page to the secure environment…</span>
-              <span class="progress-track" aria-hidden="true"></span>
+              <span class="progress-phase" id="evaluation-phase">Sending your page…</span>
+              <p class="progress-note">Please wait and keep this window open: the result will appear right here. Your page is safe — the first check of the day takes a few minutes.</p>
+              <span class="progress-track" aria-hidden="true"><span class="progress-fill"></span></span>
             </div>
           </div>
           <div class="assessment-panel" id="assessment-result" aria-label="Check result" tabindex="-1" hidden>

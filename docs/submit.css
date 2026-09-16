@@ -498,7 +498,10 @@
   font-size: 18px;
 }
 
-.progress-card span {
+/* These two lines are the waiting panel's own text, named one by one: a bare `.progress-card span`
+   also reached the track and the orbit, so their height and margin were being overridden by
+   min-height 24px (2026-09-17). */
+.progress-phase {
   display: block;
   min-height: 24px;
   margin-top: 5px;
@@ -506,7 +509,22 @@
   font-size: 14px;
 }
 
+.progress-note {
+  display: none;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Nothing measurable exists while the page is still on its way up, so the track and the two lines
+   that promise a wait only appear once the gateway has accepted the page (2026-09-17). */
+.upload-workspace.is-waiting .progress-note,
+.upload-workspace.is-waiting .progress-track {
+  display: block;
+}
+
 .progress-track {
+  display: none;
   height: 4px;
   margin-top: 18px;
   overflow: hidden;
@@ -514,23 +532,24 @@
   background: var(--line);
 }
 
-.progress-track::after {
+/* Width is the whole bar; the share of it that is filled is the module's time-based scale. There is
+   deliberately no transition on it: measured in Chromium, a transition kept the rendered bar at
+   1.4px while the elapsed-time share it was given was already 52px, because the animation timeline
+   does not advance in a page that is not being painted. Four direct updates a second are under a
+   pixel apart on this card, and they cannot disagree with the time they are drawn from
+   (2026-09-17). */
+.progress-fill {
   display: block;
-  width: 38%;
+  width: 100%;
   height: 100%;
   border-radius: inherit;
   background: var(--pen);
-  content: "";
-  animation: submission-buffer 1.2s ease-in-out infinite;
+  transform: scaleX(0);
+  transform-origin: left center;
 }
 
 @keyframes submission-spin {
   to { transform: rotate(360deg); }
-}
-
-@keyframes submission-buffer {
-  from { transform: translateX(-110%); }
-  to { transform: translateX(270%); }
 }
 
 .upload-workspace.has-result {
@@ -745,12 +764,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .progress-orbit,
-  .progress-orbit::after,
-  .progress-track::after {
+  .progress-orbit::after {
     animation: none;
-  }
-
-  .progress-track::after {
-    width: 100%;
   }
 }

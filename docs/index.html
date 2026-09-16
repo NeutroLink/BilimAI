@@ -371,12 +371,13 @@
             <button class="evaluate-button" id="evaluate-assignment" type="submit" disabled>Проверить работу</button>
           </div>
           <div class="submission-feedback" id="submission-feedback" role="status" aria-live="polite">Выберите русский язык, диктант, вставьте текст и загрузите фотографию.</div>
-          <div class="evaluation-progress" aria-hidden="true">
+          <div class="evaluation-progress">
             <div class="progress-card">
               <span class="progress-orbit" aria-hidden="true"></span>
               <strong>BilimAI проверяет работу</strong>
-              <span id="evaluation-phase">Загружаем страницу в защищённый контур…</span>
-              <span class="progress-track" aria-hidden="true"></span>
+              <span class="progress-phase" id="evaluation-phase">Отправляем вашу страницу…</span>
+              <p class="progress-note">Пожалуйста, подождите и не закрывайте это окно: результат появится здесь же. Ваша страница сохранена — первая проверка за день занимает несколько минут.</p>
+              <span class="progress-track" aria-hidden="true"><span class="progress-fill"></span></span>
             </div>
           </div>
           <div class="assessment-panel" id="assessment-result" aria-label="Результат проверки" tabindex="-1" hidden>
