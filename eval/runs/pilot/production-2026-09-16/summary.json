@@ -1,0 +1,185 @@
+{
+  "run": "production-2026-09-16",
+  "created_at": "2026-09-16T12:55:19Z",
+  "gateway": "http://127.0.0.1:8099",
+  "live_gateway": false,
+  "origin": "https://neutrolink.github.io",
+  "dataset": {
+    "root": "data/derived/my_notebook_v1",
+    "fold": "dev",
+    "pages_permitted": [
+      6,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "image": "the canonical record's evaluation_image (the masked page, never oriented/)"
+  },
+  "patched_pages": [
+    42,
+    46
+  ],
+  "session": {
+    "header": "X-Bilimai-Session",
+    "fresh_per_page": false,
+    "identities_used": 1,
+    "identity_fingerprints": [
+      "2932f0a56bc2"
+    ]
+  },
+  "pages": [
+    {
+      "page": 42,
+      "canonical": "data/derived/my_notebook_v1/canonical/page-42.json",
+      "key_sha256": "09ee778ee904210dedab54b570be52efee666e3769b7e4792342693eee7f9df6",
+      "key_characters": 450,
+      "scored_lines": 19,
+      "resolved_line_joins": [
+        "облака",
+        "цветной",
+        "друзей"
+      ],
+      "errors_patched": true,
+      "declared_errors": 1,
+      "errors_applied": 1,
+      "errors_applied_ids": [
+        "P42-E02"
+      ],
+      "errors_unapplied_ids": [],
+      "role": "detection",
+      "image": "data/derived/my_notebook_v1/masked/page-42.jpg",
+      "image_sha256": "2c3b937926ab83db87cdc58a40b97a2a6460e96cc9599a08d2c08c092936cdcf",
+      "image_bytes": 2145428,
+      "job_id": "V_ognti7oLsr0ief",
+      "status": "failed",
+      "delivered": false,
+      "error": "Vast endpoint is not configured on the pilot gateway",
+      "findings": null,
+      "artifacts": {},
+      "key_basis": "the transcription with the declared mistakes corrected, so the key holds the correct text and the mistakes known to be in the ink are what a finding count is measured against",
+      "expected": "findings anchored to the 1 corrected mistake(s) in the ink",
+      "submitted_at": "2026-09-16T12:55:17Z",
+      "seconds": 0.512,
+      "finished_at": "2026-09-16T12:55:18Z",
+      "requests": [
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:8099/v1/submissions",
+          "status": 202,
+          "seconds": 0.509,
+          "response_bytes": 203
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:8099/v1/submissions/V_ognti7oLsr0ief",
+          "status": 200,
+          "seconds": 0.002,
+          "response_bytes": 132
+        }
+      ]
+    },
+    {
+      "page": 46,
+      "canonical": "data/derived/my_notebook_v1/canonical/page-46.json",
+      "key_sha256": "1602d51dbc594a390466448337401e4e07b50de93dc0ff4999ac078bb3257f1d",
+      "key_characters": 739,
+      "scored_lines": 38,
+      "resolved_line_joins": [
+        "сушит",
+        "всерьез,",
+        "костры",
+        "похожим"
+      ],
+      "errors_patched": true,
+      "declared_errors": 2,
+      "errors_applied": 2,
+      "errors_applied_ids": [
+        "P46-E01",
+        "P46-E02"
+      ],
+      "errors_unapplied_ids": [],
+      "role": "detection",
+      "image": "data/derived/my_notebook_v1/masked/page-46.jpg",
+      "image_sha256": "df6b06fdccad008b1dcb4fd730643a808567d446fb1f0df05245b816e15e15fe",
+      "image_bytes": 3213882,
+      "job_id": "Zb4imf9ACUbGvXFK",
+      "status": "failed",
+      "delivered": false,
+      "error": "Vast endpoint is not configured on the pilot gateway",
+      "findings": null,
+      "artifacts": {},
+      "key_basis": "the transcription with the declared mistakes corrected, so the key holds the correct text and the mistakes known to be in the ink are what a finding count is measured against",
+      "expected": "findings anchored to the 2 corrected mistake(s) in the ink",
+      "submitted_at": "2026-09-16T12:55:18Z",
+      "seconds": 0.528,
+      "finished_at": "2026-09-16T12:55:18Z",
+      "requests": [
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:8099/v1/submissions",
+          "status": 202,
+          "seconds": 0.524,
+          "response_bytes": 203
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:8099/v1/submissions/Zb4imf9ACUbGvXFK",
+          "status": 200,
+          "seconds": 0.003,
+          "response_bytes": 132
+        }
+      ]
+    },
+    {
+      "page": 47,
+      "canonical": "data/derived/my_notebook_v1/canonical/page-47.json",
+      "key_sha256": "cbed29878c571b0294b46cf9d94f19f345672a06ddf7477daa20f17bdccafd2d",
+      "key_characters": 765,
+      "scored_lines": 31,
+      "resolved_line_joins": [],
+      "errors_patched": false,
+      "declared_errors": 2,
+      "errors_applied": 0,
+      "errors_applied_ids": [],
+      "errors_unapplied_ids": [],
+      "role": "false_positive_control",
+      "image": "data/derived/my_notebook_v1/masked/page-47.jpg",
+      "image_sha256": "c6cf4593bdac3322f79f3f566732474a2b424f7a912d0f0642c9f2509bf60ec7",
+      "image_bytes": 3098903,
+      "job_id": "n2gauJbuTS3A7-CW",
+      "status": "failed",
+      "delivered": false,
+      "error": "Vast endpoint is not configured on the pilot gateway",
+      "findings": null,
+      "artifacts": {},
+      "key_basis": "the verbatim transcription: the key equals the ink, and the 2 declared error(s) are deliberately left in it",
+      "expected": "few or no findings: the key equals the ink, so anything flagged on this page is a false positive",
+      "submitted_at": "2026-09-16T12:55:18Z",
+      "seconds": 0.522,
+      "finished_at": "2026-09-16T12:55:19Z",
+      "requests": [
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:8099/v1/submissions",
+          "status": 202,
+          "seconds": 0.519,
+          "response_bytes": 203
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:8099/v1/submissions/n2gauJbuTS3A7-CW",
+          "status": 200,
+          "seconds": 0.002,
+          "response_bytes": 132
+        }
+      ]
+    }
+  ],
+  "complete": 0,
+  "failed": 3
+}
