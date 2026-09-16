@@ -378,6 +378,9 @@
               <span class="progress-phase" id="evaluation-phase">Sending your page…</span>
               <p class="progress-note">Please wait and keep this window open: the result will appear right here. Your page is safe — the first check of the day takes a few minutes.</p>
               <span class="progress-track" aria-hidden="true"><span class="progress-fill"></span></span>
+              <!-- Empty on purpose: submit.js writes this from the same fraction it gives the fill,
+                   in the page's own locale, so no second number can disagree with the bar. -->
+              <span class="progress-percent" id="evaluation-percent" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="evaluation-phase"></span>
             </div>
           </div>
           <div class="assessment-panel" id="assessment-result" aria-label="Check result" tabindex="-1" hidden>

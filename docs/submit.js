@@ -25,6 +25,7 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
   const workspace = document.getElementById("upload-workspace");
   const progressPhase = document.getElementById("evaluation-phase");
   const progressFill = document.querySelector(".progress-fill");
+  const progressPercent = document.getElementById("evaluation-percent");
   const result = document.getElementById("assessment-result");
   const resultHeadline = document.getElementById("assessment-headline");
   const resultSummary = document.getElementById("assessment-summary");
@@ -34,8 +35,15 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
   const resultExpiry = document.getElementById("result-expiry");
   const resetButton = document.getElementById("reset-evaluation");
 
+  // The pilot has one recognition model switched on — Russian (the Uzbek button carries
+  // data-unavailable and is disabled) — and the enable rule below accepts nothing else. Naming it
+  // once, here, is what lets the pressed button, state.language and the request read the same fact:
+  // the pressed state used to be left to the markup of two pages while the rule read the state, and
+  // on the Russian page the two disagreed until a teacher clicked «Русский» herself (2026-09-17).
+  const PILOT_LANGUAGE = "ru";
+
   const state = {
-    language: "",
+    language: PILOT_LANGUAGE,
     assignment: "",
     file: null,
     previewUrl: "",
@@ -337,9 +345,26 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
   const WAIT_TAU_MS = 7 * 60 * 1000;
   const WAIT_CEILING = 0.97;
 
+  // Built once, not four times a second, and from the page's own locale, which is the only thing
+  // that decides whether the number reads "13 %" or "13%".
+  const percentFormat = new Intl.NumberFormat(ui.locale, {style: "percent", maximumFractionDigits: 0});
+
+  // The fill and the number are written from one fraction, on one repaint, so the readout can never
+  // describe a bar other than the one on screen. The curve's own fraction stops at 0.97, whose
+  // honest whole-number rounding is 97, so nothing but finishWaiting()'s 1 can print 100 — the
+  // number says the same thing about the wait that the bar does (2026-09-17).
+  function paintBar(fraction) {
+    const percent = Math.round(fraction * 100);
+    progressFill.style.transform = `scaleX(${fraction.toFixed(4)})`;
+    progressPercent.textContent = percentFormat.format(percent / 100);
+    // The track is aria-hidden, so the number is what a screen reader has: it carries the value as
+    // role="progressbar", named by the phase line beside it rather than by copy of its own.
+    progressPercent.setAttribute("aria-valuenow", String(percent));
+  }
+
   function paintWait() {
     const elapsed = Date.now() - state.waitStartedAt;
-    progressFill.style.transform = `scaleX(${(WAIT_CEILING * (1 - Math.exp(-elapsed / WAIT_TAU_MS))).toFixed(4)})`;
+    paintBar(WAIT_CEILING * (1 - Math.exp(-elapsed / WAIT_TAU_MS)));
   }
 
   // Called once the gateway has accepted the page: until then the panel names no progress it cannot
@@ -363,7 +388,7 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
     window.clearInterval(state.waitTimer);
     state.waitTimer = 0;
     progressPhase.textContent = ui.done;
-    progressFill.style.transform = "scaleX(1)";
+    paintBar(1);
     await new Promise((resolve) => window.setTimeout(resolve, 450));
   }
 
@@ -530,7 +555,7 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
     const body = new FormData();
     body.append("document", state.file, state.file.name);
     body.append("source_text", sourceText.value.trim());
-    body.append("language", "ru");
+    body.append("language", PILOT_LANGUAGE);
     body.append("assignment_type", "dictation");
 
     try {
@@ -563,5 +588,9 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
     }
   });
 
+  // The initial selection, mirrored onto the buttons from the one place it is stated above: both
+  // pages open with «Русский» pressed, so the pressed state and the enable rule agree from first
+  // paint and the form is submittable without that click (2026-09-17).
+  pressSingle(languageButtons, PILOT_LANGUAGE, "data-language");
   updateSubmitState();
 })();

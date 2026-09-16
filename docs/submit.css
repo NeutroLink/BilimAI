@@ -516,10 +516,12 @@
   font-size: 14px;
 }
 
-/* Nothing measurable exists while the page is still on its way up, so the track and the two lines
-   that promise a wait only appear once the gateway has accepted the page (2026-09-17). */
+/* Nothing measurable exists while the page is still on its way up, so the track, the readout and
+   the two lines that promise a wait only appear once the gateway has accepted the page
+   (2026-09-17). */
 .upload-workspace.is-waiting .progress-note,
-.upload-workspace.is-waiting .progress-track {
+.upload-workspace.is-waiting .progress-track,
+.upload-workspace.is-waiting .progress-percent {
   display: block;
 }
 
@@ -546,6 +548,20 @@
   background: var(--pen);
   transform: scaleX(0);
   transform-origin: left center;
+}
+
+/* The readout sits under the bar it describes, in the card's own text colour rather than the muted
+   one above it: it is the only number in the panel and it has to stay legible through the overlay's
+   blur. Tabular figures, so a digit being added cannot change the width of centred text four times
+   a second (9 % → 10 %). It is written by the module, never by the markup, which is why the rule
+   that shows it lives with the track's (2026-09-17). */
+.progress-percent {
+  display: none;
+  margin-top: 9px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
 }
 
 @keyframes submission-spin {

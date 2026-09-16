@@ -378,6 +378,9 @@
               <span class="progress-phase" id="evaluation-phase">Отправляем вашу страницу…</span>
               <p class="progress-note">Пожалуйста, подождите и не закрывайте это окно: результат появится здесь же. Ваша страница сохранена — первая проверка за день занимает несколько минут.</p>
               <span class="progress-track" aria-hidden="true"><span class="progress-fill"></span></span>
+              <!-- Empty on purpose: submit.js writes this from the same fraction it gives the fill,
+                   in the page's own locale, so no second number can disagree with the bar. -->
+              <span class="progress-percent" id="evaluation-percent" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="evaluation-phase"></span>
             </div>
           </div>
           <div class="assessment-panel" id="assessment-result" aria-label="Результат проверки" tabindex="-1" hidden>
