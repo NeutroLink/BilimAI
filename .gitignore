@@ -61,3 +61,10 @@ eval/runs/dictation/ctc_full_v3_*.json
 # Keep it on disk; ship it as a release asset or via LFS, never as a plain commit.
 docs/pitch/motion/*.mp4
 .codex-motion/build/
+
+# 2026-09-16: local-only working material — these stay on disk, never on GitHub.
+# .lavish/ is the annotation-review tooling output (sheets and row JSON) for adjudicating
+# labels by hand; data/derived/my_notebook_v1/boxes/ is word geometry measured on real
+# pupil pages, which is pupil data and does not leave this machine.
+.lavish/
+data/derived/my_notebook_v1/boxes/
