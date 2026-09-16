@@ -1,8 +1,8 @@
 {
   "run": "production-2026-09-16",
-  "created_at": "2026-09-16T12:55:19Z",
-  "gateway": "http://127.0.0.1:8099",
-  "live_gateway": false,
+  "created_at": "2026-09-16T17:04:49Z",
+  "gateway": "https://bilimai.waib.net",
+  "live_gateway": true,
   "origin": "https://neutrolink.github.io",
   "dataset": {
     "root": "data/derived/my_notebook_v1",
@@ -29,7 +29,7 @@
     "fresh_per_page": false,
     "identities_used": 1,
     "identity_fingerprints": [
-      "2932f0a56bc2"
+      "06b8b22af5cd"
     ]
   },
   "pages": [
@@ -55,7 +55,7 @@
       "image": "data/derived/my_notebook_v1/masked/page-42.jpg",
       "image_sha256": "2c3b937926ab83db87cdc58a40b97a2a6460e96cc9599a08d2c08c092936cdcf",
       "image_bytes": 2145428,
-      "job_id": "V_ognti7oLsr0ief",
+      "job_id": "h2FybBRs7XQigF9E",
       "status": "failed",
       "delivered": false,
       "error": "Vast endpoint is not configured on the pilot gateway",
@@ -63,22 +63,22 @@
       "artifacts": {},
       "key_basis": "the transcription with the declared mistakes corrected, so the key holds the correct text and the mistakes known to be in the ink are what a finding count is measured against",
       "expected": "findings anchored to the 1 corrected mistake(s) in the ink",
-      "submitted_at": "2026-09-16T12:55:17Z",
-      "seconds": 0.512,
-      "finished_at": "2026-09-16T12:55:18Z",
+      "submitted_at": "2026-09-16T17:04:33Z",
+      "seconds": 5.133,
+      "finished_at": "2026-09-16T17:04:38Z",
       "requests": [
         {
           "method": "POST",
-          "url": "http://127.0.0.1:8099/v1/submissions",
+          "url": "https://bilimai.waib.net/v1/submissions",
           "status": 202,
-          "seconds": 0.509,
-          "response_bytes": 203
+          "seconds": 4.665,
+          "response_bytes": 211
         },
         {
           "method": "GET",
-          "url": "http://127.0.0.1:8099/v1/submissions/V_ognti7oLsr0ief",
+          "url": "https://bilimai.waib.net/v1/submissions/h2FybBRs7XQigF9E",
           "status": 200,
-          "seconds": 0.002,
+          "seconds": 0.467,
           "response_bytes": 132
         }
       ]
@@ -107,7 +107,7 @@
       "image": "data/derived/my_notebook_v1/masked/page-46.jpg",
       "image_sha256": "df6b06fdccad008b1dcb4fd730643a808567d446fb1f0df05245b816e15e15fe",
       "image_bytes": 3213882,
-      "job_id": "Zb4imf9ACUbGvXFK",
+      "job_id": "49fkIoCJm_WkZzKo",
       "status": "failed",
       "delivered": false,
       "error": "Vast endpoint is not configured on the pilot gateway",
@@ -115,22 +115,22 @@
       "artifacts": {},
       "key_basis": "the transcription with the declared mistakes corrected, so the key holds the correct text and the mistakes known to be in the ink are what a finding count is measured against",
       "expected": "findings anchored to the 2 corrected mistake(s) in the ink",
-      "submitted_at": "2026-09-16T12:55:18Z",
-      "seconds": 0.528,
-      "finished_at": "2026-09-16T12:55:18Z",
+      "submitted_at": "2026-09-16T17:04:38Z",
+      "seconds": 5.619,
+      "finished_at": "2026-09-16T17:04:44Z",
       "requests": [
         {
           "method": "POST",
-          "url": "http://127.0.0.1:8099/v1/submissions",
+          "url": "https://bilimai.waib.net/v1/submissions",
           "status": 202,
-          "seconds": 0.524,
-          "response_bytes": 203
+          "seconds": 5.16,
+          "response_bytes": 211
         },
         {
           "method": "GET",
-          "url": "http://127.0.0.1:8099/v1/submissions/Zb4imf9ACUbGvXFK",
+          "url": "https://bilimai.waib.net/v1/submissions/49fkIoCJm_WkZzKo",
           "status": 200,
-          "seconds": 0.003,
+          "seconds": 0.459,
           "response_bytes": 132
         }
       ]
@@ -151,7 +151,7 @@
       "image": "data/derived/my_notebook_v1/masked/page-47.jpg",
       "image_sha256": "c6cf4593bdac3322f79f3f566732474a2b424f7a912d0f0642c9f2509bf60ec7",
       "image_bytes": 3098903,
-      "job_id": "n2gauJbuTS3A7-CW",
+      "job_id": "wFg0WcVJdnj9DeoU",
       "status": "failed",
       "delivered": false,
       "error": "Vast endpoint is not configured on the pilot gateway",
@@ -159,22 +159,22 @@
       "artifacts": {},
       "key_basis": "the verbatim transcription: the key equals the ink, and the 2 declared error(s) are deliberately left in it",
       "expected": "few or no findings: the key equals the ink, so anything flagged on this page is a false positive",
-      "submitted_at": "2026-09-16T12:55:18Z",
-      "seconds": 0.522,
-      "finished_at": "2026-09-16T12:55:19Z",
+      "submitted_at": "2026-09-16T17:04:44Z",
+      "seconds": 5.056,
+      "finished_at": "2026-09-16T17:04:49Z",
       "requests": [
         {
           "method": "POST",
-          "url": "http://127.0.0.1:8099/v1/submissions",
+          "url": "https://bilimai.waib.net/v1/submissions",
           "status": 202,
-          "seconds": 0.519,
-          "response_bytes": 203
+          "seconds": 4.724,
+          "response_bytes": 211
         },
         {
           "method": "GET",
-          "url": "http://127.0.0.1:8099/v1/submissions/n2gauJbuTS3A7-CW",
+          "url": "https://bilimai.waib.net/v1/submissions/wFg0WcVJdnj9DeoU",
           "status": 200,
-          "seconds": 0.002,
+          "seconds": 0.332,
           "response_bytes": 132
         }
       ]

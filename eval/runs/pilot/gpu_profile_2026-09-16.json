@@ -1,0 +1,155 @@
+{
+  "page": "/app/page-42.jpg",
+  "source": "/app/page-42.txt",
+  "page_bytes": 2145428,
+  "idle_baseline": {
+    "samples": 17,
+    "gpu_util_median": 0,
+    "gpu_util_mean": 0.0,
+    "gpu_util_p90": 0,
+    "share_of_samples_above_80pct": 0.0,
+    "share_of_samples_below_20pct": 1.0,
+    "vram_used_mb_peak": 0,
+    "power_w_median": 12.5
+  },
+  "cold_page": {
+    "wall_seconds": 8.42,
+    "timings_ms": {
+      "detect": 396,
+      "read": 5278,
+      "grade": 1642,
+      "render": 1052,
+      "total": 8398
+    },
+    "lines": 21,
+    "marks": 33,
+    "gpu": {
+      "samples": 67,
+      "gpu_util_median": 13,
+      "gpu_util_mean": 15.0,
+      "gpu_util_p90": 49,
+      "share_of_samples_above_80pct": 0.0,
+      "share_of_samples_below_20pct": 0.627,
+      "vram_used_mb_peak": 4383,
+      "power_w_median": 89.4
+    }
+  },
+  "warm_pages": [
+    {
+      "repeat": 0,
+      "wall_seconds": 3.44,
+      "timings_ms": {
+        "detect": 316,
+        "read": 650,
+        "grade": 1379,
+        "render": 1048,
+        "total": 3418
+      },
+      "gpu": {
+        "samples": 30,
+        "gpu_util_median": 53.0,
+        "gpu_util_mean": 33.9,
+        "gpu_util_p90": 66,
+        "share_of_samples_above_80pct": 0.0,
+        "share_of_samples_below_20pct": 0.433,
+        "vram_used_mb_peak": 4383,
+        "power_w_median": 168.0
+      }
+    },
+    {
+      "repeat": 1,
+      "wall_seconds": 3.43,
+      "timings_ms": {
+        "detect": 304,
+        "read": 655,
+        "grade": 1380,
+        "render": 1044,
+        "total": 3407
+      },
+      "gpu": {
+        "samples": 29,
+        "gpu_util_median": 45,
+        "gpu_util_mean": 29.1,
+        "gpu_util_p90": 55,
+        "share_of_samples_above_80pct": 0.0,
+        "share_of_samples_below_20pct": 0.414,
+        "vram_used_mb_peak": 4383,
+        "power_w_median": 181.9
+      }
+    },
+    {
+      "repeat": 2,
+      "wall_seconds": 3.44,
+      "timings_ms": {
+        "detect": 313,
+        "read": 661,
+        "grade": 1384,
+        "render": 1037,
+        "total": 3418
+      },
+      "gpu": {
+        "samples": 29,
+        "gpu_util_median": 53,
+        "gpu_util_mean": 31.1,
+        "gpu_util_p90": 53,
+        "share_of_samples_above_80pct": 0.0,
+        "share_of_samples_below_20pct": 0.414,
+        "vram_used_mb_peak": 4383,
+        "power_w_median": 174.4
+      }
+    }
+  ],
+  "stage_share_percent": {
+    "detect": 9.2,
+    "read": 19.3,
+    "grade": 40.5,
+    "render": 30.3
+  },
+  "batch_sweep": [
+    {
+      "batch_size": 8,
+      "wall_seconds": 3.51,
+      "read_ms": 782,
+      "gpu": {
+        "samples": 30,
+        "gpu_util_median": 53.0,
+        "gpu_util_mean": 32.7,
+        "gpu_util_p90": 62,
+        "share_of_samples_above_80pct": 0.0,
+        "share_of_samples_below_20pct": 0.433,
+        "vram_used_mb_peak": 7119,
+        "power_w_median": 150.6
+      }
+    },
+    {
+      "batch_size": 16,
+      "wall_seconds": 3.38,
+      "read_ms": 643,
+      "gpu": {
+        "samples": 29,
+        "gpu_util_median": 57,
+        "gpu_util_mean": 36.6,
+        "gpu_util_p90": 61,
+        "share_of_samples_above_80pct": 0.0,
+        "share_of_samples_below_20pct": 0.379,
+        "vram_used_mb_peak": 9585,
+        "power_w_median": 182.4
+      }
+    },
+    {
+      "batch_size": 32,
+      "wall_seconds": 3.29,
+      "read_ms": 526,
+      "gpu": {
+        "samples": 28,
+        "gpu_util_median": 56.0,
+        "gpu_util_mean": 34.3,
+        "gpu_util_p90": 57,
+        "share_of_samples_above_80pct": 0.0,
+        "share_of_samples_below_20pct": 0.393,
+        "vram_used_mb_peak": 9147,
+        "power_w_median": 152.2
+      }
+    }
+  ]
+}
