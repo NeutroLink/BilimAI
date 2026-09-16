@@ -1,0 +1,724 @@
+{
+ "caveat": "The `extended` population is a human-adjudicated proxy, not teacher-key truth; the proxy key applies accepted label edits to one annotator's verified transcript, so a divergence is charged against that annotator. Reader throughput and stability are reported only if measured; no inference runs in this repository's default test path. No dev threshold met the false-mark budget: the always-on non-spelling floor does.",
+ "dev_selection": {
+  "budget": 0.65,
+  "caught": 2,
+  "false_marks": 286,
+  "false_per_100": 28.48605577689243,
+  "reason": "always-on non-spelling marks exceed the budget",
+  "runner_up": null,
+  "status": "no_operating_point",
+  "threshold": 65.766
+ },
+ "fold": "dev",
+ "marks_budget": 0.65,
+ "n_pages": 9,
+ "populations": {
+  "extended": {
+   "budget": 0.65,
+   "budget_met": false,
+   "by_confidence": {
+    "0.23": {
+     "active": 0,
+     "caught": 0,
+     "false": 0,
+     "raw": 1
+    },
+    "0.24": {
+     "active": 0,
+     "caught": 0,
+     "false": 0,
+     "raw": 1
+    },
+    "0.27": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.33": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.40": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.46": {
+     "active": 2,
+     "caught": 0,
+     "false": 2,
+     "raw": 2
+    },
+    "0.47": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.52": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.55": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.56": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.59": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.61": {
+     "active": 0,
+     "caught": 0,
+     "false": 0,
+     "raw": 1
+    },
+    "0.62": {
+     "active": 10,
+     "caught": 0,
+     "false": 5,
+     "raw": 12
+    },
+    "0.63": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.64": {
+     "active": 5,
+     "caught": 0,
+     "false": 5,
+     "raw": 6
+    },
+    "0.65": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.67": {
+     "active": 4,
+     "caught": 0,
+     "false": 4,
+     "raw": 5
+    },
+    "0.68": {
+     "active": 0,
+     "caught": 0,
+     "false": 0,
+     "raw": 1
+    },
+    "0.70": {
+     "active": 3,
+     "caught": 0,
+     "false": 3,
+     "raw": 6
+    },
+    "0.72": {
+     "active": 4,
+     "caught": 0,
+     "false": 4,
+     "raw": 7
+    },
+    "0.73": {
+     "active": 3,
+     "caught": 0,
+     "false": 3,
+     "raw": 6
+    },
+    "0.74": {
+     "active": 3,
+     "caught": 0,
+     "false": 3,
+     "raw": 6
+    },
+    "0.75": {
+     "active": 2,
+     "caught": 0,
+     "false": 2,
+     "raw": 3
+    },
+    "0.76": {
+     "active": 3,
+     "caught": 0,
+     "false": 3,
+     "raw": 7
+    },
+    "0.77": {
+     "active": 2,
+     "caught": 0,
+     "false": 2,
+     "raw": 3
+    },
+    "0.79": {
+     "active": 5,
+     "caught": 1,
+     "false": 4,
+     "raw": 10
+    },
+    "0.80": {
+     "active": 4,
+     "caught": 0,
+     "false": 4,
+     "raw": 8
+    },
+    "0.81": {
+     "active": 6,
+     "caught": 0,
+     "false": 6,
+     "raw": 8
+    },
+    "0.82": {
+     "active": 7,
+     "caught": 0,
+     "false": 7,
+     "raw": 15
+    },
+    "0.83": {
+     "active": 8,
+     "caught": 0,
+     "false": 8,
+     "raw": 18
+    },
+    "0.84": {
+     "active": 7,
+     "caught": 0,
+     "false": 6,
+     "raw": 9
+    },
+    "0.85": {
+     "active": 4,
+     "caught": 0,
+     "false": 4,
+     "raw": 11
+    },
+    "0.86": {
+     "active": 15,
+     "caught": 0,
+     "false": 15,
+     "raw": 25
+    },
+    "0.87": {
+     "active": 17,
+     "caught": 0,
+     "false": 17,
+     "raw": 22
+    },
+    "0.88": {
+     "active": 10,
+     "caught": 1,
+     "false": 9,
+     "raw": 17
+    },
+    "0.89": {
+     "active": 10,
+     "caught": 0,
+     "false": 10,
+     "raw": 16
+    },
+    "0.90": {
+     "active": 13,
+     "caught": 1,
+     "false": 12,
+     "raw": 22
+    },
+    "0.91": {
+     "active": 27,
+     "caught": 2,
+     "false": 25,
+     "raw": 40
+    },
+    "0.92": {
+     "active": 9,
+     "caught": 0,
+     "false": 9,
+     "raw": 15
+    },
+    "0.93": {
+     "active": 14,
+     "caught": 1,
+     "false": 13,
+     "raw": 22
+    },
+    "0.94": {
+     "active": 11,
+     "caught": 0,
+     "false": 10,
+     "raw": 21
+    },
+    "0.95": {
+     "active": 16,
+     "caught": 1,
+     "false": 15,
+     "raw": 27
+    },
+    "0.96": {
+     "active": 16,
+     "caught": 0,
+     "false": 16,
+     "raw": 25
+    },
+    "0.97": {
+     "active": 21,
+     "caught": 0,
+     "false": 21,
+     "raw": 27
+    },
+    "0.98": {
+     "active": 8,
+     "caught": 0,
+     "false": 8,
+     "raw": 11
+    },
+    "0.99": {
+     "active": 18,
+     "caught": 1,
+     "false": 17,
+     "raw": 23
+    },
+    "1.00": {
+     "active": 3,
+     "caught": 1,
+     "false": 2,
+     "raw": 3
+    }
+   },
+   "caught_labels": 8,
+   "caught_rate": 0.5,
+   "caught_rate_ci95": [
+    0.214286,
+    0.677419
+   ],
+   "false_marks": 284,
+   "false_marks_per_100_words": 28.2869,
+   "false_marks_per_100_words_ci95": [
+    22.285175,
+    35.406699
+   ],
+   "mark_kinds_active": {
+    "capitalization": 13,
+    "extra_word": 139,
+    "missing_word": 74,
+    "punctuation_extra": 27,
+    "punctuation_missing": 30,
+    "punctuation_wrong": 17
+   },
+   "mark_kinds_raw": {
+    "capitalization": 13,
+    "extra_word": 139,
+    "missing_word": 74,
+    "punctuation_extra": 27,
+    "punctuation_missing": 30,
+    "punctuation_wrong": 17,
+    "spelling": 172
+   },
+   "n_active_marks": 300,
+   "n_labels": 16,
+   "n_marks_raw": 472,
+   "n_scored_words": 1004,
+   "per_category": {
+    "capitalization": {
+     "caught": 1,
+     "total": 1
+    },
+    "grammar_or_word_form": {
+     "caught": 3,
+     "total": 7
+    },
+    "letters": {
+     "caught": 0,
+     "total": 1
+    },
+    "missing_word": {
+     "caught": 1,
+     "total": 1
+    },
+    "punctuation_or_hyphenation": {
+     "caught": 1,
+     "total": 1
+    },
+    "spelling_or_letters": {
+     "caught": 2,
+     "total": 5
+    }
+   },
+   "transcription_aggregate": {
+    "accuracy": 0.630478,
+    "deletions": 70,
+    "insertions": 139,
+    "n_read_words": 1148,
+    "n_student_scored_words": 1004,
+    "substitutions": 162,
+    "wer": 0.369522,
+    "word_edits": 371
+   }
+  },
+  "no_key": {
+   "budget": 0.65,
+   "budget_met": false,
+   "by_confidence": {
+    "0.23": {
+     "active": 0,
+     "caught": 0,
+     "false": 0,
+     "raw": 1
+    },
+    "0.24": {
+     "active": 0,
+     "caught": 0,
+     "false": 0,
+     "raw": 1
+    },
+    "0.27": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.33": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.40": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.46": {
+     "active": 2,
+     "caught": 0,
+     "false": 2,
+     "raw": 2
+    },
+    "0.47": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.52": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.55": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.56": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.59": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.61": {
+     "active": 0,
+     "caught": 0,
+     "false": 0,
+     "raw": 1
+    },
+    "0.62": {
+     "active": 10,
+     "caught": 0,
+     "false": 5,
+     "raw": 12
+    },
+    "0.63": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.64": {
+     "active": 5,
+     "caught": 0,
+     "false": 5,
+     "raw": 6
+    },
+    "0.65": {
+     "active": 1,
+     "caught": 0,
+     "false": 1,
+     "raw": 1
+    },
+    "0.67": {
+     "active": 4,
+     "caught": 0,
+     "false": 4,
+     "raw": 5
+    },
+    "0.68": {
+     "active": 0,
+     "caught": 0,
+     "false": 0,
+     "raw": 1
+    },
+    "0.70": {
+     "active": 3,
+     "caught": 0,
+     "false": 3,
+     "raw": 6
+    },
+    "0.72": {
+     "active": 4,
+     "caught": 0,
+     "false": 4,
+     "raw": 7
+    },
+    "0.73": {
+     "active": 3,
+     "caught": 0,
+     "false": 3,
+     "raw": 6
+    },
+    "0.74": {
+     "active": 3,
+     "caught": 0,
+     "false": 3,
+     "raw": 6
+    },
+    "0.75": {
+     "active": 2,
+     "caught": 0,
+     "false": 2,
+     "raw": 3
+    },
+    "0.76": {
+     "active": 3,
+     "caught": 0,
+     "false": 3,
+     "raw": 7
+    },
+    "0.77": {
+     "active": 2,
+     "caught": 0,
+     "false": 2,
+     "raw": 3
+    },
+    "0.79": {
+     "active": 5,
+     "caught": 1,
+     "false": 4,
+     "raw": 10
+    },
+    "0.80": {
+     "active": 4,
+     "caught": 0,
+     "false": 4,
+     "raw": 8
+    },
+    "0.81": {
+     "active": 6,
+     "caught": 0,
+     "false": 6,
+     "raw": 8
+    },
+    "0.82": {
+     "active": 7,
+     "caught": 0,
+     "false": 7,
+     "raw": 15
+    },
+    "0.83": {
+     "active": 8,
+     "caught": 0,
+     "false": 8,
+     "raw": 18
+    },
+    "0.84": {
+     "active": 7,
+     "caught": 0,
+     "false": 6,
+     "raw": 9
+    },
+    "0.85": {
+     "active": 4,
+     "caught": 0,
+     "false": 4,
+     "raw": 11
+    },
+    "0.86": {
+     "active": 15,
+     "caught": 0,
+     "false": 15,
+     "raw": 25
+    },
+    "0.87": {
+     "active": 17,
+     "caught": 0,
+     "false": 17,
+     "raw": 22
+    },
+    "0.88": {
+     "active": 9,
+     "caught": 0,
+     "false": 9,
+     "raw": 15
+    },
+    "0.89": {
+     "active": 10,
+     "caught": 0,
+     "false": 10,
+     "raw": 16
+    },
+    "0.90": {
+     "active": 13,
+     "caught": 0,
+     "false": 13,
+     "raw": 22
+    },
+    "0.91": {
+     "active": 26,
+     "caught": 0,
+     "false": 26,
+     "raw": 38
+    },
+    "0.92": {
+     "active": 9,
+     "caught": 0,
+     "false": 9,
+     "raw": 15
+    },
+    "0.93": {
+     "active": 13,
+     "caught": 0,
+     "false": 13,
+     "raw": 21
+    },
+    "0.94": {
+     "active": 11,
+     "caught": 0,
+     "false": 10,
+     "raw": 21
+    },
+    "0.95": {
+     "active": 15,
+     "caught": 0,
+     "false": 15,
+     "raw": 26
+    },
+    "0.96": {
+     "active": 16,
+     "caught": 0,
+     "false": 16,
+     "raw": 25
+    },
+    "0.97": {
+     "active": 21,
+     "caught": 0,
+     "false": 21,
+     "raw": 27
+    },
+    "0.98": {
+     "active": 8,
+     "caught": 0,
+     "false": 8,
+     "raw": 11
+    },
+    "0.99": {
+     "active": 18,
+     "caught": 1,
+     "false": 17,
+     "raw": 22
+    },
+    "1.00": {
+     "active": 2,
+     "caught": 0,
+     "false": 2,
+     "raw": 2
+    }
+   },
+   "caught_labels": 2,
+   "caught_rate": 0.333333,
+   "caught_rate_ci95": [
+    0.0,
+    0.666667
+   ],
+   "false_marks": 286,
+   "false_marks_per_100_words": 28.4861,
+   "false_marks_per_100_words_ci95": [
+    22.54717,
+    35.572687
+   ],
+   "mark_kinds_active": {
+    "capitalization": 12,
+    "extra_word": 139,
+    "missing_word": 73,
+    "punctuation_extra": 25,
+    "punctuation_missing": 29,
+    "punctuation_wrong": 17
+   },
+   "mark_kinds_raw": {
+    "capitalization": 12,
+    "extra_word": 139,
+    "missing_word": 73,
+    "punctuation_extra": 25,
+    "punctuation_missing": 29,
+    "punctuation_wrong": 17,
+    "spelling": 169
+   },
+   "n_active_marks": 295,
+   "n_labels": 6,
+   "n_marks_raw": 464,
+   "n_scored_words": 1004,
+   "per_category": {
+    "letters": {
+     "caught": 0,
+     "total": 1
+    },
+    "spelling_or_letters": {
+     "caught": 2,
+     "total": 5
+    }
+   },
+   "transcription_aggregate": {
+    "accuracy": 0.630478,
+    "deletions": 70,
+    "insertions": 139,
+    "n_read_words": 1148,
+    "n_student_scored_words": 1004,
+    "substitutions": 162,
+    "wer": 0.369522,
+    "word_edits": 371
+   }
+  }
+ },
+ "reader": "glm",
+ "resource": {
+  "free_before_bytes": null,
+  "pages_per_s": 0.035486,
+  "peak_rss_bytes": 5136465920,
+  "wall_s": 253.619
+ },
+ "threshold": 65.766
+}

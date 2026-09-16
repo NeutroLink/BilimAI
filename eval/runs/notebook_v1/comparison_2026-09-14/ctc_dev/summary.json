@@ -1,0 +1,172 @@
+{
+ "caveat": "The `extended` population is a human-adjudicated proxy, not teacher-key truth; the proxy key applies accepted label edits to one annotator's verified transcript, so a divergence is charged against that annotator. Reader throughput and stability are reported only if measured; no inference runs in this repository's default test path. No dev threshold met the false-mark budget: the always-on non-spelling floor does.",
+ "dev_selection": {
+  "budget": 0.65,
+  "caught": 4,
+  "false_marks": 1138,
+  "false_per_100": 113.34661354581674,
+  "reason": "always-on non-spelling marks exceed the budget",
+  "runner_up": null,
+  "status": "no_operating_point",
+  "threshold": 75.443
+ },
+ "fold": "dev",
+ "marks_budget": 0.65,
+ "n_pages": 9,
+ "populations": {
+  "extended": {
+   "budget": 0.65,
+   "budget_met": false,
+   "by_confidence": {
+    "1.00": {
+     "active": 1199,
+     "caught": 12,
+     "false": 1134,
+     "raw": 1420
+    }
+   },
+   "caught_labels": 11,
+   "caught_rate": 0.6875,
+   "caught_rate_ci95": [
+    0.529412,
+    0.888889
+   ],
+   "false_marks": 1134,
+   "false_marks_per_100_words": 112.9482,
+   "false_marks_per_100_words_ci95": [
+    98.251748,
+    127.098831
+   ],
+   "mark_kinds_active": {
+    "capitalization": 11,
+    "extra_word": 537,
+    "missing_word": 498,
+    "punctuation_extra": 66,
+    "punctuation_missing": 54,
+    "punctuation_wrong": 33
+   },
+   "mark_kinds_raw": {
+    "capitalization": 11,
+    "extra_word": 537,
+    "missing_word": 498,
+    "punctuation_extra": 66,
+    "punctuation_missing": 54,
+    "punctuation_wrong": 33,
+    "spelling": 221
+   },
+   "n_active_marks": 1199,
+   "n_labels": 16,
+   "n_marks_raw": 1420,
+   "n_scored_words": 1004,
+   "per_category": {
+    "capitalization": {
+     "caught": 1,
+     "total": 1
+    },
+    "grammar_or_word_form": {
+     "caught": 4,
+     "total": 7
+    },
+    "letters": {
+     "caught": 0,
+     "total": 1
+    },
+    "missing_word": {
+     "caught": 1,
+     "total": 1
+    },
+    "punctuation_or_hyphenation": {
+     "caught": 1,
+     "total": 1
+    },
+    "spelling_or_letters": {
+     "caught": 4,
+     "total": 5
+    }
+   },
+   "transcription_aggregate": {
+    "accuracy": 0.0,
+    "deletions": 451,
+    "insertions": 537,
+    "n_read_words": 1124,
+    "n_student_scored_words": 1004,
+    "substitutions": 202,
+    "wer": 1.185259,
+    "word_edits": 1190
+   }
+  },
+  "no_key": {
+   "budget": 0.65,
+   "budget_met": false,
+   "by_confidence": {
+    "1.00": {
+     "active": 1195,
+     "caught": 4,
+     "false": 1138,
+     "raw": 1413
+    }
+   },
+   "caught_labels": 4,
+   "caught_rate": 0.666667,
+   "caught_rate_ci95": [
+    0.333333,
+    1.0
+   ],
+   "false_marks": 1138,
+   "false_marks_per_100_words": 113.3466,
+   "false_marks_per_100_words_ci95": [
+    98.834499,
+    127.368421
+   ],
+   "mark_kinds_active": {
+    "capitalization": 10,
+    "extra_word": 537,
+    "missing_word": 497,
+    "punctuation_extra": 65,
+    "punctuation_missing": 53,
+    "punctuation_wrong": 33
+   },
+   "mark_kinds_raw": {
+    "capitalization": 10,
+    "extra_word": 537,
+    "missing_word": 497,
+    "punctuation_extra": 65,
+    "punctuation_missing": 53,
+    "punctuation_wrong": 33,
+    "spelling": 218
+   },
+   "n_active_marks": 1195,
+   "n_labels": 6,
+   "n_marks_raw": 1413,
+   "n_scored_words": 1004,
+   "per_category": {
+    "letters": {
+     "caught": 0,
+     "total": 1
+    },
+    "spelling_or_letters": {
+     "caught": 4,
+     "total": 5
+    }
+   },
+   "transcription_aggregate": {
+    "accuracy": 0.0,
+    "deletions": 451,
+    "insertions": 537,
+    "n_read_words": 1124,
+    "n_student_scored_words": 1004,
+    "substitutions": 202,
+    "wer": 1.185259,
+    "word_edits": 1190
+   }
+  }
+ },
+ "reader": "ctc",
+ "resource": {
+  "free_before_bytes": null,
+  "pages_per_s": 0.245749,
+  "peak_rss_bytes": 761511936,
+  "wall_s": 36.623
+ },
+ "threshold": 75.443
+}

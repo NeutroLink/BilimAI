@@ -1,0 +1,795 @@
+{
+  "record_type": "Canonical notebook error-label inventory; no inference or new adjudication",
+  "source_directory": "data/derived/my_notebook_v1/canonical",
+  "source_hashes": {
+    "data/derived/my_notebook_v1/canonical/page-01.json": "fc9a86c3d6313952c58fc7a486eefdb76128ce12482e4dc17e717822650e2cbb",
+    "data/derived/my_notebook_v1/canonical/page-02.json": "dcd8d1de566bb8dfad9039adec24506b4e28a071b6c3017fb520583675fbf968",
+    "data/derived/my_notebook_v1/canonical/page-03.json": "8873278d50b75e804db303b814afc27df34a5171858d1f972c09de2ceb07117e",
+    "data/derived/my_notebook_v1/canonical/page-04.json": "b8c9a55eec547fe7d7a6f9850e0eff3e3482839df8dfc0fbaf40b59fe5a7deb4",
+    "data/derived/my_notebook_v1/canonical/page-05.json": "05418ad3e2f799885088c02abea44672167d5c96c5cf33d75a688b84c1516fc9",
+    "data/derived/my_notebook_v1/canonical/page-06.json": "842aecca739ca165d8f40619c5d3c06264bfb262c922fcb788d2cb739314e0a3",
+    "data/derived/my_notebook_v1/canonical/page-07.json": "77d74d5a657db0b01b015e1aacd83ff26e80edd0e440d78c7309272cd96ddd67",
+    "data/derived/my_notebook_v1/canonical/page-08.json": "8cc6b25ed52e32330b0d72f76dba4ac3240deb7d3cb19552183e1ff4c5ab0214",
+    "data/derived/my_notebook_v1/canonical/page-09.json": "caf16314f81ba72fee32e30fa8e0344b9af05bf9c5038a3bf6e4ddb90bef34df",
+    "data/derived/my_notebook_v1/canonical/page-10.json": "63e376062668a2aaebb4d758ad68081f4afc28903e0751a66e0bda13e5fa9295",
+    "data/derived/my_notebook_v1/canonical/page-11.json": "163871840a9757ff338a9e18dfd61550dea8a991cbe63b92dc514aa7e0e1ea13",
+    "data/derived/my_notebook_v1/canonical/page-12.json": "2019075e02883a846a1937f6e073ab0ec24c9f083f3fbccccd9f2d688a29bedd",
+    "data/derived/my_notebook_v1/canonical/page-13.json": "e684542d5e53ca1a6eff15fbdba5b5b14a378c4e163c424851b5df9287ee4042",
+    "data/derived/my_notebook_v1/canonical/page-14.json": "6ce57f29d91659843ddfd064d3a565b995582f262bebe8cdca4a8cd056301a45",
+    "data/derived/my_notebook_v1/canonical/page-15.json": "cd1457600aa8b6abbca8629872e90a593c5656fd2f581a6180d91e1b6afc866d",
+    "data/derived/my_notebook_v1/canonical/page-16.json": "c8eff1fcd1279c5ce50f8ad08e44b84d3d350fe69caf48ec406a2fe83a4e2952",
+    "data/derived/my_notebook_v1/canonical/page-17.json": "6bf8d1cb22a57b3d3f9df90c066d25ddb09a88ab94f7358948ac16aa1d6b90f6",
+    "data/derived/my_notebook_v1/canonical/page-18.json": "5ec8f71cdbe281af9a3e289e262d60aef8f329c66426eaf558cc52bc14910467",
+    "data/derived/my_notebook_v1/canonical/page-19.json": "4e075daf7f8ae06a8aaeea93a8d327d365bbd987cd69258c272ed0ee8614fc8c",
+    "data/derived/my_notebook_v1/canonical/page-20.json": "8fdabab89adeb18397d250f29c1ad370a4f5e0879043f1caf05ebeffc55a5f1b",
+    "data/derived/my_notebook_v1/canonical/page-21.json": "475f144bffc087dc6eaa9cd4a551b35b2ee06f19949b5c3a94033da523048517",
+    "data/derived/my_notebook_v1/canonical/page-22.json": "933524381b2f11ced1d8354426a59d8cafc1b2f7137696220edd5ceb663e73f9",
+    "data/derived/my_notebook_v1/canonical/page-23.json": "d4390b3f16205493a99a4e3e5e27a7524044f1ce35f8bc78783eacbc8d52db04",
+    "data/derived/my_notebook_v1/canonical/page-24.json": "d5577535136a3edd911e76b1e2b807553072a8f5081cf30435eb2ed9ac6a08a1",
+    "data/derived/my_notebook_v1/canonical/page-25.json": "11bd663016d8b9274f113ecdf77184849ab0884d697483a9f4b072c2f9e7a99a",
+    "data/derived/my_notebook_v1/canonical/page-26.json": "4571213c9ccbef6d37071bbdf17a86f3d9a3f5e9184def4675ace0d16e4a7b7c",
+    "data/derived/my_notebook_v1/canonical/page-27.json": "0a99cd4cc19003c948dc4d569432e17a3960500256c15475a1081d65fe827daf",
+    "data/derived/my_notebook_v1/canonical/page-28.json": "09955613a75cf35dc4c990094a71a0d51b2582b8c0ada1139f2f763fe3e311a9",
+    "data/derived/my_notebook_v1/canonical/page-29.json": "d8f6d67b06a64adfd1776cb94abd46a46ebbb3e61a4a1e5aa7a76b56ac8d50b3",
+    "data/derived/my_notebook_v1/canonical/page-30.json": "c47c7bf535390c342b1c1e727d0112013551877a3f6752256faa474817ef42d4",
+    "data/derived/my_notebook_v1/canonical/page-31.json": "2cadde1ee5b1cc15ebfd35ce9c266d150d60f979fb33ac7f8895ffdb53a15b09",
+    "data/derived/my_notebook_v1/canonical/page-32.json": "83f3a7f4f82c2a83f73a87d908b18db2ffe35231bd06de16edba97f6c52f8a92",
+    "data/derived/my_notebook_v1/canonical/page-33.json": "0ebaff6a40c5a5339393f1e52715cf876716653687d30731ed155575060434ab",
+    "data/derived/my_notebook_v1/canonical/page-34.json": "012d8ee2cc7a3782d12e340301d744295e76f365f635133795c7792b1e1ce353",
+    "data/derived/my_notebook_v1/canonical/page-35.json": "f9f9b9ee5e302566e716188b058e466501f9b457b7e0b5ddd4ed3c6cda202258",
+    "data/derived/my_notebook_v1/canonical/page-36.json": "9c79fd1a9b9bae11ca95a62fc7b5578dbea6d95f0ee1dd5fdc5ae4463337ba43",
+    "data/derived/my_notebook_v1/canonical/page-37.json": "955b94ba90c1b97fd56a29ef59c81b9fe3f06d1572b1ad308ca18fd1ebd04ee4",
+    "data/derived/my_notebook_v1/canonical/page-38.json": "5dff31550e16ba7dce18432658fe1415f55d262761ccf6515d88c86a8739ccda",
+    "data/derived/my_notebook_v1/canonical/page-39.json": "ecf267b305b5c9000b2afacea4c3c1e8e725adfe12ae00c06c553739d9054f61",
+    "data/derived/my_notebook_v1/canonical/page-40.json": "2d0b064fdafc9d9166a73835bb5aa05068382471435c544769954344e86800a3",
+    "data/derived/my_notebook_v1/canonical/page-41.json": "336def532d589d9cfb9d2b42e5ae0a1979287dfa161c2a4d82b16cb53541ce5f",
+    "data/derived/my_notebook_v1/canonical/page-42.json": "6ffc758af8f5c656139eb2313e2e3f077b9431be5932f0f9cc794e0e8161d206",
+    "data/derived/my_notebook_v1/canonical/page-43.json": "c7ada2de52ed73a2e7bab092013fdb6f86b81d24e016f8a419d59a5eb74a2e3c",
+    "data/derived/my_notebook_v1/canonical/page-44.json": "ceaa1102d00e0fb5f622c1080f5dfd47eeb7778ad144e8ae2ddd8edfc5617bfe",
+    "data/derived/my_notebook_v1/canonical/page-45.json": "9f59553d64410e7a5f23bfc29573d166e85ad480056a941bebb476f55c6ff002",
+    "data/derived/my_notebook_v1/canonical/page-46.json": "8e505581684ef5cbe2b4e50539a832a5ca57658a771e0defccabaafbf5f9d324",
+    "data/derived/my_notebook_v1/canonical/page-47.json": "d2dfd840d96d95c43da7f93e369f268a95444b10fc15f8ea1bf90ef48334844a",
+    "data/derived/my_notebook_v1/canonical/page-48.json": "ae0d7c1ff64b872b8fcbe4808de741692fa113b9a908d5ad8c4dcd9eaaea5da0",
+    "data/derived/my_notebook_v1/canonical/page-49.json": "1bc6a9e9aa5f1dfe0fbbc5cf2310ac3aa76f6e2181ee529eddbdc0b332aadb69",
+    "data/derived/my_notebook_v1/canonical/page-50.json": "2ffae8a4e2c8d08d788eba43db8c3848746c0129ba1d91a8b047651e637c72f0",
+    "data/derived/my_notebook_v1/canonical/page-51.json": "305cd80dbe0a3b3158347d7ebf7653dfbac8339a803f9275175ba2b836ba82f1",
+    "data/derived/my_notebook_v1/canonical/page-52.json": "84f5bdeff3c6d5629f1f8a9a2f8684de3395297f4d77157a385d6181d084fc90",
+    "data/derived/my_notebook_v1/canonical/page-53.json": "f8a20c5b3928eac986354c69e7e073c100bda79959ef763c13e86160df2cb668",
+    "data/derived/my_notebook_v1/canonical/page-54.json": "fb85623a29c1c0be8bd63fad58de6db3cc654fa76f8548eaaab1a1c343477543",
+    "data/derived/my_notebook_v1/canonical/page-55.json": "27c1daadd69c6af7025739e12fe1db0885c255e7e15391b2553b95f6eda2ff3a",
+    "data/derived/my_notebook_v1/canonical/page-56.json": "f0bd3817b97c1ac241eb1c0401aa8ed58057ea1bc9e6b9d452668ce7bc5ca47d",
+    "data/derived/my_notebook_v1/canonical/page-57.json": "c7665f480a3af86548dd9ddd7af04fb330530ac9bf4cd591f588e861a7482451"
+  },
+  "pages": 57,
+  "lines": 2053,
+  "scored_lines": 1992,
+  "error_records": 41,
+  "counted_error_records": 35,
+  "undecided_records": [
+    {
+      "page": 4,
+      "id": "P04-M2",
+      "error_class": "meaning",
+      "out_of_ink_checker_scope": true,
+      "where": "LEFT page, lines 11-13 (the definition of «Демократия» written twice in a row)",
+      "line": 12,
+      "written": "Демократия - это власть народа. / Демократия - это власть народа, и осуществляемая народом.",
+      "kind": "duplicated definition; the second attempt also opens with a stray 'и' before 'осуществляемая'",
+      "counts_as_error": null,
+      "why": "awaiting a founder ruling on whether a repeated definition counts at all in note-taking",
+      "box_region": [
+        70,
+        800,
+        1180,
+        1000
+      ]
+    },
+    {
+      "page": 6,
+      "id": "P06-E1",
+      "error_class": "letters",
+      "where": "LEFT column, line 6 (the line 'Разукрасило (сь) нам') - 1st word",
+      "line": 6,
+      "written": "Разукрасило",
+      "expected": "Разукрасился",
+      "kind": "wrong ending; the pupil then wrote '(сь)' in brackets beside it, which suggests he was working out the reflexive ending rather than finishing the word",
+      "counts_as_error": null,
+      "why": "needs a founder ruling: this may be exercise working-out rather than a mistake in a sentence"
+    },
+    {
+      "page": 6,
+      "id": "P06-M1",
+      "error_class": "meaning",
+      "out_of_ink_checker_scope": true,
+      "where": "RIGHT column, line 38 ('лес') versus line 22 ('лес')",
+      "line": 38,
+      "written": "лес",
+      "kind": "the same word appears twice in the syllable exercise",
+      "counts_as_error": null,
+      "why": "may be deliberate - the two columns sort words by syllable count and I cannot tell which column line 38 belongs to"
+    }
+  ],
+  "excluded_records": [
+    {
+      "page": 2,
+      "id": "P02-E1",
+      "where": "LEFT page, line 17 of 19 (the line starting 'лемое право каждого') - 1st word",
+      "line": 17,
+      "written": "леное",
+      "final_answer": "лемое",
+      "expected": "лемое",
+      "kind": "self-corrected letter substitution (н written for м, then crossed and м written above)",
+      "counts_as_error": false,
+      "why": "the pupil corrected it himself; under the founder's final-answer rule the finished answer is correct",
+      "box_word": [
+        70,
+        1385,
+        250,
+        1450
+      ],
+      "box_correction_mark": [
+        172,
+        1352,
+        218,
+        1390
+      ]
+    },
+    {
+      "page": 3,
+      "id": "P03-E4",
+      "where": "RIGHT page, line 34 (the line starting 'Демократия - это власть, основанн') - last word",
+      "line": 34,
+      "written": "основанн",
+      "expected": "основанная",
+      "kind": "word runs off the line and its ending is not completed; reads as 'основанн' with the tail lost into the margin",
+      "counts_as_error": false,
+      "why": "cannot be judged from this photograph - the line reaches the right edge and the ending may be cut off rather than omitted",
+      "box_word": [
+        2090,
+        1200,
+        2339,
+        1275
+      ]
+    },
+    {
+      "page": 34,
+      "id": "P34-E13",
+      "line": 11,
+      "written": "дедикация",
+      "expected": null,
+      "kind": "reading unresolved between дедикация and демикация",
+      "scope": "non_word",
+      "counts_as_error": false,
+      "resolved": false,
+      "labelled_by": "Astra 2026-09-12 at 4x",
+      "note": "cannot be adjudicated from the ink alone; needs the dictated source"
+    }
+  ],
+  "normalized_categories": {
+    "spelling_or_letter_errors": {
+      "count": 10,
+      "record_ids": [
+        "P02-E2",
+        "P06-E2",
+        "P34-E1",
+        "P34-E2",
+        "P34-E6",
+        "P34-E7",
+        "P34-E8",
+        "P34-E9",
+        "P34-E11",
+        "P34-E12"
+      ]
+    },
+    "grammar_word_form_or_preposition": {
+      "count": 11,
+      "record_ids": [
+        "P02-E3",
+        "P04-E1",
+        "P04-M1",
+        "P05-E1",
+        "P05-E3",
+        "P05-E4",
+        "P05-E5",
+        "P05-M1",
+        "P05-M2",
+        "P34-E3",
+        "P34-E4"
+      ]
+    },
+    "punctuation_or_hyphenation": {
+      "count": 9,
+      "record_ids": [
+        "P02-E4",
+        "P02-E5",
+        "P03-E2",
+        "P03-E3",
+        "P04-E2",
+        "P04-E3",
+        "P05-E6",
+        "P05-E7",
+        "P05-E8"
+      ]
+    },
+    "incorrect_word_spacing": {
+      "count": 1,
+      "record_ids": [
+        "P05-E2"
+      ]
+    },
+    "duplicated_word": {
+      "count": 1,
+      "record_ids": [
+        "P03-E1"
+      ]
+    },
+    "missing_word_and_punctuation": {
+      "count": 1,
+      "record_ids": [
+        "P05-M3"
+      ]
+    },
+    "capitalization_and_punctuation": {
+      "count": 1,
+      "record_ids": [
+        "P34-E5"
+      ]
+    },
+    "capitalization_and_missing_word": {
+      "count": 1,
+      "record_ids": [
+        "P34-E10"
+      ]
+    }
+  },
+  "category_method": "Human-readable grouping from each record kind/written/expected; original heterogeneous error_class/scope preserved below. Composite records remain one record, not split into several errors.",
+  "counted_records": [
+    {
+      "page": 2,
+      "id": "P02-E2",
+      "where": "LEFT page, line 18 (the line starting 'Посягательство на нее') - 3rd word",
+      "line": 18,
+      "written": "нее",
+      "expected": "неё",
+      "kind": "ё written as е",
+      "counts_as_error": true,
+      "box_word": [
+        742,
+        1455,
+        845,
+        1520
+      ]
+    },
+    {
+      "page": 2,
+      "id": "P02-E3",
+      "where": "RIGHT page, line 37 (the line starting 'не имеет право, например') - 3rd word",
+      "line": 37,
+      "written": "не имеет право",
+      "expected": "не имеет права",
+      "kind": "wrong case - genitive required after the negated verb",
+      "counts_as_error": true,
+      "box_phrase": [
+        1258,
+        1560,
+        1690,
+        1640
+      ],
+      "box_wrong_word": [
+        1490,
+        1560,
+        1690,
+        1640
+      ]
+    },
+    {
+      "page": 2,
+      "id": "P02-E4",
+      "where": "RIGHT page, line 29 (the line starting 'чений для населения страны', last line inside the second red box) - last word, at the end of the line",
+      "line": 29,
+      "written": "страны",
+      "expected": "страны.",
+      "kind": "missing full stop at the end of the definition",
+      "counts_as_error": true,
+      "box_word": [
+        2050,
+        880,
+        2270,
+        950
+      ]
+    },
+    {
+      "page": 2,
+      "id": "P02-E5",
+      "where": "RIGHT page, line 27 (the line starting 'для человека что либо делать') - 3rd and 4th words",
+      "line": 27,
+      "written": "что либо",
+      "expected": "что-либо",
+      "kind": "missing hyphen",
+      "counts_as_error": true,
+      "severity": "not critical for now (founder)",
+      "box_phrase": [
+        1560,
+        700,
+        1830,
+        770
+      ]
+    },
+    {
+      "page": 3,
+      "id": "P03-E1",
+      "where": "LEFT page, line 5 (the line starting 'ивают его и не ограничивают') - 1st-3rd words",
+      "line": 5,
+      "written": "которые его устраивают его",
+      "expected": "которые его устраивают",
+      "kind": "duplicated word 'его' - the pupil wrote it before and after the verb",
+      "error_class": "meaning",
+      "out_of_ink_checker_scope": true,
+      "why_out_of_scope": "both words are correctly spelled; only understanding of the sentence reveals the repetition (founder, 2026-09-11)",
+      "counts_as_error": true,
+      "confirmed_by": "founder",
+      "box_word": [
+        80,
+        590,
+        300,
+        660
+      ]
+    },
+    {
+      "page": 3,
+      "id": "P03-E2",
+      "where": "RIGHT page, line 21 (the line starting 'каются только, если есть разреше') - 2nd-3rd words",
+      "line": 21,
+      "written": "только, если",
+      "expected": "только если",
+      "kind": "comma placed before 'если' where the conjunction should not be separated",
+      "error_class": "punctuation",
+      "counts_as_error": true,
+      "confirmed_by": "founder",
+      "box_phrase": [
+        1330,
+        95,
+        1700,
+        165
+      ]
+    },
+    {
+      "page": 3,
+      "id": "P03-E3",
+      "where": "LEFT page, line 14 (the line starting 'вании закона (из ст. 25)') - end of line",
+      "line": 14,
+      "written": "(из ст. 25)",
+      "expected": "(из ст. 25).",
+      "kind": "missing full stop after the closing bracket",
+      "error_class": "punctuation",
+      "counts_as_error": true,
+      "confirmed_by": "founder",
+      "box_word": [
+        520,
+        1000,
+        800,
+        1070
+      ]
+    },
+    {
+      "page": 4,
+      "id": "P04-E1",
+      "error_class": "letters",
+      "where": "RIGHT page, line 25 (the line starting 'симо от занимаемой должностей') - last word",
+      "line": 25,
+      "written": "должностей",
+      "expected": "должности",
+      "kind": "wrong ending after 'от занимаемой'",
+      "counts_as_error": true,
+      "confirmed_by": "founder",
+      "box_word": [
+        1990,
+        620,
+        2300,
+        695
+      ]
+    },
+    {
+      "page": 4,
+      "id": "P04-E2",
+      "error_class": "punctuation",
+      "where": "LEFT page, line 5 (the line 'равлении государством') - end of line",
+      "line": 5,
+      "written": "государством",
+      "expected": "государством.",
+      "kind": "missing full stop at the end of the sentence",
+      "counts_as_error": true,
+      "confirmed_by": "founder",
+      "box_word": [
+        420,
+        470,
+        740,
+        545
+      ]
+    },
+    {
+      "page": 4,
+      "id": "P04-E3",
+      "error_class": "punctuation",
+      "where": "RIGHT page, line 38 (the line starting 'но что на работу принимают') - after the 1st word",
+      "line": 38,
+      "written": "но что на работу",
+      "expected": "но, что на работу",
+      "kind": "missing comma after the tail of 'указано'",
+      "counts_as_error": true,
+      "confirmed_by": "founder",
+      "box_phrase": [
+        1230,
+        1570,
+        1600,
+        1645
+      ]
+    },
+    {
+      "page": 4,
+      "id": "P04-M1",
+      "error_class": "meaning",
+      "out_of_ink_checker_scope": true,
+      "where": "RIGHT page, line 20 (the line 'Каждые избиратели имеют один голос.') - 1st-2nd words",
+      "line": 20,
+      "written": "Каждые избиратели",
+      "expected": "Каждый избиратель",
+      "kind": "number disagreement; both written words are valid Russian words, so only sentence-level understanding reveals it",
+      "counts_as_error": true,
+      "confirmed_by": "founder",
+      "box_phrase": [
+        1230,
+        95,
+        1720,
+        170
+      ]
+    },
+    {
+      "page": 5,
+      "id": "P05-E1",
+      "error_class": "letters",
+      "where": "LEFT page, line 10 (the line starting 'порт и справка с места учёбы') - 3rd word",
+      "line": 10,
+      "written": "справка",
+      "expected": "справку",
+      "kind": "wrong ending - the list continues the accusative after 'представить' ('справку, свидетельство, паспорт и справку')",
+      "counts_as_error": true
+    },
+    {
+      "page": 5,
+      "id": "P05-E2",
+      "error_class": "letters",
+      "where": "LEFT page, line 11 (the line starting 'Льготы для не совершенно лет') - 3rd-5th words",
+      "line": 11,
+      "written": "не совершенно лет них",
+      "expected": "несовершеннолетних",
+      "kind": "one word written as three separate words",
+      "counts_as_error": true
+    },
+    {
+      "page": 5,
+      "id": "P05-E3",
+      "error_class": "letters",
+      "where": "LEFT page, line 19 (the heading line 'боду технично - научного') - 1st word after 'боду'",
+      "line": 19,
+      "written": "технично",
+      "expected": "технического",
+      "kind": "wrong word form in 'свободу технического - научного творчества'",
+      "counts_as_error": true,
+      "note": "should most likely read 'технично-научного' as a hyphenated pair; the pupil put spaces around the dash"
+    },
+    {
+      "page": 5,
+      "id": "P05-E4",
+      "error_class": "letters",
+      "where": "RIGHT page, line 30 (the line starting 'прерывное система образовани') - 1st word",
+      "line": 30,
+      "written": "непрерывное",
+      "expected": "непрерывная",
+      "kind": "wrong ending - must agree with the feminine 'система'",
+      "counts_as_error": true
+    },
+    {
+      "page": 5,
+      "id": "P05-E5",
+      "error_class": "letters",
+      "where": "RIGHT page, line 29 (the line starting 'В нашей стране создано не-') - 4th word",
+      "line": 29,
+      "written": "создано",
+      "expected": "создана",
+      "kind": "wrong ending - must agree with the feminine 'система'",
+      "counts_as_error": true
+    },
+    {
+      "page": 5,
+      "id": "P05-E6",
+      "error_class": "punctuation",
+      "where": "LEFT page, line 10 (the line starting 'порт и справка с места учёбы') - end of line",
+      "line": 10,
+      "written": "учёбы",
+      "expected": "учёбы.",
+      "kind": "missing full stop at the end of the sentence",
+      "counts_as_error": true
+    },
+    {
+      "page": 5,
+      "id": "P05-E7",
+      "error_class": "punctuation",
+      "where": "LEFT page, line 9 (the line starting 'свидетельство о рождении пас-') - after 'паспорт'",
+      "line": 9,
+      "written": "о рождении паспорт",
+      "expected": "о рождении, паспорт",
+      "kind": "missing comma between items of the list",
+      "counts_as_error": true
+    },
+    {
+      "page": 5,
+      "id": "P05-E8",
+      "error_class": "punctuation",
+      "where": "RIGHT page, line 32 (the line starting '2. Общее ср. обр. - 9и летняя школ') - the number-word pair",
+      "line": 32,
+      "written": "9и летняя",
+      "expected": "9-летняя",
+      "kind": "digit joined to a letter and a space where a hyphen belongs",
+      "counts_as_error": true
+    },
+    {
+      "page": 5,
+      "id": "P05-M1",
+      "error_class": "meaning",
+      "out_of_ink_checker_scope": true,
+      "where": "LEFT page, lines 1-2 (the line 'гласие родит. подростки могут')",
+      "line": 1,
+      "written": "На согласие родит.",
+      "expected": "С согласия родителей",
+      "kind": "wrong preposition and case; every written word is itself a valid Russian word",
+      "counts_as_error": true
+    },
+    {
+      "page": 5,
+      "id": "P05-M2",
+      "error_class": "meaning",
+      "out_of_ink_checker_scope": true,
+      "where": "LEFT page, line 3 (the line starting 'быть приняты на работу из') - last word",
+      "line": 3,
+      "written": "из 14 лет",
+      "expected": "с 14 лет",
+      "kind": "wrong preposition; 'из' is a valid word, so only the sense reveals it",
+      "counts_as_error": true
+    },
+    {
+      "page": 5,
+      "id": "P05-M3",
+      "error_class": "meaning",
+      "out_of_ink_checker_scope": true,
+      "where": "LEFT page, lines 13-14 (the numbered item 'С 14 16. 24 часа в неделю')",
+      "line": 14,
+      "written": "С 14 16. 24 часа в неделю.",
+      "expected": "С 14 до 16 - 24 часа в неделю.",
+      "kind": "the word 'до' is missing between the two ages, and the separator before '24' is written as a full stop; line 15 writes the same construction correctly ('С 16 до 18 лет 36 часов')",
+      "counts_as_error": true
+    },
+    {
+      "page": 6,
+      "id": "P06-E2",
+      "error_class": "letters",
+      "where": "LEFT column, line 6 (the line 'Разукрасило (сь) нам') - last word",
+      "line": 6,
+      "written": "нам сад",
+      "expected": "наш сад",
+      "kind": "м written for ш - the verse reads 'Разукрасился наш сад'. The same word on line 4 ('нам улыбнулась') is correct, so this is a letter slip, not a habit",
+      "counts_as_error": true,
+      "confidence": "medium - м and ш differ by one hump in this hand"
+    },
+    {
+      "page": 34,
+      "id": "P34-E1",
+      "line": 1,
+      "written": "Взаимствование",
+      "expected": "Заимствование",
+      "kind": "extra letter в before the word",
+      "scope": "non_word",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x",
+      "note": "my transcript had silently written the correct form - caught only on re-read"
+    },
+    {
+      "page": 34,
+      "id": "P34-E2",
+      "line": 2,
+      "written": "языко.",
+      "expected": "языков",
+      "kind": "final в missing",
+      "scope": "non_word",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x"
+    },
+    {
+      "page": 34,
+      "id": "P34-E3",
+      "line": 3,
+      "written": "общение",
+      "expected": "общения",
+      "kind": "wrong case after 'в результате'",
+      "scope": "needs_key",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x",
+      "note": "both forms are real Russian words, so only the sentence reveals it"
+    },
+    {
+      "page": 34,
+      "id": "P34-E4",
+      "line": 5,
+      "written": "Из английских языков",
+      "expected": "Из английского языка",
+      "kind": "number/agreement",
+      "scope": "needs_key",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x"
+    },
+    {
+      "page": 34,
+      "id": "P34-E5",
+      "line": 5,
+      "written": "Спорт;",
+      "expected": "спорт,",
+      "kind": "capital mid-list and a semicolon where a comma belongs",
+      "scope": "punctuation",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x"
+    },
+    {
+      "page": 34,
+      "id": "P34-E6",
+      "line": 9,
+      "written": "виб-ретто",
+      "expected": "либретто",
+      "kind": "в written for л; the word is also split across lines 9-10",
+      "scope": "non_word",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x",
+      "note": "the halves must be joined before judging: 'виб-' + 'ретто'"
+    },
+    {
+      "page": 34,
+      "id": "P34-E7",
+      "line": 10,
+      "written": "турского",
+      "expected": "турецкого",
+      "kind": "syllable ец missing",
+      "scope": "non_word",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x"
+    },
+    {
+      "page": 34,
+      "id": "P34-E8",
+      "line": 12,
+      "written": "вакум",
+      "expected": "вакуум",
+      "kind": "one у missing",
+      "scope": "non_word",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x"
+    },
+    {
+      "page": 34,
+      "id": "P34-E9",
+      "line": 12,
+      "written": "торема",
+      "expected": "теорема",
+      "kind": "е missing; split across lines 12-13 as 'то-' + 'рема'",
+      "scope": "non_word",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x"
+    },
+    {
+      "page": 34,
+      "id": "P34-E10",
+      "line": 14,
+      "written": "Из Испанского",
+      "expected": "Из испанского языка",
+      "kind": "capital letter and the missing noun",
+      "scope": "capitalisation",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x"
+    },
+    {
+      "page": 34,
+      "id": "P34-E11",
+      "line": 18,
+      "written": "иллюпка",
+      "expected": "шлюпка",
+      "kind": "first letters wrong",
+      "scope": "non_word",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x"
+    },
+    {
+      "page": 34,
+      "id": "P34-E12",
+      "line": 21,
+      "written": "пьесса",
+      "expected": "пьеса",
+      "kind": "с doubled",
+      "scope": "non_word",
+      "counts_as_error": true,
+      "resolved": true,
+      "labelled_by": "Astra 2026-09-12 at 4x"
+    }
+  ],
+  "raw_category_counts": {
+    "unclassified": 4,
+    "meaning": 5,
+    "punctuation": 8,
+    "letters": 7,
+    "non_word": 8,
+    "needs_key": 2,
+    "capitalisation": 1
+  },
+  "pages_with_error_records": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    34
+  ],
+  "counted_per_page": {
+    "2": 4,
+    "3": 3,
+    "4": 4,
+    "5": 11,
+    "6": 1,
+    "34": 12
+  },
+  "pages_with_empty_errors": 51,
+  "auxiliary_page1_mentions_not_in_errors": [
+    {
+      "line": 7,
+      "written": "которы",
+      "expected": "которые",
+      "kind": "missing final letter"
+    },
+    {
+      "line": 7,
+      "written": "права которы гарантируют",
+      "expected": "права, которые гарантируют",
+      "kind": "missing comma before a subordinate clause"
+    }
+  ],
+  "uncertainty_flags": 248,
+  "split_counts": {
+    "dev": {
+      "pages": 9,
+      "error_records": 3,
+      "counted_errors": 1
+    },
+    "sealed": {
+      "pages": 48,
+      "error_records": 38,
+      "counted_errors": 34
+    }
+  },
+  "limitations": [
+    "35 is the count of records explicitly marked counts_as_error=true, not the total number of mistakes actually present in the photographs.",
+    "51 pages have empty errors arrays; the dataset card identifies incomplete label coverage, not verified error-free pages.",
+    "Page 1 has two additional pupil-error mentions outside errors with no counts_as_error adjudication; they are not silently added to the 35.",
+    "Provisional/candidate label files outside canonical are not accepted ground truth and are not included.",
+    "Some records combine more than one defect; an atomic-error scoring policy must be frozen equally for both pipelines.",
+    "The requested all-category experiment includes categories deferred by LABELLING-POLICY; inventory includes them, production policy remains unchanged.",
+    "The verbatim transcript preserves pupil mistakes. It is reading truth, not an error-free assignment key by itself; supplied expected corrections must be distinguished from the transcript.",
+    "The dev fold has only one currently countable error. Complete error labelling and uncertainty handling are prerequisites for a trustworthy all-category catch/false-mark comparison."
+  ]
+}

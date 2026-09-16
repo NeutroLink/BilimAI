@@ -44,21 +44,37 @@ DEFAULT_OCR = ROOT / "models/readingpipeline/ocr"
 TAU_ERROR, TAU_REVIEW = 13.7, 5.1
 
 
+def execution_providers(available: list[str], coreml: bool | None):
+    """Select an accelerator automatically while preserving the explicit CPU/CoreML controls."""
+    if coreml is False:
+        return ["CPUExecutionProvider"]
+    if coreml is None and "CUDAExecutionProvider" in available:
+        return ["CUDAExecutionProvider", "CPUExecutionProvider"]
+    if "CoreMLExecutionProvider" in available and coreml is not False:
+        return [
+            ("CoreMLExecutionProvider", {"MLComputeUnits": "ALL", "ModelFormat": "MLProgram"}),
+            "CPUExecutionProvider",
+        ]
+    return ["CPUExecutionProvider"]
 class CTCWordVerifier:
     name = "ctc-word-verifier@rp-notebooks"
 
     def __init__(self, model_dir: str | Path = DEFAULT_OCR, tau_error: float = TAU_ERROR, tau_review: float = TAU_REVIEW,
-                 threads: int = 8, max_cands: int = 0, batch: int = 64, coreml: bool = False):
-        """coreml=True (Mac only): run the CRNN on Apple's GPU/Neural Engine via onnxruntime's CoreML provider (MLProgram) —
-        measured 2026-08-19: 5.7 ms/crop vs 190 ms on one CPU thread, max |Δlogprob| 2e-5. Off by default (product = CPU)."""
+                 threads: int = 8, max_cands: int = 0, batch: int = 64, coreml: bool | None = None):
+        """ACCELERATOR BY DEFAULT (founder, 2026-09-11: "never run such tasks on cpu ... ml/ai inferences, trainings are
+        always meant to be run on gpus"). coreml=None auto-selects CUDA on a GPU server or Apple's GPU/Neural Engine when
+        available; pass coreml=False only to force the CPU fallback deliberately, and say why. Measured 2026-08-19:
+        5.7 ms/crop on CoreML vs 190 ms on one CPU thread, max |Δlogprob| 2e-5; 2026-09-11 on the T09C probe, 219.8 s
+        vs 1548.3 s per pass (7.0x) with 0/263 words or decodes changed between providers. The product target is our own
+        GPU server (AGENTS.md: deployment is server-only).
+        ⚠ NEVER MIX PROVIDERS INSIDE ONE COMPARISON: the provider is stamped, and a provider change reads as a model
+        change. Repeatability means bit-identity WITHIN a provider."""
         import json, onnxruntime as ort
         cfg = json.load(open(Path(model_dir) / "ocr_config.json", encoding="utf-8"))
         self.alpha = cfg["alphabet"]; self.H, self.W = cfg["image"]["height"], cfg["image"]["width"]
         self.ch = {c: i + 2 for i, c in enumerate(self.alpha)}; self.BLANK, self.OOV = 0, 1
         so = ort.SessionOptions(); so.intra_op_num_threads = threads; so.inter_op_num_threads = threads; so.log_severity_level = 3
-        providers = ["CPUExecutionProvider"]
-        if coreml and "CoreMLExecutionProvider" in ort.get_available_providers():
-            providers = [("CoreMLExecutionProvider", {"MLComputeUnits": "ALL", "ModelFormat": "MLProgram"}), "CPUExecutionProvider"]
+        providers = execution_providers(ort.get_available_providers(), coreml)
         self.sess = ort.InferenceSession(str(Path(model_dir) / "ocr_model.onnx"), so, providers=providers)
         self.inp = self.sess.get_inputs()[0].name
         self.tau_error, self.tau_review, self.max_cands, self.batch = tau_error, tau_review, max_cands, batch

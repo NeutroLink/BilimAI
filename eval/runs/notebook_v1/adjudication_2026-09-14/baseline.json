@@ -1,0 +1,7 @@
+{
+  "dataset": "my_notebook_v1",
+  "canonical_pages": 57,
+  "baseline_validator": "PASS: pages=57 lines=2053 scored=1992 not_scored=61 uncertain=248 errors=41 edge_clipped=218 hyphen_final=324",
+  "backup": "/tmp/bilimai-my-notebook-canonical-before-2026-09-14",
+  "note": "Canonical directory is git-untracked; the temporary backup was byte-hash verified before bulk adjudication. Per-page hashes are recorded in canonical_error_inventory_2026-09-14.json."
+}

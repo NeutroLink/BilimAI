@@ -1,0 +1,54 @@
+{
+ "batch": 16,
+ "budget": 0.65,
+ "canonical_aggregate_sha256": "6dc2c834167ef4fbd667daaa4e4a4b5b24d2dcfbc2d4f475f6469576a527ca60",
+ "canvas": {
+  "42": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-42.jpg",
+   "sha256": "2c3b937926ab83db87cdc58a40b97a2a6460e96cc9599a08d2c08c092936cdcf"
+  }
+ },
+ "config_id": "b5a2ef245ad2b5db68c1644811cea8e89aae1d27160c75da9dbe0d7f60373457",
+ "detector_sha256": "00b51a41bd3afa5621c95490c42776e059a355fe0917cab0e787dd31be4e376b",
+ "dev_receipt": null,
+ "device": null,
+ "fold": "dev",
+ "helper_sha256": "27656543256d463607f333e287d4754d075bef5dc7597bb93ec992bbfe47e65f",
+ "judge_model": {
+  "path": "/Users/furb-x/Desktop/My Projects/BilimAI/models/cctc_tall",
+  "sha256": "9e50c19de63807f5aa4e01d8039e09ecb412019b545cb89a77d1b993ee58d3de"
+ },
+ "min_token_sim": 0.8,
+ "models": null,
+ "pages": [
+  42
+ ],
+ "populations": [
+  "no_key",
+  "extended"
+ ],
+ "protocol_lock": {
+  "data_inputs_match": true,
+  "model_hash_match": {
+   "ctc_model_aggregate_sha256": true
+  },
+  "path": "/Users/furb-x/Desktop/My Projects/BilimAI/eval/runs/notebook_v1/comparison_2026-09-14/protocol.json",
+  "sha256": "69bf59ac2bb33f186ebe91eff567907f5b738ff2923fde51002336472bcb92c8"
+ },
+ "reader": "ctc",
+ "runner_sha256": "665a10c3e60950556b50b2e91d179e58d562d23f80dab8332f4b4021436ee16b",
+ "split": [
+  6,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49
+ ],
+ "split_sha256": "97d0756696147ec7cc029a2565592230b51761ddf450452cb81624d4ca762be7",
+ "threads": 4,
+ "threshold": null
+}

@@ -1,0 +1,332 @@
+{
+ "batch": 16,
+ "budget": 0.65,
+ "canonical_aggregate_sha256": "6dc2c834167ef4fbd667daaa4e4a4b5b24d2dcfbc2d4f475f6469576a527ca60",
+ "canvas": {
+  "1": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-01.jpg",
+   "sha256": "9572cf7b38b09957b1a43d2c898982b72117e9dfd9f02d6cf332a3dc855bc459"
+  },
+  "10": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-10.jpg",
+   "sha256": "955fc7edb3ee1f0af0b3e5b3df117e2b727db1054ac56a95e2477959f8b1674d"
+  },
+  "11": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-11.jpg",
+   "sha256": "eaaec459ea732c26e8dd6a9ec6e2a53952409f4ad141d0a3580e26ee74eae5dc"
+  },
+  "12": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-12.jpg",
+   "sha256": "d07ad8692b22d0cd4606145a97f46adac410dc5d29c9f50cacbd98bec0fada90"
+  },
+  "13": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-13.jpg",
+   "sha256": "e6b6ea8e7c27f1a0a6ee26e5a59c69dd083bd0e770265a05f92b255093b26707"
+  },
+  "14": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-14.jpg",
+   "sha256": "8450313522187636e0d89ffd629deb227ae7aceb670ac02627137c4084a46d10"
+  },
+  "15": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-15.jpg",
+   "sha256": "8dc1e6a5cc3a2296c8bac045dec5a88c1b810496f1a74d9c5b21d1ef3b50d7cb"
+  },
+  "16": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-16.jpg",
+   "sha256": "ebb7debbc25024798533f6f2ee21fb11176a9f426be3a879e106a8f51873110e"
+  },
+  "17": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-17.jpg",
+   "sha256": "a78a87d84f30a2f82fc6188b60e2af84ff610376e7757e6fdc6c4eb7944e53c0"
+  },
+  "18": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-18.jpg",
+   "sha256": "14adbb276c1658d2b8d14bc206acfefecb5476a3fa0ab59af12ebcb348e622db"
+  },
+  "19": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-19.jpg",
+   "sha256": "6c4c444cdf7c7d0c2e463689e93142909dd05e31bd0c69b9aaca3cf9305150c8"
+  },
+  "2": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-02.jpg",
+   "sha256": "e15494ebbe4bda7b99d33730242d1d3d120fb638dc3c7fd37b5bbf5cf6d080fb"
+  },
+  "20": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-20.jpg",
+   "sha256": "fbecd98c6434d52de858f4efd2e3e85a57e41df9274fc49d6955dafab62c81f9"
+  },
+  "21": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-21.jpg",
+   "sha256": "052ef6250ba071252d9b63a0a7a7e0e9b27756e056c7367d4d1db9be6598c95c"
+  },
+  "22": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-22.jpg",
+   "sha256": "1eb17a6c21c4bba3e38b58234fe983a7fad2f3fc9916d600d6eedd5b7baaab47"
+  },
+  "23": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-23.jpg",
+   "sha256": "16fb9cdc648801890771062b0e8fd7f0475c86f8ae60699ad6c331f15f21f767"
+  },
+  "24": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-24.jpg",
+   "sha256": "c1f7d2f45feb0e0a34bfe4736e739cd81dae79642c575e1ceb0cc4f287fbbedd"
+  },
+  "25": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-25.jpg",
+   "sha256": "78b5eca27ffdb0d982f8f72e9b163d18838692d9dc47bf301d3cb4bf28fbe5f1"
+  },
+  "26": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-26.jpg",
+   "sha256": "1958b400b51338c2b3b931b307cd551acb25537212e81c4d2def0a9da4cdafa8"
+  },
+  "27": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-27.jpg",
+   "sha256": "1ba4d90fd43e245e88bde5425bcdc58f68927cbd4f113a07ccb610079fd637b9"
+  },
+  "28": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-28.jpg",
+   "sha256": "684eec5ac6af5e4bf7c0d1253b5afa0b40fa0014f7f31ec42457d5d6e1144dd7"
+  },
+  "29": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-29.jpg",
+   "sha256": "702c9f826d2eb3619e6e117fa126ac2a152a639ac1da3447a6e95c2fd58bbed3"
+  },
+  "3": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-03.jpg",
+   "sha256": "6972c74137dc69c5d509a073e49c1bf754cfe93cf80f17eed27e62eb2ef1d881"
+  },
+  "30": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-30.jpg",
+   "sha256": "28cc9beea894da3042bc011da478029c8f884a1bf4f5a9346a4b696c9ce293a9"
+  },
+  "31": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-31.jpg",
+   "sha256": "618b5932dde08c8709678c7e6f77d45bc8731f2bddcbad90d0f9929990b72523"
+  },
+  "32": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-32.jpg",
+   "sha256": "5665488cb1d0ac4832f47501d3a0f6ed11b09df372db042ee3f76cd34410b793"
+  },
+  "33": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-33.jpg",
+   "sha256": "1dedd525b5a88a9fbae6aed838c2fe48f72358c87d61aaaf573144c819cbac1a"
+  },
+  "34": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-34.jpg",
+   "sha256": "84fecca9bbada4748849504b19b6ab81138c5e664b468d57e848328f55e4fcd5"
+  },
+  "35": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-35.jpg",
+   "sha256": "e8c4ce2c955f337303b4b258efd366a4fd32d0d25e46e33ceda6ad4110aa4d5a"
+  },
+  "36": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-36.jpg",
+   "sha256": "04a21f6e355f65e96806b86f18a3133181c1afdb0b2cf3b848d13c395a3785df"
+  },
+  "37": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-37.jpg",
+   "sha256": "e54fe7eddda11e400bf513d74ec82df46736f612227a554ebdfb3ca69dc6c831"
+  },
+  "38": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-38.jpg",
+   "sha256": "5e1a616c85ddfa858dd3bb1efb8211854fdf44cb74c675133ffa3ce719be19a8"
+  },
+  "39": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-39.jpg",
+   "sha256": "34f72b9258322b5c2bb11b73143879eb6971107143854cab4ca1cc727c09bc6e"
+  },
+  "4": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-04.jpg",
+   "sha256": "badc12eff84d84f8e4803191a91b871594a8dd1b3221e497ccd881d48c5f18a0"
+  },
+  "40": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-40.jpg",
+   "sha256": "7dc91504fc3033cc40ca4395b6b4d35824908d1e06420f7e764781e756615539"
+  },
+  "41": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-41.jpg",
+   "sha256": "9361420d8d74048e7d769bf1a3bb49837c0e8a1229fac0efeec1cd24539a88ba"
+  },
+  "5": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-05.jpg",
+   "sha256": "9a50e744eff2d79439493e84e33609b3ca92782609221209124891cb589fed47"
+  },
+  "50": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-50.jpg",
+   "sha256": "b235ac27e282317a19158354903b4f1259849880d3a57730faa05864d9247dbb"
+  },
+  "51": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-51.jpg",
+   "sha256": "c5c0bf83c1a654b8dbeb5aa3d9337c4d34742859ef1621a48e58994f0856730d"
+  },
+  "52": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-52.jpg",
+   "sha256": "b186158e5b06b4a4970544fe9531ef8ca51af17f8ca2f2f3fff4dc6a4ceb0aef"
+  },
+  "53": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-53.jpg",
+   "sha256": "41049cdc7bb5d53060c346decc2bc2bc472cdbc69eef21254fd7835b746098ba"
+  },
+  "54": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-54.jpg",
+   "sha256": "fdf38dbf4d0ab96ba28b06299b817ebfdd84e1e9b9973552aae7f529d1d1fa69"
+  },
+  "55": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-55.jpg",
+   "sha256": "d7eb50a0317d2101a57399b08622f0b19a8a671f72d521bbad59827b67a9336a"
+  },
+  "56": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-56.jpg",
+   "sha256": "f0a172e98c4f2ae9bc443dffd04849c5834f563ea4de33e4e72a1c90ebfa11d3"
+  },
+  "57": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-57.jpg",
+   "sha256": "0f5e2244faaacdf1efa62264c72ed6c417a5a985f613c44e6277cf11825ec442"
+  },
+  "7": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-07.jpg",
+   "sha256": "0a47aa5e600aa3c078fc4fe2aebbb3bdea42a582faa59bfbfa0395dcd87d0f43"
+  },
+  "8": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-08.jpg",
+   "sha256": "aa2d62bae3e38fad11c24f9a70b0e9d64803a83a513dab96e60e8f85369b62e1"
+  },
+  "9": {
+   "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-09.jpg",
+   "sha256": "ca4a1a368fcf65bb916474d846aef2e97787bb7a4b85889b53eb46defc7ada86"
+  }
+ },
+ "config_id": "03425f9372f3213bc16c848df14d1f9f9e2cceabebdd372e842c8d9935900dce",
+ "detector_sha256": "00b51a41bd3afa5621c95490c42776e059a355fe0917cab0e787dd31be4e376b",
+ "dev_receipt": {
+  "config_id": "b3d820724aeb4f3e2edaf012b25252ff16f8a8bbf0ad148db32c56516aeee9a4",
+  "path": "eval/runs/notebook_v1/comparison_2026-09-14/ctc_dev",
+  "threshold": 75.443
+ },
+ "device": null,
+ "fold": "sealed",
+ "helper_sha256": "27656543256d463607f333e287d4754d075bef5dc7597bb93ec992bbfe47e65f",
+ "judge_model": {
+  "path": "/Users/furb-x/Desktop/My Projects/BilimAI/models/cctc_tall",
+  "sha256": "9e50c19de63807f5aa4e01d8039e09ecb412019b545cb89a77d1b993ee58d3de"
+ },
+ "min_token_sim": 0.8,
+ "models": null,
+ "pages": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57
+ ],
+ "populations": [
+  "no_key",
+  "extended"
+ ],
+ "protocol_lock": {
+  "data_inputs_match": true,
+  "model_hash_match": {
+   "ctc_model_aggregate_sha256": true
+  },
+  "path": "/Users/furb-x/Desktop/My Projects/BilimAI/eval/runs/notebook_v1/comparison_2026-09-14/protocol.json",
+  "sha256": "69bf59ac2bb33f186ebe91eff567907f5b738ff2923fde51002336472bcb92c8"
+ },
+ "reader": "ctc",
+ "runner_sha256": "665a10c3e60950556b50b2e91d179e58d562d23f80dab8332f4b4021436ee16b",
+ "split": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57
+ ],
+ "split_sha256": "97d0756696147ec7cc029a2565592230b51761ddf450452cb81624d4ca762be7",
+ "threads": 4,
+ "threshold": 75.443
+}

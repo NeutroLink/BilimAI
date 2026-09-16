@@ -1,0 +1,7 @@
+{
+  "accelerator": "NVIDIA GeForce RTX 5090",
+  "provider": "cuda",
+  "elapsed_seconds": 9.054569386999901,
+  "document_bytes": 939029,
+  "report_bytes": 163243
+}

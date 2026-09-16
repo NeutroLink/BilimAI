@@ -1,0 +1,53 @@
+{
+  "record_type": "my_notebook_v1_glm_ctc_protocol_v1",
+  "locked_at": "2026-09-14",
+  "authorization": "Founder: proceed with full end-to-end GLM-versus-CTC comparison.",
+  "dataset": "my_notebook_v1",
+  "inputs": {
+    "canonical_aggregate_sha256": "6dc2c834167ef4fbd667daaa4e4a4b5b24d2dcfbc2d4f475f6469576a527ca60",
+    "split_sha256": "97d0756696147ec7cc029a2565592230b51761ddf450452cb81624d4ca762be7",
+    "detector_v1_boxes_sha256": "00b51a41bd3afa5621c95490c42776e059a355fe0917cab0e787dd31be4e376b",
+    "glm_base_aggregate_sha256": "14f2207e3f1838ce9c5e76b7109f12ec5c89fc0fad8d3af71596a3428ffd50d0",
+    "glm_adapter_aggregate_sha256": "d5d8c5f842de47e874f8fff87c55ce3e8126cd5473648a0a6357f768256fc766",
+    "ctc_model_aggregate_sha256": "9e50c19de63807f5aa4e01d8039e09ecb412019b545cb89a77d1b993ee58d3de",
+    "model_hash_scheme": "runner _hash_tree: sorted relative path bytes followed by each file's SHA-256 hex text"
+  },
+  "geometry": "Reuse frozen detector_v1_boxes.json for both readers; do not rerun detection.",
+  "readers": {
+    "glm": "models/GLM-OCR plus models/adapters/glm-ocr-lora-ru-r5c on MPS",
+    "ctc": "models/cctc_tall on CoreML"
+  },
+  "judgement": "Both reader transcripts use production alignment and the same models/cctc_tall CoreML spelling judge. Non-spelling marks remain active because they have no spelling margin.",
+  "folds": {
+    "development_pages": [6, 42, 43, 44, 45, 46, 47, 48, 49],
+    "sealed_pages": [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 50, 51, 52, 53, 54, 55, 56, 57],
+    "rule": "Select each reader's spelling threshold only on development pages, freeze it, then run sealed pages once."
+  },
+  "populations": {
+    "no_key": {
+      "labels": 132,
+      "definition": "counts_as_error is true and deferred is false",
+      "status": "official no-key product population"
+    },
+    "extended": {
+      "labels": 245,
+      "definition": "counts_as_error is true, including 113 deferred records",
+      "status": "human-adjudicated proxy only; not teacher-key truth"
+    },
+    "excluded_records": 6
+  },
+  "selection": {
+    "false_marks_per_100_words_budget": 0.65,
+    "objective": "maximize caught no-key labels, then minimize false marks, under budget",
+    "extended_threshold": "reuse the no-key development threshold unchanged"
+  },
+  "reported_metrics": [
+    "reader transcription error against the pupil transcript",
+    "no-key catch and false marks per 100 scored words",
+    "extended proxy catch and false marks at the same frozen threshold",
+    "per-category catches",
+    "missing_word, extra_word, capitalization, punctuation and spelling mark counts"
+  ],
+  "compute_rule": "Never CPU. GLM must resolve to MPS or CUDA; CTC reading and judgement must resolve to CoreML.",
+  "sealed_status": "not run at protocol lock"
+}

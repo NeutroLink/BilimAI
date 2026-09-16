@@ -1,0 +1,32 @@
+{
+  "dataset": "my_notebook_v1",
+  "pages": "currently unlabelled canonical pages 07-57; page 34 retains existing labels",
+  "decision_unit": "one distinct pupil error; composite defects remain one record with components",
+  "visual_rule": "every scored handwritten, table, or highlighted line must be compared with evaluation_image pixels; candidates are hints only",
+  "transcript_rule": "ink decides the transcript; context must not invent unclear letters",
+  "error_rule": "count a mistake only when the visible writing and available context support a specific correction",
+  "ambiguous_rule": "counts_as_error is null when the dictated source or illegible pixels are required",
+  "excluded": [
+    "normal line-wrap fragments",
+    "masked edge-clipped words",
+    "uncertainty flags by themselves",
+    "table and morpheme fragments judged as prose",
+    "self-corrected text whose final answer is correct"
+  ],
+  "broad_error_class": ["letters", "punctuation", "meaning"],
+  "categories": [
+    "spelling_or_letters",
+    "grammar_or_word_form",
+    "punctuation_or_hyphenation",
+    "capitalization",
+    "spacing_or_word_boundary",
+    "duplication_or_extra_word",
+    "missing_word",
+    "other_sentence_level"
+  ],
+  "required_error_fields": [
+    "id", "line", "written", "expected", "kind", "error_class", "category",
+    "counts_as_error", "confidence", "verified_from_pixels", "confirmed_by"
+  ],
+  "product_scope": "all categories are labelled for this evaluation; deferred remains true where LABELLING-POLICY defers production handling"
+}

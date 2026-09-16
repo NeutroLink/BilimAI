@@ -1,0 +1,336 @@
+{
+  "artifact": "review_47_57.json",
+  "schema": "my_notebook_v1/adjudication_review.v1 (2026-09-14)",
+  "packet": "proposals/pages_47_57.json",
+  "owned_pages": [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57],
+  "checker": "review-47_57, independent BilimAI checker (text/policy only; no image inspection)",
+  "date": "2026-09-14",
+  "inputs": {
+    "proposals/pages_47_57.json": "sha256:0e1606714a2c3dd5c6c24c44b0cd59a1b94bdf6c34f8efe703f103467a12ae32",
+    "policy.json": "sha256:0f57ad454a007ef33a63b4250969ae12b9eb3cb570d76cc245f041cb4409cbd0",
+    "data/derived/my_notebook_v1/LABELLING-POLICY.md": "sha256:ecb6b09eb53d7b899637e95a44afc5fcadc6b2d51e24c27a253d0f59a7b343c5",
+    "data/derived/my_notebook_v1/TRANSCRIPTION-STATE.md": "sha256:3d64f95c4ef4377d25c6ae6070ef98c499db6fde8366b98d08f8f639a4bde57b",
+    "canonical pages 47-57": "data/derived/my_notebook_v1/canonical/page-47.json ... page-57.json (verbatim page_lines, uncertain[], teacher_ink, errors[] )"
+  },
+  "method": {
+    "scope": "Every error proposed in proposals/pages_47_57.json for pages 47-57 was read against the verbatim canonical page_lines for its page plus the page's uncertain[] flags, teacher_ink note, kind and scored fields, and against LABELLING-POLICY.md, TRANSCRIPTION-STATE.md and policy.json. The proposal's undecided[] entries are not error proposals and are not adjudicated here.",
+    "accept_bar": "ACCEPT requires (a) the written token(s) to appear verbatim in canonical at that line and every line be handwritten and scored, (b) the line not to be an excluded population (wrap fragment as such, masked edge-clipped word, teacher ink, heading, table/drill cell, printed sheet, abbreviation), (c) the expected correction to be uniquely determined by frozen evidence without the unavailable dictated source (song key, textbook wording, geography key), and (d) the defect to be the pupil's, not a transcription rendering. Composite defects stay one record; a duplicated component is counted once.",
+    "undecided_bar": "UNDECIDED where a deviation is plausible but the specific correction needs an unavailable key or pixels: song/geography/textbook wording, prose punctuation of copied lyrics, the spacing/identity of a hyphen or dash that is already written (the pupil's habitual spaced dash), and letter-by-letter reads of the loosest hand. Nothing is lost by deferring these; no verdict here changes canonical.",
+    "reject_bar": "REJECT where the proposal is not a pupil error at all (the mark the correction demands is already present and its doubling at a line break is the standard carry convention; a normal wrap).",
+    "confidence": "high = canonical itself states the corrected form (uncertain[] names the pupil's form and the expected word, or the defect is an internal contradiction in the pupil's own line); medium = the corrected form is inferred from standard Russian orthography/grammar or from the pupil's own parallel wording. low is not used for ACCEPT; such cases are UNDECIDED instead.",
+    "pixels_verified": false,
+    "canonical_edited": false,
+    "transcript_corrections_made": false
+  },
+  "totals": {
+    "proposed_errors": 50,
+    "accept": 34,
+    "undecided": 15,
+    "reject": 1
+  },
+  "records": [
+    {
+      "id": "P47-E01", "page": 47, "line": "p47-l06", "written": "Здравствую", "expected": "Здравствуй",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "high", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l06 reads verbatim 'Здравствую утро счастливой поры!' and canonical uncertain[] names it as the pupil's own form with 'Здравствуй' expected. One-letter deviation (final -ю for -й) inside a greeting; the corrected form is stated, so no dictated source is needed. Pixel confirmation of the final letter is still owed (ю/й in cursive)."
+    },
+    {
+      "id": "P47-E02", "page": 47, "line": "p47-l29", "written": "отвага честь", "expected": "отвага, честь",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l29 reads 'Верность, отвага честь.' The pupil's own title line p47-l23 is 'Верность, отвага и честь', so the element missing from the refrain is most likely the conjunction 'и', not a comma; the proposed correction (comma between list members) is therefore not the established correction, and the song's refrain is not in the corpus. Needs the song key (or pixels if the sheet is pasted)."
+    },
+    {
+      "id": "P47-E03", "page": 47, "line": "p47-l33", "written": "надо и словам и делом", "expected": "надо и словом и делом",
+      "verdict": "ACCEPT", "error_class": "meaning", "category": "grammar_or_word_form",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l33 reads '2. Надо и словам и делом' and uncertain[] states the case does not agree. The pupil's own coordinated 'и ... и делом' forces the instrumental 'словом' — internal evidence, no key needed. Case/agreement is a real but deferred category (LABELLING-POLICY section 1)."
+    },
+    {
+      "id": "P48-E01", "page": 48, "line": "p48-l22", "written": "маминой улыбки", "expected": "маминой улыбкой",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l22-l23 reads 'Детство начинается маминой / улыбки.' and uncertain[] flags a case disagreement, but the pupil's own parallel lines on the same song (l24 'С колыбельной песни', l26-l27 'Детство начинается с дедовой / с новогодней (песни)') all build 'начинается с + genitive'. The likely defect is a missing 'с', not an instrumental 'улыбкой'; the proposed correction is contradicted by local context, and the song line is not in the corpus."
+    },
+    {
+      "id": "P48-E02", "page": 48, "line": "p48-l34", "written": "неискими", "expected": "невскими",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "high", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l34 reads 'Над мостами неискими ...' and uncertain[] states 'неискими' is the pupil's own spelling and 'невскими' is the song's word. и-for-в letter deviation on a word the checker can see; the corrected form is stated in canonical, so the song key is not itself required. Pixels confirm the в/и shape."
+    },
+    {
+      "id": "P49-E01", "page": 49, "line": "p49-l11", "written": "с утюгу", "expected": "к утюгу",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l11 reads 'Их одежда относилась с утюгу' (not in uncertain[]). 'с' + dative is wrong, but the specific repair is not fixed by the pupil's own text: it could be the preposition 'к' or the case after 'с' ('с утюгом'). The song key is needed; the proposal's 'к утюгу' is one of two readings."
+    },
+    {
+      "id": "P49-E02", "page": 49, "line": "p49-l20", "written": "весение", "expected": "весенние",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l20 reads 'И весение качели' (line not in uncertain[]; the page is the loosest hand in the notebook). The token is not a standard word, but the song's word is not in the corpus and the pupil garbles this song elsewhere (l19 'Жнем месяце апреле' for 'В юном месяце апреле'), so a missing н is not established as the intended correction. Needs pixels plus the song key."
+    },
+    {
+      "id": "P49-E03", "page": 49, "line": "p49-l36", "written": "куругами", "expected": "кругами",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l36 'но от весней куругами' is inside the flagged pair recorded as 'does not parse; read as written' (see notes: the pair is addressed as lines 16,17 while its text is l35/l36). The nearest dictionary word is not the established correction on a line the transcriber read letter by letter in a loose hand. Needs pixels and the song key."
+    },
+    {
+      "id": "P50-E01", "page": 50, "line": "p50-l05", "written": "естествнного", "expected": "естественного",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "medium", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l05 ends 'Темпы естеств-' and l06 begins 'нного прироста', and uncertain[] states the pupil dropped a syllable in 'Темпы естествнного прироста'. The defect is inside the joined word, so the wrap itself is not the error (LABELLING-POLICY section 3). The join carries no joined/joined_verified marker, so pixels at l05-l06 are still owed."
+    },
+    {
+      "id": "P50-E02", "page": 50, "line": "p50-l09", "written": "ВВП Великобритания", "expected": "ВВП Великобритании",
+      "verdict": "ACCEPT", "error_class": "meaning", "category": "grammar_or_word_form",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l09 reads 'ВВП Великобритания занимает 2 место'. The abbreviation ВВП needs a dependent genitive ('ВВП Великобритании'), so the nominative is a case error fixed by the pupil's own line; no dictated source needed. Not in uncertain[], so pixels should confirm the ending before this enters a label set. Case is deferred (LABELLING-POLICY section 1)."
+    },
+    {
+      "id": "P50-E03", "page": 50, "line": "p50-l19", "written": "Географические положения", "expected": "Географическое положение",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l19 is the section heading '§22. Географические положения, границы и политическая карта Европы.' copied from the textbook. The textbook's singular wording is the key and is not in the corpus; a heading line is outside ACCEPT per this packet. Needs the textbook or pixels."
+    },
+    {
+      "id": "P50-E04", "page": 50, "line": "p50-l22", "written": "в в Северном полушарии", "expected": "в Северном полушарии",
+      "verdict": "ACCEPT", "error_class": "meaning", "category": "duplication_or_extra_word",
+      "counts_as_error": true, "confidence": "high", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical uncertain[] states for l22 'the pupil repeated 'в''; the line reads 'в в Северном полушарии се относительно'. Deletion of one 'в' is forced by the repetition itself. Duplicated words are a real but deferred category (LABELLING-POLICY section 1)."
+    },
+    {
+      "id": "P50-E05", "page": 50, "line": "p50-l22", "written": "се относительно", "expected": "а относительно",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "high", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical uncertain[] states for l22 that the pupil 'wrote 'се' for 'а''. The ink holds two letters where the key has one, a letter-level mismatch on text the checker can see. Pixels confirm the two letters."
+    },
+    {
+      "id": "P50-E06", "page": 50, "line": "p50-l02", "written": "Юго восточную", "expected": "Юго-восточную",
+      "verdict": "ACCEPT", "error_class": "punctuation", "category": "punctuation_or_hyphenation",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l02 reads 'Юго восточную часть Великобритании' with no mark at all. The same page writes compounds with a hyphen (l03 'северо-запад-ные', l29 'северо-западному'), so this is an omitted hyphen, not the pupil's rendering of a mark. Punctuation/hyphenation is a real but deferred category; pixels confirm the gap."
+    },
+    {
+      "id": "P50-E07", "page": 50, "line": "p50-l18", "written": "юго востоке", "expected": "юго-востоке",
+      "verdict": "ACCEPT", "error_class": "punctuation", "category": "punctuation_or_hyphenation",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l18 reads 'морем - на юго востоке.' with no mark in the compound, while l03/l29 on the same page hyphenate compounds. Omitted hyphen, same family as P50-E06; deferred punctuation; pixels confirm the gap."
+    },
+    {
+      "id": "P51-E01", "page": 51, "line": "p51-l15", "written": "Гриманская", "expected": "Германская",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "high", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l15 reads 'Северо -Гриманская низменность' and uncertain[] states it is the pupil's own spelling of 'Северо-Германская'. и-for-е deviation; corrected form stated in canonical."
+    },
+    {
+      "id": "P51-E02", "page": 51, "line": "p51-l16", "written": "горы а на юге", "expected": "горы, а на юге",
+      "verdict": "ACCEPT", "error_class": "punctuation", "category": "punctuation_or_hyphenation",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l16 reads 'районы -низкие и средние горы а на юге / расположены горы Альпы'. The comma before the adversative 'а' joining two clauses is mandatory from the pupil's own text, so no dictated source is needed. Punctuation is a deferred category."
+    },
+    {
+      "id": "P51-E03", "page": 51, "line": "p51-l21", "written": "рождаемостью", "expected": "рождаемости",
+      "verdict": "ACCEPT", "error_class": "meaning", "category": "grammar_or_word_form",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l21 reads 'кой рождаемостью естественный прирост' (continuing 'Из-за низ-'), and uncertain[] states the case does not agree. 'из-за низкой' forces the genitive 'рождаемости' from the pupil's own wording. Case is deferred."
+    },
+    {
+      "id": "P51-E04", "page": 51, "line": "p51-l31", "written": "замурских", "expected": "заморских",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "high", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l31 reads 'В настоящее время около 15 замурских' and uncertain[] states it is the pupil's own spelling of 'заморских'. у-for-о deviation; corrected form stated in canonical."
+    },
+    {
+      "id": "P52-E01", "page": 52, "line": "p52-l02", "written": "подразделяющий", "expected": "подразделяющееся",
+      "verdict": "ACCEPT", "error_class": "meaning", "category": "grammar_or_word_form",
+      "counts_as_error": true, "confidence": "high", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l02 reads 'унитарное государство, подразделяющий на / 18 регионов' and uncertain[] gives 'подразделяющееся' as the expected form. The participle cannot agree with the neuter 'государство' the pupil himself wrote, and the corrected form is stated. One record: the agreement and reflexive defects are a single word-level defect."
+    },
+    {
+      "id": "P52-E02", "page": 52, "line": "p52-l04", "written": "континентальный части", "expected": "континентальной части",
+      "verdict": "ACCEPT", "error_class": "meaning", "category": "grammar_or_word_form",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l04 reads 'континентальный части страны' (uncertain[] records the same phrase with the case disagreement). The pupil's own 'части' forces the feminine agreeing form 'континентальной'. Case is deferred."
+    },
+    {
+      "id": "P52-E03", "page": 52, "line": "p52-l05", "written": "средизелмном", "expected": "средиземном",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "high", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l05 reads 'Корсика в средизелмном море' and uncertain[] states it is the pupil's own spelling of 'Средиземном'. One inserted letter (л); corrected form stated in canonical."
+    },
+    {
+      "id": "P52-E04", "page": 52, "line": "p52-l06", "written": "Франции -", "expected": "Франции —",
+      "verdict": "REJECT",
+      "reason": "Canonical l06 ends 'Столица Франции -' (continues_next, joined 'Франции-') and l07 begins '- Париж.' The mark is present on both sides of the break: repeating a dash at the start of the next line is the standard convention for carrying a dash across a line break, and 'hyphen vs dash' in this hand is not decidable from the transcript. A normal wrap, not a pupil error."
+    },
+    {
+      "id": "P52-E05", "page": 52, "line": "p52-l16", "written": "электроэнергетике", "expected": "электроэнергетики",
+      "verdict": "ACCEPT", "error_class": "meaning", "category": "grammar_or_word_form",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l16 reads 'рабатывают почти 80% электроэнергетике' and uncertain[] states the case does not agree. '80%' forces the genitive of the noun the pupil wrote. Residual: the intended noun may be 'электроэнергии' rather than 'электроэнергетики' (a wording question the key would settle); the case defect itself is fixed. Case is deferred."
+    },
+    {
+      "id": "P53-E01", "page": 53, "line": "p53-l02", "written": "В некоторые", "expected": "в некоторые",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "capitalization",
+      "counts_as_error": true, "confidence": "medium", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l01 ends 'по числу иностранных туристов,' and l02 begins 'В некоторые годы их количество превышает 75 млн человек.' The pupil's own comma keeps one sentence open, so the capital В mid-sentence is the deviation (the alternative repair, a period for the comma, is a different defect). Capitalization is self-evident from ink and not deferred; line not in uncertain[], so pixels confirm the capital."
+    },
+    {
+      "id": "P53-E02", "page": 53, "line": "p53-l05", "written": "природно- климатические", "expected": "природно-климатические",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l05 reads 'твуют природно- климатические условия, напри-'. The hyphen is present; only its spacing is in question, and this pupil writes marks in the ' - ' style throughout the notebook ('публиками, 12 -монархиями.', 'Италия - машиностроение'), so the transcript cannot separate a real space from the pupil's dash/hyphen convention. Deferred punctuation; pixels needed."
+    },
+    {
+      "id": "P53-E03", "page": 53, "line": "p53-l21", "written": "политико- административном", "expected": "политико-административном",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l21 reads 'лика. В политико- административном'. Hyphen present, spacing only, in a notebook where the pupil writes marks as ' - ' (l25 'Столица Италии - город Рим -расположен'). Undecidable from text; pixels needed."
+    },
+    {
+      "id": "P53-E04", "page": 53, "line": "p53-l31", "written": "6-место", "expected": "6-е место",
+      "verdict": "ACCEPT", "error_class": "punctuation", "category": "punctuation_or_hyphenation",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l31 reads 'Российская федерация занимает 6-место в мире'. The ordinal is written as one hyphenated token with no space and no ending; LABELLING-POLICY section 1 names digit-word hyphenation as a real, deferred mistake. Note for the record: the same ordinal style recurs unproposed (p50-l09 '2 место', p51-l20 '2 место', p54-l07-l09 '5 место/3 место'), so this label is one instance of a larger population, not the whole of it."
+    },
+    {
+      "id": "P54-E01", "page": 54, "line": "p54-l01", "written": "валевому", "expected": "валовому",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "high", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l01 reads 'По валевому экспорту топлива Россия является' and uncertain[] states it is the pupil's own spelling of 'валовому'. е-for-о deviation; corrected form stated in canonical."
+    },
+    {
+      "id": "P54-E02", "page": 54, "line": "p54-l29", "written": "Mercedes- Benz", "expected": "Mercedes-Benz",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l29 reads '4  Mercedes- Benz - немецкий бренд'. The hyphen is present and only the space after it is in question; the same line writes the dash as ' - ' ('Benz - немецкий'), this pupil's mark convention. Spacing of a present mark is not decidable from the transcript; pixels needed."
+    },
+    {
+      "id": "P54-E03", "page": 54, "line": "p54-l34", "written": "Wolkswagen", "expected": "Volkswagen",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "high", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l34 reads 'Wolkswagen - немецкий бренд.' and uncertain[] states it is the pupil's own spelling of 'Volkswagen'. W-for-V deviation in a Latin-script brand the checker can see; corrected form stated in canonical."
+    },
+    {
+      "id": "P55-E01", "page": 55, "line": "p55-l04", "written": "социально- экономического", "expected": "социально-экономического",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l04 reads 'друга уровнем социально- экономического развития'. Hyphen present, spacing only, in a page where the pupil writes marks as ' -' (l14 'Азии -Респуб-', l17 'индустриально - аграрные'). Undecidable from text; pixels needed."
+    },
+    {
+      "id": "P55-E02", "page": 55, "line": "p55-l12", "written": "страна", "expected": "страны",
+      "verdict": "ACCEPT", "error_class": "meaning", "category": "grammar_or_word_form",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l12 reads 'страна, обладающие огромным потенциалом' under l11 'Опорные развивающиеся', and uncertain[] states the number does not agree. The pupil's own plural adjectives and 'обладающие' force the plural 'страны'. Number is deferred."
+    },
+    {
+      "id": "P55-E03", "page": 55, "line": "p55-l17", "written": "индустриально - аграрные", "expected": "индустриально-аграрные",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l17 reads '5. Крупные индустриально - аграрные'. Hyphen present with space on both sides, matching the pupil's mark convention on this page (l14 'Азии -Респуб-', l21 'Казахстан -самая', l27 'Казахстан- унитарное'). Undecidable from text; pixels needed."
+    },
+    {
+      "id": "P55-E04", "page": 55, "line": "p55-l27", "written": "Казахстан- унитарное", "expected": "Казахстан — унитарное",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l27 reads 'Казахстан- унитарное государство, подразде-'. A mark is present in the subject-predicate gap; whether it is a short dash or a hyphen is not decidable from a transcript, and the pupil writes dashes this way throughout (l21 'Казахстан -самая большая'). Needs pixels/source; not a missing element."
+    },
+    {
+      "id": "P55-E05", "page": 55, "line": "p55-l29", "written": "Естевенный", "expected": "Естественный",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "high", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l29 reads '18,7 млн. человек. Естевенный прирост -1,4%.' and uncertain[] states it is the pupil's own spelling of 'Естественный'. Missing т; corrected form stated in canonical."
+    },
+    {
+      "id": "P55-E06", "page": 55, "line": "p55-l34", "written": "Казахов", "expected": "казахов",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "capitalization",
+      "counts_as_error": true, "confidence": "medium", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l34 reads 'разнообразный. Доля Казахов превышает' mid-sentence; the ethnic common noun is lower-case in the standard language and the pupil capitalises true proper nouns correctly on the same page (l24 'с Россией, Китаем, Узбекистаном'). Line not in uncertain[], so a pixel check of the letter height is owed. Capitalization is not deferred."
+    },
+    {
+      "id": "P56-E01", "page": 56, "line": "p56-l06", "written": "средине", "expected": "середине",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "medium", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l06 reads 'Кыргызская республика находится в средине'. The line is not in uncertain[]; 'в средине материка' is not the standard word (середине), so the written token is a one-letter deviation from the key's word. Transcript-only basis: if pixels show the е present, this row is a transcript defect and must be withdrawn rather than labelled."
+    },
+    {
+      "id": "P56-E02", "page": 56, "line": "p56-l07", "written": "в основной", "expected": "в основном",
+      "verdict": "ACCEPT", "error_class": "meaning", "category": "grammar_or_word_form",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l07 reads 'материка Евразия, в основной в предлах' and uncertain[] states the case does not agree. Recorded here as the case/adverb defect only ('в основной' for 'в основном'); its second component 'предлах' is counted once, in P56-E03. Case is deferred."
+    },
+    {
+      "id": "P56-E03", "page": 56, "line": "p56-l07", "written": "предлах", "expected": "пределах",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "high", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l07 reads 'в основной в предлах' and uncertain[] states ''пределах' is missing a letter'. Missing е in a word the checker can see; corrected form stated in canonical. Distinct pupil error from P56-E02 (different word), counted once."
+    },
+    {
+      "id": "P56-E04", "page": 56, "line": "p56-l08", "written": "Тянь - Шанских", "expected": "Тянь-Шанских",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l08 reads '1. Тянь - Шанских гор, не имеет выхода к'. Hyphen present with a space on both sides; the pupil writes marks as ' - ' (l13 'Экономико -географическое', l21 'Административно -терри-'). Spacing of a present mark is not decidable from the transcript; pixels needed."
+    },
+    {
+      "id": "P56-E05", "page": 56, "line": "p56-l17", "written": "со главным", "expected": "с главным",
+      "verdict": "ACCEPT", "error_class": "meaning", "category": "grammar_or_word_form",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l17 reads 'значения. Это связано со главным рельефом' and uncertain[] states the preposition does not agree. The pupil's own following word 'главным' takes the plain form 'с'; 'со' is only used before certain clusters. Preposition/grammar is deferred."
+    },
+    {
+      "id": "P56-E06", "page": 56, "line": "p56-l19", "written": "В Кыргызстана", "expected": "В Кыргызстане",
+      "verdict": "ACCEPT", "error_class": "meaning", "category": "grammar_or_word_form",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l19 reads '3. В Кыргызстана в 2021 году сменилось' and uncertain[] states the case does not agree. The pupil's own 'В' forces the locative 'Кыргызстане'. Case is deferred."
+    },
+    {
+      "id": "P56-E07", "page": 56, "line": "p56-l21", "written": "территуриальное", "expected": "территориальное",
+      "verdict": "ACCEPT", "error_class": "letters", "category": "spelling_or_letters",
+      "counts_as_error": true, "confidence": "high", "deferred": false, "verified_from_pixels": false,
+      "reason": "Canonical l21 ends 'Административно -терри-' (joined 'Административно -территориальное') and l22 begins 'туриальное деление включает', and uncertain[] states 'территуриальное' is the pupil's own spelling of 'территориальное'. Correction detail: the deviation is у for о (substitution, not an inserted letter). The defect is inside the joined word, so the wrap itself is not the error; pixels confirm the join."
+    },
+    {
+      "id": "P56-E08", "page": 56, "line": "p56-l32", "written": "Тянь Шаня", "expected": "Тянь-Шаня",
+      "verdict": "ACCEPT", "error_class": "punctuation", "category": "punctuation_or_hyphenation",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l32 reads 'Тянь Шаня - Пик Победы, которая является' with no mark in the oronym, while the same page writes it with a hyphen at l08 ('Тянь - Шанских'). An omission, not the pupil's mark convention. Deferred punctuation; pixels confirm the gap."
+    },
+    {
+      "id": "P57-E01", "page": 57, "line": "p57-l06", "written": "железно-дорожные", "expected": "железнодорожные",
+      "verdict": "ACCEPT", "error_class": "punctuation", "category": "punctuation_or_hyphenation",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l06 reads 'дят железно-дорожные и автомобильные магистрали'. A hyphen is written inside the solid compound 'железнодорожные'; the standard spelling is fixed by the dictionary, so no dictated source is needed. Deferred punctuation; pixels confirm the mark."
+    },
+    {
+      "id": "P57-E02", "page": 57, "line": "p57-l25", "written": "юго востоке", "expected": "юго-востоке",
+      "verdict": "ACCEPT", "error_class": "punctuation", "category": "punctuation_or_hyphenation",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l25 reads 'юго востоке Центральной Азии в горных' with no mark, while the same page hyphenates the same kind of compound at l07 ('Юго -западной') and l27 ('северо -западе'). Omitted hyphen; deferred punctuation; pixels confirm the gap."
+    },
+    {
+      "id": "P57-E03", "page": 57, "line": "p57-l26", "written": "Гиссаро- Алая", "expected": "Гиссаро-Алая",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l26 reads 'системах Гиссаро- Алая и Памира. На севере'. Hyphen present, spacing only, in a page where the pupil writes marks as ' -' (l07 'Юго -запад-', l27 'северо -западе'). Spacing of a present mark is not decidable from the transcript; pixels needed."
+    },
+    {
+      "id": "P57-E04", "page": 57, "line": "p57-l27", "written": "северо -западе", "expected": "северо-западе",
+      "verdict": "UNDECIDED",
+      "reason": "Canonical l27 reads 'граничит с Кыргызстаном, на северо -западе и'. Hyphen present with a leading space, the pupil's consistent mark style on this page; whether ink shows a real gap cannot be settled from the transcript. Deferred punctuation; pixels needed."
+    },
+    {
+      "id": "P57-E05", "page": 57, "line": "p57-l36", "written": "юго западе", "expected": "юго-западе",
+      "verdict": "ACCEPT", "error_class": "punctuation", "category": "punctuation_or_hyphenation",
+      "counts_as_error": true, "confidence": "medium", "deferred": true, "verified_from_pixels": false,
+      "reason": "Canonical l36 reads 'ется в Гиссарской долине на юго западе.' with no mark, while the same page writes 'Юго -западной' (l07) with a hyphen. Omitted hyphen; deferred punctuation; pixels confirm the gap."
+    }
+  ],
+  "coverage": {
+    "proposal_error_ids": 50,
+    "unique_ids_in_proposal": 50,
+    "records_written": 50,
+    "every_proposal_id_recorded_once": true,
+    "ids_missing_from_review": [],
+    "ids_in_review_not_in_proposal": []
+  },
+  "notes": [
+    "Canonical page-49 uncertain[] entry with key 'lines': [16,17] carries the text 'Нам зимой белые кружит / но от весней куругами', which is the content of page_lines 35 and 36, not 16 and 17 (lines 16/17 are already covered by their own entries). The flag's pair therefore addresses the wrong line numbers; I did not edit canonical, but the two affected lines (l35, l36) are in fact flagged, which is why P49-E03 is deferred rather than rejected.",
+    "No proposed line in this packet is a masked edge-clipped word, a printed-sheet line, a drawing, teacher ink, or a table/drill cell: every proposal targets a handwritten, scored page_line, so those exclusions did not silence any proposal.",
+    "The packet's own method block states pixels_verified: false and no transcript corrections; this review repeats that limitation. Every ACCEPT record here is a text/policy verdict with verified_from_pixels: false and needs Astra's pixel pass before it enters a label set."
+  ],
+  "residual_limits": [
+    "No image was inspected (per assignment); every verdict rests on canonical text, canonical uncertain[] flags, page metadata and policy files.",
+    "Corrections that need a dictated source (song key for pages 47-49, textbook headings for pages 50-57, geography key) could not be resolved and are UNDECIDED rather than invented.",
+    "The pupil's spaced dash/hyphen convention (marks written as ' - ') makes the spacing of a hyphen that IS present undecidable from the transcript alone; those proposals are UNDECIDED, while the cases where no mark at all is written are accepted as deferred punctuation.",
+    "P50-E02, P53-E01, P55-E06 and P56-E01 have no canonical uncertain[] flag; they rest on the verbatim transcript alone and should be confirmed or withdrawn at the pixel pass."
+  ]
+}

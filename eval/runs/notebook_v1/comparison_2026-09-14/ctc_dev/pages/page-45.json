@@ -1,0 +1,6906 @@
+{
+ "config_id": "b3d820724aeb4f3e2edaf012b25252ff16f8a8bbf0ad148db32c56516aeee9a4",
+ "image": {
+  "path": "/Users/furb-x/Desktop/My Projects/BilimAI/data/derived/my_notebook_v1/masked/page-45.jpg",
+  "sha256": "072557982d717b385e4a5e3508333814cf605393ed62aab93341acf8372df055"
+ },
+ "judge": {
+  "name": "ctc-word-verifier@rp-notebooks",
+  "providers": [
+   "CoreMLExecutionProvider",
+   "CPUExecutionProvider"
+  ]
+ },
+ "page": 45,
+ "peak_rss_bytes": 755761152,
+ "populations": {
+  "extended": {
+   "marks": [
+    {
+     "bbox": [
+      73.39376015625001,
+      3.2186857142857264,
+      153.62186484375002,
+      200.41411428571425
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      0
+     ],
+     "read_index": 0,
+     "read_word": "2",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      145.14204843750002,
+      0.0,
+      809.8892015624999,
+      195.28848571428568
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      1
+     ],
+     "read_index": 1,
+     "read_word": "Мерцают",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      743.84291953125,
+      27.28974285714285,
+      1236.6727054687499,
+      173.04288571428572
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      2
+     ],
+     "read_index": 2,
+     "read_word": "огоньки",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1204.794036328125,
+      0.0,
+      1703.354401171875,
+      224.1973142857143
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      3
+     ],
+     "read_index": 3,
+     "read_word": "зеленой",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      61.10986640624999,
+      124.72451428571426,
+      416.40575859375,
+      304.7725142857143
+     ],
+     "confidence": 1.0,
+     "key_index": 0,
+     "key_word": "енки",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 4.928,
+     "position": [
+      "key",
+      0
+     ],
+     "read_index": 4,
+     "read_word": "ёлки",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      416.40575859375,
+      124.72451428571426,
+      470.42015859375005,
+      304.7725142857143
+     ],
+     "confidence": 1.0,
+     "key_index": 1,
+     "key_word": "И",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      1
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      220.287155859375,
+      246.93005714285712,
+      1028.2987816406248,
+      452.6992000000001
+     ],
+     "confidence": 1.0,
+     "key_index": 2,
+     "key_word": "кружится",
+     "kind": "spelling",
+     "label_ids": [
+      "P45-E01"
+     ],
+     "margin": 3.743,
+     "position": [
+      "key",
+      2
+     ],
+     "read_index": 5,
+     "read_word": "кружиться",
+     "status": "caught",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      1587.4435500000002,
+      246.37028571428573,
+      1770.8220749999998,
+      417.8445714285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      7
+     ],
+     "read_index": 7,
+     "read_word": "хо",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      143.219656640625,
+      181.34114285714287,
+      252.100655859375,
+      438.5525714285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      8
+     ],
+     "read_index": 8,
+     "read_word": "И",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      59.293350000000004,
+      328.0375714285715,
+      426.0504,
+      585.249
+     ],
+     "confidence": 1.0,
+     "key_index": 4,
+     "key_word": "хоровод",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 12.282,
+     "position": [
+      "key",
+      4
+     ],
+     "read_index": 9,
+     "read_word": "повоз",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      426.0504,
+      328.0375714285715,
+      503.21382857142856,
+      585.249
+     ],
+     "confidence": 1.0,
+     "key_index": 5,
+     "key_word": "А",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      5
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      125.74689023437499,
+      441.5197142857144,
+      246.08904726562503,
+      698.7311428571427
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      11
+     ],
+     "read_index": 11,
+     "read_word": "1",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      851.856366796875,
+      400.70157142857147,
+      1774.479570703125,
+      700.7815714285714
+     ],
+     "confidence": 1.0,
+     "key_index": 7,
+     "key_word": "медвежонок",
+     "kind": "spelling",
+     "label_ids": [
+      "P45-E02"
+     ],
+     "margin": 5.735,
+     "position": [
+      "key",
+      7
+     ],
+     "read_index": 12,
+     "read_word": "медвеньнок",
+     "status": "caught",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      1774.479570703125,
+      400.70157142857147,
+      1864.503570703125,
+      700.7815714285714
+     ],
+     "confidence": 1.0,
+     "key_index": 8,
+     "key_word": "смотрит",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      8
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      791.956930580357,
+      619.6111714285714,
+      835.6828734374999,
+      765.3643142857142
+     ],
+     "confidence": 1.0,
+     "key_index": 9,
+     "key_word": "с",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      9
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      0.0,
+      608.9595714285713,
+      836.85591796875,
+      780.4338571428573
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      14
+     ],
+     "read_index": 14,
+     "read_word": "сиотрится",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1277.6053839843748,
+      730.3254571428572,
+      1489.6368035156252,
+      876.0785999999999
+     ],
+     "confidence": 1.0,
+     "key_index": 11,
+     "key_word": "Как",
+     "kind": "capitalization",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      11
+     ],
+     "read_index": 15,
+     "read_word": "как",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1489.6368035156252,
+      730.3254571428572,
+      1533.362746372768,
+      876.0785999999999
+     ],
+     "confidence": 1.0,
+     "key_index": 12,
+     "key_word": "Дед",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      12
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      762.7860035156251,
+      706.6742285714287,
+      1284.268683984375,
+      929.5907999999998
+     ],
+     "confidence": 1.0,
+     "key_index": 13,
+     "key_word": "Мороз",
+     "kind": "capitalization",
+     "label_ids": [
+      "P45-E06"
+     ],
+     "margin": null,
+     "position": [
+      "key",
+      13
+     ],
+     "read_index": 16,
+     "read_word": "мороз",
+     "status": "caught",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1284.268683984375,
+      706.6742285714287,
+      1351.1436554129464,
+      929.5907999999998
+     ],
+     "confidence": 1.0,
+     "key_index": 14,
+     "key_word": "как",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      14
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      106.88932851562501,
+      689.7872000000002,
+      444.993483984375,
+      895.5563428571426
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      18
+     ],
+     "read_index": 18,
+     "read_word": "Как",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      472.432627734375,
+      642.0649142857144,
+      776.1533097656251,
+      976.4397714285712
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      19
+     ],
+     "read_index": 19,
+     "read_word": "Дед",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      931.241382421875,
+      836.203742857143,
+      1624.6414300781248,
+      1024.825457142857
+     ],
+     "confidence": 1.0,
+     "key_index": 16,
+     "key_word": "подает",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 4.522,
+     "position": [
+      "key",
+      16
+     ],
+     "read_index": 20,
+     "read_word": "раздает",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      935.4694304129464,
+      828.0401142857144,
+      994.6280589843749,
+      1025.2355428571427
+     ],
+     "confidence": 1.0,
+     "key_index": 17,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      17
+     ],
+     "read_index": 21,
+     "read_word": ",",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      41.755414453125006,
+      830.6680285714287,
+      494.471148046875,
+      1019.2897428571428
+     ],
+     "confidence": 1.0,
+     "key_index": 18,
+     "key_word": "раздает",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 4.785,
+     "position": [
+      "key",
+      18
+     ],
+     "read_index": 22,
+     "read_word": "подает",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      678.362806640625,
+      923.5466857142856,
+      1337.379380859375,
+      1206.4792571428575
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      23
+     ],
+     "read_index": 23,
+     "read_word": "последняя",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1304.743144921875,
+      952.3138,
+      1814.764667578125,
+      1132.3618000000001
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      24
+     ],
+     "read_index": 24,
+     "read_word": "страни",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      73.609620703125,
+      1060.2602285714286,
+      251.257566796875,
+      1240.3082285714286
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      26
+     ],
+     "read_index": 26,
+     "read_word": "ла",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      251.257566796875,
+      1060.2602285714286,
+      305.271966796875,
+      1240.3082285714286
+     ],
+     "confidence": 1.0,
+     "key_index": 20,
+     "key_word": "последняя",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      20
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1369.885723828125,
+      1190.3495142857143,
+      1423.900123828125,
+      1370.3975142857144
+     ],
+     "confidence": 1.0,
+     "key_index": 21,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      21
+     ],
+     "read_index": 27,
+     "read_word": ",",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      765.429365625,
+      1123.1122857142857,
+      855.453365625,
+      1423.1922857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 23,
+     "key_word": "страница",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      23
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1344.2299687500001,
+      1095.8535428571429,
+      1802.6762812499999,
+      1421.6546857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 24,
+     "key_word": "декабря",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 9.349,
+     "position": [
+      "key",
+      24
+     ],
+     "read_index": 29,
+     "read_word": "декаб",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      1704.935938392857,
+      1095.8535428571429,
+      1802.6762812499999,
+      1421.6546857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 24,
+     "key_word": ".",
+     "kind": "punctuation_wrong",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      24
+     ],
+     "read_index": 29,
+     "read_word": "-",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      54.255168749999996,
+      1301.0638000000001,
+      329.32295625,
+      1481.1118000000001
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      30
+     ],
+     "read_index": 30,
+     "read_word": "ря",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      329.32295625,
+      1301.0638000000001,
+      383.33735625,
+      1481.1118000000001
+     ],
+     "confidence": 1.0,
+     "key_index": 25,
+     "key_word": "А",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      25
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1020.5975023995535,
+      1422.5696285714284,
+      1069.467673828125,
+      1585.4702000000002
+     ],
+     "confidence": 1.0,
+     "key_index": 26,
+     "key_word": "Новый",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      26
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1020.5975023995535,
+      1422.5696285714284,
+      1069.467673828125,
+      1585.4702000000002
+     ],
+     "confidence": 1.0,
+     "key_index": 27,
+     "key_word": "год",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      27
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1020.5975023995535,
+      1422.5696285714284,
+      1069.467673828125,
+      1585.4702000000002
+     ],
+     "confidence": 1.0,
+     "key_index": 28,
+     "key_word": "в",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      28
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      990.473673046875,
+      1339.1450857142859,
+      1087.8935144531251,
+      1647.7987999999998
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      33
+     ],
+     "read_index": 33,
+     "read_word": "в",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      682.3216851562499,
+      1378.0350285714287,
+      945.9283148437501,
+      1695.2624571428569
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      35
+     ],
+     "read_index": 35,
+     "read_word": "год",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      98.97568125,
+      1392.9628571428568,
+      190.66494375,
+      1607.3057142857142
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      36
+     ],
+     "read_index": 36,
+     "read_word": "А",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      185.66746874999998,
+      1360.5882285714283,
+      644.11378125,
+      1626.3733714285715
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      37
+     ],
+     "read_index": 37,
+     "read_word": "Неовый",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      446.37416953125,
+      1642.6297714285715,
+      939.20395546875,
+      1891.2674857142858
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      39
+     ],
+     "read_index": 39,
+     "read_word": "радость",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      939.20395546875,
+      1642.6297714285715,
+      1013.7952697544642,
+      1891.2674857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 33,
+     "key_word": "В",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      33
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1474.2819363281249,
+      1660.7452857142855,
+      1606.0852511718751,
+      1832.2195714285715
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      41
+     ],
+     "read_index": 41,
+     "read_word": "он",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1606.0852511718751,
+      1660.7452857142855,
+      1657.527536886161,
+      1832.2195714285715
+     ],
+     "confidence": 1.0,
+     "key_index": 35,
+     "key_word": "радость",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      35
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1511.976706640625,
+      1647.465771428571,
+      1573.707449497768,
+      1853.2349142857147
+     ],
+     "confidence": 1.0,
+     "key_index": 37,
+     "key_word": "он",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      37
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1607.9221207031248,
+      1610.3950857142859,
+      1785.5700667968752,
+      1919.0487999999998
+     ],
+     "confidence": 1.0,
+     "key_index": 38,
+     "key_word": "для",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 9.878,
+     "position": [
+      "key",
+      38
+     ],
+     "read_index": 43,
+     "read_word": "дел",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      79.6863984375,
+      1579.9486571428572,
+      194.2979765625,
+      1888.6023714285711
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      44
+     ],
+     "read_index": 44,
+     "read_word": "в",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      51.746254687500006,
+      1736.177142857143,
+      441.4256203125,
+      1950.5199999999998
+     ],
+     "confidence": 1.0,
+     "key_index": 39,
+     "key_word": "тебя",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 3.532,
+     "position": [
+      "key",
+      39
+     ],
+     "read_index": 45,
+     "read_word": "теба",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      559.7516437500001,
+      2007.4271428571428,
+      1201.5764812500001,
+      2221.77
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      47
+     ],
+     "read_index": 47,
+     "read_word": "раскрыл",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1101.2974171875,
+      2017.658914285714,
+      1857.7338328125,
+      2180.5594857142864
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      48
+     ],
+     "read_index": 48,
+     "read_word": "икристые",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      149.98883203124998,
+      1988.1920857142854,
+      216.86380345982155,
+      2211.1086571428573
+     ],
+     "confidence": 1.0,
+     "key_index": 41,
+     "key_word": ".",
+     "kind": "punctuation_missing",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      41
+     ],
+     "read_index": 49,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      633.90708046875,
+      1980.028457142857,
+      703.3541661830358,
+      2211.518742857143
+     ],
+     "confidence": 1.0,
+     "key_index": 43,
+     "key_word": "раскрыл",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      43
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      -32.28924793526799,
+      2141.9325999999996,
+      11.436694921875002,
+      2287.685742857143
+     ],
+     "confidence": 1.0,
+     "key_index": 44,
+     "key_word": "искристые",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      44
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      661.1107997209821,
+      2141.9325999999996,
+      704.836742578125,
+      2287.685742857143
+     ],
+     "confidence": 1.0,
+     "key_index": 45,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      45
+     ],
+     "read_index": 51,
+     "read_word": ",",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1761.6295078125002,
+      66.8794,
+      2105.4642421875,
+      264.07482857142855
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      52
+     ],
+     "read_index": 52,
+     "read_word": "гназ",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2464.3442414062497,
+      193.50111428571427,
+      2819.6401335937503,
+      347.8279714285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      53
+     ],
+     "read_index": 53,
+     "read_word": "нами",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2424.5560347656246,
+      188.10534285714283,
+      2487.5924027343754,
+      351.0059142857143
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      54
+     ],
+     "read_index": 54,
+     "read_word": "с",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1913.520378515625,
+      142.31125714285716,
+      2435.003058984375,
+      382.3752571428571
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      55
+     ],
+     "read_index": 55,
+     "read_word": "вместе",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2435.003058984375,
+      142.31125714285716,
+      2507.022258984375,
+      382.3752571428571
+     ],
+     "confidence": 1.0,
+     "key_index": 46,
+     "key_word": "Завьюженной",
+     "kind": "missing_word",
+     "label_ids": [
+      "P45-E03"
+     ],
+     "margin": null,
+     "position": [
+      "key",
+      46
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "caught",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1725.787975613839,
+      144.93917142857146,
+      1795.2350613281249,
+      376.42945714285713
+     ],
+     "confidence": 1.0,
+     "key_index": 47,
+     "key_word": "зимы",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      47
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1725.787975613839,
+      144.93917142857146,
+      1795.2350613281249,
+      376.42945714285713
+     ],
+     "confidence": 1.0,
+     "key_index": 48,
+     "key_word": "прозрачные",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      48
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3271.679712890625,
+      134.00768571428574,
+      3472.249974609375,
+      374.0716857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 50,
+     "key_word": "вместе",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 14.528,
+     "position": [
+      "key",
+      50
+     ],
+     "read_index": 57,
+     "read_word": "весе",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      3400.2307746093747,
+      134.00768571428574,
+      3472.249974609375,
+      374.0716857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 50,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      50
+     ],
+     "read_index": 57,
+     "read_word": "-",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3472.249974609375,
+      134.00768571428574,
+      3544.269174609375,
+      374.0716857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 51,
+     "key_word": "с",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      51
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2676.0773095982145,
+      97.07694285714283,
+      2781.5339953125003,
+      448.59922857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 52,
+     "key_word": "нами",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      52
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1753.67104453125,
+      312.37902857142865,
+      2246.5008304687503,
+      458.1321714285713
+     ],
+     "confidence": 1.0,
+     "key_index": 54,
+     "key_word": "веселиться",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 28.336,
+     "position": [
+      "key",
+      54
+     ],
+     "read_index": 59,
+     "read_word": "литься",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      3091.71836015625,
+      402.3498857142858,
+      3507.0,
+      633.8401714285712
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      60
+     ],
+     "read_index": 60,
+     "read_word": "поздний",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2620.776403125,
+      329.99677142857155,
+      3125.067346875,
+      707.2401999999998
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      61
+     ],
+     "read_index": 61,
+     "read_word": "вручка",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3125.067346875,
+      329.99677142857155,
+      3238.2403754464285,
+      707.2401999999998
+     ],
+     "confidence": 1.0,
+     "key_index": 55,
+     "key_word": "И",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      55
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2495.59568203125,
+      389.0703714285715,
+      2575.3312248883926,
+      654.8555142857142
+     ],
+     "confidence": 1.0,
+     "key_index": 56,
+     "key_word": ",",
+     "kind": "punctuation_missing",
+     "label_ids": [
+      "P45-E04"
+     ],
+     "margin": null,
+     "position": [
+      "key",
+      56
+     ],
+     "read_index": 62,
+     "read_word": "",
+     "status": "caught",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1792.22925703125,
+      383.1148285714286,
+      1918.30199296875,
+      623.1788285714285
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      64
+     ],
+     "read_index": 64,
+     "read_word": "И",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1918.30199296875,
+      383.1148285714286,
+      1990.32119296875,
+      623.1788285714285
+     ],
+     "confidence": 1.0,
+     "key_index": 58,
+     "key_word": "внучка",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      58
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1762.8233507812502,
+      534.3673714285715,
+      1816.8377507812502,
+      714.4153714285713
+     ],
+     "confidence": 1.0,
+     "key_index": 59,
+     "key_word": "поздний",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      59
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2034.5997492187498,
+      534.3673714285715,
+      2088.61414921875,
+      714.4153714285713
+     ],
+     "confidence": 1.0,
+     "key_index": 60,
+     "key_word": ".",
+     "kind": "punctuation_missing",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      60
+     ],
+     "read_index": 65,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3314.1723410156246,
+      621.7103142857144,
+      3468.8979714843754,
+      896.0691714285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      66
+     ],
+     "read_index": 66,
+     "read_word": "за",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3202.82724375,
+      645.3615428571429,
+      3294.51650625,
+      842.5569714285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      67
+     ],
+     "read_index": 67,
+     "read_word": "и",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2300.993791238839,
+      583.2402,
+      2388.445676953125,
+      874.7464857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 61,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      61
+     ],
+     "read_index": 68,
+     "read_word": "-",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2528.1788824218747,
+      559.4490285714286,
+      3221.5789300781253,
+      919.5450285714286
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      69
+     ],
+     "read_index": 69,
+     "read_word": "невзгоды",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2547.9039960937503,
+      575.0765714285714,
+      2637.92799609375,
+      875.1565714285714
+     ],
+     "confidence": 1.0,
+     "key_index": 63,
+     "key_word": "невзгоды",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      63
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1710.9728457589283,
+      739.8885142857141,
+      1777.8478171875,
+      962.8050857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 64,
+     "key_word": "и",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      64
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1777.8478171875,
+      739.8885142857141,
+      2167.5271828125,
+      962.8050857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 65,
+     "key_word": "заботы",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 3.683,
+     "position": [
+      "key",
+      65
+     ],
+     "read_index": 71,
+     "read_word": "боты",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      2859.7579042968746,
+      901.9326000000001,
+      3507.0,
+      1047.6857428571427
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      72
+     ],
+     "read_index": 72,
+     "read_word": "наполняются",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2215.8969714843747,
+      894.0488571428573,
+      2978.0639660156253,
+      1065.5231428571426
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      73
+     ],
+     "read_index": 73,
+     "read_word": "счастьм",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2284.7331972656248,
+      842.9989428571428,
+      2364.4687401227675,
+      1108.7840857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 67,
+     "key_word": "счастьем",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      67
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1721.693023995536,
+      1005.0430285714286,
+      1778.27953828125,
+      1193.664742857143
+     ],
+     "confidence": 1.0,
+     "key_index": 68,
+     "key_word": "наполняются",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      68
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2306.212072433036,
+      1005.0430285714286,
+      2362.7985867187504,
+      1193.664742857143
+     ],
+     "confidence": 1.0,
+     "key_index": 69,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      69
+     ],
+     "read_index": 75,
+     "read_word": ",",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2442.460522265625,
+      1089.6181142857145,
+      2688.875415234375,
+      1372.5506857142855
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      77
+     ],
+     "read_index": 77,
+     "read_word": "год",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2688.875415234375,
+      1089.6181142857145,
+      2773.7551866629465,
+      1372.5506857142855
+     ],
+     "confidence": 1.0,
+     "key_index": 71,
+     "key_word": "Новый",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      71
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3418.3613578125,
+      1094.734,
+      3495.5247863839286,
+      1351.9454285714287
+     ],
+     "confidence": 1.0,
+     "key_index": 72,
+     "key_word": ",",
+     "kind": "punctuation_missing",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      72
+     ],
+     "read_index": 78,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1926.45185390625,
+      1102.3378571428568,
+      2465.12627109375,
+      1316.6807142857142
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      80
+     ],
+     "read_index": 80,
+     "read_word": "новый",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3231.0280640625,
+      1026.3772285714288,
+      3323.624178348214,
+      1335.0309428571427
+     ],
+     "confidence": 1.0,
+     "key_index": 75,
+     "key_word": "год",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      75
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2448.903851953125,
+      1356.840771428571,
+      2901.619585546875,
+      1562.6099142857147
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      83
+     ],
+     "read_index": 83,
+     "read_word": "годом",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1974.438847265625,
+      1356.7008285714287,
+      2037.475215234375,
+      1553.896257142857
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      84
+     ],
+     "read_index": 84,
+     "read_word": "с",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1950.803780859375,
+      1348.3972571428571,
+      2009.9624094308035,
+      1545.5926857142856
+     ],
+     "confidence": 1.0,
+     "key_index": 78,
+     "key_word": "с",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      78
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2019.5462648437501,
+      1348.257314285714,
+      2489.45373515625,
+      1536.8790285714288
+     ],
+     "confidence": 1.0,
+     "key_index": 79,
+     "key_word": "Новым",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 6.118,
+     "position": [
+      "key",
+      79
+     ],
+     "read_index": 86,
+     "read_word": "новый",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      2489.45373515625,
+      1348.257314285714,
+      2546.040249441964,
+      1536.8790285714288
+     ],
+     "confidence": 1.0,
+     "key_index": 80,
+     "key_word": "годом",
+     "kind": "missing_word",
+     "label_ids": [
+      "P45-E05"
+     ],
+     "margin": null,
+     "position": [
+      "key",
+      80
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "caught",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1803.645598828125,
+      1507.9843714285716,
+      2302.205963671875,
+      1816.6380857142856
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      89
+     ],
+     "read_index": 89,
+     "read_word": "Кренний",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2302.205963671875,
+      1507.9843714285716,
+      2394.802077957589,
+      1816.6380857142856
+     ],
+     "confidence": 1.0,
+     "key_index": 83,
+     "key_word": "Весенняя",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      83
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2500.783203013393,
+      1785.0189714285714,
+      2547.08126015625,
+      1939.3458285714285
+     ],
+     "confidence": 1.0,
+     "key_index": 84,
+     "key_word": "Приди",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      84
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2500.783203013393,
+      1785.0189714285714,
+      2547.08126015625,
+      1939.3458285714285
+     ],
+     "confidence": 1.0,
+     "key_index": 85,
+     "key_word": "весна",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      85
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2250.952489453125,
+      1739.0849428571428,
+      2520.289698046875,
+      1962.0015142857142
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      92
+     ],
+     "read_index": 92,
+     "read_word": "Ресна",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1833.2067515625,
+      1685.4071142857142,
+      2268.7307484374996,
+      2011.208257142857
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      93
+     ],
+     "read_index": 93,
+     "read_word": "Преди",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2268.7307484374996,
+      1685.4071142857142,
+      2366.4710912946425,
+      2011.208257142857
+     ],
+     "confidence": 1.0,
+     "key_index": 88,
+     "key_word": "Пусть",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      88
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2541.1755269531245,
+      1855.3349428571428,
+      3177.2697855468755,
+      2078.251514285714
+     ],
+     "confidence": 1.0,
+     "key_index": 90,
+     "key_word": "оживут",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 4.29,
+     "position": [
+      "key",
+      90
+     ],
+     "read_index": 95,
+     "read_word": "бофивут",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      1815.73398515625,
+      1855.3349428571428,
+      2262.71913984375,
+      2078.251514285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      96
+     ],
+     "read_index": 96,
+     "read_word": "Пусть",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2262.71913984375,
+      1855.3349428571428,
+      2329.5941112723212,
+      2078.251514285714
+     ],
+     "confidence": 1.0,
+     "key_index": 91,
+     "key_word": "Под",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      91
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2513.0643386718752,
+      1996.3557142857146,
+      2931.3965988281248,
+      2210.698571428571
+     ],
+     "confidence": 1.0,
+     "key_index": 93,
+     "key_word": "ручья",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 3.108,
+     "position": [
+      "key",
+      93
+     ],
+     "read_index": 98,
+     "read_word": "ручся",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      1859.2652097656248,
+      1955.3976285714286,
+      2105.680102734375,
+      2204.035342857143
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      100
+     ],
+     "read_index": 100,
+     "read_word": "Дос",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2105.680102734375,
+      1955.3976285714286,
+      2180.2714170200893,
+      2204.035342857143
+     ],
+     "confidence": 1.0,
+     "key_index": 95,
+     "key_word": "Цветы",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      95
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2340.582552622768,
+      2096.9781714285714,
+      2422.890209765625,
+      2371.337028571428
+     ],
+     "confidence": 1.0,
+     "key_index": 96,
+     "key_word": "в",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      96
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3260.027157421875,
+      2085.486914285714,
+      3334.6184717075894,
+      2334.1246285714287
+     ],
+     "confidence": 1.0,
+     "key_index": 98,
+     "key_word": ".",
+     "kind": "punctuation_missing",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      98
+     ],
+     "read_index": 102,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1798.1960496093748,
+      2071.6476285714284,
+      2331.1398878906252,
+      2320.285342857143
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      103
+     ],
+     "read_index": 103,
+     "read_word": "Ивети",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1194.285952734375,
+      2237.159285714285,
+      1314.628109765625,
+      2451.502142857143
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      104
+     ],
+     "read_index": 104,
+     "read_word": "пр",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1251.6976171875,
+      2226.5076857142863,
+      1824.7555078125,
+      2466.571685714285
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      105
+     ],
+     "read_index": 105,
+     "read_word": "прозрачных",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      0.0,
+      2252.7868285714285,
+      790.7302570312501,
+      2407.1136857142856
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      106
+     ],
+     "read_index": 106,
+     "read_word": "Завьюженой",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      790.7302570312501,
+      2252.7868285714285,
+      837.0283141741072,
+      2407.1136857142856
+     ],
+     "confidence": 1.0,
+     "key_index": 99,
+     "key_word": "Пускай",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      99
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2504.934830859375,
+      2247.3910571428564,
+      2579.432356640625,
+      2410.291628571429
+     ],
+     "confidence": 1.0,
+     "key_index": 100,
+     "key_word": "нас",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 15.472,
+     "position": [
+      "key",
+      100
+     ],
+     "read_index": 107,
+     "read_word": "с",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      2270.5879710937497,
+      2250.018971428571,
+      2465.4276539062503,
+      2404.3458285714282
+     ],
+     "confidence": 1.0,
+     "key_index": 101,
+     "key_word": "с",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 9.844,
+     "position": [
+      "key",
+      101
+     ],
+     "read_index": 108,
+     "read_word": "нас",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      735.45273515625,
+      2223.739828571429,
+      1182.43788984375,
+      2463.803828571428
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      109
+     ],
+     "read_index": 109,
+     "read_word": "зимы",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1812.38198203125,
+      2190.805428571428,
+      2305.2117679687503,
+      2448.016857142858
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      112
+     ],
+     "read_index": 112,
+     "read_word": "Пуский",
+     "status": "false",
+     "verdict": null
+    }
+   ],
+   "n_labels": 6,
+   "n_scored_words": 104
+  },
+  "no_key": {
+   "marks": [
+    {
+     "bbox": [
+      73.39376015625001,
+      3.2186857142857264,
+      153.62186484375002,
+      200.41411428571425
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      0
+     ],
+     "read_index": 0,
+     "read_word": "2",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      145.14204843750002,
+      0.0,
+      809.8892015624999,
+      195.28848571428568
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      1
+     ],
+     "read_index": 1,
+     "read_word": "Мерцают",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      743.84291953125,
+      27.28974285714285,
+      1236.6727054687499,
+      173.04288571428572
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      2
+     ],
+     "read_index": 2,
+     "read_word": "огоньки",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1204.794036328125,
+      0.0,
+      1703.354401171875,
+      224.1973142857143
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      3
+     ],
+     "read_index": 3,
+     "read_word": "зеленой",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      61.10986640624999,
+      124.72451428571426,
+      416.40575859375,
+      304.7725142857143
+     ],
+     "confidence": 1.0,
+     "key_index": 0,
+     "key_word": "енки",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 4.928,
+     "position": [
+      "key",
+      0
+     ],
+     "read_index": 4,
+     "read_word": "ёлки",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      416.40575859375,
+      124.72451428571426,
+      470.42015859375005,
+      304.7725142857143
+     ],
+     "confidence": 1.0,
+     "key_index": 1,
+     "key_word": "И",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      1
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1587.4435500000002,
+      246.37028571428573,
+      1770.8220749999998,
+      417.8445714285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      7
+     ],
+     "read_index": 7,
+     "read_word": "хо",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      143.219656640625,
+      181.34114285714287,
+      252.100655859375,
+      438.5525714285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      8
+     ],
+     "read_index": 8,
+     "read_word": "И",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      59.293350000000004,
+      328.0375714285715,
+      426.0504,
+      585.249
+     ],
+     "confidence": 1.0,
+     "key_index": 4,
+     "key_word": "хоровод",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 12.282,
+     "position": [
+      "key",
+      4
+     ],
+     "read_index": 9,
+     "read_word": "повоз",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      426.0504,
+      328.0375714285715,
+      503.21382857142856,
+      585.249
+     ],
+     "confidence": 1.0,
+     "key_index": 5,
+     "key_word": "А",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      5
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      125.74689023437499,
+      441.5197142857144,
+      246.08904726562503,
+      698.7311428571427
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      11
+     ],
+     "read_index": 11,
+     "read_word": "1",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      851.856366796875,
+      400.70157142857147,
+      1774.479570703125,
+      700.7815714285714
+     ],
+     "confidence": 1.0,
+     "key_index": 7,
+     "key_word": "медвежонок",
+     "kind": "spelling",
+     "label_ids": [
+      "P45-E02"
+     ],
+     "margin": 5.735,
+     "position": [
+      "key",
+      7
+     ],
+     "read_index": 12,
+     "read_word": "медвеньнок",
+     "status": "caught",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      1774.479570703125,
+      400.70157142857147,
+      1864.503570703125,
+      700.7815714285714
+     ],
+     "confidence": 1.0,
+     "key_index": 8,
+     "key_word": "смотрит",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      8
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      791.956930580357,
+      619.6111714285714,
+      835.6828734374999,
+      765.3643142857142
+     ],
+     "confidence": 1.0,
+     "key_index": 9,
+     "key_word": "с",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      9
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      0.0,
+      608.9595714285713,
+      836.85591796875,
+      780.4338571428573
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      14
+     ],
+     "read_index": 14,
+     "read_word": "сиотрится",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1277.6053839843748,
+      730.3254571428572,
+      1489.6368035156252,
+      876.0785999999999
+     ],
+     "confidence": 1.0,
+     "key_index": 11,
+     "key_word": "Как",
+     "kind": "capitalization",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      11
+     ],
+     "read_index": 15,
+     "read_word": "как",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1489.6368035156252,
+      730.3254571428572,
+      1533.362746372768,
+      876.0785999999999
+     ],
+     "confidence": 1.0,
+     "key_index": 12,
+     "key_word": "Дед",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      12
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1284.268683984375,
+      706.6742285714287,
+      1351.1436554129464,
+      929.5907999999998
+     ],
+     "confidence": 1.0,
+     "key_index": 14,
+     "key_word": "как",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      14
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      106.88932851562501,
+      689.7872000000002,
+      444.993483984375,
+      895.5563428571426
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      18
+     ],
+     "read_index": 18,
+     "read_word": "Как",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      472.432627734375,
+      642.0649142857144,
+      776.1533097656251,
+      976.4397714285712
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      19
+     ],
+     "read_index": 19,
+     "read_word": "Дед",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      931.241382421875,
+      836.203742857143,
+      1624.6414300781248,
+      1024.825457142857
+     ],
+     "confidence": 1.0,
+     "key_index": 16,
+     "key_word": "подает",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 4.522,
+     "position": [
+      "key",
+      16
+     ],
+     "read_index": 20,
+     "read_word": "раздает",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      935.4694304129464,
+      828.0401142857144,
+      994.6280589843749,
+      1025.2355428571427
+     ],
+     "confidence": 1.0,
+     "key_index": 17,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      17
+     ],
+     "read_index": 21,
+     "read_word": ",",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      41.755414453125006,
+      830.6680285714287,
+      494.471148046875,
+      1019.2897428571428
+     ],
+     "confidence": 1.0,
+     "key_index": 18,
+     "key_word": "раздает",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 4.785,
+     "position": [
+      "key",
+      18
+     ],
+     "read_index": 22,
+     "read_word": "подает",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      678.362806640625,
+      923.5466857142856,
+      1337.379380859375,
+      1206.4792571428575
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      23
+     ],
+     "read_index": 23,
+     "read_word": "последняя",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1304.743144921875,
+      952.3138,
+      1814.764667578125,
+      1132.3618000000001
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      24
+     ],
+     "read_index": 24,
+     "read_word": "страни",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      73.609620703125,
+      1060.2602285714286,
+      251.257566796875,
+      1240.3082285714286
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      26
+     ],
+     "read_index": 26,
+     "read_word": "ла",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      251.257566796875,
+      1060.2602285714286,
+      305.271966796875,
+      1240.3082285714286
+     ],
+     "confidence": 1.0,
+     "key_index": 20,
+     "key_word": "последняя",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      20
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1369.885723828125,
+      1190.3495142857143,
+      1423.900123828125,
+      1370.3975142857144
+     ],
+     "confidence": 1.0,
+     "key_index": 21,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      21
+     ],
+     "read_index": 27,
+     "read_word": ",",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      765.429365625,
+      1123.1122857142857,
+      855.453365625,
+      1423.1922857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 23,
+     "key_word": "страница",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      23
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1344.2299687500001,
+      1095.8535428571429,
+      1802.6762812499999,
+      1421.6546857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 24,
+     "key_word": "декабря",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 9.349,
+     "position": [
+      "key",
+      24
+     ],
+     "read_index": 29,
+     "read_word": "декаб",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      1704.935938392857,
+      1095.8535428571429,
+      1802.6762812499999,
+      1421.6546857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 24,
+     "key_word": ".",
+     "kind": "punctuation_wrong",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      24
+     ],
+     "read_index": 29,
+     "read_word": "-",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      54.255168749999996,
+      1301.0638000000001,
+      329.32295625,
+      1481.1118000000001
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      30
+     ],
+     "read_index": 30,
+     "read_word": "ря",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      329.32295625,
+      1301.0638000000001,
+      383.33735625,
+      1481.1118000000001
+     ],
+     "confidence": 1.0,
+     "key_index": 25,
+     "key_word": "А",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      25
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1020.5975023995535,
+      1422.5696285714284,
+      1069.467673828125,
+      1585.4702000000002
+     ],
+     "confidence": 1.0,
+     "key_index": 26,
+     "key_word": "Новый",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      26
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1020.5975023995535,
+      1422.5696285714284,
+      1069.467673828125,
+      1585.4702000000002
+     ],
+     "confidence": 1.0,
+     "key_index": 27,
+     "key_word": "год",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      27
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1020.5975023995535,
+      1422.5696285714284,
+      1069.467673828125,
+      1585.4702000000002
+     ],
+     "confidence": 1.0,
+     "key_index": 28,
+     "key_word": "в",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      28
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      990.473673046875,
+      1339.1450857142859,
+      1087.8935144531251,
+      1647.7987999999998
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      33
+     ],
+     "read_index": 33,
+     "read_word": "в",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      682.3216851562499,
+      1378.0350285714287,
+      945.9283148437501,
+      1695.2624571428569
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      35
+     ],
+     "read_index": 35,
+     "read_word": "год",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      98.97568125,
+      1392.9628571428568,
+      190.66494375,
+      1607.3057142857142
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      36
+     ],
+     "read_index": 36,
+     "read_word": "А",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      185.66746874999998,
+      1360.5882285714283,
+      644.11378125,
+      1626.3733714285715
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      37
+     ],
+     "read_index": 37,
+     "read_word": "Неовый",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      446.37416953125,
+      1642.6297714285715,
+      939.20395546875,
+      1891.2674857142858
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      39
+     ],
+     "read_index": 39,
+     "read_word": "радость",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      939.20395546875,
+      1642.6297714285715,
+      1013.7952697544642,
+      1891.2674857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 33,
+     "key_word": "В",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      33
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1474.2819363281249,
+      1660.7452857142855,
+      1606.0852511718751,
+      1832.2195714285715
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      41
+     ],
+     "read_index": 41,
+     "read_word": "он",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1606.0852511718751,
+      1660.7452857142855,
+      1657.527536886161,
+      1832.2195714285715
+     ],
+     "confidence": 1.0,
+     "key_index": 35,
+     "key_word": "радость",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      35
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1511.976706640625,
+      1647.465771428571,
+      1573.707449497768,
+      1853.2349142857147
+     ],
+     "confidence": 1.0,
+     "key_index": 37,
+     "key_word": "он",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      37
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1607.9221207031248,
+      1610.3950857142859,
+      1785.5700667968752,
+      1919.0487999999998
+     ],
+     "confidence": 1.0,
+     "key_index": 38,
+     "key_word": "для",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 9.878,
+     "position": [
+      "key",
+      38
+     ],
+     "read_index": 43,
+     "read_word": "дел",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      79.6863984375,
+      1579.9486571428572,
+      194.2979765625,
+      1888.6023714285711
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      44
+     ],
+     "read_index": 44,
+     "read_word": "в",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      51.746254687500006,
+      1736.177142857143,
+      441.4256203125,
+      1950.5199999999998
+     ],
+     "confidence": 1.0,
+     "key_index": 39,
+     "key_word": "тебя",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 3.532,
+     "position": [
+      "key",
+      39
+     ],
+     "read_index": 45,
+     "read_word": "теба",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      559.7516437500001,
+      2007.4271428571428,
+      1201.5764812500001,
+      2221.77
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      47
+     ],
+     "read_index": 47,
+     "read_word": "раскрыл",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1101.2974171875,
+      2017.658914285714,
+      1857.7338328125,
+      2180.5594857142864
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      48
+     ],
+     "read_index": 48,
+     "read_word": "икристые",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      149.98883203124998,
+      1988.1920857142854,
+      216.86380345982155,
+      2211.1086571428573
+     ],
+     "confidence": 1.0,
+     "key_index": 41,
+     "key_word": ".",
+     "kind": "punctuation_missing",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      41
+     ],
+     "read_index": 49,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      633.90708046875,
+      1980.028457142857,
+      703.3541661830358,
+      2211.518742857143
+     ],
+     "confidence": 1.0,
+     "key_index": 43,
+     "key_word": "раскрыл",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      43
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      -32.28924793526799,
+      2141.9325999999996,
+      11.436694921875002,
+      2287.685742857143
+     ],
+     "confidence": 1.0,
+     "key_index": 44,
+     "key_word": "искристые",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      44
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      661.1107997209821,
+      2141.9325999999996,
+      704.836742578125,
+      2287.685742857143
+     ],
+     "confidence": 1.0,
+     "key_index": 45,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      45
+     ],
+     "read_index": 51,
+     "read_word": ",",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1761.6295078125002,
+      66.8794,
+      2105.4642421875,
+      264.07482857142855
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      52
+     ],
+     "read_index": 52,
+     "read_word": "гназ",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2464.3442414062497,
+      193.50111428571427,
+      2819.6401335937503,
+      347.8279714285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      53
+     ],
+     "read_index": 53,
+     "read_word": "нами",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2424.5560347656246,
+      188.10534285714283,
+      2487.5924027343754,
+      351.0059142857143
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      54
+     ],
+     "read_index": 54,
+     "read_word": "с",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1913.520378515625,
+      142.31125714285716,
+      2435.003058984375,
+      382.3752571428571
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      55
+     ],
+     "read_index": 55,
+     "read_word": "вместе",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2435.003058984375,
+      142.31125714285716,
+      2507.022258984375,
+      382.3752571428571
+     ],
+     "confidence": 1.0,
+     "key_index": 46,
+     "key_word": "Завьюженной",
+     "kind": "missing_word",
+     "label_ids": [
+      "P45-E03"
+     ],
+     "margin": null,
+     "position": [
+      "key",
+      46
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "caught",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1725.787975613839,
+      144.93917142857146,
+      1795.2350613281249,
+      376.42945714285713
+     ],
+     "confidence": 1.0,
+     "key_index": 47,
+     "key_word": "зимы",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      47
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1725.787975613839,
+      144.93917142857146,
+      1795.2350613281249,
+      376.42945714285713
+     ],
+     "confidence": 1.0,
+     "key_index": 48,
+     "key_word": "прозрачные",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      48
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3271.679712890625,
+      134.00768571428574,
+      3472.249974609375,
+      374.0716857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 50,
+     "key_word": "вместе",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 14.528,
+     "position": [
+      "key",
+      50
+     ],
+     "read_index": 57,
+     "read_word": "весе",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      3400.2307746093747,
+      134.00768571428574,
+      3472.249974609375,
+      374.0716857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 50,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      50
+     ],
+     "read_index": 57,
+     "read_word": "-",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3472.249974609375,
+      134.00768571428574,
+      3544.269174609375,
+      374.0716857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 51,
+     "key_word": "с",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      51
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2676.0773095982145,
+      97.07694285714283,
+      2781.5339953125003,
+      448.59922857142857
+     ],
+     "confidence": 1.0,
+     "key_index": 52,
+     "key_word": "нами",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      52
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1753.67104453125,
+      312.37902857142865,
+      2246.5008304687503,
+      458.1321714285713
+     ],
+     "confidence": 1.0,
+     "key_index": 54,
+     "key_word": "веселиться",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 28.336,
+     "position": [
+      "key",
+      54
+     ],
+     "read_index": 59,
+     "read_word": "литься",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      3091.71836015625,
+      402.3498857142858,
+      3507.0,
+      633.8401714285712
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      60
+     ],
+     "read_index": 60,
+     "read_word": "поздний",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2620.776403125,
+      329.99677142857155,
+      3125.067346875,
+      707.2401999999998
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      61
+     ],
+     "read_index": 61,
+     "read_word": "вручка",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3125.067346875,
+      329.99677142857155,
+      3238.2403754464285,
+      707.2401999999998
+     ],
+     "confidence": 1.0,
+     "key_index": 55,
+     "key_word": "И",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      55
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1792.22925703125,
+      383.1148285714286,
+      1918.30199296875,
+      623.1788285714285
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      64
+     ],
+     "read_index": 64,
+     "read_word": "И",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1918.30199296875,
+      383.1148285714286,
+      1990.32119296875,
+      623.1788285714285
+     ],
+     "confidence": 1.0,
+     "key_index": 58,
+     "key_word": "внучка",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      58
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1762.8233507812502,
+      534.3673714285715,
+      1816.8377507812502,
+      714.4153714285713
+     ],
+     "confidence": 1.0,
+     "key_index": 59,
+     "key_word": "поздний",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      59
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2034.5997492187498,
+      534.3673714285715,
+      2088.61414921875,
+      714.4153714285713
+     ],
+     "confidence": 1.0,
+     "key_index": 60,
+     "key_word": ".",
+     "kind": "punctuation_missing",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      60
+     ],
+     "read_index": 65,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3314.1723410156246,
+      621.7103142857144,
+      3468.8979714843754,
+      896.0691714285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      66
+     ],
+     "read_index": 66,
+     "read_word": "за",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3202.82724375,
+      645.3615428571429,
+      3294.51650625,
+      842.5569714285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      67
+     ],
+     "read_index": 67,
+     "read_word": "и",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2300.993791238839,
+      583.2402,
+      2388.445676953125,
+      874.7464857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 61,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      61
+     ],
+     "read_index": 68,
+     "read_word": "-",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2528.1788824218747,
+      559.4490285714286,
+      3221.5789300781253,
+      919.5450285714286
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      69
+     ],
+     "read_index": 69,
+     "read_word": "невзгоды",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2547.9039960937503,
+      575.0765714285714,
+      2637.92799609375,
+      875.1565714285714
+     ],
+     "confidence": 1.0,
+     "key_index": 63,
+     "key_word": "невзгоды",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      63
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1710.9728457589283,
+      739.8885142857141,
+      1777.8478171875,
+      962.8050857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 64,
+     "key_word": "и",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      64
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1777.8478171875,
+      739.8885142857141,
+      2167.5271828125,
+      962.8050857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 65,
+     "key_word": "заботы",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 3.683,
+     "position": [
+      "key",
+      65
+     ],
+     "read_index": 71,
+     "read_word": "боты",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      2859.7579042968746,
+      901.9326000000001,
+      3507.0,
+      1047.6857428571427
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      72
+     ],
+     "read_index": 72,
+     "read_word": "наполняются",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2215.8969714843747,
+      894.0488571428573,
+      2978.0639660156253,
+      1065.5231428571426
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      73
+     ],
+     "read_index": 73,
+     "read_word": "счастьм",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2284.7331972656248,
+      842.9989428571428,
+      2364.4687401227675,
+      1108.7840857142858
+     ],
+     "confidence": 1.0,
+     "key_index": 67,
+     "key_word": "счастьем",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      67
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1721.693023995536,
+      1005.0430285714286,
+      1778.27953828125,
+      1193.664742857143
+     ],
+     "confidence": 1.0,
+     "key_index": 68,
+     "key_word": "наполняются",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      68
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2306.212072433036,
+      1005.0430285714286,
+      2362.7985867187504,
+      1193.664742857143
+     ],
+     "confidence": 1.0,
+     "key_index": 69,
+     "key_word": "",
+     "kind": "punctuation_extra",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      69
+     ],
+     "read_index": 75,
+     "read_word": ",",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2442.460522265625,
+      1089.6181142857145,
+      2688.875415234375,
+      1372.5506857142855
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      77
+     ],
+     "read_index": 77,
+     "read_word": "год",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2688.875415234375,
+      1089.6181142857145,
+      2773.7551866629465,
+      1372.5506857142855
+     ],
+     "confidence": 1.0,
+     "key_index": 71,
+     "key_word": "Новый",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      71
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3418.3613578125,
+      1094.734,
+      3495.5247863839286,
+      1351.9454285714287
+     ],
+     "confidence": 1.0,
+     "key_index": 72,
+     "key_word": ",",
+     "kind": "punctuation_missing",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      72
+     ],
+     "read_index": 78,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1926.45185390625,
+      1102.3378571428568,
+      2465.12627109375,
+      1316.6807142857142
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      80
+     ],
+     "read_index": 80,
+     "read_word": "новый",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3231.0280640625,
+      1026.3772285714288,
+      3323.624178348214,
+      1335.0309428571427
+     ],
+     "confidence": 1.0,
+     "key_index": 75,
+     "key_word": "год",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      75
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2448.903851953125,
+      1356.840771428571,
+      2901.619585546875,
+      1562.6099142857147
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      83
+     ],
+     "read_index": 83,
+     "read_word": "годом",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1974.438847265625,
+      1356.7008285714287,
+      2037.475215234375,
+      1553.896257142857
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      84
+     ],
+     "read_index": 84,
+     "read_word": "с",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1950.803780859375,
+      1348.3972571428571,
+      2009.9624094308035,
+      1545.5926857142856
+     ],
+     "confidence": 1.0,
+     "key_index": 78,
+     "key_word": "с",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      78
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2019.5462648437501,
+      1348.257314285714,
+      2489.45373515625,
+      1536.8790285714288
+     ],
+     "confidence": 1.0,
+     "key_index": 79,
+     "key_word": "Новым",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 6.118,
+     "position": [
+      "key",
+      79
+     ],
+     "read_index": 86,
+     "read_word": "новый",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      2489.45373515625,
+      1348.257314285714,
+      2546.040249441964,
+      1536.8790285714288
+     ],
+     "confidence": 1.0,
+     "key_index": 80,
+     "key_word": "годам",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      80
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1803.645598828125,
+      1507.9843714285716,
+      2302.205963671875,
+      1816.6380857142856
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      89
+     ],
+     "read_index": 89,
+     "read_word": "Кренний",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2302.205963671875,
+      1507.9843714285716,
+      2394.802077957589,
+      1816.6380857142856
+     ],
+     "confidence": 1.0,
+     "key_index": 83,
+     "key_word": "Весенняя",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      83
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2500.783203013393,
+      1785.0189714285714,
+      2547.08126015625,
+      1939.3458285714285
+     ],
+     "confidence": 1.0,
+     "key_index": 84,
+     "key_word": "Приди",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      84
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2500.783203013393,
+      1785.0189714285714,
+      2547.08126015625,
+      1939.3458285714285
+     ],
+     "confidence": 1.0,
+     "key_index": 85,
+     "key_word": "весна",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      85
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2250.952489453125,
+      1739.0849428571428,
+      2520.289698046875,
+      1962.0015142857142
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      92
+     ],
+     "read_index": 92,
+     "read_word": "Ресна",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1833.2067515625,
+      1685.4071142857142,
+      2268.7307484374996,
+      2011.208257142857
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      93
+     ],
+     "read_index": 93,
+     "read_word": "Преди",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2268.7307484374996,
+      1685.4071142857142,
+      2366.4710912946425,
+      2011.208257142857
+     ],
+     "confidence": 1.0,
+     "key_index": 88,
+     "key_word": "Пусть",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      88
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2541.1755269531245,
+      1855.3349428571428,
+      3177.2697855468755,
+      2078.251514285714
+     ],
+     "confidence": 1.0,
+     "key_index": 90,
+     "key_word": "оживут",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 4.29,
+     "position": [
+      "key",
+      90
+     ],
+     "read_index": 95,
+     "read_word": "бофивут",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      1815.73398515625,
+      1855.3349428571428,
+      2262.71913984375,
+      2078.251514285714
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      96
+     ],
+     "read_index": 96,
+     "read_word": "Пусть",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2262.71913984375,
+      1855.3349428571428,
+      2329.5941112723212,
+      2078.251514285714
+     ],
+     "confidence": 1.0,
+     "key_index": 91,
+     "key_word": "Под",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      91
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2513.0643386718752,
+      1996.3557142857146,
+      2931.3965988281248,
+      2210.698571428571
+     ],
+     "confidence": 1.0,
+     "key_index": 93,
+     "key_word": "ручья",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 3.108,
+     "position": [
+      "key",
+      93
+     ],
+     "read_index": 98,
+     "read_word": "ручся",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      1859.2652097656248,
+      1955.3976285714286,
+      2105.680102734375,
+      2204.035342857143
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      100
+     ],
+     "read_index": 100,
+     "read_word": "Дос",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2105.680102734375,
+      1955.3976285714286,
+      2180.2714170200893,
+      2204.035342857143
+     ],
+     "confidence": 1.0,
+     "key_index": 95,
+     "key_word": "Цветы",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      95
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2340.582552622768,
+      2096.9781714285714,
+      2422.890209765625,
+      2371.337028571428
+     ],
+     "confidence": 1.0,
+     "key_index": 96,
+     "key_word": "в",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      96
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      3260.027157421875,
+      2085.486914285714,
+      3334.6184717075894,
+      2334.1246285714287
+     ],
+     "confidence": 1.0,
+     "key_index": 98,
+     "key_word": ".",
+     "kind": "punctuation_missing",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      98
+     ],
+     "read_index": 102,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1798.1960496093748,
+      2071.6476285714284,
+      2331.1398878906252,
+      2320.285342857143
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      103
+     ],
+     "read_index": 103,
+     "read_word": "Ивети",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1194.285952734375,
+      2237.159285714285,
+      1314.628109765625,
+      2451.502142857143
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      104
+     ],
+     "read_index": 104,
+     "read_word": "пр",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1251.6976171875,
+      2226.5076857142863,
+      1824.7555078125,
+      2466.571685714285
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      105
+     ],
+     "read_index": 105,
+     "read_word": "прозрачных",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      0.0,
+      2252.7868285714285,
+      790.7302570312501,
+      2407.1136857142856
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      106
+     ],
+     "read_index": 106,
+     "read_word": "Завьюженой",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      790.7302570312501,
+      2252.7868285714285,
+      837.0283141741072,
+      2407.1136857142856
+     ],
+     "confidence": 1.0,
+     "key_index": 99,
+     "key_word": "Пускай",
+     "kind": "missing_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "key",
+      99
+     ],
+     "read_index": null,
+     "read_word": "",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      2504.934830859375,
+      2247.3910571428564,
+      2579.432356640625,
+      2410.291628571429
+     ],
+     "confidence": 1.0,
+     "key_index": 100,
+     "key_word": "нас",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 15.472,
+     "position": [
+      "key",
+      100
+     ],
+     "read_index": 107,
+     "read_word": "с",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      2270.5879710937497,
+      2250.018971428571,
+      2465.4276539062503,
+      2404.3458285714282
+     ],
+     "confidence": 1.0,
+     "key_index": 101,
+     "key_word": "с",
+     "kind": "spelling",
+     "label_ids": [],
+     "margin": 9.844,
+     "position": [
+      "key",
+      101
+     ],
+     "read_index": 108,
+     "read_word": "нас",
+     "status": "false",
+     "verdict": "error"
+    },
+    {
+     "bbox": [
+      735.45273515625,
+      2223.739828571429,
+      1182.43788984375,
+      2463.803828571428
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      109
+     ],
+     "read_index": 109,
+     "read_word": "зимы",
+     "status": "false",
+     "verdict": null
+    },
+    {
+     "bbox": [
+      1812.38198203125,
+      2190.805428571428,
+      2305.2117679687503,
+      2448.016857142858
+     ],
+     "confidence": 1.0,
+     "key_index": null,
+     "key_word": "",
+     "kind": "extra_word",
+     "label_ids": [],
+     "margin": null,
+     "position": [
+      "read",
+      112
+     ],
+     "read_index": 112,
+     "read_word": "Пуский",
+     "status": "false",
+     "verdict": null
+    }
+   ],
+   "n_labels": 2,
+   "n_scored_words": 104
+  }
+ },
+ "reader": {
+  "device": null,
+  "name": "ctc",
+  "providers": [
+   "CoreMLExecutionProvider",
+   "CPUExecutionProvider"
+  ]
+ },
+ "transcript": [
+  {
+   "bbox": [
+    73.7409375,
+    33.90625,
+    716.8996875,
+    154.5986607142857
+   ],
+   "confidence": 1.0,
+   "id": "L00",
+   "text": "2 Мерцают",
+   "words": [
+    {
+     "bbox": [
+      73.39376015625001,
+      3.2186857142857264,
+      153.62186484375002,
+      200.41411428571425
+     ],
+     "text": "2"
+    },
+    {
+     "bbox": [
+      145.14204843750002,
+      0.0,
+      809.8892015624999,
+      195.28848571428568
+     ],
+     "text": "Мерцают"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    805.90546875,
+    44.97767857142857,
+    1640.38359375,
+    165.67008928571428
+   ],
+   "confidence": 1.0,
+   "id": "L01",
+   "text": "огоньки зеленой",
+   "words": [
+    {
+     "bbox": [
+      743.84291953125,
+      27.28974285714285,
+      1236.6727054687499,
+      173.04288571428572
+     ],
+     "text": "огоньки"
+    },
+    {
+     "bbox": [
+      1204.794036328125,
+      0.0,
+      1703.354401171875,
+      224.1973142857143
+     ],
+     "text": "зеленой"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    112.5684375,
+    165.37946428571428,
+    364.9471875,
+    259.25133928571427
+   ],
+   "confidence": 1.0,
+   "id": "L02",
+   "text": "ёлки",
+   "words": [
+    {
+     "bbox": [
+      61.10986640624999,
+      124.72451428571426,
+      416.40575859375,
+      304.7725142857143
+     ],
+     "text": "ёлки"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    128.8509375,
+    231.11607142857144,
+    1773.3834375,
+    418.8598214285714
+   ],
+   "confidence": 1.0,
+   "id": "L03",
+   "text": "кружиться снежинок хо- И",
+   "words": [
+    {
+     "bbox": [
+      220.287155859375,
+      246.93005714285712,
+      1028.2987816406248,
+      452.6992000000001
+     ],
+     "text": "кружиться"
+    },
+    {
+     "bbox": [
+      920.061254296875,
+      257.1618285714286,
+      1659.305933203125,
+      411.4886857142857
+     ],
+     "text": "снежинок"
+    },
+    {
+     "bbox": [
+      1587.4435500000002,
+      246.37028571428573,
+      1770.8220749999998,
+      417.8445714285714
+     ],
+     "text": "хо-"
+    },
+    {
+     "bbox": [
+      143.219656640625,
+      181.34114285714287,
+      252.100655859375,
+      438.5525714285714
+     ],
+     "text": "И"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    112.411875,
+    386.11607142857144,
+    372.931875,
+    520.21875
+   ],
+   "confidence": 1.0,
+   "id": "L04",
+   "text": "повоз",
+   "words": [
+    {
+     "bbox": [
+      59.293350000000004,
+      328.0375714285715,
+      426.0504,
+      585.249
+     ],
+     "text": "повоз"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    115.15171875,
+    464.3080357142858,
+    1657.91859375,
+    647.5816964285714
+   ],
+   "confidence": 1.0,
+   "id": "L05",
+   "text": "грустный 1 медвеньнок",
+   "words": [
+    {
+     "bbox": [
+      194.07800625,
+      455.07911428571424,
+      1019.28136875,
+      695.1431142857142
+     ],
+     "text": "грустный"
+    },
+    {
+     "bbox": [
+      125.74689023437499,
+      441.5197142857144,
+      246.08904726562503,
+      698.7311428571427
+     ],
+     "text": "1"
+    },
+    {
+     "bbox": [
+      851.856366796875,
+      400.70157142857147,
+      1774.479570703125,
+      700.7815714285714
+     ],
+     "text": "медвеньнок"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    90.9628125,
+    647.6785714285713,
+    1263.3028125,
+    737.0803571428571
+   ],
+   "confidence": 1.0,
+   "id": "L06",
+   "text": "полки сиотрится",
+   "words": [
+    {
+     "bbox": [
+      835.6828734374999,
+      619.6111714285714,
+      1317.0515015625,
+      765.3643142857142
+     ],
+     "text": "полки"
+    },
+    {
+     "bbox": [
+      0.0,
+      608.9595714285713,
+      836.85591796875,
+      780.4338571428573
+     ],
+     "text": "сиотрится"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    131.825625,
+    717.5669642857143,
+    1621.674375,
+    891.9004464285714
+   ],
+   "confidence": 1.0,
+   "id": "L07",
+   "text": "как мороз о Как Дед",
+   "words": [
+    {
+     "bbox": [
+      1277.6053839843748,
+      730.3254571428572,
+      1489.6368035156252,
+      876.0785999999999
+     ],
+     "text": "как"
+    },
+    {
+     "bbox": [
+      762.7860035156251,
+      706.6742285714287,
+      1284.268683984375,
+      929.5907999999998
+     ],
+     "text": "мороз"
+    },
+    {
+     "bbox": [
+      1530.333268359375,
+      703.4865428571429,
+      1604.830794140625,
+      900.6819714285714
+     ],
+     "text": "о"
+    },
+    {
+     "bbox": [
+      106.88932851562501,
+      689.7872000000002,
+      444.993483984375,
+      895.5563428571426
+     ],
+     "text": "Как"
+    },
+    {
+     "bbox": [
+      472.432627734375,
+      642.0649142857144,
+      776.1533097656251,
+      976.4397714285712
+     ],
+     "text": "Дед"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    85.483125,
+    871.875,
+    1542.766875,
+    979.1571428571427
+   ],
+   "confidence": 1.0,
+   "id": "L08",
+   "text": "раздает подарки, подает",
+   "words": [
+    {
+     "bbox": [
+      931.241382421875,
+      836.203742857143,
+      1624.6414300781248,
+      1024.825457142857
+     ],
+     "text": "раздает"
+    },
+    {
+     "bbox": [
+      473.14537851562505,
+      828.0401142857144,
+      994.6280589843749,
+      1025.2355428571427
+     ],
+     "text": "подарки,"
+    },
+    {
+     "bbox": [
+      41.755414453125006,
+      830.6680285714287,
+      494.471148046875,
+      1019.2897428571428
+     ],
+     "text": "подает"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    81.09937500000001,
+    952.8348214285713,
+    1766.338125,
+    1145.0486607142857
+   ],
+   "confidence": 1.0,
+   "id": "L09",
+   "text": "последняя страни- Оторвана",
+   "words": [
+    {
+     "bbox": [
+      678.362806640625,
+      923.5466857142856,
+      1337.379380859375,
+      1206.4792571428575
+     ],
+     "text": "последняя"
+    },
+    {
+     "bbox": [
+      1304.743144921875,
+      952.3138,
+      1814.764667578125,
+      1132.3618000000001
+     ],
+     "text": "страни-"
+    },
+    {
+     "bbox": [
+      0.0,
+      909.0076857142856,
+      759.6987867187501,
+      1149.0716857142859
+     ],
+     "text": "Оторвана"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    99.33890625,
+    1100.9151785714284,
+    225.52828125,
+    1194.7870535714285
+   ],
+   "confidence": 1.0,
+   "id": "L10",
+   "text": "ла-",
+   "words": [
+    {
+     "bbox": [
+      73.609620703125,
+      1060.2602285714286,
+      251.257566796875,
+      1240.3082285714286
+     ],
+     "text": "ла-"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    77.18531250000001,
+    1166.6517857142858,
+    1762.4240625,
+    1354.3955357142859
+   ],
+   "confidence": 1.0,
+   "id": "L11",
+   "text": "страница, Последняя декаб-",
+   "words": [
+    {
+     "bbox": [
+      638.810813671875,
+      1190.3495142857143,
+      1423.900123828125,
+      1370.3975142857144
+     ],
+     "text": "страница,"
+    },
+    {
+     "bbox": [
+      0.0,
+      1123.1122857142857,
+      765.429365625,
+      1423.1922857142858
+     ],
+     "text": "Последняя"
+    },
+    {
+     "bbox": [
+      1344.2299687500001,
+      1095.8535428571429,
+      1802.6762812499999,
+      1421.6546857142857
+     ],
+     "text": "декаб-"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    94.0940625,
+    1341.71875,
+    289.4840625,
+    1435.590625
+   ],
+   "confidence": 1.0,
+   "id": "L12",
+   "text": "ря",
+   "words": [
+    {
+     "bbox": [
+      54.255168749999996,
+      1301.0638000000001,
+      329.32295625,
+      1481.1118000000001
+     ],
+     "text": "ря"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    991.666875,
+    1401.919642857143,
+    1732.520625,
+    1571.7830357142857
+   ],
+   "confidence": 1.0,
+   "id": "L13",
+   "text": "окно к в тебе",
+   "words": [
+    {
+     "bbox": [
+      1069.467673828125,
+      1422.5696285714284,
+      1384.649513671875,
+      1585.4702000000002
+     ],
+     "text": "окно"
+    },
+    {
+     "bbox": [
+      1387.6105019531249,
+      1398.3586285714282,
+      1473.5691855468751,
+      1604.1277714285718
+     ],
+     "text": "к"
+    },
+    {
+     "bbox": [
+      990.473673046875,
+      1339.1450857142859,
+      1087.8935144531251,
+      1647.7987999999998
+     ],
+     "text": "в"
+    },
+    {
+     "bbox": [
+      1486.80204375,
+      1330.9814571428574,
+      1761.86983125,
+      1648.2088857142858
+     ],
+     "text": "тебе"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    97.695,
+    1408.1473214285713,
+    919.96125,
+    1627.1816964285713
+   ],
+   "confidence": 1.0,
+   "id": "L14",
+   "text": "год А Неовый",
+   "words": [
+    {
+     "bbox": [
+      682.3216851562499,
+      1378.0350285714287,
+      945.9283148437501,
+      1695.2624571428569
+     ],
+     "text": "год"
+    },
+    {
+     "bbox": [
+      98.97568125,
+      1392.9628571428568,
+      190.66494375,
+      1607.3057142857142
+     ],
+     "text": "А"
+    },
+    {
+     "bbox": [
+      185.66746874999998,
+      1360.5882285714283,
+      644.11378125,
+      1626.3733714285715
+     ],
+     "text": "Неовый"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    122.66671875,
+    1579.0625,
+    664.05984375,
+    1677.404464285714
+   ],
+   "confidence": 1.0,
+   "id": "L15",
+   "text": "стучится",
+   "words": [
+    {
+     "bbox": [
+      12.279783984375001,
+      1536.4716,
+      774.4467785156249,
+      1725.0933142857143
+     ],
+     "text": "стучится"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    64.6603125,
+    1642.03125,
+    1790.6053125,
+    1852.1254464285714
+   ],
+   "confidence": 1.0,
+   "id": "L16",
+   "text": "радость дом он принесет дел в",
+   "words": [
+    {
+     "bbox": [
+      446.37416953125,
+      1642.6297714285715,
+      939.20395546875,
+      1891.2674857142858
+     ],
+     "text": "радость"
+    },
+    {
+     "bbox": [
+      199.07548125,
+      1653.0014857142853,
+      474.14326875,
+      1858.770628571429
+     ],
+     "text": "дом"
+    },
+    {
+     "bbox": [
+      1474.2819363281249,
+      1660.7452857142855,
+      1606.0852511718751,
+      1832.2195714285715
+     ],
+     "text": "он"
+    },
+    {
+     "bbox": [
+      887.343605859375,
+      1647.465771428571,
+      1511.976706640625,
+      1853.2349142857147
+     ],
+     "text": "принесет"
+    },
+    {
+     "bbox": [
+      1607.9221207031248,
+      1610.3950857142859,
+      1785.5700667968752,
+      1919.0487999999998
+     ],
+     "text": "дел"
+    },
+    {
+     "bbox": [
+      79.6863984375,
+      1579.9486571428572,
+      194.2979765625,
+      1888.6023714285711
+     ],
+     "text": "в"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    108.1846875,
+    1784.575892857143,
+    384.9871875,
+    1896.3281249999998
+   ],
+   "confidence": 1.0,
+   "id": "L17",
+   "text": "теба.",
+   "words": [
+    {
+     "bbox": [
+      51.746254687500006,
+      1736.177142857143,
+      441.4256203125,
+      1950.5199999999998
+     ],
+     "text": "теба."
+    }
+   ]
+  },
+  {
+   "bbox": [
+    136.9921875,
+    1892.5223214285716,
+    544.0546875,
+    2022.1549107142857
+   ],
+   "confidence": 1.0,
+   "id": "L18",
+   "text": "Припев.",
+   "words": [
+    {
+     "bbox": [
+      53.9944921875,
+      1836.3797714285715,
+      627.0523828125,
+      2085.0174857142856
+     ],
+     "text": "Припев."
+    }
+   ]
+  },
+  {
+   "bbox": [
+    69.0440625,
+    2028.147321428571,
+    1770.5653125,
+    2175.6602678571426
+   ],
+   "confidence": 1.0,
+   "id": "L19",
+   "text": "раскрыл. (икристые 3 Мороз",
+   "words": [
+    {
+     "bbox": [
+      559.7516437500001,
+      2007.4271428571428,
+      1201.5764812500001,
+      2221.77
+     ],
+     "text": "раскрыл."
+    },
+    {
+     "bbox": [
+      1101.2974171875,
+      2017.658914285714,
+      1857.7338328125,
+      2180.5594857142864
+     ],
+     "text": "(икристые"
+    },
+    {
+     "bbox": [
+      92.68304296875,
+      1988.1920857142854,
+      149.98883203124998,
+      2211.1086571428573
+     ],
+     "text": "3"
+    },
+    {
+     "bbox": [
+      141.07729453125,
+      1980.028457142857,
+      633.90708046875,
+      2211.518742857143
+     ],
+     "text": "Мороз"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    111.86390625,
+    2174.84375,
+    604.40953125,
+    2250.8352678571428
+   ],
+   "confidence": 1.0,
+   "id": "L20",
+   "text": "ресницы,",
+   "words": [
+    {
+     "bbox": [
+      11.436694921875002,
+      2141.9325999999996,
+      704.836742578125,
+      2287.685742857143
+     ],
+     "text": "ресницы,"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1811.428125,
+    111.40625,
+    2055.665625,
+    214.21830357142858
+   ],
+   "confidence": 1.0,
+   "id": "L21",
+   "text": "гназ",
+   "words": [
+    {
+     "bbox": [
+      1761.6295078125002,
+      66.8794,
+      2105.4642421875,
+      264.07482857142855
+     ],
+     "text": "гназ"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1783.63828125,
+    176.45089285714283,
+    3472.94765625,
+    359.7245535714286
+   ],
+   "confidence": 1.0,
+   "id": "L22",
+   "text": "нами с вместе И весе- будет",
+   "words": [
+    {
+     "bbox": [
+      2464.3442414062497,
+      193.50111428571427,
+      2819.6401335937503,
+      347.8279714285714
+     ],
+     "text": "нами"
+    },
+    {
+     "bbox": [
+      2424.5560347656246,
+      188.10534285714283,
+      2487.5924027343754,
+      351.0059142857143
+     ],
+     "text": "с"
+    },
+    {
+     "bbox": [
+      1913.520378515625,
+      142.31125714285716,
+      2435.003058984375,
+      382.3752571428571
+     ],
+     "text": "вместе"
+    },
+    {
+     "bbox": [
+      1795.2350613281249,
+      144.93917142857146,
+      1927.0383761718751,
+      376.42945714285713
+     ],
+     "text": "И"
+    },
+    {
+     "bbox": [
+      3271.679712890625,
+      134.00768571428574,
+      3472.249974609375,
+      374.0716857142857
+     ],
+     "text": "весе-"
+    },
+    {
+     "bbox": [
+      2781.5339953125003,
+      97.07694285714283,
+      3308.7472546874997,
+      448.59922857142857
+     ],
+     "text": "будет"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1825.0490625,
+    345.2901785714286,
+    2175.1228125,
+    421.28169642857137
+   ],
+   "confidence": 1.0,
+   "id": "L23",
+   "text": "литься",
+   "words": [
+    {
+     "bbox": [
+      1753.67104453125,
+      312.37902857142865,
+      2246.5008304687503,
+      458.1321714285713
+     ],
+     "text": "литься"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    2685.36,
+    415.17857142857144,
+    3483.2025,
+    611.8625
+   ],
+   "confidence": 1.0,
+   "id": "L24",
+   "text": "поздний вручка",
+   "words": [
+    {
+     "bbox": [
+      3091.71836015625,
+      402.3498857142858,
+      3507.0,
+      633.8401714285712
+     ],
+     "text": "поздний"
+    },
+    {
+     "bbox": [
+      2620.776403125,
+      329.99677142857155,
+      3125.067346875,
+      707.2401999999998
+     ],
+     "text": "вручка"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1796.78953125,
+    431.7857142857143,
+    2598.70265625,
+    592.7089285714285
+   ],
+   "confidence": 1.0,
+   "id": "L25",
+   "text": "(дедушка и И",
+   "words": [
+    {
+     "bbox": [
+      1888.1543179687499,
+      389.0703714285715,
+      2495.59568203125,
+      654.8555142857142
+     ],
+     "text": "(дедушка"
+    },
+    {
+     "bbox": [
+      2501.3017980468753,
+      401.51022857142857,
+      2598.7216394531247,
+      581.5582285714285
+     ],
+     "text": "и"
+    },
+    {
+     "bbox": [
+      1792.22925703125,
+      383.1148285714286,
+      1918.30199296875,
+      623.1788285714285
+     ],
+     "text": "И"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1848.376875,
+    575.0223214285714,
+    2003.060625,
+    668.8941964285715
+   ],
+   "confidence": 1.0,
+   "id": "L26",
+   "text": "час",
+   "words": [
+    {
+     "bbox": [
+      1816.8377507812502,
+      534.3673714285715,
+      2034.5997492187498,
+      714.4153714285713
+     ],
+     "text": "час"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1811.50640625,
+    635.2232142857143,
+    3476.39203125,
+    840.8473214285714
+   ],
+   "confidence": 1.0,
+   "id": "L27",
+   "text": "за и Забудем- невзгоды все",
+   "words": [
+    {
+     "bbox": [
+      3314.1723410156246,
+      621.7103142857144,
+      3468.8979714843754,
+      896.0691714285714
+     ],
+     "text": "за"
+    },
+    {
+     "bbox": [
+      3202.82724375,
+      645.3615428571429,
+      3294.51650625,
+      842.5569714285714
+     ],
+     "text": "и"
+    },
+    {
+     "bbox": [
+      1740.8902605468752,
+      583.2402,
+      2388.445676953125,
+      874.7464857142858
+     ],
+     "text": "Забудем-"
+    },
+    {
+     "bbox": [
+      2528.1788824218747,
+      559.4490285714286,
+      3221.5789300781253,
+      919.5450285714286
+     ],
+     "text": "невзгоды"
+    },
+    {
+     "bbox": [
+      2375.9866289062497,
+      575.0765714285714,
+      2547.9039960937503,
+      875.1565714285714
+     ],
+     "text": "все"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1834.28625,
+    790.2232142857142,
+    2111.08875,
+    906.4455357142857
+   ],
+   "confidence": 1.0,
+   "id": "L28",
+   "text": "боты.",
+   "words": [
+    {
+     "bbox": [
+      1777.8478171875,
+      739.8885142857141,
+      2167.5271828125,
+      962.8050857142858
+     ],
+     "text": "боты."
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1842.66234375,
+    903.0133928571428,
+    3507.0,
+    1041.5861607142856
+   ],
+   "confidence": 1.0,
+   "id": "L29",
+   "text": "наполняются счастьм, Пусть",
+   "words": [
+    {
+     "bbox": [
+      2859.7579042968746,
+      901.9326000000001,
+      3507.0,
+      1047.6857428571427
+     ],
+     "text": "наполняются"
+    },
+    {
+     "bbox": [
+      2215.8969714843747,
+      894.0488571428573,
+      2978.0639660156253,
+      1065.5231428571426
+     ],
+     "text": "счастьм,"
+    },
+    {
+     "bbox": [
+      1797.633990234375,
+      842.9989428571428,
+      2284.7331972656248,
+      1108.7840857142858
+     ],
+     "text": "Пусть"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1862.9371875,
+    1047.6339285714287,
+    2278.1409375,
+    1145.9758928571428
+   ],
+   "confidence": 1.0,
+   "id": "L30",
+   "text": "сердца,",
+   "words": [
+    {
+     "bbox": [
+      1778.27953828125,
+      1005.0430285714286,
+      2362.7985867187504,
+      1193.664742857143
+     ],
+     "text": "сердца,"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1832.64234375,
+    1084.3080357142858,
+    3416.11546875,
+    1321.2227678571428
+   ],
+   "confidence": 1.0,
+   "id": "L31",
+   "text": "А год. год а новый Новый",
+   "words": [
+    {
+     "bbox": [
+      1847.6533605468749,
+      1113.409285714286,
+      1945.0732019531251,
+      1327.7521428571426
+     ],
+     "text": "А"
+    },
+    {
+     "bbox": [
+      2442.460522265625,
+      1089.6181142857145,
+      2688.875415234375,
+      1372.5506857142855
+     ],
+     "text": "год."
+    },
+    {
+     "bbox": [
+      3212.0605171875,
+      1094.734,
+      3418.3613578125,
+      1351.9454285714287
+     ],
+     "text": "год"
+    },
+    {
+     "bbox": [
+      2694.6263472656246,
+      1118.3852285714286,
+      2757.6627152343754,
+      1298.4332285714286
+     ],
+     "text": "а"
+    },
+    {
+     "bbox": [
+      1926.45185390625,
+      1102.3378571428568,
+      2465.12627109375,
+      1316.6807142857142
+     ],
+     "text": "новый"
+    },
+    {
+     "bbox": [
+      2749.6594359375,
+      1026.3772285714288,
+      3231.0280640625,
+      1335.0309428571427
+     ],
+     "text": "Новый"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1864.1896875,
+    1287.0535714285713,
+    2417.7946875,
+    1376.455357142857
+   ],
+   "confidence": 1.0,
+   "id": "L32",
+   "text": "приходит",
+   "words": [
+    {
+     "bbox": [
+      1751.312821875,
+      1248.3345714285713,
+      2530.671553125,
+      1419.8088571428573
+     ],
+     "text": "приходит"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1827.94546875,
+    1344.486607142857,
+    3452.12484375,
+    1527.760267857143
+   ],
+   "confidence": 1.0,
+   "id": "L33",
+   "text": "годом- с А новый новая весна",
+   "words": [
+    {
+     "bbox": [
+      2448.903851953125,
+      1356.840771428571,
+      2901.619585546875,
+      1562.6099142857147
+     ],
+     "text": "годом-"
+    },
+    {
+     "bbox": [
+      1974.438847265625,
+      1356.7008285714287,
+      2037.475215234375,
+      1553.896257142857
+     ],
+     "text": "с"
+    },
+    {
+     "bbox": [
+      1841.922781640625,
+      1348.3972571428571,
+      1950.803780859375,
+      1545.5926857142856
+     ],
+     "text": "А"
+    },
+    {
+     "bbox": [
+      2019.5462648437501,
+      1348.257314285714,
+      2489.45373515625,
+      1536.8790285714288
+     ],
+     "text": "новый"
+    },
+    {
+     "bbox": [
+      2852.744687109375,
+      1310.2070285714285,
+      3202.310000390625,
+      1541.6973142857144
+     ],
+     "text": "новая"
+    },
+    {
+     "bbox": [
+      3189.4192312500004,
+      1291.3918,
+      3464.4870187499996,
+      1557.1769428571426
+     ],
+     "text": "весна"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1875.85359375,
+    1577.6785714285716,
+    2229.99796875,
+    1738.6017857142858
+   ],
+   "confidence": 1.0,
+   "id": "L34",
+   "text": "Кренний",
+   "words": [
+    {
+     "bbox": [
+      1803.645598828125,
+      1507.9843714285716,
+      2302.205963671875,
+      1816.6380857142856
+     ],
+     "text": "Кренний"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1882.5075,
+    1758.9732142857142,
+    2908.305,
+    1928.836607142857
+   ],
+   "confidence": 1.0,
+   "id": "L35",
+   "text": "и снова Ресна Преди",
+   "words": [
+    {
+     "bbox": [
+      2547.08126015625,
+      1785.0189714285714,
+      2627.30936484375,
+      1939.3458285714285
+     ],
+     "text": "и"
+    },
+    {
+     "bbox": [
+      2623.3504863281246,
+      1752.3644571428572,
+      2938.5323261718754,
+      1940.9861714285714
+     ],
+     "text": "снова"
+    },
+    {
+     "bbox": [
+      2250.952489453125,
+      1739.0849428571428,
+      2520.289698046875,
+      1962.0015142857142
+     ],
+     "text": "Ресна"
+    },
+    {
+     "bbox": [
+      1833.2067515625,
+      1685.4071142857142,
+      2268.7307484374996,
+      2011.208257142857
+     ],
+     "text": "Преди"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1862.780625,
+    1904.9776785714284,
+    3100.250625,
+    2025.6700892857143
+   ],
+   "confidence": 1.0,
+   "id": "L36",
+   "text": "рощи бофивут Пусть",
+   "words": [
+    {
+     "bbox": [
+      2228.873262890625,
+      1901.2689714285714,
+      2612.822049609375,
+      2055.5958285714287
+     ],
+     "text": "рощи"
+    },
+    {
+     "bbox": [
+      2541.1755269531245,
+      1855.3349428571428,
+      3177.2697855468755,
+      2078.251514285714
+     ],
+     "text": "бофивут"
+    },
+    {
+     "bbox": [
+      1815.73398515625,
+      1855.3349428571428,
+      2262.71913984375,
+      2078.251514285714
+     ],
+     "text": "Пусть"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1871.3915625,
+    2003.9285714285716,
+    3271.6865625,
+    2182.7321428571427
+   ],
+   "confidence": 1.0,
+   "id": "L37",
+   "text": "шум ручся лесного Дос",
+   "words": [
+    {
+     "bbox": [
+      2109.9159011718752,
+      1991.2398285714285,
+      2528.2481613281248,
+      2231.3038285714283
+     ],
+     "text": "шум"
+    },
+    {
+     "bbox": [
+      2513.0643386718752,
+      1996.3557142857146,
+      2931.3965988281248,
+      2210.698571428571
+     ],
+     "text": "ручся"
+    },
+    {
+     "bbox": [
+      2897.550721875,
+      2006.5874857142853,
+      3310.152403125,
+      2169.4880571428575
+     ],
+     "text": "лесного"
+    },
+    {
+     "bbox": [
+      1859.2652097656248,
+      1955.3976285714286,
+      2105.680102734375,
+      2204.035342857143
+     ],
+     "text": "Дос"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    1856.9878125,
+    2110.4910714285716,
+    3192.1528125,
+    2316.1151785714283
+   ],
+   "confidence": 1.0,
+   "id": "L38",
+   "text": "лесу цветут Ивети",
+   "words": [
+    {
+     "bbox": [
+      2422.890209765625,
+      2096.9781714285714,
+      2669.305102734375,
+      2371.337028571428
+     ],
+     "text": "лесу"
+    },
+    {
+     "bbox": [
+      2669.777530078125,
+      2085.486914285714,
+      3260.027157421875,
+      2334.1246285714287
+     ],
+     "text": "цветут"
+    },
+    {
+     "bbox": [
+      1798.1960496093748,
+      2071.6476285714284,
+      2331.1398878906252,
+      2320.285342857143
+     ],
+     "text": "Ивети"
+    }
+   ]
+  },
+  {
+   "bbox": [
+    58.55437499999999,
+    2242.6562499999995,
+    3507.0,
+    2416.9897321428575
+   ],
+   "confidence": 1.0,
+   "id": "L39",
+   "text": "пр прозрачных Завьюженой с нас зимы солнцем вместе Пуский",
+   "words": [
+    {
+     "bbox": [
+      1194.285952734375,
+      2237.159285714285,
+      1314.628109765625,
+      2451.502142857143
+     ],
+     "text": "пр"
+    },
+    {
+     "bbox": [
+      1251.6976171875,
+      2226.5076857142863,
+      1824.7555078125,
+      2466.571685714285
+     ],
+     "text": "прозрачных"
+    },
+    {
+     "bbox": [
+      0.0,
+      2252.7868285714285,
+      790.7302570312501,
+      2407.1136857142856
+     ],
+     "text": "Завьюженой"
+    },
+    {
+     "bbox": [
+      2504.934830859375,
+      2247.3910571428564,
+      2579.432356640625,
+      2410.291628571429
+     ],
+     "text": "с"
+    },
+    {
+     "bbox": [
+      2270.5879710937497,
+      2250.018971428571,
+      2465.4276539062503,
+      2404.3458285714282
+     ],
+     "text": "нас"
+    },
+    {
+     "bbox": [
+      735.45273515625,
+      2223.739828571429,
+      1182.43788984375,
+      2463.803828571428
+     ],
+     "text": "зимы"
+    },
+    {
+     "bbox": [
+      2572.27216640625,
+      2247.111171428571,
+      3110.94658359375,
+      2392.8643142857145
+     ],
+     "text": "солнцем"
+    },
+    {
+     "bbox": [
+      3059.7786316406246,
+      2209.3407714285713,
+      3507.0,
+      2415.1099142857147
+     ],
+     "text": "вместе"
+    },
+    {
+     "bbox": [
+      1812.38198203125,
+      2190.805428571428,
+      2305.2117679687503,
+      2448.016857142858
+     ],
+     "text": "Пуский"
+    }
+   ]
+  }
+ ],
+ "transcription": {
+  "accuracy": 0.0,
+  "deletions": 41,
+  "insertions": 50,
+  "n_read_words": 113,
+  "n_student_scored_words": 104,
+  "substitutions": 16,
+  "wer": 1.028846,
+  "word_edits": 107
+ },
+ "wall_s": 2.969
+}

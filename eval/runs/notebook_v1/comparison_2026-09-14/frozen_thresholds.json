@@ -1,0 +1,22 @@
+{
+  "record_type": "my_notebook_v1_frozen_thresholds_v1",
+  "source_fold": "dev",
+  "budget_false_marks_per_100": 0.65,
+  "readers": {
+    "glm": {
+      "config_id": "b95dd845f0ca6c5a5751b0f7efee78289ed7e4758d1c631b382e2365de6f47a4",
+      "receipt": "eval/runs/notebook_v1/comparison_2026-09-14/glm_dev",
+      "threshold": 65.766,
+      "selection_status": "no_operating_point",
+      "dev_false_per_100": 28.48605577689243
+    },
+    "ctc": {
+      "config_id": "b3d820724aeb4f3e2edaf012b25252ff16f8a8bbf0ad148db32c56516aeee9a4",
+      "receipt": "eval/runs/notebook_v1/comparison_2026-09-14/ctc_dev",
+      "threshold": 75.443,
+      "selection_status": "no_operating_point",
+      "dev_false_per_100": 113.34661354581674
+    }
+  },
+  "rule": "Apply each finite conservative threshold unchanged to the sealed fold exactly once; no sealed tuning. Both are no_operating_point because always-on non-spelling marks exceed the budget."
+}
