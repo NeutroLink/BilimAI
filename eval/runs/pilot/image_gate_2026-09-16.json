@@ -1,0 +1,36 @@
+{
+  "image": "unknown",
+  "stages": {
+    "accelerator": {
+      "ok": true,
+      "torch": "2.13.0+cu130",
+      "device": "NVIDIA GeForce RTX 5090",
+      "capability": "12.0",
+      "vram_total_gb": 33.67,
+      "vram_free_gb": 33.14,
+      "device_count": 1
+    },
+    "kernel_compile": {
+      "ok": true,
+      "triton": "3.7.1",
+      "compiled_and_ran_seconds": 0.59,
+      "cache_dir": "~/.triton/cache"
+    },
+    "evaluate_page": {
+      "ok": true,
+      "model_load_seconds": 0.6,
+      "page_seconds": 10.6,
+      "health": {
+        "status": "ok"
+      },
+      "headline": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043d\u0430",
+      "findings": 12,
+      "first_finding": {
+        "title": "\u041b\u0438\u0448\u043d\u0435\u0435: \u00ab\u0432\u00bb",
+        "detail": "\u041b\u0438\u0448\u043d\u0435\u0435 \u0441\u043b\u043e\u0432\u043e"
+      },
+      "report_pdf_bytes": 163243
+    }
+  },
+  "passed": true
+}

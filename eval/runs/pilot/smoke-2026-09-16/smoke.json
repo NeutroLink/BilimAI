@@ -1,0 +1,46 @@
+{
+  "started_at": "2026-09-16T16:53:44Z",
+  "elapsed_seconds": 34.818,
+  "endpoint": {
+    "name": "bilimai-ru-dictation-pilot",
+    "id": 37496,
+    "autoscaler_url": "https://run.vast.ai",
+    "ca_bundle": {
+      "path": "pilot/vast-console-root.pem",
+      "sha256": "4068eae92482f045a1159b52b604142cc2c7e427a76bf8cf2070e779978e9507"
+    }
+  },
+  "document": {
+    "path": "docs/demo-v5-page.jpg",
+    "sha256": "cd9e75a0560afcf33ae497ce9452d3bcbaf3f0b9ce0631880b8fff90c6a82982",
+    "bytes": 149990,
+    "submitted_sha256": "dfd8bb6a7b8dafc2358264147f00de2219fad240039bfd1bc6f3f40bfd4d2017",
+    "submitted_bytes": 911383,
+    "width": 1400,
+    "height": 548
+  },
+  "source_text": {
+    "path": "pilot/smoke-source.txt",
+    "sha256": "bfb85ccbe3c0e1d73d35ff8a48ef14dd32e6854199200e3826c49f54c7dac3f7",
+    "characters": 203
+  },
+  "artifacts": {
+    "document.png": {
+      "bytes": 939029,
+      "sha256": "3e74a1a7175b94cddb1e39385de6100d32e1c5a4baccfda4284428f38c7d9d8c",
+      "width": 1400,
+      "height": 548
+    },
+    "report.pdf": {
+      "bytes": 163243,
+      "sha256": "63b36164cef322ce1dca371ca5929b6bf0ed49c235f96d4d38009bbc3a8a7906",
+      "pages": 1
+    },
+    "assessment.json": {
+      "bytes": 1655,
+      "sha256": "16da034401ab3d91ded564ee4139b56ff379b610fedf15dd46b4b060d8e8d9e9",
+      "headline": "Проверка завершена",
+      "findings": 12
+    }
+  }
+}

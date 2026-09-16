@@ -1,0 +1,58 @@
+{
+  "gpu": "RTX 5090",
+  "levels": [
+    {
+      "concurrency": 1,
+      "wall_seconds": 3.58,
+      "seconds_per_page": 3.58,
+      "pages_per_minute": 16.78,
+      "failures": 0,
+      "findings_per_page": [
+        42
+      ],
+      "findings_identical": true
+    },
+    {
+      "concurrency": 2,
+      "wall_seconds": 7.04,
+      "seconds_per_page": 3.52,
+      "pages_per_minute": 17.04,
+      "failures": 0,
+      "findings_per_page": [
+        42,
+        42
+      ],
+      "findings_identical": true
+    },
+    {
+      "concurrency": 3,
+      "wall_seconds": 11.18,
+      "seconds_per_page": 3.73,
+      "pages_per_minute": 16.1,
+      "failures": 0,
+      "findings_per_page": [
+        42,
+        42,
+        42
+      ],
+      "findings_identical": true
+    },
+    {
+      "concurrency": 4,
+      "wall_seconds": 18.79,
+      "seconds_per_page": 4.7,
+      "pages_per_minute": 12.77,
+      "failures": 0,
+      "findings_per_page": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "findings_identical": true
+    }
+  ],
+  "peak_throughput_at_concurrency": 2,
+  "peak_pages_per_minute": 17.04,
+  "latency_at_peak_seconds": 7.04
+}
