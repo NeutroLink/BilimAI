@@ -1,0 +1,10 @@
+# Marker file so editors and language servers treat this folder as the
+# project root. Intentionally has no [project] table, so packaging tools
+# will not try to build BilimAI as an installable package.
+
+[tool.pyright]
+include = ["mvp", "models", "eval", "tools"]
+exclude = ["**/__pycache__", "**/.venv", "**/venv", "**/node_modules"]
+
+[tool.ruff]
+exclude = [".venv", "venv", "__pycache__", "node_modules"]
