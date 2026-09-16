@@ -1,0 +1,15 @@
+**
+!bilimai/
+!bilimai/**
+!pilot/
+!pilot/**
+!docs/
+!docs/demo-v5-page.jpg
+!models/
+!models/GLM-OCR/
+!models/GLM-OCR/**
+!models/adapters/
+!models/adapters/glm-ocr-lora-ru-r5c/
+!models/adapters/glm-ocr-lora-ru-r5c/**
+!models/readingpipeline/
+!models/readingpipeline/**
