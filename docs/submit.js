@@ -19,6 +19,7 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
   const dropzone = document.getElementById("upload-dropzone");
   const preview = document.getElementById("upload-preview");
   const previewBadge = document.getElementById("preview-badge");
+  const previewRemove = document.getElementById("preview-remove");
   const fileName = document.getElementById("upload-file-name");
   const fileDetail = document.getElementById("upload-file-detail");
   const submitButton = document.getElementById("evaluate-assignment");
@@ -65,7 +66,13 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     copyTimer: 0,
     cancelLockTimer: 0,
     pollGeneration: 0,
-    waitStartedAt: 0,
+    // Where the bar is: which stage's band it is in, when it entered that band, the place in the line
+    // the gateway last reported, and the highest fraction it has shown. The last one is what makes
+    // the bar unable to go backwards, whatever arrives out of order (2026-09-17).
+    waitStage: 0,
+    waitStageSince: 0,
+    queuePosition: 0,
+    barFraction: 0,
     waitTimer: 0,
   };
 
@@ -245,12 +252,15 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
   }
 
   /* The teacher's own material — her photograph and her pasted text — while a submission is in
-     flight. `inert` is the whole mechanism: one attribute takes the two containers out of the tab
-     order, out of the accessibility tree and off the pointer, so "blurred" and "unreachable" cannot
-     drift apart. The class on the workspace is only what the CSS blurs (2026-09-17). */
+     flight, and the X that would clear the photograph, which is part of the same material: the page
+     it stands on is already on its way to a teacher, so clearing it mid-check would leave him
+     reading a page the form no longer shows. `inert` is the whole mechanism: one attribute takes
+     them out of the tab order, out of the accessibility tree and off the pointer, so "blurred" and
+     "unreachable" cannot drift apart. The class on the workspace is only what the CSS blurs and
+     hides (2026-09-17). */
   function parkMaterial(parked) {
     workspace.classList.toggle("is-parked", parked);
-    [sourceField, dropzone].forEach((element) => element.toggleAttribute("inert", parked));
+    [sourceField, dropzone, previewRemove].forEach((element) => element.toggleAttribute("inert", parked));
   }
 
   function setDialogStatus(message) {
@@ -301,7 +311,7 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
 
   /* The end of the flow, whichever way it ended: the report is the browser's business now (or was
      deleted), and the teacher gets her form back — empty, unblurred and ready for the next page.
-     The photograph's object URL is released here and only here, which is why nothing clears the
+     The photograph leaves through releasePhoto() and not by hand, which is why nothing clears the
      result before a download has been handed over (2026-09-17). */
   function clearSubmission() {
     state.pollGeneration += 1;
@@ -315,17 +325,8 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     setCancelState("resting");
     setCopyState("resting");
     setDialogStatus("");
-    fileInput.value = "";
     sourceText.value = "";
-    state.file = null;
-    if (state.previewUrl) URL.revokeObjectURL(state.previewUrl);
-    state.previewUrl = "";
-    preview.removeAttribute("src");
-    preview.alt = "";
-    previewBadge.textContent = "";
-    dropzone.classList.remove("has-file");
-    fileName.textContent = ui.noFile;
-    fileDetail.textContent = ui.fileHint;
+    releasePhoto();
     parkMaterial(false);
     setFeedback(ui.nextPage);
     updateSubmitState();
@@ -343,7 +344,13 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     return ["image/jpeg", "image/png", "image/webp"].includes(file.type);
   }
 
-  function rejectFile(message) {
+  /* Everything the form is holding about the photograph, dropped in one place: her file, the object
+     URL the preview is drawn from, the picture, the badge over it, the two lines under it and the
+     class that says a page is attached. One function because the photograph leaves in three ways —
+     she picks another one, the form refuses the one she picked, and she presses the X on it — and a
+     URL dropped without being revoked holds its whole file for as long as the tab lives, up to the
+     form's own 20 MB (2026-09-17). */
+  function releasePhoto() {
     fileInput.value = "";
     state.file = null;
     if (state.previewUrl) URL.revokeObjectURL(state.previewUrl);
@@ -354,6 +361,10 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     dropzone.classList.remove("has-file");
     fileName.textContent = ui.noFile;
     fileDetail.textContent = ui.fileHint;
+  }
+
+  function rejectFile(message) {
+    releasePhoto();
     setFeedback(message, true);
     updateSubmitState();
   }
@@ -369,7 +380,7 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
       return;
     }
 
-    if (state.previewUrl) URL.revokeObjectURL(state.previewUrl);
+    releasePhoto();
     state.file = file;
     state.previewUrl = URL.createObjectURL(file);
     preview.src = state.previewUrl;
@@ -380,6 +391,19 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     fileDetail.textContent = `${formatSize(file.size)} · ${ui.replaceHint}`;
     announceReadiness();
     updateSubmitState();
+  }
+
+  /* The X above the photograph: her page leaves the form, and nothing else does — the teacher's text
+     is still hers. The two things that speak for the file, the line under the form and the button
+     beside it, are brought up to date by the same two functions every other change to this form goes
+     through, so there is no second copy of the rule that opens the button (2026-09-17). */
+  function removePhoto() {
+    releasePhoto();
+    announceReadiness();
+    updateSubmitState();
+    // The X goes with the photograph it stood on, so the keyboard lands on the control that puts one
+    // back instead of at the top of the page (2026-09-17).
+    dropzone.focus({preventScroll: true});
   }
 
   function setBusy(busy) {
@@ -393,24 +417,49 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     updateSubmitState();
   }
 
-  // The waiting bar. The first check of the day wakes a sleeping machine — the pilot measured that
-  // at 10-15 minutes (2026-09-17), and the gateway reports nothing while it happens, so the bar is
-  // time and not measurement: the fraction of 1 - e^(-t/7min) it shows is about 50% at five minutes
-  // and 86% at fifteen. It is capped below 1 so a wait that outlives the estimate keeps creeping
-  // instead of parking at a number, and the only way it reaches the end is the gateway saying the
-  // check is complete — a bar that fills and then keeps waiting would be worse than no bar at all.
+  /* The waiting bar, one band per stage the gateway names. One time curve cannot serve both pages
+     this form has to be honest about: it was tuned for the cold start the pilot measured at 10-15
+     minutes (2026-09-17), where the founder watched it crawl, and it described the estimate rather
+     than the page — a warm page is ~3.5 s of GPU compute inside ~11 s end to end, which that curve
+     read as 2-3 % before jumping to done. So each stage owns a band of the bar, entered the moment
+     the gateway reports it and filled by time inside that band, and the bands are sized for the range
+     between those two pages:
+   
+     * `queued` takes 40 % of the bar on a 7-minute time constant, which is where the cold start's
+       minutes live: it is the one stage whose length is not a property of the page at all, so it is
+       the one band that has to creep for minutes without parking at a number. A page that is 3rd in
+       line reads half of what a page 1st reads, because it is genuinely further from done.
+     * `starting` (40 → 55 %) and `rendering` (90 → 99 %) are the two short ends of the check, and
+       `evaluating` (55 → 90 %) takes the largest of the three because the compute is the largest
+       measured piece of a warm page — so a warm page is past halfway the moment it is evaluating,
+       which is the number the founder did not have.
+   
+     Each band then moves on a curve whose time constant is that stage's own measured duration, so a
+     warm page leaves a stage with about two-thirds of its band filled, and a stage that runs long
+     keeps creeping for several more seconds instead of parking the moment the measurement is spent.
+   
+     Nothing moves the bar backwards: every band opens where the one above it closes, and a stage the
+     bar has already left is not news. Nothing prints 100 but the gateway saying the check is
+     complete: the last band stops at 0.99, whose honest whole-number rounding is 99. */
   const WAIT_TICK_MS = 250;                  // sub-pixel steps on a 440px card, for a quarter of the work of rAF
-  const WAIT_TAU_MS = 7 * 60 * 1000;
-  const WAIT_CEILING = 0.97;
+  const WAIT_BANDS = [
+    {status: "queued", ceiling: 0.40, tauMs: 7 * 60 * 1000, queuePositioned: true},
+    {status: "starting", ceiling: 0.55, tauMs: 1500},
+    {status: "evaluating", ceiling: 0.90, tauMs: 3500},
+    {status: "rendering", ceiling: 0.99, tauMs: 1500},
+  ];
+
+  // Each band opens where the one above it closes: a boundary is one number, stated once.
+  WAIT_BANDS.forEach((band, index) => { band.floor = WAIT_BANDS[index - 1]?.ceiling ?? 0; });
 
   // Built once, not four times a second, and from the page's own locale, which is the only thing
   // that decides whether the number reads "13 %" or "13%".
   const percentFormat = new Intl.NumberFormat(ui.locale, {style: "percent", maximumFractionDigits: 0});
 
   // The fill and the number are written from one fraction, on one repaint, so the readout can never
-  // describe a bar other than the one on screen. The curve's own fraction stops at 0.97, whose
-  // honest whole-number rounding is 97, so nothing but finishWaiting()'s 1 can print 100 — the
-  // number says the same thing about the wait that the bar does (2026-09-17).
+  // describe a bar other than the one on screen. No band's own fraction reaches its last ceiling of
+  // 0.99, whose honest whole-number rounding is 99, so nothing but finishWaiting()'s 1 can print 100
+  // — the number says the same thing about the wait that the bar does (2026-09-17).
   function paintBar(fraction) {
     const percent = Math.round(fraction * 100);
     progressFill.style.transform = `scaleX(${fraction.toFixed(4)})`;
@@ -420,15 +469,49 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     progressPercent.setAttribute("aria-valuenow", String(percent));
   }
 
+  /* What one band has earned after `elapsedMs` in it: its share of the bar, filled on a curve with
+     the stage's own measured duration as its time constant. A page holding a place in the line is not
+     as far along as one that is first — the queue's band is scaled by that place, 1st in line reading
+     a whole band and 3rd reading half of it — and both keep creeping, because neither the gateway nor
+     this page knows when the machine arrives (2026-09-17). */
+  function bandFraction(band, elapsedMs, queuePosition) {
+    const place = band.queuePositioned && queuePosition > 0 ? 2 / (queuePosition + 1) : 1;
+    const earned = 1 - Math.exp(-elapsedMs / band.tauMs);
+    return band.floor + (band.ceiling - band.floor) * place * earned;
+  }
+
   function paintWait() {
-    const elapsed = Date.now() - state.waitStartedAt;
-    paintBar(WAIT_CEILING * (1 - Math.exp(-elapsed / WAIT_TAU_MS)));
+    const band = WAIT_BANDS[state.waitStage];
+    const earned = bandFraction(band, Date.now() - state.waitStageSince, state.queuePosition);
+    // The one written-down fraction, and the whole of the "never backwards" rule: a later poll, an
+    // earlier stage, a place in the line that got worse — whichever arrives, the bar only ever takes
+    // the larger value (2026-09-17).
+    state.barFraction = Math.max(state.barFraction, earned);
+    paintBar(state.barFraction);
+  }
+
+  /* The gateway's word about where the page is: the stage it names picks the band and starts that
+     band's clock, and the place in the line it names is what the queue's band is scaled by. A status
+     this bar has no band for says nothing, and a stage the bar has already left is not news and does
+     not move it — a poll answered out of order cannot take the number back down (2026-09-17). */
+  function reportStage(status, queuePosition) {
+    const index = WAIT_BANDS.findIndex((band) => band.status === status);
+    if (index < 0) return;
+    if (queuePosition > 0) state.queuePosition = queuePosition;
+    if (index > state.waitStage) {
+      state.waitStage = index;
+      state.waitStageSince = Date.now();
+    }
+    paintWait();   // the band's entry value, on the poll that brought the news
   }
 
   // Called once the gateway has accepted the page: until then the panel names no progress it cannot
   // know about, which is why a refusal never gets to show a moving bar.
   function startWaiting() {
-    state.waitStartedAt = Date.now();
+    state.waitStage = 0;
+    state.waitStageSince = Date.now();
+    state.queuePosition = 0;
+    state.barFraction = 0;
     workspace.classList.add("is-waiting");
     paintWait();
     state.waitTimer = window.setInterval(paintWait, WAIT_TICK_MS);
@@ -599,9 +682,11 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
       if (payload.status === "failed" || payload.status === "cancelled") {
         throw new Error(payload.error || ui.checkFailed);
       }
-      // What the gateway reports while a job runs — its status, its place in the line — is not put
-      // on screen: the panel says one thing for the whole wait, and the bar says how long that has
-      // been. The poll itself is what the wait is made of (2026-09-17).
+      // What the gateway reports while a job runs is not put on screen as words: the panel says one
+      // thing for the whole wait, and the bar is what carries the news. Its status and its place in
+      // the line are the only two facts there are about where the page actually is, and they are
+      // what the bar is drawn from (2026-09-17).
+      reportStage(payload.status, payload.queue_position);
       await new Promise((resolve) => window.setTimeout(resolve, 1500));
     }
   }
@@ -634,6 +719,7 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     updateSubmitState();
   });
   fileInput.addEventListener("change", () => loadFile(fileInput.files?.[0]));
+  previewRemove.addEventListener("click", removePhoto);
   dropzone.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();

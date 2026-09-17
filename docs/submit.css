@@ -297,6 +297,22 @@
   outline: 3px solid color-mix(in srgb, var(--upload-blue) 22%, transparent);
 }
 
+/* The frame is here for the X on the photograph: it cannot live inside the dropzone, which is a label
+   carrying role="button" — a button inside one control is two controls nested in each other — so it
+   needs a box of its own around the page to be positioned in, and this is it. Its own band at the top
+   is the X's: the control may not stand on the teacher's page, and the one thing a picture of a
+   notebook is made of is ink that reaches its corners, so the target has a band of the frame instead
+   of a corner of the page (seen in Chromium 2026-09-17: the 30px pill covered part of the first line
+   of the right page on the pilot's own page-57 fixture). The dropzone keeps filling the rest of the
+   frame exactly as it filled the workspace (2026-09-17). */
+.upload-frame {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  padding-top: 44px;
+}
+
 .upload-dropzone {
   position: relative;
   display: grid;
@@ -414,6 +430,88 @@
 
 .upload-dropzone.has-file .preview-badge {
   display: block;
+}
+
+/* The X on the photograph. 44x44 of target under a 30px pill: the glyph is the size a thumb can hit
+   on a phone, and the target is the size a thumb needs. It stands in the frame's own band above the
+   picture, its right edge on the picture's right edge (the dropzone's own 14px margin, in the frame's
+   coordinates), so nothing it draws lands on the page — and it is dark glass like the badge, because
+   the band it stands in is the workspace's paper and the pill has to be found on it: #fff on
+   rgba(22,22,20,.78) measures 9.0:1 over white paper (2026-09-17). */
+.preview-remove {
+  position: absolute;
+  top: 0;
+  right: 14px;
+  display: none;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* On the page only while there is a photograph to remove it from, which the dropzone's own has-file
+   class already says: the fact is stated once, in the module, and read once here. And not while a
+   check is running, where the page has already left her hands and submit.js has made the control
+   `inert` — the same sentence the parked blur above says about the photograph under it (2026-09-17). */
+.upload-dropzone.has-file ~ .preview-remove {
+  display: grid;
+}
+
+.upload-workspace.is-parked .preview-remove {
+  display: none;
+}
+
+.preview-remove > span {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(255, 255, 255, .45);
+  border-radius: 999px;
+  background: rgba(22, 22, 20, .78);
+  backdrop-filter: blur(8px);
+}
+
+/* The cross itself: two bars drawn rather than a typed glyph, so it is the same size on every machine
+   and the button's accessible name is free to be the whole sentence in the markup (2026-09-17). */
+.preview-remove > span::before,
+.preview-remove > span::after {
+  position: absolute;
+  inset: 0;
+  width: 13px;
+  height: 2px;
+  margin: auto;
+  border-radius: 1px;
+  background: #fff;
+  content: "";
+}
+
+.preview-remove > span::before {
+  transform: rotate(45deg);
+}
+
+.preview-remove > span::after {
+  transform: rotate(-45deg);
+}
+
+/* A focus ring cannot be one colour over a photograph: white disappears into the paper and the page's
+   own blue disappears into dark ink, so the ring is two — the badge's dark glass around a white ring,
+   15.7:1 apart, so one of the two always separates from whatever is behind the control. It is drawn
+   around the pill rather than around the 44px target, which is the thing the teacher can see, and the
+   browser's own ring on the target is turned off so there are not two: measured in Chromium
+   2026-09-17, that one was a 46px square over the page. The white ring is an `outline` because a
+   `box-shadow` is the one of the two a high-contrast theme drops, and a focus ring is the last thing
+   on this page that may go missing (2026-09-17). */
+.preview-remove:focus-visible {
+  outline: none;
+}
+
+.preview-remove:focus-visible > span {
+  outline: 2px solid #fff;
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px rgba(22, 22, 20, .92);
 }
 
 /* A submission parks the teacher's own material: her photograph and her pasted text stay on screen
@@ -570,11 +668,12 @@
   background: var(--line);
 }
 
-/* Width is the whole bar; the share of it that is filled is the module's time-based scale. There is
+/* Width is the whole bar; the share of it that is filled is the module's stage-and-time scale — one
+   band per stage the gateway reports, filled by the time spent inside that band. There is
    deliberately no transition on it: measured in Chromium, a transition kept the rendered bar at
    1.4px while the elapsed-time share it was given was already 52px, because the animation timeline
    does not advance in a page that is not being painted. Four direct updates a second are under a
-   pixel apart on this card, and they cannot disagree with the time they are drawn from
+   pixel apart on this card, and they cannot disagree with the fraction they are drawn from
    (2026-09-17). */
 .progress-fill {
   display: block;

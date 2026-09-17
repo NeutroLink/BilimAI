@@ -358,15 +358,23 @@
             <textarea id="source-text" name="source_text" rows="7" maxlength="12000" placeholder="Paste the full text of the dictation in Russian…" required></textarea>
           </label>
           <input id="assignment-file" name="document" type="file" accept="image/jpeg,image/png,image/webp" hidden>
-          <label class="upload-dropzone" id="upload-dropzone" for="assignment-file" role="button" tabindex="0" aria-label="Upload a photo of the notebook">
-            <span class="upload-placeholder">
-              <span class="upload-icon" aria-hidden="true"></span>
-              <strong>Drag a photo of the notebook here</strong>
-              <span>or click to choose a JPG, PNG or WEBP up to 20 MB</span>
-            </span>
-            <img class="upload-preview" id="upload-preview" alt="">
-            <span class="preview-badge" id="preview-badge"></span>
-          </label>
+          <div class="upload-frame">
+            <label class="upload-dropzone" id="upload-dropzone" for="assignment-file" role="button" tabindex="0" aria-label="Upload a photo of the notebook">
+              <span class="upload-placeholder">
+                <span class="upload-icon" aria-hidden="true"></span>
+                <strong>Drag a photo of the notebook here</strong>
+                <span>or click to choose a JPG, PNG or WEBP up to 20 MB</span>
+              </span>
+              <img class="upload-preview" id="upload-preview" alt="">
+              <span class="preview-badge" id="preview-badge"></span>
+            </label>
+            <!-- The X on the photograph, and the one way it leaves the form on its own. It stands
+                 beside the dropzone rather than inside it: the dropzone is a label with
+                 role="button", and a button inside one control is two controls nested in each
+                 other, which is also why pressing it cannot open the file picker. Its name is the
+                 page's; submit.js decides when it can be pressed and what it clears (2026-09-17). -->
+            <button class="preview-remove" id="preview-remove" type="button" aria-label="Remove the photo"><span aria-hidden="true"></span></button>
+          </div>
           <div class="upload-controls">
             <div class="upload-file-meta">
               <strong id="upload-file-name">No file selected</strong>
