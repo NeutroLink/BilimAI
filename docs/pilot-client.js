@@ -71,16 +71,3 @@ export function refusalFrom(response, payload) {
     retryAfter: Number.isFinite(seconds) && seconds > 0 ? seconds : 0,
   };
 }
-
-/**
- * Where a job holds in the line: 1-based while the gateway reports it is waiting, 0 otherwise.
- *
- * Only a `queued` job is waiting: the gateway counts every active job, so a page already being
- * evaluated also carries a position, and showing "1st in line" to the teacher whose page is running
- * would be a lie.
- */
-export function queuePlace(payload) {
-  if (payload?.status !== "queued") return 0;
-  const place = Number(payload?.queue_position);
-  return Number.isFinite(place) && place > 0 ? Math.floor(place) : 0;
-}
