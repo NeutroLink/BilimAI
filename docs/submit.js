@@ -42,9 +42,16 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
   // on the Russian page the two disagreed until a teacher clicked «Русский» herself (2026-09-17).
   const PILOT_LANGUAGE = "ru";
 
+  // And one assignment type switched on — dictation; the other four carry data-unavailable and are
+  // disabled. Same rule, same reason: a group with exactly one selectable option opens with it
+  // selected. Measured on the live site 2026-09-17: a teacher pasted her key, uploaded her page and
+  // «Проверить работу» stayed grey, because the type had never been pressed — the one control she
+  // had no reason to think was a choice.
+  const PILOT_ASSIGNMENT = "dictation";
+
   const state = {
     language: PILOT_LANGUAGE,
-    assignment: "",
+    assignment: PILOT_ASSIGNMENT,
     file: null,
     previewUrl: "",
     busy: false,
@@ -84,9 +91,11 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
         waiting: "Your page is accepted.",
         done: "Done",
         nextPage: "Paste the teacher's text and upload the next page.",
-        photoReady: "The photo is ready. Paste the teacher's text and confirm the settings.",
-        languagePicked: "Russian model selected. Paste the teacher's text and upload a photo.",
-        assignmentPicked: "Dictation selected. Paste the teacher's text and upload a photo.",
+        needBoth: "Paste the teacher's text and upload a photo.",
+        needText: "The photo is uploaded. Paste the teacher's text.",
+        needPhoto: "The teacher's text is in. Upload the photo of the page.",
+        ready: "Everything is in place. Press “Check the work”.",
+        notServed: "Only Russian dictations are checked for now.",
         noFile: "No file selected",
         fileHint: "One well-lit page with no cropped edges",
         wrongFormat: "Upload a photo in JPG, PNG or WEBP format.",
@@ -119,9 +128,11 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
         waiting: "Работа принята.",
         done: "Готово",
         nextPage: "Вставьте текст учителя и загрузите следующую страницу.",
-        photoReady: "Фотография готова. Вставьте текст учителя и подтвердите параметры.",
-        languagePicked: "Русская модель выбрана. Вставьте текст учителя и загрузите фотографию.",
-        assignmentPicked: "Диктант выбран. Вставьте текст учителя и загрузите фотографию.",
+        needBoth: "Вставьте текст учителя и загрузите фотографию.",
+        needText: "Фотография загружена. Осталось вставить текст учителя.",
+        needPhoto: "Текст учителя вставлен. Осталось загрузить фотографию страницы.",
+        ready: "Всё на месте. Нажмите «Проверить работу».",
+        notServed: "Пока проверяются только русские диктанты.",
         noFile: "Файл не выбран",
         fileHint: "Одна хорошо освещённая страница без обрезанных краёв",
         wrongFormat: "Загрузите фотографию в формате JPG, PNG или WEBP.",
@@ -172,16 +183,12 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
 
   const apiBase = endpoint();
 
-  // 429 is the one refusal the teacher can act on, so it is the one that says how long to wait. The
-  // gateway's own sentence is not repeated: it names what ran out (its cards, its line of waiting
-  // jobs), and a teacher reading this form is never told about any of that — the numbers are the
-  // same ones the gateway reported, said as a wait (2026-09-17).
+  // 429 is the one refusal the teacher can act on, so it is the one that says how long to wait. Two
+  // scopes reach here now, her own allowance and her address's; the waiting room's own refusal was
+  // retired with the room's cap (founder, 2026-09-17), so the branch that spoke for it is gone. The
+  // gateway's own sentence is not repeated: it names what ran out, and a teacher reading this form
+  // is never told about that — the number is the gateway's, said as a wait.
   function refusalMessage(refusal) {
-    if (refusal.scope === "queue") {
-      return english
-        ? "Too many checks right now. Try again in a few minutes."
-        : "Сейчас слишком много проверок. Попробуйте через несколько минут.";
-    }
     if (refusal.retryAfter <= 0) {
       return english
         ? "The check could not be accepted. Please try again a little later."
@@ -198,12 +205,37 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     feedback.classList.toggle("error", isError);
   }
 
+  /* The one condition that opens the form: the pilot's own pair of settings, the teacher's text and
+     her photograph. Both the button's `disabled` and the line under it are read from it, so the two
+     cannot come to disagree about whether there is anything left to ask her for. */
+  function readyToSend() {
+    return state.language === PILOT_LANGUAGE
+      && state.assignment === PILOT_ASSIGNMENT
+      && Boolean(sourceText.value.trim())
+      && Boolean(state.file);
+  }
+
   function updateSubmitState() {
-    submitButton.disabled = state.busy
-      || state.language !== "ru"
-      || state.assignment !== "dictation"
-      || !sourceText.value.trim()
-      || !state.file;
+    submitButton.disabled = state.busy || !readyToSend();
+  }
+
+  /* The line under the form answers one question — what is still missing — because the sentence it
+     used to carry asked the teacher to «подтвердить параметры», and the settings it named are
+     already made by the two preselections above: a teacher with her key pasted and her photograph
+     uploaded saw a grey «Проверить работу» and a line telling her to do what she had done (founder,
+     2026-09-17). It never lists a thing she has supplied, and it is written from the page's own
+     locale, so the two index.html files carry no copy of it that could drift from this rule. */
+  function announceReadiness() {
+    const text = sourceText.value.trim();
+    if (!text && !state.file) setFeedback(ui.needBoth);
+    else if (!text) setFeedback(ui.needText);
+    else if (!state.file) setFeedback(ui.needPhoto);
+    // Both of hers are in, so the form is open unless the pressed pair is not one this pilot serves.
+    // Only a markup change can produce that — both pages ship exactly one selectable option in each
+    // group, so the press can only ever re-state the pilot's own pair — and the line has to be as
+    // honest in that state as in the other three, or it says "everything is in place" over a grey
+    // button.
+    else setFeedback(readyToSend() ? ui.ready : ui.notServed);
   }
 
   function pressSingle(buttons, selected, attribute) {
@@ -346,7 +378,7 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     dropzone.classList.add("has-file");
     fileName.textContent = file.name;
     fileDetail.textContent = `${formatSize(file.size)} · ${ui.replaceHint}`;
-    setFeedback(ui.photoReady);
+    announceReadiness();
     updateSubmitState();
   }
 
@@ -579,7 +611,7 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     button.addEventListener("click", () => {
       state.language = button.dataset.language;
       pressSingle(languageButtons, state.language, "data-language");
-      setFeedback(ui.languagePicked);
+      announceReadiness();
       updateSubmitState();
     });
   });
@@ -589,12 +621,18 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     button.addEventListener("click", () => {
       state.assignment = button.dataset.assignment;
       pressSingle(categoryButtons, state.assignment, "data-assignment");
-      setFeedback(ui.assignmentPicked);
+      announceReadiness();
       updateSubmitState();
     });
   });
 
-  sourceText.addEventListener("input", updateSubmitState);
+  // Her text is the one input whose readiness nothing else re-reads, so the line follows the typing
+  // rather than the last event that happened to pass through: paste the key first and the line names
+  // the photograph alone (2026-09-17).
+  sourceText.addEventListener("input", () => {
+    announceReadiness();
+    updateSubmitState();
+  });
   fileInput.addEventListener("change", () => loadFile(fileInput.files?.[0]));
   dropzone.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
@@ -635,7 +673,7 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     body.append("document", state.file, state.file.name);
     body.append("source_text", sourceText.value.trim());
     body.append("language", PILOT_LANGUAGE);
-    body.append("assignment_type", "dictation");
+    body.append("assignment_type", PILOT_ASSIGNMENT);
 
     try {
       const accepted = await fetchJson("/v1/submissions", {method: "POST", body});
@@ -762,9 +800,11 @@ import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
     setCancelState("resting");
   });
 
-  // The initial selection, mirrored onto the buttons from the one place it is stated above: both
-  // pages open with «Русский» pressed, so the pressed state and the enable rule agree from first
-  // paint and the form is submittable without that click (2026-09-17).
+  // The initial selection, mirrored onto the buttons from the one place each is stated above: both
+  // pages open with «Русский» and «Диктант» pressed, so the pressed state and the enable rule agree
+  // from first paint and the form is submittable without either click (2026-09-17).
   pressSingle(languageButtons, PILOT_LANGUAGE, "data-language");
+  pressSingle(categoryButtons, PILOT_ASSIGNMENT, "data-assignment");
+  announceReadiness();
   updateSubmitState();
 })();

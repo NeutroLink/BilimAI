@@ -374,7 +374,10 @@
             </div>
             <button class="evaluate-button" id="evaluate-assignment" type="submit" disabled>Проверить работу</button>
           </div>
-          <div class="submission-feedback" id="submission-feedback" role="status" aria-live="polite">Выберите русский язык, диктант, вставьте текст и загрузите фотографию.</div>
+          <!-- Empty on purpose: submit.js writes this line from the form's own state, in the page's
+               own locale, so the page carries no second copy of what is still missing that could
+               drift from the rule that decides it (2026-09-17). -->
+          <div class="submission-feedback" id="submission-feedback" role="status" aria-live="polite"></div>
           <div class="evaluation-progress">
             <div class="progress-card">
               <span class="progress-orbit" aria-hidden="true"></span>
