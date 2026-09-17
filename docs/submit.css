@@ -3,12 +3,15 @@
   --upload-blue-tint: #eaf1f6;
   --upload-shadow: 0 24px 60px -42px rgba(48, 36, 25, .5);
   /* The fills this dialog needs that the page's own tokens do not cover: its three actions and the
-     badge over a checked page. The green and the ink on it are the design database's dark-theme
-     success pair (Accent #22C55E with On Accent #0F172A, which its coding-bootcamp and fitness
-     palettes both use), the white button takes the same ink, and the cancel button's three fills are
-     one fill per press. Each carries a fixed text colour, so unlike --upload-blue they do not follow
-     the theme — a green button is green on paper and on ink. */
-  --download-ok: #22c55e;
+     badge over a checked page. The download green is matched to the page's own pastel red
+     (#E0574D - hue 4, sat 70 %, light 59 %) rather than taken from a palette, because the founder
+     asked for the same soft register in a different hue: the same saturation and lightness at a
+     green hue measures #4DE083, which reads neon because green is perceptually lighter than red at
+     equal values, so lightness comes down to 56 % - #54C98B, 8.59:1 against the ink below. The
+     white button takes the same ink, and the cancel button's three fills are one fill per press.
+     Each carries a fixed text colour, so unlike --upload-blue they do not follow the theme - a green
+     button is green on paper and on ink. */
+  --download-ok: #54c98b;
   --dialog-ink: #0f172a;
   --cancel-hold: #f2b90d;
   --cancel-lock: #7a5751;

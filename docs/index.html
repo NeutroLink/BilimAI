@@ -39,6 +39,10 @@
   .btn.primary:hover { filter: brightness(0.94); }
   .btn.ghost { border-color: var(--line); color: var(--ink); background: transparent; }
   .btn:active { transform: translateY(1px); }
+  /* GitHub's own lockup replaces a text label, so the accessible name moves to aria-label: an image
+     alone leaves a link a screen reader reads as its URL. White, not black, because this theme is
+     dark - the black lockup is invisible on it. */
+  .btn.ghost .gh-lockup { height: 20px; width: auto; display: block; }
   .ic { width: 22px; height: 22px; flex: none; }
   .ic path { fill: currentColor; }
 
@@ -268,7 +272,7 @@
       <h1>Проверка тетрадей за минуты, а не за вечера</h1>
       <div class="ctas">
         <a class="btn primary" href="#submit-work">Проверьте свою работу</a>
-        <a class="btn ghost" href="https://github.com/NeutroLink/BilimAI">Код и данные открыты</a>
+        <a class="btn ghost" href="https://github.com/NeutroLink/BilimAI" aria-label="Код и данные открыты на GitHub"><img class="gh-lockup" src="assets/github-lockup.svg" alt="GitHub" width="448" height="127"></a>
       </div>
     </div>
     <figure class="hero-fig" aria-label="Страница школьной тетради с пометкой" style="margin:0">
