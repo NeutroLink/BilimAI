@@ -1,4 +1,4 @@
-import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-client.js";
+import {adoptSession, refusalFrom, sessionHeaders} from "./pilot-client.js";
 
 (() => {
   "use strict";
@@ -14,6 +14,7 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
   const languageButtons = [...document.querySelectorAll("[data-language]")];
   const categoryButtons = [...form.querySelectorAll("[data-assignment]")];
   const fileInput = document.getElementById("assignment-file");
+  const sourceField = form.querySelector(".source-text-field");
   const sourceText = document.getElementById("source-text");
   const dropzone = document.getElementById("upload-dropzone");
   const preview = document.getElementById("upload-preview");
@@ -28,12 +29,11 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
   const progressPercent = document.getElementById("evaluation-percent");
   const result = document.getElementById("assessment-result");
   const resultHeadline = document.getElementById("assessment-headline");
-  const resultSummary = document.getElementById("assessment-summary");
-  const findingsList = document.getElementById("assessment-findings");
-  const reportLink = document.getElementById("download-report");
-  const publicResultLink = document.getElementById("public-result-link");
-  const resultExpiry = document.getElementById("result-expiry");
-  const resetButton = document.getElementById("reset-evaluation");
+  const resultLink = document.getElementById("result-link");
+  const reportButton = document.getElementById("download-report");
+  const copyButton = document.getElementById("copy-report-link");
+  const cancelButton = document.getElementById("cancel-submission");
+  const dialogStatus = document.getElementById("dialog-status");
 
   // The pilot has one recognition model switched on — Russian (the Uzbek button carries
   // data-unavailable and is disabled) — and the enable rule below accepts nothing else. Naming it
@@ -49,6 +49,14 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
     previewUrl: "",
     busy: false,
     jobId: "",
+    reportUrl: "",
+    reportFilename: "",
+    publicUrl: "",
+    availableUntil: "",
+    handedOutReportUrl: "",
+    pageScrollY: 0,
+    copyTimer: 0,
+    cancelLockTimer: 0,
     pollGeneration: 0,
     waitStartedAt: 0,
     waitTimer: 0,
@@ -60,30 +68,20 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
   // waiting panel shows, which is read back off the page below.
   const english = document.documentElement.lang === "en";
 
-  const statusLabels = english
-    ? {
-        queued: "The check will start in a moment",
-        starting: "Getting your check ready",
-        evaluating: "Reading the page and comparing it with the teacher's text",
-        rendering: "Preparing the marked page and the PDF",
-      }
-    : {
-        queued: "Проверка начнётся с минуты на минуту",
-        starting: "Готовимся проверять вашу работу",
-        evaluating: "Считываем страницу и сверяем её с текстом учителя",
-        rendering: "Готовим помеченную страницу и PDF",
-      };
-
-  const pendingPhase = english ? "The check is still running" : "Проверка продолжается";
-
   // Every live string this module writes onto the screen, in the language of the page that loaded
   // it. Nothing here names the machinery behind the pilot: a teacher waiting for her page gets a
   // sentence about her page, and the words that describe the inside of the system stay out of the
   // user-visible text (2026-09-17).
+  //
+  // The waiting panel has one line and one sub-line, and neither of them moves: the phase used to be
+  // rebuilt from the gateway's status and from the job's place in the line, and a sentence that
+  // changes under a waiting teacher reads as a glitch rather than as news (2026-09-17). The line is
+  // the founder's, and the page's own half of it sits in the markup under this one.
   const ui = english
     ? {
         sending: "Sending your page…",
-        waiting: "Your page is accepted. Please keep this window open: the first check of the day takes a few minutes.",
+        waitingLine: "We read it three times too, at first.",
+        waiting: "Your page is accepted.",
         done: "Done",
         nextPage: "Paste the teacher's text and upload the next page.",
         photoReady: "The photo is ready. Paste the teacher's text and confirm the settings.",
@@ -95,7 +93,7 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
         tooBig: "The file is larger than 20 MB. Make the photo smaller and try again.",
         replaceHint: "click the page to replace it",
         uploadedWork: "Uploaded work",
-        checkedWork: "Checked work",
+        checkedWork: "Work checked",
         checkedAlt: "Checked work with BilimAI marks",
         kilobytes: "KB",
         megabytes: "MB",
@@ -106,20 +104,19 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
         rejected: "The request could not be accepted",
         unreadableReply: "The reply could not be read.",
         checkFailed: "The check could not be completed.",
-        checkComplete: "Check complete. Confirm every mark before using it.",
-        resetFailed: "Could not reset the check.",
+        deleteFailed: "Could not delete the report. Please try again.",
+        downloadFailed: "Could not download the report. Please try again.",
+        copyManual: "Copy from the field below",
         resultFailed: "Could not get the check result.",
         resultHeadline: "Check complete",
-        resultSummary: "The results are prepared for teacher review.",
-        noMarks: "No marks found",
-        noMarksDetail: "Review the returned page before confirming.",
-        deviation: "Deviation found",
-        expiryUnknown: "The result will be deleted in one hour.",
-        expiryUntil: "The result is available until",
+        confirmDelete: "Delete the report?",
+        availableTill: "Available till",
+        copied: "Link copied",
       }
     : {
         sending: "Отправляем вашу страницу…",
-        waiting: "Работа принята. Пожалуйста, не закрывайте это окно: первая проверка за день занимает несколько минут.",
+        waitingLine: "Мы тоже сначала читаем по три раза.",
+        waiting: "Работа принята.",
         done: "Готово",
         nextPage: "Вставьте текст учителя и загрузите следующую страницу.",
         photoReady: "Фотография готова. Вставьте текст учителя и подтвердите параметры.",
@@ -131,7 +128,7 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
         tooBig: "Файл больше 20 МБ. Уменьшите фотографию и попробуйте снова.",
         replaceHint: "нажмите на страницу, чтобы заменить",
         uploadedWork: "Загруженная работа",
-        checkedWork: "Проверенная работа",
+        checkedWork: "Работа проверена",
         checkedAlt: "Проверенная работа с пометками BilimAI",
         kilobytes: "КБ",
         megabytes: "МБ",
@@ -142,22 +139,27 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
         rejected: "Не удалось принять запрос",
         unreadableReply: "Не удалось прочитать ответ.",
         checkFailed: "Проверку не удалось завершить.",
-        checkComplete: "Проверка завершена. Перед использованием подтвердите каждую пометку.",
-        resetFailed: "Не удалось сбросить проверку.",
+        deleteFailed: "Не удалось удалить отчёт. Попробуйте ещё раз.",
+        downloadFailed: "Не удалось скачать отчёт. Попробуйте ещё раз.",
+        copyManual: "Скопируйте из поля ниже",
         resultFailed: "Не удалось получить результат проверки.",
         resultHeadline: "Проверка завершена",
-        resultSummary: "Результаты подготовлены для проверки учителем.",
-        noMarks: "Пометки не найдены",
-        noMarksDetail: "Просмотрите возвращённую страницу перед подтверждением.",
-        deviation: "Найдено отклонение",
-        expiryUnknown: "Результат будет удалён через один час.",
-        expiryUntil: "Результат доступен до",
+        confirmDelete: "Удалить отчёт?",
+        availableTill: "Доступно до",
+        copied: "Ссылка скопирована",
       };
 
   // The panel's first line is the page's own sentence for the seconds the photo is on its way up,
   // read off the markup so both locales carry it in one place. A second check in the same page
   // reuses it instead of keeping whatever the first one ended on.
   const sendingPhase = progressPhase.textContent;
+
+  // The same trick for the two buttons whose resting label is the page's own word, read back off the
+  // markup: the cancel button's two pressed states and the copy button's reveal and confirmation all
+  // have exactly one resting state to return to, and no second copy of «Отмена» or «Скопировать
+  // ссылку» lives in this module (2026-09-17).
+  const cancelLabel = cancelButton.textContent;
+  const copyLabel = copyButton.textContent;
 
   function endpoint() {
     const configured = document.querySelector('meta[name="bilimai-api-url"]')?.content.trim() || "";
@@ -169,36 +171,6 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
   }
 
   const apiBase = endpoint();
-
-  function ordinal(place) {
-    const teens = place % 100;
-    if (teens >= 11 && teens <= 13) return `${place}th`;
-    return `${place}${["th", "st", "nd", "rd"][place % 10] || "th"}`;
-  }
-
-  // «Вы 3-й в очереди» is the literal translation of the English label, but the pilot calls its own
-  // line of waiting jobs by that same word, and it is one a teacher never has to read. She is told
-  // instead how many works are still ahead of hers (2026-09-17).
-  function worksWord(count) {
-    const rest = count % 100;
-    if (rest % 10 === 1 && rest !== 11) return "работа";
-    if (rest % 10 >= 2 && rest % 10 <= 4 && (rest < 12 || rest > 14)) return "работы";
-    return "работ";
-  }
-
-  function queueLabel(place) {
-    if (english) return `You are ${ordinal(place)} in line`;
-    const ahead = place - 1;
-    if (ahead === 0) return "Следующая проверка — ваша";
-    return `Перед вами ещё ${ahead} ${worksWord(ahead)}`;
-  }
-
-  // The phase says what the line is waiting for.
-  function phaseText(payload) {
-    const phase = statusLabels[payload.status] || pendingPhase;
-    const place = queuePlace(payload);
-    return place > 0 ? `${queueLabel(place)} · ${phase}` : phase;
-  }
 
   // 429 is the one refusal the teacher can act on, so it is the one that says how long to wait. The
   // gateway's own sentence is not repeated: it names what ran out (its cards, its line of waiting
@@ -240,25 +212,77 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
     });
   }
 
-  function resetResult() {
-    result.hidden = true;
-    workspace.classList.remove("has-result");
-    findingsList.replaceChildren();
-    reportLink.removeAttribute("href");
-    publicResultLink.removeAttribute("href");
-    publicResultLink.hidden = true;
-    resultExpiry.textContent = "";
-    if (state.previewUrl && state.file) {
-      preview.src = state.previewUrl;
-      preview.alt = `${ui.uploadedWork}: ${state.file.name}`;
-      previewBadge.textContent = ui.uploadedWork;
-    }
+  /* The teacher's own material — her photograph and her pasted text — while a submission is in
+     flight. `inert` is the whole mechanism: one attribute takes the two containers out of the tab
+     order, out of the accessibility tree and off the pointer, so "blurred" and "unreachable" cannot
+     drift apart. The class on the workspace is only what the CSS blurs (2026-09-17). */
+  function parkMaterial(parked) {
+    workspace.classList.toggle("is-parked", parked);
+    [sourceField, dropzone].forEach((element) => element.toggleAttribute("inert", parked));
   }
 
+  function setDialogStatus(message) {
+    dialogStatus.textContent = message;
+    dialogStatus.hidden = !message;
+  }
+
+  /* The badge over the photograph names one of two different pages: the one she uploaded, or the one
+     BilimAI marked. Green is what "checked" looks like in this page's own palette, so the colour
+     belongs to the checked badge alone, and the words and the colour are set together, in one place
+     (2026-09-17). */
+  function setPreviewBadge(checked) {
+    previewBadge.textContent = checked ? ui.checkedWork : ui.uploadedWork;
+    previewBadge.classList.toggle("is-checked", checked);
+  }
+
+  /* The page behind the dialog does not move while the dialog is up: not by wheel, not by trackpad,
+     not by a touch drag, not by the arrow keys or the space bar, and not by a focus move trying to
+     drag the page to something behind it. `overflow: hidden` on the root (in submit.css) is what
+     stops the scroll; the rest of this is the two defects that trick is known for. A disappearing
+     scrollbar drags every element on the page sideways by its width, so the width is measured before
+     the lock and given back as padding. And iOS Safari scrolls the page behind a modal anyway, so the
+     page is pinned at the offset it was at instead of being left to the viewport (2026-09-17). */
+  function lockPageScroll() {
+    const root = document.documentElement;
+    state.pageScrollY = window.scrollY;
+    const barWidth = window.innerWidth - root.clientWidth;
+    root.classList.add("is-scroll-locked");
+    if (barWidth > 0) document.body.style.paddingRight = `${barWidth}px`;
+    document.body.style.position = "fixed";
+    document.body.style.top = `${-state.pageScrollY}px`;
+    document.body.style.width = "100%";
+  }
+
+  function unlockPageScroll() {
+    const root = document.documentElement;
+    root.classList.remove("is-scroll-locked");
+    document.body.style.removeProperty("padding-right");
+    document.body.style.removeProperty("position");
+    document.body.style.removeProperty("top");
+    document.body.style.removeProperty("width");
+    // Put back on the pixel it was on, with the page's own smooth scrolling held out of it: the
+    // teacher did not ask to travel back to where she was (2026-09-17).
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, state.pageScrollY);
+    root.style.removeProperty("scroll-behavior");
+  }
+
+  /* The end of the flow, whichever way it ended: the report is the browser's business now (or was
+     deleted), and the teacher gets her form back — empty, unblurred and ready for the next page.
+     The photograph's object URL is released here and only here, which is why nothing clears the
+     result before a download has been handed over (2026-09-17). */
   function clearSubmission() {
     state.pollGeneration += 1;
     state.jobId = "";
-    resetResult();
+    state.reportUrl = "";
+    state.reportFilename = "";
+    if (result.open) result.close();
+    // Back to rest on both buttons, which also drops the lock's and the copy confirmation's pending
+    // timers and puts the clipboard's fallback field away: none of them outlives the dialog they were
+    // started from (2026-09-17).
+    setCancelState("resting");
+    setCopyState("resting");
+    setDialogStatus("");
     fileInput.value = "";
     sourceText.value = "";
     state.file = null;
@@ -270,8 +294,12 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
     dropzone.classList.remove("has-file");
     fileName.textContent = ui.noFile;
     fileDetail.textContent = ui.fileHint;
+    parkMaterial(false);
     setFeedback(ui.nextPage);
     updateSubmitState();
+    /* Focus goes to the first field of the empty form: a closed modal hands the keyboard back to
+       the page behind it, and the next thing this form asks for is the teacher's text (2026-09-17). */
+    sourceText.focus({preventScroll: true});
   }
 
   function formatSize(bytes) {
@@ -284,7 +312,6 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
   }
 
   function rejectFile(message) {
-    resetResult();
     fileInput.value = "";
     state.file = null;
     if (state.previewUrl) URL.revokeObjectURL(state.previewUrl);
@@ -310,13 +337,12 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
       return;
     }
 
-    resetResult();
     if (state.previewUrl) URL.revokeObjectURL(state.previewUrl);
     state.file = file;
     state.previewUrl = URL.createObjectURL(file);
     preview.src = state.previewUrl;
     preview.alt = `${ui.uploadedWork}: ${file.name}`;
-    previewBadge.textContent = ui.uploadedWork;
+    setPreviewBadge(false);
     dropzone.classList.add("has-file");
     fileName.textContent = file.name;
     fileDetail.textContent = `${formatSize(file.size)} · ${ui.replaceHint}`;
@@ -405,57 +431,107 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
     return "";
   }
 
-  function normalizeFinding(finding) {
-    if (typeof finding === "string") return {title: finding, detail: ""};
-    if (!finding || typeof finding !== "object") return null;
-    const title = String(finding.title || finding.word || finding.type || ui.deviation);
-    const detail = String(finding.detail || finding.explanation || finding.message || "");
-    return {title, detail};
+  /* Two seconds is this dialog's beat: the cooling-off the cancel button serves after its first
+     press, and how long a copy confirmation stays up before the button is a button again
+     (2026-09-17). */
+  const DIALOG_BEAT_MS = 2000;
+
+  /* The link's two presses are the cancel button's idea without the danger: the first one gives the
+     teacher the fact she needs before she sends the link to anyone — how long it stays alive, taken
+     from the result's own expiry rather than from a sentence about it — and the second one copies it.
+     A press that has not been told the deadline yet copies nothing (2026-09-17). */
+  function setCopyState(value) {
+    window.clearTimeout(state.copyTimer);
+    state.copyTimer = 0;
+    if (value === "resting") {
+      // Back to rest puts the fallback field away too, in the same place that opened it (2026-09-17).
+      copyButton.classList.remove("is-revealed");
+      resultLink.hidden = true;
+      resultLink.value = "";
+    } else {
+      copyButton.classList.add("is-revealed");
+    }
+    copyButton.textContent = {
+      resting: copyLabel,
+      revealed: `${ui.availableTill} ${state.availableUntil}`,
+      copied: ui.copied,
+      manual: ui.copyManual,
+    }[value];
+    // The confirmation is a beat, not a state: it says what just happened and then the button is the
+    // button again. Two seconds is this dialog's beat, the same one the cancel lock uses (2026-09-17).
+    if (value === "copied") {
+      state.copyTimer = window.setTimeout(() => setCopyState("resting"), DIALOG_BEAT_MS);
+    }
   }
 
+  async function copyReportLink() {
+    if (!copyButton.classList.contains("is-revealed")) {
+      setCopyState("revealed");
+      return;
+    }
+    try {
+      // Over HTTPS this is the whole job. It is refused on a page that is not a secure context and by
+      // a browser that will not grant the permission, and both of those are answered below rather
+      // than with an error: the teacher came here for this URL (2026-09-17).
+      await navigator.clipboard.writeText(state.publicUrl);
+      setCopyState("copied");
+    } catch {
+      // The link itself, on screen and selected, is the fallback: it can be copied by hand from here.
+      resultLink.value = state.publicUrl;
+      resultLink.hidden = false;
+      resultLink.focus({preventScroll: true});
+      resultLink.select();
+      setCopyState("manual");
+    }
+  }
+
+  /* The dialog is the only place the report can be reached from, so it opens holding everything a
+     press needs: the three URLs the buttons hand over, the deadline that is the copy button's second
+     label, and the buttons themselves. It is one dialog that is reopened rather than rebuilt, so
+     every opening starts from the same state — every button live and at rest, no error and no link
+     left over from a failed press (2026-09-17). */
   function showResult(payload) {
     const evaluatedUrl = safeUrl(payload.evaluated_document_url, "image");
     const reportUrl = safeUrl(payload.report_pdf_url, "pdf");
     const publicUrl = safeUrl(payload.public_url, "page");
+    const expires = new Date(payload.expires_at);
     const assessment = payload.assessment;
-    if (!evaluatedUrl || !reportUrl || !assessment || typeof assessment !== "object") {
+    // The expiry is one of the things the dialog needs, not decoration: it is the copy button's own
+    // second label, and the gateway sends one with every completed job (2026-09-17).
+    if (
+      !evaluatedUrl
+      || !reportUrl
+      || !publicUrl
+      || Number.isNaN(expires.getTime())
+      || !assessment
+      || typeof assessment !== "object"
+    ) {
       throw new Error(ui.incompleteResult);
     }
 
     preview.src = evaluatedUrl;
     preview.alt = ui.checkedAlt;
-    previewBadge.textContent = ui.checkedWork;
-    workspace.classList.add("has-result");
+    setPreviewBadge(true);
     resultHeadline.textContent = String(assessment.headline || ui.resultHeadline);
-    resultSummary.textContent = String(assessment.summary || ui.resultSummary);
-    findingsList.replaceChildren();
 
-    const findings = Array.isArray(assessment.findings) ? assessment.findings.map(normalizeFinding).filter(Boolean) : [];
-    if (!findings.length) findings.push({title: ui.noMarks, detail: ui.noMarksDetail});
-    findings.forEach((finding) => {
-      const item = document.createElement("li");
-      const title = document.createElement("strong");
-      const detail = document.createElement("span");
-      title.textContent = finding.title;
-      detail.textContent = finding.detail;
-      item.append(title);
-      if (finding.detail) item.append(detail);
-      findingsList.append(item);
-    });
+    state.reportUrl = reportUrl;
+    state.reportFilename = String(payload.report_filename || "bilimai-report.pdf");
+    state.publicUrl = publicUrl;
+    // Formatted here, once: the copy button's reveal and nothing else on the page says when the
+    // result stops existing (2026-09-17).
+    state.availableUntil = expires.toLocaleTimeString(ui.locale, {hour: "2-digit", minute: "2-digit"});
 
-    reportLink.href = reportUrl;
-    reportLink.download = String(payload.report_filename || "bilimai-report.pdf");
-    if (publicUrl) {
-      publicResultLink.href = publicUrl;
-      publicResultLink.hidden = false;
-    }
-    const expires = new Date(payload.expires_at);
-    resultExpiry.textContent = Number.isNaN(expires.getTime())
-      ? ui.expiryUnknown
-      : `${ui.expiryUntil} ${expires.toLocaleTimeString(ui.locale, {hour: "2-digit", minute: "2-digit"})}.`;
-    result.hidden = false;
-    result.focus({preventScroll: true});
-    result.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
+    reportButton.disabled = false;
+    copyButton.disabled = false;
+    cancelButton.disabled = false;
+    setCancelState("resting");
+    setCopyState("resting");
+    setDialogStatus("");
+    lockPageScroll();
+    result.showModal();
+    /* The teacher came here for the report, so the dialog opens with the primary action focused:
+       Enter downloads it, and Tab reaches the copy and the cancel beside it (2026-09-17). */
+    reportButton.focus({preventScroll: true});
   }
 
   async function fetchJson(path, options = {}) {
@@ -486,13 +562,14 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
       if (payload.status === "complete") {
         await finishWaiting();
         showResult(payload);
-        setFeedback(ui.checkComplete);
         return;
       }
       if (payload.status === "failed" || payload.status === "cancelled") {
         throw new Error(payload.error || ui.checkFailed);
       }
-      progressPhase.textContent = phaseText(payload);
+      // What the gateway reports while a job runs — its status, its place in the line — is not put
+      // on screen: the panel says one thing for the whole wait, and the bar says how long that has
+      // been. The poll itself is what the wait is made of (2026-09-17).
       await new Promise((resolve) => window.setTimeout(resolve, 1500));
     }
   }
@@ -548,10 +625,12 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
       return;
     }
 
-    resetResult();
     progressPhase.textContent = sendingPhase;
     setFeedback(ui.sending);
     setBusy(true);
+    // Parked before the first byte leaves: the moment the teacher presses the button, her photograph
+    // and her text stop being hers to edit and start being what is being checked (2026-09-17).
+    parkMaterial(true);
     const body = new FormData();
     body.append("document", state.file, state.file.name);
     body.append("source_text", sourceText.value.trim());
@@ -564,11 +643,16 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
       if (!state.jobId) throw new Error(ui.noJobId);
       const generation = ++state.pollGeneration;
       startWaiting();
-      // The panel is what the teacher reads; the live region repeats its promise for whoever hears
-      // the page instead of seeing it.
+      // One line for the whole wait, and the page's own sub-line under it. The live region carries
+      // the part a screen reader cannot see change: that the page was accepted.
+      progressPhase.textContent = ui.waitingLine;
       setFeedback(ui.waiting);
       await pollJob(state.jobId, generation);
     } catch (error) {
+      // Nothing is running any more, so her material goes back to being hers: a check that was not
+      // accepted, or that failed, has to leave a form she can correct and send again — not a blurred
+      // photograph (2026-09-17).
+      parkMaterial(false);
       setFeedback(error instanceof Error ? error.message : ui.resultFailed, true);
     } finally {
       stopWaiting();
@@ -576,16 +660,106 @@ import {adoptSession, queuePlace, refusalFrom, sessionHeaders} from "./pilot-cli
     }
   });
 
-  resetButton.addEventListener("click", async () => {
-    resetButton.disabled = true;
+  /* Cancel throws the report away for good, so it has three states rather than a plain confirm: the
+     yellow it rests in, a two-second lock that says what the next press would do and cannot itself be
+     pressed, and the red that does it. The lock is a real `disabled` button — one that looks pressable
+     and does nothing reads as broken — and its own timer is the only thing that ends it, so a press
+     that lands a moment too late cannot fall through to the delete. Escape puts either state back to
+     rest; nothing else does, because the lock already covers the moment the first press bought
+     (2026-09-17). */
+  function setCancelState(value) {
+    window.clearTimeout(state.cancelLockTimer);
+    state.cancelLockTimer = 0;
+    const locked = value === "locked";
+    cancelButton.classList.toggle("is-locked", locked);
+    cancelButton.classList.toggle("is-armed", value === "armed");
+    cancelButton.textContent = value === "resting" ? cancelLabel : ui.confirmDelete;
+    cancelButton.disabled = locked;
+    // `disabled` is what makes the press impossible; this says the same thing in the markup, so the
+    // locked button is described as unavailable rather than as a button that happens not to work.
+    if (locked) cancelButton.setAttribute("aria-disabled", "true");
+    else cancelButton.removeAttribute("aria-disabled");
+    if (!locked) return;
+    state.cancelLockTimer = window.setTimeout(() => {
+      setCancelState("armed");
+      // The lock takes the button out of the tab order, which drops focus out of it for those two
+      // seconds: it is given back when the button is clickable again, unless the teacher has moved on
+      // to something else inside the dialog in the meantime (2026-09-17).
+      if (!result.contains(document.activeElement)) cancelButton.focus({preventScroll: true});
+    }, DIALOG_BEAT_MS);
+  }
+
+  async function cancelSubmission() {
+    // A press that lands during the lock is not a press: the button is already disabled, and an
+    // impatient second click must not restart the two seconds, let alone reach the delete
+    // (2026-09-17).
+    if (cancelButton.disabled) return;
+    if (!cancelButton.classList.contains("is-armed")) {
+      setCancelState("locked");
+      return;
+    }
+    setCancelState("resting");
+    reportButton.disabled = true;
+    cancelButton.disabled = true;
     try {
-      if (state.jobId) await fetchJson(`/v1/submissions/${encodeURIComponent(state.jobId)}`, {method: "DELETE"});
+      // A completed job is the only way into this dialog, so there is always a job to discard.
+      await fetchJson(`/v1/submissions/${encodeURIComponent(state.jobId)}`, {method: "DELETE"});
       clearSubmission();
     } catch (error) {
-      setFeedback(error instanceof Error ? error.message : ui.resetFailed, true);
-    } finally {
-      resetButton.disabled = false;
+      // The report is still there — the gateway never confirmed the delete — so the dialog stays
+      // open with the reason on it, and the teacher can press again (2026-09-17). Focus goes back to
+      // the button that failed: disabling it while it held focus would leave the keyboard nowhere.
+      setDialogStatus(error instanceof Error ? error.message : ui.deleteFailed);
+      reportButton.disabled = false;
+      cancelButton.disabled = false;
+      cancelButton.focus({preventScroll: true});
     }
+  }
+
+  /* The report reaches the teacher before the form forgets anything: the bytes are fetched in full,
+     handed to the browser as a blob URL with the gateway's own filename, and only then does the flow
+     reset. Clearing first — revoking the photograph's URL and dropping the result — would send her
+     after a file that no longer exists. The click hands the blob to the download manager, and the
+     blob URL outlives it: the next report releases the previous URL rather than the reset releasing
+     the one being read (2026-09-17). */
+  async function downloadReport() {
+    const reportUrl = state.reportUrl;
+    if (!reportUrl || reportButton.disabled) return;
+    reportButton.disabled = true;
+    cancelButton.disabled = true;
+    try {
+      const response = await fetch(reportUrl);
+      if (!response.ok) throw new Error(ui.downloadFailed);
+      const url = URL.createObjectURL(await response.blob());
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = state.reportFilename;
+      anchor.click();
+      if (state.handedOutReportUrl) URL.revokeObjectURL(state.handedOutReportUrl);
+      state.handedOutReportUrl = url;
+      clearSubmission();
+    } catch (error) {
+      setDialogStatus(error instanceof Error ? error.message : ui.downloadFailed);
+      reportButton.disabled = false;
+      cancelButton.disabled = false;
+      reportButton.focus({preventScroll: true});
+    }
+  }
+
+  reportButton.addEventListener("click", downloadReport);
+  copyButton.addEventListener("click", copyReportLink);
+  cancelButton.addEventListener("click", cancelSubmission);
+  // The lock belongs to the dialog's visibility, not to any one way out of it: whatever closes the
+  // dialog gives the page its scrolling back, so a request that fails cannot leave a page that
+  // refuses to move (2026-09-17).
+  result.addEventListener("close", unlockPageScroll);
+  result.addEventListener("cancel", (event) => {
+    // Escape never closes this dialog: closing it would throw the report away without a word, and the
+    // report only ever leaves through the buttons. It does put both pressed buttons back to rest —
+    // the copy button's reveal, and the cancel button's lock or its armed state (2026-09-17).
+    event.preventDefault();
+    setCopyState("resting");
+    setCancelState("resting");
   });
 
   // The initial selection, mirrored onto the buttons from the one place it is stated above: both

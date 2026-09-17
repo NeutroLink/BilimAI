@@ -374,27 +374,35 @@
           <div class="evaluation-progress">
             <div class="progress-card">
               <span class="progress-orbit" aria-hidden="true"></span>
-              <strong>BilimAI is checking the work</strong>
+              <!-- One static line while the check runs, and this is its second half: the first half
+                   is written by submit.js, which is where the panel's live states live, and the note
+                   is the page's own half of the same sentence. Nothing here rotates any more
+                   (2026-09-17). -->
               <span class="progress-phase" id="evaluation-phase">Sending your page…</span>
-              <p class="progress-note">Please wait and keep this window open: the result will appear right here. Your page is safe — the first check of the day takes a few minutes.</p>
+              <p class="progress-note">A couple of minutes for the first one. Keep this window open.</p>
               <span class="progress-track" aria-hidden="true"><span class="progress-fill"></span></span>
               <!-- Empty on purpose: submit.js writes this from the same fraction it gives the fill,
                    in the page's own locale, so no second number can disagree with the bar. -->
               <span class="progress-percent" id="evaluation-percent" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="evaluation-phase"></span>
             </div>
           </div>
-          <div class="assessment-panel" id="assessment-result" aria-label="Check result" tabindex="-1" hidden>
+          <!-- The result is a real modal <dialog>: opened with showModal() it takes the top layer,
+               makes everything behind it — the blurred page and the text — inert, and gives Escape a
+               cancel event to answer. role and aria-modal are stated for the record; a modal dialog
+               element already carries both (2026-09-17). -->
+          <dialog class="assessment-dialog" id="assessment-result" role="dialog" aria-modal="true" aria-labelledby="assessment-headline">
             <span class="assessment-kicker">BilimAI result</span>
             <h3 id="assessment-headline">Check complete</h3>
-            <p class="assessment-summary" id="assessment-summary"></p>
-            <ul class="assessment-findings" id="assessment-findings"></ul>
-            <p class="result-expiry" id="result-expiry"></p>
+            <p class="dialog-status" id="dialog-status" role="status" hidden></p>
+            <!-- Only ever shown when the browser refuses the clipboard: the link the teacher came for,
+                 left on screen and selected so it can be copied by hand. -->
+            <input class="dialog-link" id="result-link" type="text" readonly hidden aria-label="Result link">
             <div class="result-actions">
-              <a class="download-report" id="download-report" download="bilimai-report.pdf">Download the PDF report: the marked page and the comments in one file</a>
-              <a class="public-result-link" id="public-result-link" target="_blank" rel="noopener" hidden>Open the public link</a>
-              <button class="reset-evaluation" id="reset-evaluation" type="button">New check</button>
+              <button class="download-report" id="download-report" type="button">Download PDF report</button>
+              <button class="copy-report-link" id="copy-report-link" type="button">Copy download link</button>
+              <button class="cancel-submission" id="cancel-submission" type="button">Cancel</button>
             </div>
-          </div>
+          </dialog>
         </div>
       </div>
     </form>
